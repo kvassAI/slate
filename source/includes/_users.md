@@ -1,146 +1,398 @@
 # Users
 
-In order to create a User, you also need to authenticate yourself. We currently *only* allow login via Digits, the Twitter platform for logging in using a mobile phone - [Digits](https://get.digits.com/).
+Users are your typical Customer.
 
-## Digits Authentication
+## User object
 
-### Mobile (iOS and Android)
-
-Both iOS and Android support Digits login, but we need to verify on the server-side that the credentials being sent are correct. For that we need to get the same information Digits has sent your app. Documentation explains how to do this for both [Android](https://docs.fabric.io/android/digits/advanced-setup.html#verify-digits-user) and [iOS](https://docs.fabric.io/apple/digits/advanced-setup.html#verifying-a-user). For Android in specific, we built a test app to demonstrate how to do this: - [https://github.com/shareactorIO/digits-android](https://github.com/shareactorIO/digits-android).
-
-### Web
-
-If you're trying to authenticate through a website or any other way which does not have an SDK, you need to send us the same headers you get when talking to Digits:
-
-* X-Auth-Service-Provider
-* X-Verify-Credentials-Authorization
-
-
-```shell
-curl "https://api.shareactor.io/auth"
-  -H "Authorization: Bearer <shareactor-api-key>"
-  -H "X-Auth-Service-Provider: https://api.digits.com/1.1/..."
-  -H "X-Verify-Credentials-Authorization: OAuth oauth_consumer_key=\"...\"
-      oauth_signature=\"...\" oauth_signature_method=..."
-```
-
-```python
-import requests
-
-headers = {'Authorization': 'Bearer <shareactor-api-key>',
-           'X-Auth-Service-Provider': 'https://api.digits.com/1.1/...',
-           'X-Verify-Credentials-Authorization': 'OAuth oauth_consumer_key="..."
-              oauth_signature="..." oauth_signature_method=...'}
-
-requests.post('https://api.shareactor.io/auth', headers=headers)
-```
+Attributes | Description
+---------- | -------
+first_name | First name of the User
+last_name | Last name of the User
+email | E-mail of the User
+mobile_phone_number | Phone number of the User
+addresses | List of Addresses belonging to User
+billing_address | Billing Address of User
+bio | Biographic note about the User
+tags | List of Tags associated with User
+roles | List of Roles associated with User
+deleted | Flag that sets User object to deleted
 
 ## Create a User
 
-```shell
-curl "https://api.shareactor.io/users"
-  -H "Authorization: Bearer <shareactor-api-key>"
-  -X POST
-  -d "{\"user\":{\"first_name\":\"John\",\"last_name\":\"Doe\"}}"
-```
+``` http
+POST /users HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
 
-```python
-import requests
-
-headers = {'Authorization': 'Bearer <shareactor-api-key>'}
-user = { "user": { "first_name": "John", "last_name": "Doe" }}
-
-requests.post('https://api.shareactor.io/auth', json=user, headers=headers)
-```
-
-> The above command returns JSON structured like this:
-
-```json
 {
-  "modified": {
-    "$date": "..."
-  },
-  "_cls": "User",
-  "company": {
-    "$oid": "..."
-  },
-  "created": {
-    "$date": "..."
-  },
-  "roles": [
-    "user"
-  ],
-  "last_name": "Doe",
-  "billing_address": {},
-  "_id": {
-    "$oid": "ID"
-  },
-  "addresses": [],
-  "first_name": "John"
+  "user": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john@email.com",
+    "mobile_phone_number": "+4712345678"
+  }
 }
 ```
 
-This endpoint creates a new user.
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-### HTTP Request
-
-`POST https://api.shareactor.io/users`
-
-### Request Body
-
-User in JSON format: `{ "user": {"first_name": "John", "last_name": "Doe"}}`
-
-
-## Get a specific User
-
-```shell
-curl "https://api.shareactor.io/users/ID"
-  -H "Authorization: Bearer <shareactor-api-key>"
-```
-
-```python
-import requests
-
-headers = {'Authorization': 'Bearer <shareactor-api-key>'}
-
-requests.get('https://api.shareactor.io/users/ID', headers=headers)
-```
-
-> The above command returns JSON structured like this:
-
-```json
 {
-  "modified": {
-    "$date": "..."
+  "_id":{
+    "$oid":"57f14227d76d43264a70c95d"
   },
-  "_cls": "User",
-  "company": {
-    "$oid": "..."
+  "_cls":"User",
+  "created":{
+    "$date":1475428903950
   },
-  "created": {
-    "$date": "..."
+  "modified":{
+    "$date":1475428903951
   },
-  "roles": [
+  "first_name":"John",
+  "last_name":"Doe",
+  "email":"john@email.com",
+  "mobile_phone_number":"+4712345678",
+  "addresses":[],
+  "billing_address":{},
+  "bio":"",
+  "note":"",
+  "avatar":"",
+  "company":{
+    "$oid":"57f14227d76d43264a70c93c"
+  },
+  "tags":[],
+  "stripe_customer_id":"",
+  "roles":[
     "user"
   ],
-  "last_name": "Doe",
-  "billing_address": {},
-  "_id": {
-    "$oid": "ID"
+  "deleted":false
+  }
+```
+
+Creates a new User.
+
+Argument | Description
+---------- | -------
+first_name | First name of the User
+last_name | Last name of the User
+email | E-mail of the User
+mobile_phone_number | Phone number of the User
+billing_address | Billing Address of User
+bio | Biographic note about the User
+tags | List of Tags associated with User
+
+
+## Retrieve a User
+
+``` http
+GET /users/<user_id> HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "_id":{
+    "$oid":"57f14227d76d43264a70c95d"
   },
-  "addresses": [],
-  "first_name": "John"
+  "_cls":"User",
+  "created":{
+    "$date":1475428903950
+  },
+  "modified":{
+    "$date":1475428903951
+  },
+  "first_name":"John",
+  "last_name":"Doe",
+  "email":"john@email.com",
+  "mobile_phone_number":"+4712345678",
+  "addresses":[],
+  "billing_address":{},
+  "bio":"",
+  "note":"",
+  "avatar":"",
+  "company":{
+    "$oid":"57f14227d76d43264a70c93c"
+  },
+  "tags":[],
+  "stripe_customer_id":"",
+  "roles":[
+    "user"
+  ],
+  "deleted":false
+  }
+```
+
+Retrieves User with the given ID.
+
+Argument | Description
+---------- | -------
+**user_id** | ID of the desired User
+
+
+## Update a User
+
+``` http
+PUT /users/<user-id> HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+
+{
+  "first_name": "Oliver"
 }
 ```
 
-This endpoint retrieves a specific user.
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-### HTTP Request
+{
+  "_id":{
+    "$oid":"57f14227d76d43264a70c95d"
+  },
+  "_cls":"User",
+  "created":{
+    "$date":1475428903950
+  },
+  "modified":{
+    "$date":1475428903951
+  },
+  "first_name":"Oliver",
+  "last_name":"Doe",
+  "email":"john@email.com",
+  "mobile_phone_number":"+4712345678",
+  "addresses":[],
+  "billing_address":{},
+  "bio":"",
+  "note":"",
+  "avatar":"",
+  "company":{
+    "$oid":"57f14227d76d43264a70c93c"
+  },
+  "tags":[],
+  "stripe_customer_id":"",
+  "roles":[
+    "user"
+  ],
+  "deleted":false
+  }
+```
 
-`GET https://api.shareactor.io/users/ID`
+Updates an existing User.
 
-### URL Parameters
+Argument | Description
+---------- | -------
+user-id | ID of the User to update
+first_name | First name of the User
+last_name | Last name of the User
+email | E-mail of the User
+mobile_phone_number | Phone number of the User
+billing_address | Billing Address of User
+bio | Biographic note about the User
+tags | List of Tags associated with User
 
-Parameter | Description
---------- | -----------
-ID | The ID of the user to retrieve
+
+## Delete a User
+
+``` http
+DELETE /users/<user-id> HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "_id":{
+    "$oid":"57f14227d76d43264a70c95d"
+  },
+  "_cls":"User",
+  "created":{
+    "$date":1475428903950
+  },
+  "modified":{
+    "$date":1475428903951
+  },
+  "first_name":"Oliver",
+  "last_name":"Doe",
+  "email":"john@email.com",
+  "mobile_phone_number":"+4712345678",
+  "addresses":[],
+  "billing_address":{},
+  "bio":"",
+  "note":"",
+  "avatar":"",
+  "company":{
+    "$oid":"57f14227d76d43264a70c93c"
+  },
+  "tags":[],
+  "stripe_customer_id":"",
+  "roles":[
+    "user"
+  ],
+  "deleted":true
+  }
+```
+
+Deletes a User.
+
+
+Argument | Description
+---------- | -------
+user-id | ID of the User to delete
+
+
+## List all Users
+
+``` http
+GET /users HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+  "_id":{
+    "$oid":"57f14227d76d43264a70c95d"
+  },
+  "_cls":"User",
+  "created":{
+    "$date":1475428903950
+  },
+  "modified":{
+    "$date":1475428903951
+  },
+  "first_name":"John",
+  "last_name":"Doe",
+  "email":"john@email.com",
+  "mobile_phone_number":"+4712345678",
+  "addresses":[],
+  "billing_address":{},
+  "bio":"",
+  "note":"",
+  "avatar":"",
+  "company":{
+    "$oid":"57f14227d76d43264a70c93c"
+  },
+  "tags":[],
+  "stripe_customer_id":"",
+  "roles":[
+    "user"
+  ],
+  "deleted":false
+  }
+]
+```
+
+Retrieves a list of all Users beloging to some Company.
+
+Argument | Description
+---------- | -------
+size | number of items to retrieve
+page | which page to retrieve. _default page size is 10_
+order_by | field used for sorting results
+
+
+## Search User
+
+``` http
+GET /users/search?query=doe HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+  "_id":{
+    "$oid":"57f14227d76d43264a70c95d"
+  },
+  "_cls":"User",
+  "created":{
+    "$date":1475428903950
+  },
+  "modified":{
+    "$date":1475428903951
+  },
+  "first_name":"John",
+  "last_name":"Doe",
+  "email":"john@email.com",
+  "mobile_phone_number":"+4712345678",
+  "addresses":[],
+  "billing_address":{},
+  "bio":"",
+  "note":"",
+  "avatar":"",
+  "company":{
+    "$oid":"57f14227d76d43264a70c93c"
+  },
+  "tags":[],
+  "stripe_customer_id":"",
+  "roles":[
+    "user"
+  ],
+  "deleted":false
+  }
+]
+```
+
+Retrieves a list of Users whose first or last name match a given query.
+
+Argument | Description
+---------- | -------
+query | Query to use for searching
+size | Number of items to retrieve
+page | Which page to retrieve. _default page size is 10_
+
+
+## List all Orders for a User
+
+``` http
+GET /users/<user-id>/orders HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {}
+]
+```
+
+Retrieves a list of all Orders associated with a given User.
+
+Argument | Description
+---------- | -------
+user-id | ID of the user to retrieve Orders from
+size | number of items to retrieve
+page | which page to retrieve. _default page size is 10_
+order_by | field used for sorting results

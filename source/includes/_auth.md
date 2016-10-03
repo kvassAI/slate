@@ -1,29 +1,25 @@
-# Authorization / API Key
+# Authentication
 
-> To authorize, use this code:
+In order to create a User, you will have to authenticate yourself. We currently *only* allow login via Digits, the Twitter platform for logging in using a mobile phone - [Digits](https://get.digits.com/).
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "https://api.shareactor.io/"
-  -H "Authorization: meowmeowmeow"
+## Digits Authentication
+
+### Mobile (iOS and Android)
+
+Both iOS and Android support Digits login, but we need to verify on the server-side that the credentials being sent are correct. For that we need to get the same information Digits has sent your app. Documentation explains how to do this for both [Android](https://docs.fabric.io/android/digits/advanced-setup.html#verify-digits-user) and [iOS](https://docs.fabric.io/apple/digits/advanced-setup.html#verifying-a-user). For Android in specific, we built a test app to demonstrate how to do this: - [https://github.com/shareactorIO/digits-android](https://github.com/shareactorIO/digits-android).
+
+### Web
+
+``` http
+POST /auth HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Auth-Service-Provider: https://api.digits.com/1.1/...
+X-Verify-Credentials-Authorization: OAuth oauth_consumer_key=... oauth_signature=... oauth_signature_method=...
+Host: api.shareactor.io
 ```
 
-```python
-import requests
+If you're trying to authenticate through a website or any other way which does not have an SDK, you need to send us the same headers you get when talking to Digits:
 
-headers = {'Authorization': 'Bearer <shareactor-api-key>'}
-
-requests.get('https://api.shareactor.io/...', headers=headers)
-```
-
-> Make sure to replace `<shareactor-api-key>` with your API key.
-
-Shareactor uses API keys to allow access to the API. If you want access to our APIs please get in touch on our [website](http://www.shareactor.io).
-
-All API requests should include this key in the headers like the following:
-
-`Authorization: Bearer <shareactor-api-key>`
-
-<aside class="notice">
-You must replace <code>shareactor-key</code> with your personal API key.
-</aside>
+* X-Auth-Service-Provider
+* X-Verify-Credentials-Authorization
