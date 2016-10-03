@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -88,10 +86,12 @@
   color: #90a959;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;http&quot;,&quot;python&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -101,8 +101,7 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="http">http</a>
               <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
@@ -119,227 +118,1196 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        
+          <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the Shareactor API! Our APIs intend to provide businesses with the capability of porting their backends into our platform and start worrying with other things rather than tech!</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>We have language bindings in Shell and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>&hellip; Some other text here &hellip;</p>
 
-<h1 id="authentication">Authentication</h1>
-
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<h2 id="authorization">Authorization</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer &lt;shareactor-api-key&gt;'</span><span class="p">}</span>
+
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.shareactor.io/...'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">&lt;shareactor-api-key&gt;</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Shareactor uses API keys to allow access to the API. If you want access to our APIs please get in touch on our <a href="http://www.shareactor.io">website</a>.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>All API requests should include this key in the headers like the following:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">Authorization: Bearer &lt;shareactor-api-key&gt;</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>shareactor-api-key</code> with your personal API key.
 </aside>
 
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<h2 id="sessions">Sessions</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+<p>Some API calls will require a user session. In that case you should use the following additional header:</p>
 
-<p>This endpoint retrieves all kittens.</p>
+<p><code class="prettyprint">X-Share-Session: &lt;session_id&gt;</code></p>
 
-<h3 id="http-request">HTTP Request</h3>
+<p>Check the section on <a href="#users">Digits Authentication</a> for more information on how to get this header.</p>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+You must replace <code>session-id</code> with your Session id.
 </aside>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id="errors">Errors</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<aside class="notice">The errors below might change slightly between API calls</aside>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-
-          <h1 id="errors">Errors</h1>
-
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The Shareactor API uses the following error codes:</p>
 
 <table><thead>
 <tr>
 <th>Error Code</th>
-<th>Meaning</th>
+<th>Reason</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Bad Request</td>
+<td>Your request is malformed or missing mandatory data</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Unauthorized</td>
+<td>Your API key is either wrong, missing or missing session information (X-Share-Session)</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>Not Found</td>
+<td>The specified resource could not be found</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>Internal Server Error</td>
+<td>We had a problem with our server. Try again later.</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Service Unavailable</td>
+<td>We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+<h2 id="expanding-objects">Expanding objects</h2>
+
+<blockquote>
+<p>Without the <code class="prettyprint">expand</code> parameter:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment_method_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="nt">"masked_card_number"</span><span class="p">:</span><span class="s2">"XXXXXXXXXXXX1234"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"merchant"</span><span class="p">:</span><span class="s2">"some_merchant_id"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b38"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b39"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>With the <code class="prettyprint">expand</code> parameter:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment_method_id&gt;/?expand=user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="nt">"masked_card_number"</span><span class="p">:</span><span class="s2">"XXXXXXXXXXXX1234"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"merchant"</span><span class="p">:</span><span class="s2">"some_merchant_id"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+4791234567"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@email.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b39"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Many response objects will contain IDs for related objects in the response. For example, an Order might have a customer id associated. If you want to expand the actual customer information you can use the <code class="prettyprint">expand</code> query parameter.</p>
+
+<h2 id="common-object-fields">Common Object fields</h2>
+
+<p>Here&rsquo;s a list of fields which you will see very often on the API response:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created</td>
+<td>Date when object was created</td>
+</tr>
+<tr>
+<td>modified</td>
+<td>Date when object was last modified</td>
+</tr>
+<tr>
+<td>deleted</td>
+<td>Flag that shows if object has been deleted</td>
+</tr>
+<tr>
+<td>active</td>
+<td>Flag that shows if object is active or not</td>
+</tr>
+<tr>
+<td>company</td>
+<td>Company associated with object</td>
+</tr>
+</tbody></table>
+
+<h2 id="pagination">Pagination</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/orders?size=10&amp;page=1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/orders?size=100</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+
+<p>All top-level API resources have support for bulk fetches via &ldquo;list&rdquo; API methods. For instance you can list orders, list users, list providers, etc.
+These list API methods share a common structure, taking at least these two parameters: size and page.</p>
+
+<p>Shareactor uses a pagination based on a page size (<code class="prettyprint">size</code>) and current page (<code class="prettyprint">page</code>). With these parameters you can retrieve the data the way you need and display it
+using your own pagination scheme.</p>
+
+          <h1 id="authentication">Authentication</h1>
+
+<p>In order to create a User, you will have to authenticate yourself. We currently <em>only</em> allow login via Digits, the Twitter platform for logging in using a mobile phone - <a href="https://get.digits.com/">Digits</a>.</p>
+
+<h2 id="digits-authentication">Digits Authentication</h2>
+
+<h3 id="mobile-ios-and-android">Mobile (iOS and Android)</h3>
+
+<p>Both iOS and Android support Digits login, but we need to verify on the server-side that the credentials being sent are correct. For that we need to get the same information Digits has sent your app. Documentation explains how to do this for both <a href="https://docs.fabric.io/android/digits/advanced-setup.html#verify-digits-user">Android</a> and <a href="https://docs.fabric.io/apple/digits/advanced-setup.html#verifying-a-user">iOS</a>. For Android in specific, we built a test app to demonstrate how to do this: - <a href="https://github.com/shareactorIO/digits-android">https://github.com/shareactorIO/digits-android</a>.</p>
+
+<h3 id="web">Web</h3>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/auth</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Auth-Service-Provider</span><span class="p">:</span> <span class="s">https://api.digits.com/1.1/...</span>
+<span class="na">X-Verify-Credentials-Authorization</span><span class="p">:</span> <span class="s">OAuth oauth_consumer_key=... oauth_signature=... oauth_signature_method=...</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+
+<p>If you&rsquo;re trying to authenticate through a website or any other way which does not have an SDK, you need to send us the same headers you get when talking to Digits:</p>
+
+<ul>
+<li>X-Auth-Service-Provider</li>
+<li>X-Verify-Credentials-Authorization</li>
+</ul>
+
+          <h1 id="users">Users</h1>
+
+<p>Users are your typical Customer.</p>
+
+<h2 id="user-object">User object</h2>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>First name of the User</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>Last name of the User</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail of the User</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td>Phone number of the User</td>
+</tr>
+<tr>
+<td>addresses</td>
+<td>List of Addresses belonging to User</td>
+</tr>
+<tr>
+<td>billing_address</td>
+<td>Billing Address of User</td>
+</tr>
+<tr>
+<td>bio</td>
+<td>Biographic note about the User</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>List of Tags associated with User</td>
+</tr>
+<tr>
+<td>roles</td>
+<td>List of Roles associated with User</td>
+</tr>
+<tr>
+<td>deleted</td>
+<td>Flag that sets User object to deleted</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-user">Create a User</h2>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+4712345678"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c95d"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"addresses"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"billing_address"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c93c"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"roles"</span><span class="p">:[</span><span class="w">
+    </span><span class="s2">"user"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Creates a new User.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>First name of the User</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>Last name of the User</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail of the User</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td>Phone number of the User</td>
+</tr>
+<tr>
+<td>billing_address</td>
+<td>Billing Address of User</td>
+</tr>
+<tr>
+<td>bio</td>
+<td>Biographic note about the User</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>List of Tags associated with User</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-a-user">Retrieve a User</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users/&lt;user_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c95d"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"addresses"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"billing_address"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c93c"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"roles"</span><span class="p">:[</span><span class="w">
+    </span><span class="s2">"user"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves User with the given ID.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>user_id</strong></td>
+<td>ID of the desired User</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-user">Update a User</h2>
+<pre class="highlight http"><code><span class="nf">PUT</span> <span class="nn">/users/&lt;user-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oliver"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c95d"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"Oliver"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"addresses"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"billing_address"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c93c"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"roles"</span><span class="p">:[</span><span class="w">
+    </span><span class="s2">"user"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Updates an existing User.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user-id</td>
+<td>ID of the User to update</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>First name of the User</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>Last name of the User</td>
+</tr>
+<tr>
+<td>email</td>
+<td>E-mail of the User</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td>Phone number of the User</td>
+</tr>
+<tr>
+<td>billing_address</td>
+<td>Billing Address of User</td>
+</tr>
+<tr>
+<td>bio</td>
+<td>Biographic note about the User</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>List of Tags associated with User</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-a-user">Delete a User</h2>
+<pre class="highlight http"><code><span class="nf">DELETE</span> <span class="nn">/users/&lt;user-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c95d"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"Oliver"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"addresses"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"billing_address"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c93c"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"roles"</span><span class="p">:[</span><span class="w">
+    </span><span class="s2">"user"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Deletes a User.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user-id</td>
+<td>ID of the User to delete</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-all-users">List all Users</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c95d"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"addresses"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"billing_address"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c93c"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"roles"</span><span class="p">:[</span><span class="w">
+    </span><span class="s2">"user"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves a list of all Users beloging to some Company.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>size</td>
+<td>number of items to retrieve</td>
+</tr>
+<tr>
+<td>page</td>
+<td>which page to retrieve. <em>default page size is 10</em></td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>field used for sorting results</td>
+</tr>
+</tbody></table>
+
+<h2 id="search-user">Search User</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users/search?query=doe</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c95d"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"addresses"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"billing_address"</span><span class="p">:{},</span><span class="w">
+  </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c93c"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"tags"</span><span class="p">:[],</span><span class="w">
+  </span><span class="nt">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"roles"</span><span class="p">:[</span><span class="w">
+    </span><span class="s2">"user"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves a list of Users whose first or last name match a given query.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>query</td>
+<td>Query to use for searching</td>
+</tr>
+<tr>
+<td>size</td>
+<td>Number of items to retrieve</td>
+</tr>
+<tr>
+<td>page</td>
+<td>Which page to retrieve. <em>default page size is 10</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="list-all-orders-for-a-user">List all Orders for a User</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users/&lt;user-id&gt;/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves a list of all Orders associated with a given User.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user-id</td>
+<td>ID of the user to retrieve Orders from</td>
+</tr>
+<tr>
+<td>size</td>
+<td>number of items to retrieve</td>
+</tr>
+<tr>
+<td>page</td>
+<td>which page to retrieve. <em>default page size is 10</em></td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>field used for sorting results</td>
+</tr>
+</tbody></table>
+
+          <h1 id="providers">Providers</h1>
+
+          <h1 id="products">Products</h1>
+
+          <h1 id="bulks">Bulks</h1>
+
+          <h1 id="orders">Orders</h1>
+
+          <h1 id="tags">Tags</h1>
+
+          <h1 id="campaigns">Campaigns</h1>
+
+          <h1 id="invoices">Invoices</h1>
+
+<p>Invoices allow you to store invoice information for later payment.</p>
+
+<h2 id="invoice-object">Invoice object</h2>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>User associated with Invoice</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Amount of invoice as a float</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>ISO code of currency, for example: &ldquo;EUR&rdquo;</td>
+</tr>
+<tr>
+<td>account_number</td>
+<td>Account number to make payment of invoice</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Message (KID) used for paying invoice. How it&rsquo;ll appear on the Issuer&rsquo;s bank</td>
+</tr>
+<tr>
+<td>due_date</td>
+<td>The due date of the invoice</td>
+</tr>
+<tr>
+<td>issued_date</td>
+<td>The date the invoice was generated</td>
+</tr>
+<tr>
+<td>issuer</td>
+<td>Issuer of invoice</td>
+</tr>
+<tr>
+<td>deleted</td>
+<td>Flag that sets Invoice object to deleted</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-an-invoice">Create an Invoice</h2>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/invoices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some transaction"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-10T18:25:43.511Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"issuer"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111433"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"due_date"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1476551410009</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"12313123"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Creates a new Invoice.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>message</strong></td>
+<td>Message of transaction</td>
+</tr>
+<tr>
+<td><strong>amount</strong></td>
+<td>Amount in float</td>
+</tr>
+<tr>
+<td><strong>currency</strong></td>
+<td>ISO code of currency: &ldquo;EUR&rdquo;, &ldquo;USD&rdquo;, etc.</td>
+</tr>
+<tr>
+<td><strong>account_number</strong></td>
+<td>Account number to pay invoice to</td>
+</tr>
+<tr>
+<td><strong>due_date</strong></td>
+<td>Due date of invoice</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-an-invoice">Retrieve an Invoice</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/invoices/&lt;invoice_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"issuer"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111433"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"due_date"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1476551410009</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"12313123"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves Invoice with the given ID.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>invoice_id</strong></td>
+<td>ID of the desired Invoice</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-all-invoices">List all Invoices</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/invoices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"issuer"</span><span class="p">:{</span><span class="w">
+          </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111433"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"due_date"</span><span class="p">:{</span><span class="w">
+          </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1476551410009</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"12313123"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">
+          </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+          </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+          </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves a list of all Invoices associated with the user.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>size</td>
+<td>number of items to retrieve</td>
+</tr>
+<tr>
+<td>page</td>
+<td>which page to retrieve. <em>default page size is 10</em></td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>field used for sorting results</td>
+</tr>
+</tbody></table>
+
+          <h1 id="payment-methods">Payment Methods</h1>
+
+<p>Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore, 
+you can retrieve this information later for recurring payments and so on.</p>
+
+<h2 id="payment-method-object">Payment Method object</h2>
+
+<p>A payment method object varies according to the system, however there are some fields which will always be present.</p>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>user</strong></td>
+<td>User associated with Payment Method</td>
+</tr>
+<tr>
+<td><strong>method</strong></td>
+<td>Type of Payment Method. Currently acceptable methods: <code class="prettyprint">stripe</code>, <code class="prettyprint">dibs</code>, <code class="prettyprint">paypal</code>, etc.</td>
+</tr>
+<tr>
+<td><strong>name</strong></td>
+<td>Name of Payment Method - to be shown to final customer, if needed</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-payment-method">Create a Payment Method</h2>
+
+<p>Creates a new payment method. Different methods will have different attributes needed. Below you can find a list of the attributes needed per method:</p>
+
+<h3 id="dibs">DIBS</h3>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dibs"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some_merchant_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>merchant</strong></td>
+<td>merchant id of company</td>
+</tr>
+<tr>
+<td><strong>ticket</strong></td>
+<td>id of card (ticket)</td>
+</tr>
+<tr>
+<td>masked_card_number</td>
+<td>&ldquo;XXXXXXXXXXXX1234&rdquo;</td>
+</tr>
+<tr>
+<td>card_prefix</td>
+<td>first 5 numbers of the card (for type check: VISA, MasterCard, etc.)</td>
+</tr>
+</tbody></table>
+
+<h3 id="paypal">Paypal</h3>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paypal"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"some_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>some_token</strong></td>
+<td>&hellip;</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-a-payment-method">Retrieve a Payment Method</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment_method_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nt">"masked_card_number"</span><span class="p">:</span><span class="s2">"XXXXXXXXXXXX1234"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"merchant"</span><span class="p">:</span><span class="s2">"some_merchant_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b38"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"method"</span><span class="p">:</span><span class="s2">"dibs"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b35"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475254021326</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"ticket"</span><span class="p">:</span><span class="s2">"some_ticket_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475254021326</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b39"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves the payment method with the given ID.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>payment_method_id</strong></td>
+<td>ID of the desired payment method</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-all-payment-methods">List all Payment Methods</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"masked_card_number"</span><span class="p">:</span><span class="s2">"XXXXXXXXXXXX1234"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"merchant"</span><span class="p">:</span><span class="s2">"some_merchant_id"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">
+             </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b38"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"method"</span><span class="p">:</span><span class="s2">"dibs"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+             </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b35"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+             </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475254021326</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"ticket"</span><span class="p">:</span><span class="s2">"some_ticket_id"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+             </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1475254021326</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+             </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b39"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves a list of all Payment Methods associated with the user.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>size</td>
+<td>number of items to retrieve</td>
+</tr>
+<tr>
+<td>page</td>
+<td>which page to retrieve. <em>default page size is 10</em></td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>field used for sorting results</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="http">http</a>
                 <a href="#" data-language-name="python">python</a>
           </div>
       </div>
