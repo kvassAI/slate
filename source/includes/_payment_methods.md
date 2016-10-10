@@ -1,6 +1,6 @@
 # Payment Methods
 
-Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore, 
+Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore,
 you can retrieve this information later for recurring payments and so on.
 
 ## Payment Method object
@@ -27,9 +27,9 @@ X-Share-Session: <session-id>
 Host: api.shareactor.io
 
 {
-    "method": "dibs",
-    "merchant": "some_merchant_id",
-    "ticket": "123123"
+  "method": "dibs",
+  "merchant": "some_merchant_id",
+  "ticket": "123123"
 }
 ```
 
@@ -37,7 +37,7 @@ Attribute | Description
 ---------- | -------
 **merchant** | merchant id of company
 **ticket** | id of card (ticket)
-masked_card_number | "XXXXXXXXXXXX1234" 
+masked_card_number | "XXXXXXXXXXXX1234"
 card_prefix | first 5 numbers of the card (for type check: VISA, MasterCard, etc.)
 
 ### Paypal
@@ -50,8 +50,8 @@ X-Share-Session: <session-id>
 Host: api.shareactor.io
 
 {
-    "method": "paypal",
-    "some_token": "..."
+  "method": "paypal",
+  "some_token": "..."
 }
 ```
 
@@ -75,27 +75,27 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "masked_card_number":"XXXXXXXXXXXX1234",
-    "merchant":"some_merchant_id",
-    "user":{
-        "$oid":"57ee9705d76d431e56769b38"
-    },
-    "deleted":false,
-    "method":"dibs",
-    "company":{
-        "$oid":"57ee9705d76d431e56769b35"
-    },
-    "created":{
-        "$date":1475254021326
-    },
-    "ticket":"some_ticket_id",
-    "modified":{
-        "$date":1475254021326
-    },
-    "active":true,
-    "_id":{
-        "$oid":"57ee9705d76d431e56769b39"
-    }
+  "masked_card_number":"XXXXXXXXXXXX1234",
+  "merchant":"some_merchant_id",
+  "user":{
+      "$oid":"57ee9705d76d431e56769b38"
+  },
+  "deleted":false,
+  "method":"dibs",
+  "company":{
+      "$oid":"57ee9705d76d431e56769b35"
+  },
+  "created":{
+      "$date":1475254021326
+  },
+  "ticket":"some_ticket_id",
+  "modified":{
+      "$date":1475254021326
+  },
+  "active":true,
+  "_id":{
+      "$oid":"57ee9705d76d431e56769b39"
+  }
 }
 ```
 
@@ -121,29 +121,29 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 [
-     {
-         "masked_card_number":"XXXXXXXXXXXX1234",
-         "merchant":"some_merchant_id",
-         "user":{
-             "$oid":"57ee9705d76d431e56769b38"
-         },
-         "deleted":false,
-         "method":"dibs",
-         "company":{
-             "$oid":"57ee9705d76d431e56769b35"
-         },
-         "created":{
-             "$date":1475254021326
-         },
-         "ticket":"some_ticket_id",
-         "modified":{
-             "$date":1475254021326
-         },
-         "active":true,
-         "_id":{
-             "$oid":"57ee9705d76d431e56769b39"
-         }
-     }
+  {
+    "masked_card_number":"XXXXXXXXXXXX1234",
+    "merchant":"some_merchant_id",
+    "user":{
+      "$oid":"57ee9705d76d431e56769b38"
+    },
+    "deleted":false,
+    "method":"dibs",
+    "company":{
+      "$oid":"57ee9705d76d431e56769b35"
+    },
+    "created":{
+      "$date":1475254021326
+    },
+    "ticket":"some_ticket_id",
+    "modified":{
+      "$date":1475254021326
+    },
+    "active":true,
+    "_id":{
+      "$oid":"57ee9705d76d431e56769b39"
+    }
+  }
 ]
 ```
 

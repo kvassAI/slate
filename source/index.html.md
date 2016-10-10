@@ -21,6 +21,7 @@ includes:
   - campaigns
   - invoices
   - payment_methods
+  - payments
 
 
 search: true
