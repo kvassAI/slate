@@ -13,7 +13,7 @@ A payment object contains the following attributes.
 Attributes | Description
 ---------- | -------
 **user** | User associated with Payment
-**amount** | Amount as an Integer. Do not use decimal points for separating units from decimal points, for example: 10EUR becomes amount: `1000`; 22.53EUR becomes `2253`.
+**amount** | Amount as a Float with decimal points (`.`). Example: 10.23 NOK.
 **currency** | 3 letter currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 **human_id** | Human readable ID.
 **payment_date** | Date to execute payment. Defaults to now.
@@ -89,7 +89,7 @@ Content-Type: application/json
 
 Attribute | Description
 ---------- | -------
-**amount** | Amount as an Integer. Do not use decimal points for separating units from decimal points, for example: 10EUR becomes amount: `1000`; 22.53EUR becomes `2253`. The final amount must be the same as the subjects being paid for (orders or invoices).
+**amount** | Amount as a Float with decimal points (`.`). Example: 10.23 NOK. The final amount must be the same as the subjects being paid for (orders or invoices).
 **currency** | 3 letter currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 **invoices** | List with invoices to be paid. Either this or **orders** must be set.
 **orders** | List with orders to be paid. Either this or **invoices** must be set.
@@ -218,7 +218,7 @@ Attribute | Description
 ---------- | -------
 **payment_method** | ID of already existing and valid Payment Method.
 **payment_date** | Date to execute payment. Defaults to now.
-**amount** | Amount as an Integer. Do not use decimal points for separating units from decimal points, for example: 10EUR becomes amount: `1000`; 22.53EUR becomes `2253`. The final amount must be the same as the subjects being paid for (orders or invoices).
+**amount** | Amount as a Float with decimal points (`.`). Example: 10.23 NOK. The final amount must be the same as the subjects being paid for (orders or invoices).
 **currency** | 3 letter currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 **invoices** | List with invoices to be paid. Either this or **orders** must be set.
 **orders** | List with orders to be paid. Either this or **invoices** must be set.
