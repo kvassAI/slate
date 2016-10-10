@@ -1142,7 +1142,7 @@ you can retrieve this information later for recurring payments and so on.</p>
 
 <span class="p">{</span><span class="w">
   </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dibs"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some_merchant_id"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-merchant-id&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1197,7 +1197,7 @@ you can retrieve this information later for recurring payments and so on.</p>
 </tbody></table>
 
 <h2 id="retrieve-a-payment-method">Retrieve a Payment Method</h2>
-<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment_method_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment-method-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
 <span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
@@ -1240,7 +1240,7 @@ you can retrieve this information later for recurring payments and so on.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>payment_method_id</strong></td>
+<td><strong>payment-method-id</strong></td>
 <td>ID of the desired payment method</td>
 </tr>
 </tbody></table>
@@ -1614,6 +1614,136 @@ as listing all available payments.</p>
 <tr>
 <td><strong>orders</strong></td>
 <td>List with orders to be paid. Either this or <strong>invoices</strong> must be set.</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-a-payment">Retrieve a Payment</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payments/&lt;payment-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826152</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826815</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;company-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;user-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826151</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves the payment with the given ID.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>payment-id</strong></td>
+<td>ID of the desired payment</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-all-payments">List all Payments</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826152</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826815</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;company-id&gt;"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-id&gt;"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;user-id&gt;"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826151</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves a list of all Payments associated with the user.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>size</td>
+<td>Number of items to retrieve</td>
+</tr>
+<tr>
+<td>page</td>
+<td>Which page to retrieve. <em>default page size is 10</em></td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>Field used for sorting results</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Status of Payments to filter by</td>
 </tr>
 </tbody></table>
 
