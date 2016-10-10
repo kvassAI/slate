@@ -224,4 +224,115 @@ Attribute | Description
 **orders** | List with orders to be paid. Either this or **invoices** must be set.
 
 
+## Retrieve a Payment
 
+``` http
+GET /payments/<payment-id> HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "orders": [],
+  "payment_date": {
+    "$date": 1476119826152
+  },
+  "invoices": [
+    {
+      "$oid": "<invoice-id>"
+    }
+  ],
+  "deleted": false,
+  "modified": {
+    "$date": 1476119826815
+  },
+  "current_state": "succeeded",
+  "amount": 450.2,
+  "company": {
+    "$oid": "<company-id>"
+  },
+  "currency": "NOK",
+  "_id": {
+    "$oid": "<payment-id>"
+  },
+  "user": {
+    "$oid": "<user-id>"
+  },
+  "metadata": {},
+  "created": {
+    "$date": 1476119826151
+  },
+  "active": true
+}
+```
+
+Retrieves the payment with the given ID.
+
+Argument | Description
+---------- | -------
+**payment-id** | ID of the desired payment
+
+## List all Payments
+
+``` http
+GET /payments HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+  {
+    "orders": [],
+    "payment_date": {
+      "$date": 1476119826152
+    },
+    "invoices": [
+      {
+        "$oid": "<invoice-id>"
+      }
+    ],
+    "deleted": false,
+    "modified": {
+      "$date": 1476119826815
+    },
+    "current_state": "succeeded",
+    "amount": 450.2,
+    "company": {
+      "$oid": "<company-id>"
+    },
+    "currency": "NOK",
+    "_id": {
+      "$oid": "<payment-id>"
+    },
+    "user": {
+      "$oid": "<user-id>"
+    },
+    "metadata": {},
+    "created": {
+      "$date": 1476119826151
+    },
+    "active": true
+  }
+]
+```
+
+Retrieves a list of all Payments associated with the user.
+
+Argument | Description
+---------- | -------
+size | Number of items to retrieve
+page | Which page to retrieve. _default page size is 10_
+order_by | Field used for sorting results
+status | Status of Payments to filter by

@@ -28,7 +28,7 @@ Host: api.shareactor.io
 
 {
   "method": "dibs",
-  "merchant": "some_merchant_id",
+  "merchant": "<some-merchant-id>",
   "ticket": "123123"
 }
 ```
@@ -63,7 +63,7 @@ Attribute | Description
 ## Retrieve a Payment Method
 
 ``` http
-GET /payment_methods/<payment_method_id> HTTP/1.1
+GET /payment_methods/<payment-method-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <shareactor-api-key>
 X-Share-Session: <session-id>
@@ -103,7 +103,7 @@ Retrieves the payment method with the given ID.
 
 Argument | Description
 ---------- | -------
-**payment_method_id** | ID of the desired payment method
+**payment-method-id** | ID of the desired payment method
 
 
 ## List all Payment Methods
