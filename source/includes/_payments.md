@@ -1,10 +1,11 @@
 # Payments
 
 When you want to pay for an Order or Invoice (single or multiple items) you need to use the Payment object. Together with a
-[Payment Method](#payment-methods), amount and currency, among other fields, you'll be able to create and process payments, as well
+[Payment Method](#payment-methods), among other fields, you'll be able to create and process payments, as well
 as listing all available payments.
 
-Some customers prefer to create the payment object before the actualy paying moment, to keep track of all states. For that case we allow the user to create a Payment object and they process it later. If you do not need this, you can just capture the payment by passing the payment details directly on that API call.
+When paying for an [Invoice](#invoices) you can also provide the API with a `payment_date` which allows you to schedule payments
+for later. If no `payment_date` is provided, we'll use each Invoice's `due_date` as the `payment_date`.
 
 ## Payment object
 
@@ -16,9 +17,7 @@ Attributes | Description
 **amount** | Amount as a Float with decimal points (`.`). Example: 10.23 NOK.
 **currency** | 3 letter currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 **human_id** | Human readable ID.
-**payment_date** | Date to execute payment. Defaults to now.
-**invoices** | List with invoices to be paid. Either this or **orders** must be set.
-**orders** | List with orders to be paid. Either this or **invoices** must be set.
+**subject** | Either an Invoice or Order reference.
 **current_state** | Current state of operation. Can be one of: `created`, `processing`, `succeeded`, `failed` and `cancelled`.
 payment_method | ID of already created Payment Method.
 billing_address | Address object with billing details.
@@ -27,9 +26,9 @@ metadata | Some additional information to Payment.
 status_code | In case the payment fails, this will have some code from the chosen payment method backend. *(if existing)*
 error_message | In case the payment fails, this will have the reason in a textual way. *(if existing)*
 
-## Create a Payment
+## Process a Payment
 
-Creates a new payment object. All payments should have the following attributes:
+Creates and process a new Payment. All payments should have the following attributes:
 
 ``` http
 POST /payments HTTP/1.1
@@ -39,74 +38,7 @@ X-Share-Session: <session-id>
 Host: api.shareactor.io
 
 {
-    "amount": 10.00,
-    "currency": "NOK",
-    "invoices": ["<invoice-id>"]
-}
-```
-
-``` http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "company": {
-    "$oid": "<company-id>"
-  },
-  "created": {
-    "$date": 1476118043580
-  },
-  "_id": {
-    "$oid": "<payment-id>"
-  },
-  "modified": {
-    "$date": 1476118043580
-  },
-  "deleted": false,
-  "orders": [],
-  "user": {
-    "$oid": "<user-id>"
-  },
-  "amount": 450.2,
-  "metadata": {},
-  "current_state": "created",
-  "active": true,
-  "human_id": "51rQxLN",
-  "currency": "NOK",
-  "payment_date": {
-    "$date": 1476118043580
-  },
-  "invoices": [
-    {
-      "$oid": "<invoice-id>"
-    }
-  ]
-}
-
-
-
-```
-
-Attribute | Description
----------- | -------
-**amount** | Amount as a Float with decimal points (`.`). Example: 10.23 NOK. The final amount must be the same as the subjects being paid for (orders or invoices).
-**currency** | 3 letter currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-**invoices** | List with invoices to be paid. Either this or **orders** must be set.
-**orders** | List with orders to be paid. Either this or **invoices** must be set.
-
-
-## Capture Created Payment
-
-Capture already created Payment.
-
-``` http
-POST /payments/<payment-id>/pay HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
-Host: api.shareactor.io
-
-{
+    "invoices": ["<invoice-id>"],
     "payment_method": "<payment-method-id>"
 }
 ```
@@ -126,102 +58,29 @@ Content-Type: application/json
     "$oid": "<payment-id>"
   },
   "modified": {
-    "$date": 1476118623795
+    "$date": 1476118043580
   },
   "deleted": false,
-  "orders": [],
   "user": {
     "$oid": "<user-id>"
   },
   "amount": 450.2,
   "metadata": {},
-  "current_state": "succeeded",
+  "current_state": "created",
   "active": true,
   "human_id": "51rQxLN",
   "currency": "NOK",
-  "payment_date": {
-    "$date": 1476118043580
-  },
-  "invoices": [
-    {
-      "$oid": "<invoice-id>"
-    }
-  ]
+  "subject": "<invoice-id>",
+  "payment_method": "<payment-method-id>"
 }
 ```
 
 Attribute | Description
 ---------- | -------
-**payment-id** | The Payment ID to capture
-**payment_method** | ID of already existing and valid Payment Method.
-**payment_date** | Date to execute payment. Defaults to now.
-
-## Capture New Payment
-
-Capture a new Payment. For this case, we will create a Payment object ourselves and then capture that same payment. This is seamless for the user.
-
-``` http
-POST /payments/pay HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
-Host: api.shareactor.io
-
-{
-  "payment_method": "<payment-method-id>",
-  "amount": 450.2,
-  "currency": "NOK",
-  "invoices": ["<invoice-id>"]
-}
-```
-
-``` http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "company": {
-    "$oid": "<company-id>"
-  },
-  "created": {
-    "$date": 1476118043580
-  },
-  "_id": {
-    "$oid": "<payment-id>"
-  },
-  "modified": {
-    "$date": 1476118623795
-  },
-  "deleted": false,
-  "orders": [],
-  "user": {
-    "$oid": "<user-id>"
-  },
-  "amount": 450.2,
-  "metadata": {},
-  "current_state": "succeeded",
-  "active": true,
-  "human_id": "51rQxLN",
-  "currency": "NOK",
-  "payment_date": {
-    "$date": 1476118043580
-  },
-  "invoices": [
-    {
-      "$oid": "<invoice-id>"
-    }
-  ]
-}
-```
-
-Attribute | Description
----------- | -------
-**payment_method** | ID of already existing and valid Payment Method.
-**payment_date** | Date to execute payment. Defaults to now.
-**amount** | Amount as a Float with decimal points (`.`). Example: 10.23 NOK. The final amount must be the same as the subjects being paid for (orders or invoices).
-**currency** | 3 letter currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 **invoices** | List with invoices to be paid. Either this or **orders** must be set.
 **orders** | List with orders to be paid. Either this or **invoices** must be set.
+**payment_method** | Selected payment method to use for paying **invoices** or **orders**.
+**payment_date** | Date for scheduling payment of **invoices**. Defaults to the `due_date` of each invoice.
 
 
 ## Retrieve a Payment
@@ -239,36 +98,30 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "orders": [],
-  "payment_date": {
-    "$date": 1476119826152
-  },
-  "invoices": [
-    {
-      "$oid": "<invoice-id>"
-    }
-  ],
-  "deleted": false,
-  "modified": {
-    "$date": 1476119826815
-  },
-  "current_state": "succeeded",
-  "amount": 450.2,
   "company": {
     "$oid": "<company-id>"
   },
-  "currency": "NOK",
+  "created": {
+    "$date": 1476118043580
+  },
   "_id": {
     "$oid": "<payment-id>"
   },
+  "modified": {
+    "$date": 1476118043580
+  },
+  "deleted": false,
   "user": {
     "$oid": "<user-id>"
   },
+  "amount": 450.2,
   "metadata": {},
-  "created": {
-    "$date": 1476119826151
-  },
-  "active": true
+  "current_state": "created",
+  "active": true,
+  "human_id": "51rQxLN",
+  "currency": "NOK",
+  "subject": "<invoice-id>",
+  "payment_method": "<payment-method-id>"
 }
 ```
 
@@ -294,36 +147,30 @@ Content-Type: application/json
 
 [
   {
-    "orders": [],
-    "payment_date": {
-      "$date": 1476119826152
-    },
-    "invoices": [
-      {
-        "$oid": "<invoice-id>"
-      }
-    ],
-    "deleted": false,
-    "modified": {
-      "$date": 1476119826815
-    },
-    "current_state": "succeeded",
-    "amount": 450.2,
     "company": {
       "$oid": "<company-id>"
     },
-    "currency": "NOK",
+    "created": {
+      "$date": 1476118043580
+    },
     "_id": {
       "$oid": "<payment-id>"
     },
+    "modified": {
+      "$date": 1476118043580
+    },
+    "deleted": false,
     "user": {
       "$oid": "<user-id>"
     },
+    "amount": 450.2,
     "metadata": {},
-    "created": {
-      "$date": 1476119826151
-    },
-    "active": true
+    "current_state": "created",
+    "active": true,
+    "human_id": "51rQxLN",
+    "currency": "NOK",
+    "subject": "<invoice-id>",
+    "payment_method": "<payment-method-id>"
   }
 ]
 ```
