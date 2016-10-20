@@ -1307,10 +1307,11 @@ you can retrieve this information later for recurring payments and so on.</p>
           <h1 id="payments">Payments</h1>
 
 <p>When you want to pay for an Order or Invoice (single or multiple items) you need to use the Payment object. Together with a
-<a href="#payment-methods">Payment Method</a>, amount and currency, among other fields, you&rsquo;ll be able to create and process payments, as well
+<a href="#payment-methods">Payment Method</a>, among other fields, you&rsquo;ll be able to create and process payments, as well
 as listing all available payments.</p>
 
-<p>Some customers prefer to create the payment object before the actualy paying moment, to keep track of all states. For that case we allow the user to create a Payment object and they process it later. If you do not need this, you can just capture the payment by passing the payment details directly on that API call.</p>
+<p>When paying for an <a href="#invoices">Invoice</a> you can also provide the API with a <code class="prettyprint">payment_date</code> which allows you to schedule payments
+for later. If no <code class="prettyprint">payment_date</code> is provided, we&rsquo;ll use each Invoice&rsquo;s <code class="prettyprint">due_date</code> as the <code class="prettyprint">payment_date</code>.</p>
 
 <h2 id="payment-object">Payment object</h2>
 
@@ -1339,16 +1340,8 @@ as listing all available payments.</p>
 <td>Human readable ID.</td>
 </tr>
 <tr>
-<td><strong>payment_date</strong></td>
-<td>Date to execute payment. Defaults to now.</td>
-</tr>
-<tr>
-<td><strong>invoices</strong></td>
-<td>List with invoices to be paid. Either this or <strong>orders</strong> must be set.</td>
-</tr>
-<tr>
-<td><strong>orders</strong></td>
-<td>List with orders to be paid. Either this or <strong>invoices</strong> must be set.</td>
+<td><strong>subject</strong></td>
+<td>Either an Invoice or Order reference.</td>
 </tr>
 <tr>
 <td><strong>current_state</strong></td>
@@ -1380,9 +1373,9 @@ as listing all available payments.</p>
 </tr>
 </tbody></table>
 
-<h2 id="create-a-payment">Create a Payment</h2>
+<h2 id="process-a-payment">Process a Payment</h2>
 
-<p>Creates a new payment object. All payments should have the following attributes:</p>
+<p>Creates and process a new Payment. All payments should have the following attributes:</p>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1390,86 +1383,7 @@ as listing all available payments.</p>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
-    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.00</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-
-<span class="p">{</span><span class="w">
-  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;company-id&gt;"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-id&gt;"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;user-id&gt;"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-  </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-
-
-</span></code></pre>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>amount</strong></td>
-<td>Amount as a Float with decimal points (<code class="prettyprint">.</code>). Example: 10.23 NOK. The final amount must be the same as the subjects being paid for (orders or invoices).</td>
-</tr>
-<tr>
-<td><strong>currency</strong></td>
-<td>3 letter currency code as defined by <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a>.</td>
-</tr>
-<tr>
-<td><strong>invoices</strong></td>
-<td>List with invoices to be paid. Either this or <strong>orders</strong> must be set.</td>
-</tr>
-<tr>
-<td><strong>orders</strong></td>
-<td>List with orders to be paid. Either this or <strong>invoices</strong> must be set.</td>
-</tr>
-</tbody></table>
-
-<h2 id="capture-created-payment">Capture Created Payment</h2>
-
-<p>Capture already created Payment.</p>
-<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payments/&lt;payment-id&gt;/pay</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
-
-<span class="p">{</span><span class="w">
+    </span><span class="nt">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">],</span><span class="w">
     </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1487,27 +1401,20 @@ as listing all available payments.</p>
     </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-id&gt;"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118623795</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;user-id&gt;"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.2</span><span class="p">,</span><span class="w">
   </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-  </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1517,96 +1424,6 @@ as listing all available payments.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td><strong>payment-id</strong></td>
-<td>The Payment ID to capture</td>
-</tr>
-<tr>
-<td><strong>payment_method</strong></td>
-<td>ID of already existing and valid Payment Method.</td>
-</tr>
-<tr>
-<td><strong>payment_date</strong></td>
-<td>Date to execute payment. Defaults to now.</td>
-</tr>
-</tbody></table>
-
-<h2 id="capture-new-payment">Capture New Payment</h2>
-
-<p>Capture a new Payment. For this case, we will create a Payment object ourselves and then capture that same payment. This is seamless for the user.</p>
-<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payments/pay</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
-
-<span class="p">{</span><span class="w">
-  </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-
-<span class="p">{</span><span class="w">
-  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;company-id&gt;"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-id&gt;"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118623795</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;user-id&gt;"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-  </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>payment_method</strong></td>
-<td>ID of already existing and valid Payment Method.</td>
-</tr>
-<tr>
-<td><strong>payment_date</strong></td>
-<td>Date to execute payment. Defaults to now.</td>
-</tr>
-<tr>
-<td><strong>amount</strong></td>
-<td>Amount as a Float with decimal points (<code class="prettyprint">.</code>). Example: 10.23 NOK. The final amount must be the same as the subjects being paid for (orders or invoices).</td>
-</tr>
-<tr>
-<td><strong>currency</strong></td>
-<td>3 letter currency code as defined by <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a>.</td>
-</tr>
 <tr>
 <td><strong>invoices</strong></td>
 <td>List with invoices to be paid. Either this or <strong>orders</strong> must be set.</td>
@@ -1614,6 +1431,14 @@ as listing all available payments.</p>
 <tr>
 <td><strong>orders</strong></td>
 <td>List with orders to be paid. Either this or <strong>invoices</strong> must be set.</td>
+</tr>
+<tr>
+<td><strong>payment_method</strong></td>
+<td>Selected payment method to use for paying <strong>invoices</strong> or <strong>orders</strong>.</td>
+</tr>
+<tr>
+<td><strong>payment_date</strong></td>
+<td>Date for scheduling payment of <strong>invoices</strong>. Defaults to the <code class="prettyprint">due_date</code> of each invoice.</td>
 </tr>
 </tbody></table>
 
@@ -1628,36 +1453,30 @@ as listing all available payments.</p>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826152</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826815</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.2</span><span class="p">,</span><span class="w">
   </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;company-id&gt;"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-id&gt;"</span><span class="w">
   </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;user-id&gt;"</span><span class="w">
   </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.2</span><span class="p">,</span><span class="w">
   </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826151</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1687,36 +1506,30 @@ as listing all available payments.</p>
 
 <span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826152</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826815</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;company-id&gt;"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-id&gt;"</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;user-id&gt;"</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">450.2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476119826151</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
