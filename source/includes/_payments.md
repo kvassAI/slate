@@ -19,6 +19,7 @@ Attributes | Description
 **human_id** | Human readable ID.
 **subject** | Either an Invoice or Order reference.
 **current_state** | Current state of operation. Can be one of: `created`, `processing`, `succeeded`, `failed` and `cancelled`.
+payment_date | Date for scheduling payment of invoices. Defaults to the due_date of each invoice.
 payment_method | ID of already created Payment Method.
 billing_address | Address object with billing details.
 description | Some additional description, if wanted.
