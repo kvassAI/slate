@@ -1,7 +1,8 @@
 # Payment Methods
 
-Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore,
-you can retrieve this information later for recurring payments and so on.
+Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore, you can retrieve this information later for recurring payments and so on.
+
+The user has a `default_payment_method` which can be updated in the user object. This default payment method correspond to the last payment method used by the user to pay for an order.
 
 ## Payment Method object
 
