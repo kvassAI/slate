@@ -72,7 +72,10 @@ Content-Type: application/json
   "human_id": "51rQxLN",
   "currency": "NOK",
   "subject": "<invoice-id>",
-  "payment_method": "<payment-method-id>"
+  "payment_method": "<payment-method-id>",
+  "payment_date": {
+    "$date": 147998016470
+  }
 }
 ```
 
