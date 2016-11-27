@@ -14,17 +14,13 @@ Attributes | Description
 **method** | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, etc.
 **name** | Name of Payment Method - to be shown to final customer, if needed
 
-## Create a Payment Method
+## DIBS
 
-Creates a new payment method. Different methods will have different attributes needed. Below you can find a list of the attributes needed per method:
-
-### DIBS
+DIBS is a Norwegian payments gateway. It works based on callbacks made via their servers to ours. This callback contains the information about the credit card that was created and we store that as a PaymentMethod object.
 
 ``` http
-POST /payment_methods HTTP/1.1
+POST /dibs/payment_method HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
 Host: api.shareactor.io
 
 {
@@ -34,14 +30,57 @@ Host: api.shareactor.io
 }
 ```
 
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "company": {
+    "$oid": "<company-id>"
+  },
+  "created": {
+    "$date": 1476118043580
+  },
+  "_id": {
+    "$oid": "<payment-method-id>"
+  },
+  "modified": {
+    "$date": 1476118043580
+  },
+  "deleted": false,
+  "user": {
+    "$oid": "<user-id>"
+  },
+  "method": "dibs",
+  "name": "DIBS",
+  "merchant": "<some-merchant>",
+  "ticket": "<some-ticket-id>",
+  "purchase_id": "<some-order-id>",
+  "masked_card_number": "XXXXXXXXXXXX1234",
+  "card_prefix": "12345",
+  "card_type": "VISA",
+  "expiry_date": "06/16",
+  "cardholder": "John Doe",
+  "callback_data": {}
+}
+```
+
 Attribute | Description
 ---------- | -------
 **merchant** | merchant id of company
-**ticket** | id of card (ticket)
-masked_card_number | "XXXXXXXXXXXX1234"
-card_prefix | first 5 numbers of the card (for type check: VISA, MasterCard, etc.)
+**transact** | id of card (ticket)
+**orderid** | unique order id
+cardnomask | "XXXXXXXXXXXX1234"
+cardprefix | first 5 numbers of the card (for type check: VISA, MasterCard, etc.)
+paytype | type of credit card: MC, VISA, etc.
+expdate | expiry date
+cardholder_name | Card holder's name
 
-### Paypal
+## Paypal
+
+Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the usual transaction and it's pretty common for simples authorize/capture transactions. The Future Payments are more used for being able to charge the user over and over again after it has given its consent.
+
+## Single Payments (PayPal)
 
 ``` http
 POST /payment_methods HTTP/1.1
@@ -51,14 +90,100 @@ X-Share-Session: <session-id>
 Host: api.shareactor.io
 
 {
-  "method": "paypal",
-  "some_token": "..."
+  "method": "single_paypal",
+  "payment_id": "<payment-id>",
+  "payer_id": "<payer-id>"
 }
 ```
 
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "company": {
+    "$oid": "<company-id>"
+  },
+  "created": {
+    "$date": 1476118043580
+  },
+  "_id": {
+    "$oid": "<payment-method-id>"
+  },
+  "modified": {
+    "$date": 1476118043580
+  },
+  "deleted": false,
+  "user": {
+    "$oid": "<user-id>"
+  },
+  "method": "single_paypal",
+  "name": "PayPal",
+  "payment_id": "<some-payment-id>",
+  "payer_id": "<some-payer-id>",
+  "mode": "<sandbox-live>"
+}
+```
+
+In this case, the website/app will create a Payment using their own SDK and then they send it to the API for verification and capture. The payment must be in the state: `approved` otherwise the API will return a `403` error.
+
 Attribute | Description
 ---------- | -------
-**some_token** | ...
+**payment_id** | This is the ID of the payment. A verification is ran on this Payment to see its state is "approved", otherwise an exception is raised
+**payer_id** | This is the ID of the creation of the payment, something which is associated with the company.
+
+
+## Future Payments (PayPal)
+
+
+``` http
+POST /payment_methods HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+
+{
+  "method": "future_paypal",
+  "code": "<some-code>"
+}
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "company": {
+    "$oid": "<company-id>"
+  },
+  "created": {
+    "$date": 1476118043580
+  },
+  "_id": {
+    "$oid": "<payment-method-id>"
+  },
+  "modified": {
+    "$date": 1476118043580
+  },
+  "deleted": false,
+  "user": {
+    "$oid": "<user-id>"
+  },
+  "method": "future_paypal",
+  "name": "PayPal",
+  "authorization_code": "<some-auth-code>",
+  "refresh_token": "<some-refresh-token>",
+  "correlation_id": "Device ID",
+  "mode": "<sandbox-live>"
+}
+```
+
+This feature is only available for the mobile SDK and for using it, the app needs to send the API an authorization code which the API then changed for a Refresh Token which is also stored in the object.
+
+Attribute | Description
+---------- | -------
+**code** | This is an Authorization code sent by the mobile apps to be exchanged by a Refresh Token.
 
 
 ## Retrieve a Payment Method
