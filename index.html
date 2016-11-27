@@ -1102,8 +1102,9 @@ using your own pagination scheme.</p>
 
           <h1 id="payment-methods">Payment Methods</h1>
 
-<p>Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore,
-you can retrieve this information later for recurring payments and so on.</p>
+<p>Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore, you can retrieve this information later for recurring payments and so on.</p>
+
+<p>The user has a <code class="prettyprint">default_payment_method</code> which can be updated in the user object. This default payment method correspond to the last payment method used by the user to pay for an order.</p>
 
 <h2 id="payment-method-object">Payment Method object</h2>
 
@@ -1129,21 +1130,50 @@ you can retrieve this information later for recurring payments and so on.</p>
 </tr>
 </tbody></table>
 
-<h2 id="create-a-payment-method">Create a Payment Method</h2>
+<h2 id="dibs">DIBS</h2>
 
-<p>Creates a new payment method. Different methods will have different attributes needed. Below you can find a list of the attributes needed per method:</p>
-
-<h3 id="dibs">DIBS</h3>
-<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<p>DIBS is a Norwegian payments gateway. It works based on callbacks made via their servers to ours. This callback contains the information about the credit card that was created and we store that as a PaymentMethod object.</p>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/dibs/payment_method</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
   </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dibs"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-merchant-id&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;company-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;user-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dibs"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIBS"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-merchant&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-ticket-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"purchase_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-order-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"masked_card_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXXXXXXXX1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"card_prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"card_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISA"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expiry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06/16"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardholder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"callback_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1158,20 +1188,40 @@ you can retrieve this information later for recurring payments and so on.</p>
 <td>merchant id of company</td>
 </tr>
 <tr>
-<td><strong>ticket</strong></td>
+<td><strong>transact</strong></td>
 <td>id of card (ticket)</td>
 </tr>
 <tr>
-<td>masked_card_number</td>
+<td><strong>orderid</strong></td>
+<td>unique order id</td>
+</tr>
+<tr>
+<td>cardnomask</td>
 <td>&ldquo;XXXXXXXXXXXX1234&rdquo;</td>
 </tr>
 <tr>
-<td>card_prefix</td>
+<td>cardprefix</td>
 <td>first 5 numbers of the card (for type check: VISA, MasterCard, etc.)</td>
+</tr>
+<tr>
+<td>paytype</td>
+<td>type of credit card: MC, VISA, etc.</td>
+</tr>
+<tr>
+<td>expdate</td>
+<td>expiry date</td>
+</tr>
+<tr>
+<td>cardholder_name</td>
+<td>Card holder&rsquo;s name</td>
 </tr>
 </tbody></table>
 
-<h3 id="paypal">Paypal</h3>
+<h2 id="paypal">Paypal</h2>
+
+<p>Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the usual transaction and it&rsquo;s pretty common for simples authorize/capture transactions. The Future Payments are more used for being able to charge the user over and over again after it has given its consent.</p>
+
+<h2 id="single-payments-paypal">Single Payments (PayPal)</h2>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1179,10 +1229,40 @@ you can retrieve this information later for recurring payments and so on.</p>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paypal"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"some_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_paypal"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payer-id&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;company-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;user-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_paypal"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PayPal"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-payment-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-payer-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;sandbox-live&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>In this case, the website/app will create a Payment using their own SDK and then they send it to the API for verification and capture. The payment must be in the state: <code class="prettyprint">approved</code> otherwise the API will return a <code class="prettyprint">403</code> error.</p>
 
 <table><thead>
 <tr>
@@ -1191,8 +1271,67 @@ you can retrieve this information later for recurring payments and so on.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>some_token</strong></td>
-<td>&hellip;</td>
+<td><strong>payment_id</strong></td>
+<td>This is the ID of the payment. A verification is ran on this Payment to see its state is &ldquo;approved&rdquo;, otherwise an exception is raised</td>
+</tr>
+<tr>
+<td><strong>payer_id</strong></td>
+<td>This is the ID of the creation of the payment, something which is associated with the company.</td>
+</tr>
+</tbody></table>
+
+<h2 id="future-payments-paypal">Future Payments (PayPal)</h2>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"future_paypal"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-code&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;company-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;user-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"future_paypal"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PayPal"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"authorization_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-auth-code&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"refresh_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-refresh-token&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"correlation_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device ID"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;sandbox-live&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This feature is only available for the mobile SDK and for using it, the app needs to send the API an authorization code which the API then changed for a Refresh Token which is also stored in the object.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>code</strong></td>
+<td>This is an Authorization code sent by the mobile apps to be exchanged by a Refresh Token.</td>
 </tr>
 </tbody></table>
 
@@ -1348,6 +1487,10 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
 <td>Current state of operation. Can be one of: <code class="prettyprint">created</code>, <code class="prettyprint">processing</code>, <code class="prettyprint">succeeded</code>, <code class="prettyprint">failed</code> and <code class="prettyprint">cancelled</code>.</td>
 </tr>
 <tr>
+<td>payment_date</td>
+<td>Date for scheduling payment of invoices. Defaults to the due_date of each invoice.</td>
+</tr>
+<tr>
 <td>payment_method</td>
 <td>ID of already created Payment Method.</td>
 </tr>
@@ -1414,7 +1557,10 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
   </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
+  </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">147998016470</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1476,7 +1622,10 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
   </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
+  </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">147998016470</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1529,7 +1678,10 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
     </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
+    </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payment_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">147998016470</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
