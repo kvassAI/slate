@@ -1138,9 +1138,15 @@ using your own pagination scheme.</p>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dibs"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dibs"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"merchant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-merchant-id&gt;"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123"</span><span class="w">
+  </span><span class="nt">"transact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"share-api-key-header"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;api-key&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"share-authorization-header"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer &lt;jwt&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardnomask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXXXXXXXX0000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardprefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"510010"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"paytype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MC"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"orderid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-order-id&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1184,6 +1190,10 @@ using your own pagination scheme.</p>
 </tr>
 </thead><tbody>
 <tr>
+<td><strong>payment_method</strong></td>
+<td>must be &ldquo;dibs&rdquo; for triggering a DIBS payment method</td>
+</tr>
+<tr>
 <td><strong>merchant</strong></td>
 <td>merchant id of company</td>
 </tr>
@@ -1194,6 +1204,14 @@ using your own pagination scheme.</p>
 <tr>
 <td><strong>orderid</strong></td>
 <td>unique order id</td>
+</tr>
+<tr>
+<td><strong>share-authorization-header</strong></td>
+<td>JWT used by user</td>
+</tr>
+<tr>
+<td><strong>share-api-key-header</strong></td>
+<td>Bearer token used for API access</td>
 </tr>
 <tr>
 <td>cardnomask</td>
