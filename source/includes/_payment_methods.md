@@ -179,7 +179,7 @@ Content-Type: application/json
 }
 ```
 
-This feature is only available for the mobile SDK and for using it, the app needs to send the API an authorization code which the API then changed for a Refresh Token which is also stored in the object.
+This feature is only available for the mobile SDK and for using it, the app needs to send the API an authorization code which the API then changed for a Refresh Token which is also stored in the object. When paying for an invoice, you should also add the `PayPal-Client-Metadata-Id` header to the API `/payments` in [Payments](#payments).
 
 Attribute | Description
 ---------- | -------
