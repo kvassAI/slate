@@ -24,9 +24,15 @@ Content-Type: application/json
 Host: api.shareactor.io
 
 {
-  "method": "dibs",
+  "payment_method": "dibs",
   "merchant": "<some-merchant-id>",
-  "ticket": "123123"
+  "transact": "123123",
+  "share-api-key-header": "<api-key>",
+  "share-authorization-header": "Bearer <jwt>",
+  "cardnomask": "XXXXXXXXXXXX0000",
+  "cardprefix": "510010",
+  "paytype": "MC",
+  "orderid": "<some-order-id>"
 }
 ```
 
@@ -67,9 +73,12 @@ Content-Type: application/json
 
 Attribute | Description
 ---------- | -------
+**payment_method** | must be "dibs" for triggering a DIBS payment method
 **merchant** | merchant id of company
 **transact** | id of card (ticket)
 **orderid** | unique order id
+**share-authorization-header** | JWT used by user
+**share-api-key-header** | Bearer token used for API access
 cardnomask | "XXXXXXXXXXXX1234"
 cardprefix | first 5 numbers of the card (for type check: VISA, MasterCard, etc.)
 paytype | type of credit card: MC, VISA, etc.
