@@ -15,6 +15,7 @@ due_date | The due date of the invoice
 issued_date | The date the invoice was generated
 issuer | Issuer of invoice
 deleted | Flag that sets Invoice object to deleted
+image_url | The url for the invoice image which is returned from the ocr
 
 
 ## Create an Invoice
@@ -31,7 +32,8 @@ Host: api.shareactor.io
     "amount": 123.45,
     "currency": "NOK",
     "account_number": "12345678903",
-    "due_date": "2016-02-10T18:25:43.511Z"
+    "due_date": "2016-02-10T18:25:43.511Z",
+    "image_url": "<image-id>/<image-name>.jpg"
 }
 ```
 
@@ -59,7 +61,8 @@ Content-Type: application/json
    "amount":123.45,
    "_id":{
       "$oid":"57ee9c72d76d431f85111434"
-   }
+   },
+   "image_url": "<image-id>/<image-name>.jpg"
 }
 ```
 
@@ -72,7 +75,7 @@ Attribute | Description
 **currency** | ISO code of currency: "EUR", "USD", etc.
 **account_number** | Account number to pay invoice to
 **due_date** | Due date of invoice
-
+**image_url** | The url for the invoice image
 
 ## Retrieve an Invoice
 
@@ -108,7 +111,8 @@ Content-Type: application/json
    "amount":123.45,
    "_id":{
       "$oid":"57ee9c72d76d431f85111434"
-   }
+   },
+   "image_url": "<image-id>/<image-name>.jpg"
 }
 ```
 
@@ -154,7 +158,8 @@ Content-Type: application/json
        "amount":123.45,
        "_id":{
           "$oid":"57ee9c72d76d431f85111434"
-       }
+       },
+       "image_url": "<image-id>/<image-name>.jpg"
     }
 ]
 ```
