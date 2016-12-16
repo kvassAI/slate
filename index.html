@@ -920,6 +920,10 @@ using your own pagination scheme.</p>
 <td>deleted</td>
 <td>Flag that sets Invoice object to deleted</td>
 </tr>
+<tr>
+<td>image_url</td>
+<td>The url for the invoice image which is returned from the ocr</td>
+</tr>
 </tbody></table>
 
 <h2 id="create-an-invoice">Create an Invoice</h2>
@@ -934,7 +938,8 @@ using your own pagination scheme.</p>
     </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
     </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-10T18:25:43.511Z"</span><span class="w">
+    </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-10T18:25:43.511Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -960,7 +965,8 @@ using your own pagination scheme.</p>
    </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
    </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
       </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="w">
-   </span><span class="p">}</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -991,6 +997,10 @@ using your own pagination scheme.</p>
 <tr>
 <td><strong>due_date</strong></td>
 <td>Due date of invoice</td>
+</tr>
+<tr>
+<td><strong>image_url</strong></td>
+<td>The url for the invoice image</td>
 </tr>
 </tbody></table>
 
@@ -1024,7 +1034,8 @@ using your own pagination scheme.</p>
    </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
    </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
       </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="w">
-   </span><span class="p">}</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1073,7 +1084,8 @@ using your own pagination scheme.</p>
        </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
        </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
           </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="w">
-       </span><span class="p">}</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
