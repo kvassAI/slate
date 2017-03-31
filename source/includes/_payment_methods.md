@@ -11,7 +11,7 @@ A payment method object varies according to the system, however there are some f
 Attributes | Description
 ---------- | -------
 **user** | User associated with Payment Method
-**method** | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, etc.
+**method** | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`
 **name** | Name of the Payment Method - to be shown to final customer, if needed
 created| Date and time the user created the payment method was created
 updated | Date and time the user last updated the payment method
@@ -98,7 +98,7 @@ cardholder_name | Card holder's name
 
 ## Paypal
 
-Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the usual transaction and it's pretty common for simples authorize/capture transactions. The Future Payments are more used for being able to charge the user over and over again after it has given its consent.
+Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the most usual type of transaction and common for simple authotication and capturing of transactions. The Future Payments is mostly used for charging the user several times, after giving their consent.
 
 ## Single Payment (PayPal)
 
@@ -159,6 +159,7 @@ Attribute | Description
 ---------- | -------
 **payment_id** | This is the ID of the payment. A verification is ran on this Payment to see its state is "approved", otherwise an exception is raised
 **payer_id** | This is the ID of the creation of the payment, something which is associated with the company.
+**method**| `single_paypal`
 
 
 ## Future Payments (PayPal)
@@ -269,11 +270,11 @@ Content-Type: application/json
 }
 ```
 
-Retrieves the payment method with the given ID.
+Retrieves the payment method with a given ID.
 
 Argument | Description
 ---------- | -------
-**payment-method-id** | ID of the desired payment method
+**payment-method-id** | The payment method ID
 
 
 ## List all Payment Methods
