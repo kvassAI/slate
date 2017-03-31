@@ -9,7 +9,7 @@ Attributes | Description
 user | User associated with Invoice
 amount | Amount of invoice as a float.
 currency | ISO code of currency, for example: "EUR"
-account_number | Account number to make payment of invoice
+account_number | Account number to issuer, to whom the payment of invoice is done to
 message | Message (KID) used for paying invoice. How it will appear in the Issuer's bank
 due_date | The due date of the invoice
 issued_date | The date the invoice was generated
@@ -23,6 +23,14 @@ updated | The last time the invoice was updated
 
 
 ## Create an Invoice
+
+> Definition
+
+```
+POST https://api.shareactor.io/invoices
+```
+
+> Example request:
 
 ``` http
 POST /invoices HTTP/1.1
@@ -87,6 +95,14 @@ Attribute | Description
 
 ## Retrieve an Invoice
 
+> Definition
+
+```
+GET https://api.shareactor.io/invoices/<invoice_id>
+```
+
+> Example request:
+
 ``` http
 GET /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
@@ -132,6 +148,14 @@ Argument | Description
 
 
 ## List all Invoices
+
+> Definition
+
+```
+GET https://api.shareactor.io/invoices
+```
+
+> Example request:
 
 ``` http
 GET /invoices HTTP/1.1
@@ -179,3 +203,47 @@ Argument | Description
 size | number of items to retrieve
 page | which page to retrieve. _default page size is 10_
 order_by | field used for sorting results. If missing default is "-due_date". Could be other parameters in the Invoice model, like "-created" or "status=DONE".
+
+## Update an invoice
+> Definition
+
+```
+PUT https://api.shareactor.io/invoices/<invoice_id>
+```
+
+> Example request:
+
+``` http
+PUT /invoices/<invoice_id> HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+Updates an Invoice with a given ID. For example:
+
+Argument | Description
+---------- | -------
+**invoice_id** | ID of the queried Invoice
+account_number | Account number to issuer, to whom the payment of invoice is done to
+due_date | Updates the due date of the invoice.
+
+## Delete invoice
+> Definition
+
+```
+DELETE https://api.shareactor.io/invoices/<invoice_id>
+```
+
+> Example request:
+
+``` http
+DELETE /invoices/<invoice_id> HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+Deletes an invoice with a give ID.
