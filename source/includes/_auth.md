@@ -1,25 +1,25 @@
-# Authentication
+# Authorization
 
-In order to create a User, you will have to authenticate yourself. We currently *only* allow login via Digits, the Twitter platform for logging in using a mobile phone - [Digits](https://get.digits.com/).
+Our API uses OAuth2 and JWT tokens for authorizing Users, through a service called [Auth0](https://auth0.com/). 
 
-## Digits Authentication
+> OAuth 2.0 is the industry-standard protocol for authorization
 
-### Mobile (iOS and Android)
+> JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties
 
-Both iOS and Android support Digits login, but we need to verify on the server-side that the credentials being sent are correct. For that we need to get the same information Digits has sent your app. Documentation explains how to do this for both [Android](https://docs.fabric.io/android/digits/advanced-setup.html#verify-digits-user) and [iOS](https://docs.fabric.io/apple/digits/advanced-setup.html#verifying-a-user). For Android in specific, we built a test app to demonstrate how to do this: - [https://github.com/shareactorIO/digits-android](https://github.com/shareactorIO/digits-android).
+Our API supports multiple login mechanisms such as the following:
 
-### Web
+* Facebook
+* Google
+* Email and password
+* SAML, for example: BankID (Norwegian)
+* SMS
+* etc.
 
-``` http
-POST /auth HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Auth-Service-Provider: https://api.digits.com/1.1/...
-X-Verify-Credentials-Authorization: OAuth oauth_consumer_key=... oauth_signature=... oauth_signature_method=...
-Host: api.shareactor.io
-```
+[Here](https://auth0.com/docs/identityproviders) is a full list of Auth0 supported integrations and [here](https://auth0.com/docs/quickstart/native)  you can see a guide on how to implement Auth0 with iOS, Android, Ionic, etc. 
 
-If you're trying to authenticate through a website or any other way which does not have an SDK, you need to send us the same headers you get when talking to Digits:
+In order to authorize a user on the API side we use [JWT tokens](https://jwt.io/) which have to be added to all requests using the following header:
 
-* X-Auth-Service-Provider
-* X-Verify-Credentials-Authorization
+`Authorization: Bearer <jwt>`
+
+## Example Authorization (#TODO)
+
