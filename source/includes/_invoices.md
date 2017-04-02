@@ -166,7 +166,7 @@ Content-Type: application/json
 
 Retrieves a list of all Invoices associated with the user.
 
-Argument | Description
+Arguments | Description
 ---------- | -------
 size | number of items to retrieve
 page | which page to retrieve. _default page size is 10_

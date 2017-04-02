@@ -96,3 +96,164 @@ Authorization: Bearer <shareactor-api-key>
 x-Share-Session: <session-id>
 Host: api.shareactor.io
 ```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    'blacklisted': False, 
+    'name': 'Telenor Norge AS', 
+    'company': {
+        '$oid': '58e104d5b70e2a76c0e94c83'
+    }, 
+    'deleted': False, 
+    'verified': False, 
+    '_id': {
+        '$oid': '58e104d5b70e2a76c0e94c85'
+    },
+    'account_number': '12345678903', 
+    'logo_url': 'http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png', 
+    'address': {
+        'street_name': 'Fornebuveien 6', 
+        'alias': '', 
+        'service': 'google', 
+        'city': 'Oslo', 
+        'zip_code': '0556', 
+        'country': 'NOR'
+    }, 
+    'is_message_mandatory': False, 
+    'modified': {
+        '$date': 1491141845656
+    }, 
+    'created': {
+        '$date': 1491141845653
+    }, 
+    'active': True
+}
+```
+
+Retrieves Issuer with the given ID.
+
+Argument | Description
+-------- | -----------
+**issuer_id** | ID of the desired Issuer.
+
+## List all Issuers
+
+``` http
+GET /isseurs HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+<class 'list'>:[  
+   {  
+      'is_message_mandatory':False,
+      'account_number':'12345678903',
+      'blacklisted':False,
+      'active':True,
+      '_id':{  
+         '$oid':'58e10791b70e2a516c376a8c'
+      },
+      'logo_url':'http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png',
+      'address':{  
+         'country':'NOR',
+         'street_name':'Fornebuveien 6',
+         'city':'Oslo',
+         'zip_code':'0556',
+         'service':'google',
+         'alias':''
+      },
+      'created':{  
+         '$date':1491142545321
+      },
+      'modified':{  
+         '$date':1491142545323
+      },
+      'verified':False,
+      'deleted':False,
+      'name':'Telenor Norge AS',
+      'company':{  
+         '$oid':'58e10791b70e2a516c376a8a'
+      }
+   }
+]
+```
+
+Retrieves a list of all Issuers associated with the company.
+
+Arguments | Description
+--------- | -----------
+size | Number of items to retrieve
+page | Which page to retrieve. _default page size is 10_
+from_date | Start date. Type value `timestamp`.
+to_date | End date. Type value `timestamp`.
+date_filter | Date field used for filter results.
+deleted | It's a `boolean`. If `True` get issuers deleted.
+sorting | field used for sorting results
+
+### date_filter
+Arguments | Description
+--------- | -----------
+created | Created is date generated when Issuer created. Type value `timestamp`.
+modified | Modified is date generated when Issuer updated. Type value `timestamp`.
+
+
+## Update Issuer
+
+``` http
+PUT /issuers/<issuer_id>
+Content-Type: application/json
+Authorization: Baerer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{  
+   'company':{  
+      '$oid':'58e112acb70e2a326cf1f955'
+   },
+   'name':'Telenor updated',
+   'modified':{  
+      '$date':1491145388209
+   },
+   'is_message_mandatory':False,
+   '_id':{  
+      '$oid':'58e112acb70e2a326cf1f957'
+   },
+   'created':{  
+      '$date':1491145388109
+   },
+   'deleted':False,
+   'logo_url':'http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png',
+   'address':{  
+      'service':'google',
+      'street_name':'Fornebuveien 6',
+      'city':'Oslo',
+      'zip_code':'0556',
+      'country':'NOR',
+      'alias':''
+   },
+   'verified':False,
+   'account_number':'12345678903',
+   'blacklisted':False,
+   'active':True
+}
+```
+
+Updates an Issuer
+
+Arguments | Descriptions
+--------- | ----------
+**issuer_id** | ID of the desired Issuer.
