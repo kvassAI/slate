@@ -19,8 +19,10 @@ includes:
   - tags
   - campaigns
   - invoices
+  - issuers
   - payment_methods
   - payments
+  - address
 
 
 search: true
