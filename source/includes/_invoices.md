@@ -23,8 +23,8 @@ image_url | The url for the invoice image which is returned from the ocr
 ``` http
 POST /invoices HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
@@ -82,8 +82,8 @@ Attribute | Description
 ``` http
 GET /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -128,8 +128,8 @@ Argument | Description
 ``` http
 GET /invoices HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 

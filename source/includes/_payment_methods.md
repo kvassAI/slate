@@ -94,8 +94,8 @@ Paypal allows for 2 types of payments: Single Payments or Future Payments. Singl
 ``` http
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
@@ -148,8 +148,8 @@ Attribute | Description
 ``` http
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
@@ -200,8 +200,8 @@ Attribute | Description
 ``` http
 GET /payment_methods/<payment-method-id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -246,8 +246,8 @@ Argument | Description
 ``` http
 GET /payment_methods HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 

@@ -34,8 +34,8 @@ Creates and process a new Payment. All payments should have the following attrib
 ``` http
 POST /payments HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
@@ -92,8 +92,8 @@ Attribute | Description
 ``` http
 GET /payments/<payment-id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -143,8 +143,8 @@ Argument | Description
 ``` http
 GET /payments HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
