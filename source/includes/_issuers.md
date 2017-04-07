@@ -23,8 +23,8 @@ is_message_mandatory | Flag that determines if `message` field is mandatory for 
 ``` http
 POST /issuers HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
@@ -90,8 +90,8 @@ is_messaging_mandatory | Determines if *message* field is mandatory for invoices
 ``` http
 GET /issuers/<issuer_id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -142,8 +142,8 @@ Argument | Description
 ``` http
 GET /issuers HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -209,8 +209,8 @@ modified | Date generated when Issuer updated. Type value `timestamp`.
 ``` http
 PUT /issuers/<issuer_id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -261,8 +261,8 @@ Arguments | Descriptions
 ``` http
 GET /issuers/search?query=tele HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -331,8 +331,8 @@ blacklisted | Blacklisted is `Boolean`.
 ``` http
 DELETE /issuers/<issuer_id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 

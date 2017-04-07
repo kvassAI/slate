@@ -216,8 +216,8 @@ PUT https://api.shareactor.io/invoices/<invoice_id>
 ``` http
 PUT /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -239,8 +239,8 @@ DELETE https://api.shareactor.io/invoices/<invoice_id>
 ``` http
 DELETE /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
