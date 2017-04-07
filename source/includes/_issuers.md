@@ -255,3 +255,77 @@ Updates an Issuer
 Arguments | Descriptions
 --------- | ----------
 **issuer_id** | ID of the desired Issuer.
+
+## Issuer Search
+
+``` http
+GET /issuers/search?query=tele
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-type: application/json
+
+[  
+   {  
+      'verified':false,
+      'name':'Telenor Norge AS',
+      'account_number':'12345678903',
+      'is_message_mandatory':false,
+      'address':{  
+         'service':'google',
+         'street_name':'Fornebuveien 6',
+         'zip_code':'0556',
+         'alias':'',
+         'city':'Oslo',
+         'country':'NOR'
+      },
+      'deleted':false,
+      'blacklisted':false,
+      'logo_url':'http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png',
+      'active':true,
+      'created':{  
+         '$date':1491565328234
+      },
+      'modified':{  
+         '$date':1491565328235
+      },
+      '_id':{  
+         '$oid':'58e77b10b70e2a7650ea6521'
+      },
+      'company':{  
+         '$oid':'58e77b10b70e2a7650ea651f'
+      }
+   }
+]
+```
+
+Retrieves a list of Issuers associate with company and answering that query.
+
+Arguments | Description
+--------- | -----------
+query | What you want search it's will be a **name** or **account_number**.
+filters | In search you can use filters for more precision about search.
+
+
+### Filters
+
+For all `Boolean` flags it's possible to put:
+- True: `1`, `'1'` or `'true'` 
+- False: `0`, `'0'`or `'false'`
+
+Arguments | Descriptions
+--------- | ---------
+active | Active is `Boolean`.
+verified | Verified is `Boolean`.
+blacklisted | Blacklisted is `Boolean`.
+
+## Delete Issuer
+
+``` http
+DELETE /issuers/<issuer_id>
+```
