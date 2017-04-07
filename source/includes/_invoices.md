@@ -84,14 +84,14 @@ Creates a new Invoice.
 
 Attribute | Description
 ---------- | -------
-**message** | Message of transaction. e.g. KID number
 **amount** | Amount in float. Required field
 **currency** | ISO code of currency: "EUR", "USD", "NOK" etc. Required field
 **account_number** | Account number to pay invoice to. Required field
 **due_date** | Due date of invoice. If missing, the due_date is today.
-**image_url** | The url for the invoice image
-**issued_date**| The date the Invoice was issued. Not mandatory
-**issuer_alias**| Issuer alias that User could set. Not mandatory
+image_url | The url for the invoice image
+issued_date| The date the Invoice was issued. Not mandatory
+issuer_alias| Issuer alias that User could set. Not mandatory
+message | Message of transaction. e.g. KID number
 
 ## Retrieve an Invoice
 
@@ -226,8 +226,6 @@ Updates an Invoice with a given ID. For example:
 Argument | Description
 ---------- | -------
 **invoice_id** | ID of the queried Invoice
-account_number | Account number to issuer, to whom the payment of invoice is done to
-due_date | Updates the due date of the invoice.
 
 ## Delete invoice
 > Definition
