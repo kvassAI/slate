@@ -20,6 +20,7 @@ includes:
   - tags
   - campaigns
   - invoices
+  - issuers
   - payment_methods
   - payments
 
