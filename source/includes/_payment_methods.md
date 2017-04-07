@@ -2,7 +2,7 @@
 
 Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore, you can retrieve this information later for recurring payments and so on.
 
-The user has a `default_payment_method` which can be updated in the user object. This default payment method correspond to the last payment method used by the user to pay for an order.
+The user has a `default_payment_method` which can be updated in the user object. This default payment method corresponds to the last payment method used by the user to pay for an order.
 
 ## Payment Method object
 
@@ -11,12 +11,23 @@ A payment method object varies according to the system, however there are some f
 Attributes | Description
 ---------- | -------
 **user** | User associated with Payment Method
-**method** | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, etc.
-**name** | Name of Payment Method - to be shown to final customer, if needed
+**method** | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`
+**name** | Name of the Payment Method - to be shown to final customer, if needed
+created| Date and time the user created the payment method was created
+updated | Date and time the user last updated the payment method
+
 
 ## DIBS
 
 DIBS is a Norwegian payments gateway. It works based on callbacks made via their servers to ours. This callback contains the information about the credit card that was created and we store that as a PaymentMethod object.
+
+> Definition
+
+```
+POST https://api.shareactor.io/dibs/payment_method
+```
+
+> Example request:
 
 ``` http
 POST /dibs/payment_method HTTP/1.1
@@ -87,9 +98,17 @@ cardholder_name | Card holder's name
 
 ## Paypal
 
-Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the usual transaction and it's pretty common for simples authorize/capture transactions. The Future Payments are more used for being able to charge the user over and over again after it has given its consent.
+Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the most usual type of transaction and common for simple authotication and capturing of transactions. The Future Payments is mostly used for charging the user several times, after giving their consent.
 
-## Single Payments (PayPal)
+## Single Payment (PayPal)
+
+> Definition
+
+```
+POST https://api.shareactor.io/payment_methods
+```
+
+> Example request:
 
 ``` http
 POST /payment_methods HTTP/1.1
@@ -140,10 +159,18 @@ Attribute | Description
 ---------- | -------
 **payment_id** | This is the ID of the payment. A verification is ran on this Payment to see its state is "approved", otherwise an exception is raised
 **payer_id** | This is the ID of the creation of the payment, something which is associated with the company.
+**method**| `single_paypal`
 
 
 ## Future Payments (PayPal)
 
+> Definition
+
+```
+POST https://api.shareactor.io/payment_methods
+```
+
+> Example request:
 
 ``` http
 POST /payment_methods HTTP/1.1
@@ -193,9 +220,18 @@ This feature is only available for the mobile SDK and for using it, the app need
 Attribute | Description
 ---------- | -------
 **code** | This is an Authorization code sent by the mobile apps to be exchanged by a Refresh Token.
+**method**| `future_paypal`
 
 
 ## Retrieve a Payment Method
+
+> Definition
+
+```
+GET https://api.shareactor.io/payment_methods/<payment-method-id>
+```
+
+> Example request:
 
 ``` http
 GET /payment_methods/<payment-method-id> HTTP/1.1
@@ -234,14 +270,22 @@ Content-Type: application/json
 }
 ```
 
-Retrieves the payment method with the given ID.
+Retrieves the payment method with a given ID.
 
 Argument | Description
 ---------- | -------
-**payment-method-id** | ID of the desired payment method
+**payment-method-id** | The payment method ID
 
 
 ## List all Payment Methods
+
+> Definition
+
+```
+GET https://api.shareactor.io/payment_methods
+```
+
+> Example request:
 
 ``` http
 GET /payment_methods HTTP/1.1
@@ -289,3 +333,23 @@ Argument | Description
 size | number of items to retrieve
 page | which page to retrieve. _default page size is 10_
 order_by | field used for sorting results
+
+## Delete payment method
+
+> Definition
+
+```
+DELETE https://api.shareactor.io/payment_methods/<payment_method_id>
+```
+
+> Example request:
+
+``` http
+DELETE /payment_methods/<payment_method_id> HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
+```
+
+Delete the payment method associated with the user.
