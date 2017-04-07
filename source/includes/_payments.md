@@ -45,8 +45,8 @@ POST https://api.shareactor.io/payments
 ``` http
 POST /payments HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
@@ -110,8 +110,8 @@ GET https://api.shareactor.io/payments/<payment-id>
 ``` http
 GET /payments/<payment-id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -169,8 +169,8 @@ GET https://api.shareactor.io/payments/
 ``` http
 GET /payments HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -233,8 +233,8 @@ PUT https://api.shareactor.io/payments/<payment_id>
 ``` http
 PUT /payments/<payment_id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
