@@ -113,8 +113,8 @@ POST https://api.shareactor.io/payment_methods
 ``` http
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
@@ -175,8 +175,8 @@ POST https://api.shareactor.io/payment_methods
 ``` http
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
@@ -236,8 +236,8 @@ GET https://api.shareactor.io/payment_methods/<payment-method-id>
 ``` http
 GET /payment_methods/<payment-method-id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -290,8 +290,8 @@ GET https://api.shareactor.io/payment_methods
 ``` http
 GET /payment_methods HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -347,8 +347,8 @@ DELETE https://api.shareactor.io/payment_methods/<payment_method_id>
 ``` http
 DELETE /payment_methods/<payment_method_id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 

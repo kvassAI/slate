@@ -22,8 +22,8 @@ deleted | Flag that sets User object to deleted
 ``` http
 POST /users HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
@@ -90,8 +90,8 @@ tags | List of Tags associated with User
 ``` http
 GET /users/<user_id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -143,8 +143,8 @@ Argument | Description
 ``` http
 PUT /users/<user-id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
@@ -207,8 +207,8 @@ tags | List of Tags associated with User
 ``` http
 DELETE /users/<user-id> HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -261,8 +261,8 @@ user-id | ID of the User to delete
 ``` http
 GET /users HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
@@ -318,7 +318,7 @@ order_by | field used for sorting results
 ``` http
 GET /users/search?query=doe HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
+Authorization: Bearer <jwt>
 Host: api.shareactor.io
 ```
 
@@ -374,8 +374,8 @@ page | Which page to retrieve. _default page size is 10_
 ``` http
 GET /users/<user-id>/orders HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <shareactor-api-key>
-X-Share-Session: <session-id>
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
