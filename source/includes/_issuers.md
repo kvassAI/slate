@@ -328,4 +328,51 @@ blacklisted | Blacklisted is `Boolean`.
 
 ``` http
 DELETE /issuers/<issuer_id>
+Content-Type: application/json
+Authorization: Bearer <shareactor-api-key>
+X-Share-Session: <session-id>
+Host: api.shareactor.io
 ```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{  
+   "active":False,
+   "company":{  
+      "$oid":"58e798d0b70e2a901ca32396"
+   },
+   "name":"Telenor Norge AS",
+   "account_number":"12345678903",
+   "verified":False,
+   "deleted":True,
+   "_id":{  
+      "$oid":"58e798d0b70e2a901ca32398"
+   },
+   "blacklisted":False,
+   "is_message_mandatory":False,
+   "address":{  
+      "service":"google",
+      "alias":"",
+      "zip_code":"0556",
+      "street_name":"Fornebuveien 6",
+      "country":"NOR",
+      "city":"Oslo"
+   },
+   "created":{  
+      "$date":1491572944202
+   },
+   "modified":{  
+      "$date":1491572947166
+   },
+   "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"
+}
+```
+
+Deletes an Issuer
+
+Argument | Description
+-------- | -----------
+issuer_id | ID of the Issuer to delete.
+
