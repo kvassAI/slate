@@ -890,7 +890,7 @@ using your own pagination scheme.</p>
 </tr>
 <tr>
 <td>amount</td>
-<td>Amount of invoice as a float.</td>
+<td>Amount of invoice as a float</td>
 </tr>
 <tr>
 <td>currency</td>
@@ -898,11 +898,11 @@ using your own pagination scheme.</p>
 </tr>
 <tr>
 <td>account_number</td>
-<td>Account number to issuer, to whom the payment of invoice is done to</td>
+<td>Account number to make payment of invoice</td>
 </tr>
 <tr>
 <td>message</td>
-<td>Message (KID) used for paying invoice. How it will appear in the Issuer&rsquo;s bank</td>
+<td>Message (KID) used for paying invoice. How it&rsquo;ll appear on the Issuer&rsquo;s bank</td>
 </tr>
 <tr>
 <td>due_date</td>
@@ -917,10 +917,6 @@ using your own pagination scheme.</p>
 <td>Issuer of invoice</td>
 </tr>
 <tr>
-<td>issuer_alias</td>
-<td>regardless of the issuer existing or not, the user may want to use an alias for the issuer</td>
-</tr>
-<tr>
 <td>deleted</td>
 <td>Flag that sets Invoice object to deleted</td>
 </tr>
@@ -928,31 +924,9 @@ using your own pagination scheme.</p>
 <td>image_url</td>
 <td>The url for the invoice image which is returned from the ocr</td>
 </tr>
-<tr>
-<td>status</td>
-<td>The status of the Invoice. Default is CREATED. Additionally there is: &ldquo;SCHEDULED&rdquo;, &ldquo;DONE&rdquo;, &ldquo;FAILED&rdquo;, &ldquo;CANCELLED&rdquo;</td>
-</tr>
-<tr>
-<td>created</td>
-<td>The date and time the invoice was created</td>
-</tr>
-<tr>
-<td>updated</td>
-<td>The last time the invoice was updated</td>
-</tr>
 </tbody></table>
 
 <h2 id="create-an-invoice">Create an Invoice</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>POST https://api.shareactor.io/invoices
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/invoices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -960,14 +934,12 @@ using your own pagination scheme.</p>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
-    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some transaction or KID number"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some transaction"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
     </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-10T18:25:43.511Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Important Firm AS"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"issuer_alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"issuer alias for Issuer"</span><span class="w">
+    </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1007,50 +979,32 @@ using your own pagination scheme.</p>
 </tr>
 </thead><tbody>
 <tr>
+<td><strong>message</strong></td>
+<td>Message of transaction</td>
+</tr>
+<tr>
 <td><strong>amount</strong></td>
-<td>Amount in float. Required field</td>
+<td>Amount in float</td>
 </tr>
 <tr>
 <td><strong>currency</strong></td>
-<td>ISO code of currency: &ldquo;EUR&rdquo;, &ldquo;USD&rdquo;, &ldquo;NOK&rdquo; etc. Required field</td>
+<td>ISO code of currency: &ldquo;EUR&rdquo;, &ldquo;USD&rdquo;, etc.</td>
 </tr>
 <tr>
 <td><strong>account_number</strong></td>
-<td>Account number to pay invoice to. Required field</td>
+<td>Account number to pay invoice to</td>
 </tr>
 <tr>
 <td><strong>due_date</strong></td>
-<td>Due date of invoice. If missing, the due_date is today.</td>
+<td>Due date of invoice</td>
 </tr>
 <tr>
-<td>image_url</td>
+<td><strong>image_url</strong></td>
 <td>The url for the invoice image</td>
-</tr>
-<tr>
-<td>issued_date</td>
-<td>The date the Invoice was issued. Not mandatory</td>
-</tr>
-<tr>
-<td>issuer_alias</td>
-<td>Issuer alias that User could set. Not mandatory</td>
-</tr>
-<tr>
-<td>message</td>
-<td>Message of transaction. e.g. KID number</td>
 </tr>
 </tbody></table>
 
 <h2 id="retrieve-an-invoice">Retrieve an Invoice</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/invoices/&lt;invoice_id&gt;
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/invoices/&lt;invoice_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1085,7 +1039,7 @@ using your own pagination scheme.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves an Invoice with a given ID.</p>
+<p>Retrieves Invoice with the given ID.</p>
 
 <table><thead>
 <tr>
@@ -1095,21 +1049,11 @@ using your own pagination scheme.</p>
 </thead><tbody>
 <tr>
 <td><strong>invoice_id</strong></td>
-<td>ID of the queried Invoice</td>
+<td>ID of the desired Invoice</td>
 </tr>
 </tbody></table>
 
 <h2 id="list-all-invoices">List all Invoices</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/invoices
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/invoices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1150,7 +1094,7 @@ using your own pagination scheme.</p>
 
 <table><thead>
 <tr>
-<th>Argument</th>
+<th>Arguments</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1164,29 +1108,217 @@ using your own pagination scheme.</p>
 </tr>
 <tr>
 <td>order_by</td>
-<td>field used for sorting results. If missing default is &ldquo;-due_date&rdquo;. Could be other parameters in the Invoice model, like &ldquo;-created&rdquo; or &ldquo;status=DONE&rdquo;.</td>
+<td>field used for sorting results</td>
 </tr>
 </tbody></table>
 
-<h2 id="update-an-invoice">Update an invoice</h2>
+          <h1 id="issuers">Issuers</h1>
 
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/invoices/&lt;invoice_id&gt;
-</code></pre>
+<h2 id="issuers-object">Issuers object</h2>
 
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre class="highlight http"><code><span class="nf">PUT</span> <span class="nn">/invoices/&lt;invoice_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created</td>
+<td>The date the Issuer was generated.</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>The date the Issuer was last updated.</td>
+</tr>
+<tr>
+<td>active</td>
+<td>Flag that sets Issuer object to active.</td>
+</tr>
+<tr>
+<td>deleted</td>
+<td>Flag that set Issuer object to deleted.</td>
+</tr>
+<tr>
+<td>verified</td>
+<td>Flag that set Issuer object to verified. Changes to true after AML check up.</td>
+</tr>
+<tr>
+<td>blacklisted</td>
+<td>Flag that set Issuer object to blacklisted. <code class="prettyprint">false</code> if AML status is either <code class="prettyprint">Potential Match</code>, <code class="prettyprint">true Positive</code> or <code class="prettyprint">true Positive</code>. <code class="prettyprint">true</code> if AML status value is either <code class="prettyprint">No Match</code>, <code class="prettyprint">false Positive</code> or <code class="prettyprint">true Positive - Reject</code>.</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>Comments used for add a comment about Issuer.</td>
+</tr>
+<tr>
+<td>account_number</td>
+<td>Account number to Issuer. Used when handling Invoice&rsquo;s</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Name of Issuer</td>
+</tr>
+<tr>
+<td>logo_url</td>
+<td>Path for logo for Issuer.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Address corresponding to payment address.</td>
+</tr>
+<tr>
+<td>is_message_mandatory</td>
+<td>Flag that determines if <code class="prettyprint">message</code> field is mandatory for invoices issued by this issuer.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-an-issuer">Create an Issuer</h2>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/issuers</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nt">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Create_issuer"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.shareactor.io/hs-fs/hubfs/Shareactor_Dec2016_Theme/img/Shareactor_logo.png?t=1490176701994&amp;width=200&amp;name=Shareactor_logo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"It is a comment"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">  
+   </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1490967111428</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1490967111446</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Create_issuer"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58de5a46b70e2a8840ea4aa6"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"comments"</span><span class="p">:</span><span class="s2">"It is a comment"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"address"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"blacklisted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"is_message_mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"logo_url"</span><span class="p">:</span><span class="s2">"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58de5a47b70e2a8840ea4aae"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Create a new Issuer.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>created</strong></td>
+<td>Created is date generated when Issuer created. Default value <code class="prettyprint">now date</code>: <code class="prettyprint">timestamp</code>.</td>
+</tr>
+<tr>
+<td><strong>modified</strong></td>
+<td>Date generated when Issuer is updated. Default value <code class="prettyprint">now date</code>: <code class="prettyprint">timestamp</code>.</td>
+</tr>
+<tr>
+<td><strong>active</strong></td>
+<td>Active is <code class="prettyprint">boolean</code>. Default <code class="prettyprint">true</code>.</td>
+</tr>
+<tr>
+<td><strong>deleted</strong></td>
+<td>Deleted is <code class="prettyprint">boolean</code>. Default <code class="prettyprint">false</code>.</td>
+</tr>
+<tr>
+<td><strong>verified</strong></td>
+<td>Verified is <code class="prettyprint">boolean</code>. Default <code class="prettyprint">false</code>.</td>
+</tr>
+<tr>
+<td><strong>blacklisted</strong></td>
+<td>Blacklisted is <code class="prettyprint">boolean</code>. Default <code class="prettyprint">false</code>.</td>
+</tr>
+<tr>
+<td><strong>account_number</strong></td>
+<td>Account_number is <code class="prettyprint">string</code>, must contain 11 digits.</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>Comments. <code class="prettyprint">string</code>.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Name of Issuer. <code class="prettyprint">string</code>.</td>
+</tr>
+<tr>
+<td>logo_url</td>
+<td>The URL of the Issuer&rsquo;s logo. <code class="prettyprint">string</code>.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Issuer address. As an <a href="#address"><code class="prettyprint">Address</code></a> object.</td>
+</tr>
+<tr>
+<td>is_messaging_mandatory</td>
+<td>Determines if <em>message</em> field is mandatory for invoices issued by this issuer. <code class="prettyprint">boolean</code>. Default value <code class="prettyprint">false</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-an-issuer">Retrieve an Issuer</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/issuers/&lt;issuer_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
 <span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-<p>Updates an Invoice with a given ID. For example:</p>
+<span class="p">{</span><span class="w">
+    </span><span class="nt">"blacklisted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Telenor Norge AS"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58e104d5b70e2a76c0e94c83"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58e104d5b70e2a76c0e94c85"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"street_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fornebuveien 6"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oslo"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0556"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOR"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="nt">"is_message_mandatory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1491141845656</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1491141845653</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves Issuer with ID.</p>
 
 <table><thead>
 <tr>
@@ -1195,36 +1327,319 @@ using your own pagination scheme.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>invoice_id</strong></td>
-<td>ID of the queried Invoice</td>
+<td><strong>issuer_id</strong></td>
+<td>ID of the queried Issuer.</td>
 </tr>
 </tbody></table>
 
-<h2 id="delete-invoice">Delete invoice</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>DELETE https://api.shareactor.io/invoices/&lt;invoice_id&gt;
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre class="highlight http"><code><span class="nf">DELETE</span> <span class="nn">/invoices/&lt;invoice_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<h2 id="list-all-issuers">List all Issuers</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/issuers</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
 <span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-<p>Deletes an invoice with a give ID.</p>
+<span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"is_message_mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"blacklisted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e10791b70e2a516c376a8c"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"logo_url"</span><span class="p">:</span><span class="s2">"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"street_name"</span><span class="p">:</span><span class="s2">"Fornebuveien 6"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="s2">"0556"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491142545321</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491142545323</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Telenor Norge AS"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e10791b70e2a516c376a8a"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<p>Retrieves a list of all Issuers.</p>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>size</td>
+<td>Number of items to retrieve</td>
+</tr>
+<tr>
+<td>page</td>
+<td>Which page to retrieve. <em>default page size is 10</em></td>
+</tr>
+<tr>
+<td>from_date</td>
+<td>Start date. Type value <code class="prettyprint">timestamp</code>.</td>
+</tr>
+<tr>
+<td>to_date</td>
+<td>End date. Type value <code class="prettyprint">timestamp</code>.</td>
+</tr>
+<tr>
+<td>date_filter</td>
+<td>Date field used for filter results.</td>
+</tr>
+<tr>
+<td>deleted</td>
+<td>It&rsquo;s a <code class="prettyprint">boolean</code>. If <code class="prettyprint">true</code> issuer is deleted.</td>
+</tr>
+<tr>
+<td>sorting</td>
+<td>Field used for sorting results</td>
+</tr>
+</tbody></table>
+
+<h3 id="date_filter">date_filter</h3>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created</td>
+<td>Created is date generated when Issuer created. Type value <code class="prettyprint">timestamp</code>.</td>
+</tr>
+<tr>
+<td>modified</td>
+<td>Date generated when Issuer updated. Type value <code class="prettyprint">timestamp</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-issuer">Update Issuer</h2>
+<pre class="highlight http"><code><span class="nf">PUT</span> <span class="nn">/issuers/&lt;issuer_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">  
+   </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e112acb70e2a326cf1f955"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Telenor updated"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491145388209</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"is_message_mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e112acb70e2a326cf1f957"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491145388109</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"logo_url"</span><span class="p">:</span><span class="s2">"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"address"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street_name"</span><span class="p">:</span><span class="s2">"Fornebuveien 6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="s2">"0556"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"blacklisted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Updates an Issuer</p>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Descriptions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>issuer_id</strong></td>
+<td>ID of the desired Issuer.</td>
+</tr>
+</tbody></table>
+
+<h2 id="issuer-search">Issuer Search</h2>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/issuers/search?query=tele</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">  
+   </span><span class="p">{</span><span class="w">  
+      </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Telenor Norge AS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"is_message_mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"street_name"</span><span class="p">:</span><span class="s2">"Fornebuveien 6"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="s2">"0556"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"blacklisted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"logo_url"</span><span class="p">:</span><span class="s2">"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491565328234</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491565328235</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e77b10b70e2a7650ea6521"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e77b10b70e2a7650ea651f"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves a list of Issuers associate with search.</p>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>query</strong></td>
+<td>What you want to search, like <strong>name</strong> or <strong>account_number</strong>. <code class="prettyprint">string</code></td>
+</tr>
+<tr>
+<td>filters</td>
+<td>In search you can use filters for more accurate search.</td>
+</tr>
+</tbody></table>
+
+<h3 id="filters">Filters</h3>
+
+<p>For all <code class="prettyprint">Boolean</code> flags it is possible to put:</p>
+
+<ul>
+<li><p>True: <code class="prettyprint">1</code>, <code class="prettyprint">&#39;1&#39;</code> or <code class="prettyprint">&#39;true&#39;</code></p></li>
+<li><p>False: <code class="prettyprint">0</code>, <code class="prettyprint">&#39;0&#39;</code>or <code class="prettyprint">&#39;false&#39;</code></p></li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Descriptions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td>Active is <code class="prettyprint">Boolean</code>.</td>
+</tr>
+<tr>
+<td>verified</td>
+<td>Verified is <code class="prettyprint">Boolean</code>.</td>
+</tr>
+<tr>
+<td>blacklisted</td>
+<td>Blacklisted is <code class="prettyprint">Boolean</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-issuer">Delete Issuer</h2>
+<pre class="highlight http"><code><span class="nf">DELETE</span> <span class="nn">/issuers/&lt;issuer_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">  
+   </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e798d0b70e2a901ca32396"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Telenor Norge AS"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e798d0b70e2a901ca32398"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"blacklisted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"is_message_mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"address"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="s2">"0556"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"street_name"</span><span class="p">:</span><span class="s2">"Fornebuveien 6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491572944202</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491572947166</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"logo_url"</span><span class="p">:</span><span class="s2">"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Deletes an Issuer</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>issuer_id</td>
+<td>ID of the Issuer to delete.</td>
+</tr>
+</tbody></table>
 
           <h1 id="payment-methods">Payment Methods</h1>
 
 <p>Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore, you can retrieve this information later for recurring payments and so on.</p>
 
-<p>The user has a <code class="prettyprint">default_payment_method</code> which can be updated in the user object. This default payment method corresponds to the last payment method used by the user to pay for an order.</p>
+<p>The user has a <code class="prettyprint">default_payment_method</code> which can be updated in the user object. This default payment method correspond to the last payment method used by the user to pay for an order.</p>
 
 <h2 id="payment-method-object">Payment Method object</h2>
 
@@ -1242,35 +1657,17 @@ using your own pagination scheme.</p>
 </tr>
 <tr>
 <td><strong>method</strong></td>
-<td>Type of Payment Method. Currently acceptable methods: <code class="prettyprint">stripe</code>, <code class="prettyprint">dibs</code>, <code class="prettyprint">paypal</code>, <code class="prettyprint">single_paypal</code>, <code class="prettyprint">future_paypal</code></td>
+<td>Type of Payment Method. Currently acceptable methods: <code class="prettyprint">stripe</code>, <code class="prettyprint">dibs</code>, <code class="prettyprint">paypal</code>, etc.</td>
 </tr>
 <tr>
 <td><strong>name</strong></td>
-<td>Name of the Payment Method - to be shown to final customer, if needed</td>
-</tr>
-<tr>
-<td>created</td>
-<td>Date and time the user created the payment method was created</td>
-</tr>
-<tr>
-<td>updated</td>
-<td>Date and time the user last updated the payment method</td>
+<td>Name of Payment Method - to be shown to final customer, if needed</td>
 </tr>
 </tbody></table>
 
 <h2 id="dibs">DIBS</h2>
 
 <p>DIBS is a Norwegian payments gateway. It works based on callbacks made via their servers to ours. This callback contains the information about the credit card that was created and we store that as a PaymentMethod object.</p>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>POST https://api.shareactor.io/dibs/payment_method
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/dibs/payment_method</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
@@ -1375,19 +1772,9 @@ using your own pagination scheme.</p>
 
 <h2 id="paypal">Paypal</h2>
 
-<p>Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the most usual type of transaction and common for simple authotication and capturing of transactions. The Future Payments is mostly used for charging the user several times, after giving their consent.</p>
+<p>Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the usual transaction and it&rsquo;s pretty common for simples authorize/capture transactions. The Future Payments are more used for being able to charge the user over and over again after it has given its consent.</p>
 
-<h2 id="single-payment-paypal">Single Payment (PayPal)</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>POST https://api.shareactor.io/payment_methods
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
+<h2 id="single-payments-paypal">Single Payments (PayPal)</h2>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1444,23 +1831,9 @@ using your own pagination scheme.</p>
 <td><strong>payer_id</strong></td>
 <td>This is the ID of the creation of the payment, something which is associated with the company.</td>
 </tr>
-<tr>
-<td><strong>method</strong></td>
-<td><code class="prettyprint">single_paypal</code></td>
-</tr>
 </tbody></table>
 
 <h2 id="future-payments-paypal">Future Payments (PayPal)</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>POST https://api.shareactor.io/payment_methods
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1513,23 +1886,9 @@ using your own pagination scheme.</p>
 <td><strong>code</strong></td>
 <td>This is an Authorization code sent by the mobile apps to be exchanged by a Refresh Token.</td>
 </tr>
-<tr>
-<td><strong>method</strong></td>
-<td><code class="prettyprint">future_paypal</code></td>
-</tr>
 </tbody></table>
 
 <h2 id="retrieve-a-payment-method">Retrieve a Payment Method</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/payment_methods/&lt;payment-method-id&gt;
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment-method-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1564,7 +1923,7 @@ using your own pagination scheme.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves the payment method with a given ID.</p>
+<p>Retrieves the payment method with the given ID.</p>
 
 <table><thead>
 <tr>
@@ -1574,21 +1933,11 @@ using your own pagination scheme.</p>
 </thead><tbody>
 <tr>
 <td><strong>payment-method-id</strong></td>
-<td>The payment method ID</td>
+<td>ID of the desired payment method</td>
 </tr>
 </tbody></table>
 
 <h2 id="list-all-payment-methods">List all Payment Methods</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/payment_methods
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1647,26 +1996,6 @@ using your own pagination scheme.</p>
 </tr>
 </tbody></table>
 
-<h2 id="delete-payment-method">Delete payment method</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>DELETE https://api.shareactor.io/payment_methods/&lt;payment_method_id&gt;
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre class="highlight http"><code><span class="nf">DELETE</span> <span class="nn">/payment_methods/&lt;payment_method_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
-</code></pre>
-
-<p>Delete the payment method associated with the user.</p>
-
           <h1 id="payments">Payments</h1>
 
 <p>When you want to pay for an Order or Invoice (single or multiple items) you need to use the Payment object. Together with a
@@ -1674,7 +2003,7 @@ using your own pagination scheme.</p>
 as listing all available payments.</p>
 
 <p>When paying for an <a href="#invoices">Invoice</a> you can also provide the API with a <code class="prettyprint">payment_date</code> which allows you to schedule payments
-for later. If no <code class="prettyprint">payment_date</code> is provided, the Invoice&rsquo;s <code class="prettyprint">due_date</code> will become the <code class="prettyprint">payment_date</code>.</p>
+for later. If no <code class="prettyprint">payment_date</code> is provided, we&rsquo;ll use each Invoice&rsquo;s <code class="prettyprint">due_date</code> as the <code class="prettyprint">payment_date</code>.</p>
 
 <h2 id="payment-object">Payment object</h2>
 
@@ -1696,11 +2025,11 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, the 
 </tr>
 <tr>
 <td><strong>currency</strong></td>
-<td>3 letter ISO currency code as defined by <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a>.</td>
+<td>3 letter currency code as defined by <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a>.</td>
 </tr>
 <tr>
 <td><strong>human_id</strong></td>
-<td>Human readable ID. 6 character long.</td>
+<td>Human readable ID.</td>
 </tr>
 <tr>
 <td><strong>subject</strong></td>
@@ -1709,14 +2038,6 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, the 
 <tr>
 <td><strong>current_state</strong></td>
 <td>Current state of operation. Can be one of: <code class="prettyprint">created</code>, <code class="prettyprint">processing</code>, <code class="prettyprint">succeeded</code>, <code class="prettyprint">failed</code> and <code class="prettyprint">cancelled</code>.</td>
-</tr>
-<tr>
-<td>created</td>
-<td>Date the payment was created.</td>
-</tr>
-<tr>
-<td>modified</td>
-<td>Date if the payment was modified</td>
 </tr>
 <tr>
 <td>payment_date</td>
@@ -1750,18 +2071,7 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, the 
 
 <h2 id="process-a-payment">Process a Payment</h2>
 
-<p>Creates and process a new Payment. Can&rsquo;t process both invoices and orders at the same time.
-All payments should have the following attributes:</p>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>POST https://api.shareactor.io/payments
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
+<p>Creates and process a new Payment. All payments should have the following attributes:</p>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1797,7 +2107,7 @@ All payments should have the following attributes:</p>
   </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
   </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51Q4LN"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="p">,</span><span class="w">
@@ -1823,7 +2133,7 @@ All payments should have the following attributes:</p>
 </tr>
 <tr>
 <td><strong>payment_method</strong></td>
-<td>Selected payment method id to use for paying <strong>invoices</strong> or <strong>orders</strong>.</td>
+<td>Selected payment method to use for paying <strong>invoices</strong> or <strong>orders</strong>.</td>
 </tr>
 <tr>
 <td><strong>payment_date</strong></td>
@@ -1832,16 +2142,6 @@ All payments should have the following attributes:</p>
 </tbody></table>
 
 <h2 id="retrieve-a-payment">Retrieve a Payment</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/payments/&lt;payment-id&gt;
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payments/&lt;payment-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1882,7 +2182,7 @@ All payments should have the following attributes:</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves the payment with a given ID.</p>
+<p>Retrieves the payment with the given ID.</p>
 
 <table><thead>
 <tr>
@@ -1892,21 +2192,11 @@ All payments should have the following attributes:</p>
 </thead><tbody>
 <tr>
 <td><strong>payment-id</strong></td>
-<td>ID of the queried payment</td>
+<td>ID of the desired payment</td>
 </tr>
 </tbody></table>
 
 <h2 id="list-all-payments">List all Payments</h2>
-
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/payments/
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
@@ -1938,7 +2228,7 @@ All payments should have the following attributes:</p>
     </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
     </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51Q4LN"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="p">,</span><span class="w">
@@ -1975,53 +2265,9 @@ All payments should have the following attributes:</p>
 </tr>
 </tbody></table>
 
-<h2 id="update-payment">Update payment</h2>
+          <h1 id="address">Address</h1>
 
-<blockquote>
-<p>Definition</p>
-</blockquote>
-<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/payments/&lt;payment_id&gt;
-</code></pre>
-
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre class="highlight http"><code><span class="nf">PUT</span> <span class="nn">/payments/&lt;payment_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
-</code></pre>
-<pre class="highlight plaintext"><code>HTTP/1.1 200 OK
-Content-Type: application/json
-
-</code></pre>
-
-<p>Update a payment. Editable fields:</p>
-
-<table><thead>
-<tr>
-<th>Argument</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>active</td>
-<td>Boolean field. Default is <code class="prettyprint">True</code></td>
-</tr>
-<tr>
-<td>payment_method</td>
-<td>Id for payment method.</td>
-</tr>
-<tr>
-<td>billing_address</td>
-<td>String of address to whom the payment is to.</td>
-</tr>
-<tr>
-<td>payment_date</td>
-<td>Update payment date. Default payment date is <code class="prettyprint">due_date</code> for invoices. This will override the <code class="prettyprint">due_date</code>.</td>
-</tr>
-</tbody></table>
+<h2 id="address-object">Address Object</h2>
 
       </div>
       <div class="dark-box">
