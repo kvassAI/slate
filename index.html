@@ -91,7 +91,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;http&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;http&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -102,7 +102,6 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="http">http</a>
-              <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -121,55 +120,38 @@
         
           <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Shareactor API! Our APIs intend to provide businesses with the capability of porting their backends into our platform and start worrying with other things rather than tech!</p>
+<p>The ShareActor API is a standard JSON RESTful API. The API tries to follow the HTTP standards as often as possible, but there might be some deviations from it on some specific scenarios.</p>
 
-<p>We have language bindings in Shell and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>All responses from the API, including errors, are returned as JSON objects.</p>
 
-<p>&hellip; Some other text here &hellip;</p>
+<p>The API is separated into 2 different environments: </p>
 
-<h2 id="authorization">Authorization</h2>
+<ul>
+<li>QA: <a href="https://qa.shareactor.io">https://qa.shareactor.io</a></li>
+<li>PROD: <a href="https://api.shareactor.io">https://api.shareactor.io</a></li>
+</ul>
+
+<p>To separate the API usage for both environments, we&rsquo;ll issue two different API keys, one per environment.</p>
+
+<h2 id="authentication">Authentication</h2>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer &lt;shareactor-api-key&gt;'</span><span class="p">}</span>
-
-<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.shareactor.io/...'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
 <p>Make sure to replace <code class="prettyprint">&lt;shareactor-api-key&gt;</code> with your API key.</p>
 </blockquote>
 
-<p>Shareactor uses API keys to allow access to the API. If you want access to our APIs please get in touch on our <a href="http://www.shareactor.io">website</a>.</p>
+<p>ShareActor uses API keys to allow access to the API. If you want access to our APIs please get in touch through our <a href="https://www.shareactor.io/contact">website</a>.</p>
 
 <p>All API requests should include this key in the headers like the following:</p>
 
-<p><code class="prettyprint">Authorization: Bearer &lt;shareactor-api-key&gt;</code></p>
+<p><code class="prettyprint">X-Share-Api-Key: &lt;shareactor-api-key&gt;</code></p>
 
 <aside class="notice">
 You must replace <code>shareactor-api-key</code> with your personal API key.
-</aside>
-
-<h2 id="sessions">Sessions</h2>
-<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
-</code></pre>
-
-<p>Some API calls will require a user session. In that case you should use the following additional header:</p>
-
-<p><code class="prettyprint">X-Share-Session: &lt;session_id&gt;</code></p>
-
-<p>Check the section on <a href="#users">Digits Authentication</a> for more information on how to get this header.</p>
-
-<aside class="notice">
-You must replace <code>session-id</code> with your Session id.
 </aside>
 
 <h2 id="errors">Errors</h2>
@@ -193,7 +175,7 @@ You must replace <code>session-id</code> with your Session id.
 <tr>
 <td>401</td>
 <td>Unauthorized</td>
-<td>Your API key is either wrong, missing or missing session information (X-Share-Session)</td>
+<td>Your API key is either wrong, missing or you have no permissions for such request</td>
 </tr>
 <tr>
 <td>404</td>
@@ -208,68 +190,45 @@ You must replace <code>session-id</code> with your Session id.
 <tr>
 <td>503</td>
 <td>Service Unavailable</td>
-<td>We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
 
 <h2 id="expanding-objects">Expanding objects</h2>
 
 <blockquote>
-<p>Without the <code class="prettyprint">expand</code> parameter:</p>
+<p>Example request:</p>
 </blockquote>
-<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment_method_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment-method-id&gt;/?expand=user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
-<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-
-<span class="p">{</span><span class="w">
-   </span><span class="nt">"masked_card_number"</span><span class="p">:</span><span class="s2">"XXXXXXXXXXXX1234"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"merchant"</span><span class="p">:</span><span class="s2">"some_merchant_id"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b38"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b39"</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
 
 <blockquote>
-<p>With the <code class="prettyprint">expand</code> parameter:</p>
+<p>Example response:</p>
 </blockquote>
-<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment_method_id&gt;/?expand=user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
-</code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
    </span><span class="nt">"masked_card_number"</span><span class="p">:</span><span class="s2">"XXXXXXXXXXXX1234"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"merchant"</span><span class="p">:</span><span class="s2">"some_merchant_id"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+4791234567"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@email.com"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57ee9705d76d431e56769b39"</span><span class="w">
-   </span><span class="p">}</span><span class="w">
+        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Many response objects will contain IDs for related objects in the response. For example, an Order might have a customer id associated. If you want to expand the actual customer information you can use the <code class="prettyprint">expand</code> query parameter.</p>
+<p>Many response objects will contain IDs for related objects in the response. For example, an Order might have a User ID associated. If you want to expand the actual user information you can use the <code class="prettyprint">expand</code> query parameter for that.</p>
+
+<p>You can also nest expand requests with the dot property. For example, requesting payments.payment_method on an order will expand the payments property into a list of Payment objects, and will then expand the payment method property into a full Payment Method object. </p>
+
+<p>You can expand multiple objects at once by identifying multiple items in the expand array, separated with commas.</p>
 
 <h2 id="common-object-fields">Common Object fields</h2>
 
-<p>Here&rsquo;s a list of fields which you will see very often on the API response:</p>
+<p>Here&rsquo;s a list of fields which you will see often on the API responses:</p>
 
 <table><thead>
 <tr>
@@ -297,52 +256,93 @@ You must replace <code>session-id</code> with your Session id.
 <td>company</td>
 <td>Company associated with object</td>
 </tr>
+<tr>
+<td>user</td>
+<td>User associated with object</td>
+</tr>
 </tbody></table>
 
 <h2 id="pagination">Pagination</h2>
+
+<blockquote>
+<p>Example request using <code class="prettyprint">size</code> and <code class="prettyprint">page</code>: </p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/orders?size=10&amp;page=1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
+
+<blockquote>
+<p>Example request using only <code class="prettyprint">size</code>:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/orders?size=100</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 
 <p>All top-level API resources have support for bulk fetches via &ldquo;list&rdquo; API methods. For instance you can list orders, list users, list providers, etc.
 These list API methods share a common structure, taking at least these two parameters: size and page.</p>
 
-<p>Shareactor uses a pagination based on a page size (<code class="prettyprint">size</code>) and current page (<code class="prettyprint">page</code>). With these parameters you can retrieve the data the way you need and display it
-using your own pagination scheme.</p>
+<p>Shareactor uses a pagination based on a page size (<code class="prettyprint">size</code>) and current page (<code class="prettyprint">page</code>). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.</p>
 
-          <h1 id="authentication">Authentication</h1>
+<p>One of the missing features we are looking into implementing is the return of a response header with total count: <code class="prettyprint">Share-Pagination-Total: 212</code></p>
 
-<p>In order to create a User, you will have to authenticate yourself. We currently <em>only</em> allow login via Digits, the Twitter platform for logging in using a mobile phone - <a href="https://get.digits.com/">Digits</a>.</p>
+          <h1 id="authorization">Authorization</h1>
 
-<h2 id="digits-authentication">Digits Authentication</h2>
+<p>Our API uses OAuth2 and JWT tokens for authorizing Users, through a service called <a href="https://auth0.com/">Auth0</a>. </p>
 
-<h3 id="mobile-ios-and-android">Mobile (iOS and Android)</h3>
+<blockquote>
+<p>OAuth 2.0 is the industry-standard protocol for authorization</p>
 
-<p>Both iOS and Android support Digits login, but we need to verify on the server-side that the credentials being sent are correct. For that we need to get the same information Digits has sent your app. Documentation explains how to do this for both <a href="https://docs.fabric.io/android/digits/advanced-setup.html#verify-digits-user">Android</a> and <a href="https://docs.fabric.io/apple/digits/advanced-setup.html#verifying-a-user">iOS</a>. For Android in specific, we built a test app to demonstrate how to do this: - <a href="https://github.com/shareactorIO/digits-android">https://github.com/shareactorIO/digits-android</a>.</p>
+<p>JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties</p>
+</blockquote>
 
-<h3 id="web">Web</h3>
-<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/auth</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Auth-Service-Provider</span><span class="p">:</span> <span class="s">https://api.digits.com/1.1/...</span>
-<span class="na">X-Verify-Credentials-Authorization</span><span class="p">:</span> <span class="s">OAuth oauth_consumer_key=... oauth_signature=... oauth_signature_method=...</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
-</code></pre>
-
-<p>If you&rsquo;re trying to authenticate through a website or any other way which does not have an SDK, you need to send us the same headers you get when talking to Digits:</p>
+<p>Our API supports multiple login mechanisms such as the following:</p>
 
 <ul>
-<li>X-Auth-Service-Provider</li>
-<li>X-Verify-Credentials-Authorization</li>
+<li>Facebook</li>
+<li>Google</li>
+<li>Email and password</li>
+<li>SAML, for example: BankID (Norwegian)</li>
+<li>SMS</li>
+<li>etc.</li>
+</ul>
+
+<p><a href="https://auth0.com/docs/identityproviders">Here</a> is a full list of Auth0 supported integrations and <a href="https://auth0.com/docs/quickstart/native">here</a>  you can see a guide on how to implement Auth0 with iOS, Android, Ionic, etc. </p>
+
+<p>In order to authorize a user on the API side we use <a href="https://jwt.io/">JWT tokens</a> which have to be added to all requests using the following header:</p>
+
+<p><code class="prettyprint">Authorization: Bearer &lt;jwt&gt;</code></p>
+
+<h2 id="how-to">How-to</h2>
+
+<p>In order to authorize with our APIs, there&rsquo;s just a couple of things you need to do, after we provide you with the necessary configuration settings:</p>
+
+<ol>
+<li>Install your favourite OAuth2 SDK:
+
+<ul>
+<li><a href="https://github.com/wuman/android-oauth-client">Android</a></li>
+<li><a href="https://github.com/vsouza/awesome-ios#authentication">iOS</a></li>
+<li><a href="https://auth0.com/authenticate/ionic2/oauth2">Ionic 2</a></li>
+<li><a href="https://www.npmjs.com/package/react-native-oauth">React Native</a></li>
+<li>Manual - you can also use no SDK and just implement a typical OAuth2 flow</li>
+</ul></li>
+<li>Configure the SDK with the settings given by us</li>
+<li>Perform the authentication request which will return you a JWT and a profile</li>
+<li>Create or authenticate your user with our API - <code class="prettyprint">POST /v2/users</code></li>
+</ol>
+
+<p>After this flow, you should use the JWT provided for all other API calls.</p>
+
+<p>OAuth2 is a standard of authorization so if you need more information on how to use/implement it, you can find various resources online, but here are a few good starting points:</p>
+
+<ul>
+<li><a href="https://tools.ietf.org/html/rfc6749">OAuth2 Spec - RFC6749</a></li>
+<li><a href="http://oauthbible.com/">OAuth Bible</a></li>
+<li><a href="https://auth0.com/docs/protocols/oauth2">Auth0 - OAuth 2.0</a></li>
 </ul>
 
           <h1 id="users">Users</h1>
@@ -402,8 +402,8 @@ using your own pagination scheme.</p>
 <h2 id="create-a-user">Create a User</h2>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -491,8 +491,8 @@ using your own pagination scheme.</p>
 <h2 id="retrieve-a-user">Retrieve a User</h2>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users/&lt;user_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -547,8 +547,8 @@ using your own pagination scheme.</p>
 <h2 id="update-a-user">Update a User</h2>
 <pre class="highlight http"><code><span class="nf">PUT</span> <span class="nn">/users/&lt;user-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -635,8 +635,8 @@ using your own pagination scheme.</p>
 <h2 id="delete-a-user">Delete a User</h2>
 <pre class="highlight http"><code><span class="nf">DELETE</span> <span class="nn">/users/&lt;user-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -691,8 +691,8 @@ using your own pagination scheme.</p>
 <h2 id="list-all-users">List all Users</h2>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -757,7 +757,7 @@ using your own pagination scheme.</p>
 <h2 id="search-user">Search User</h2>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users/search?query=doe</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -822,8 +822,8 @@ using your own pagination scheme.</p>
 <h2 id="list-all-orders-for-a-user">List all Orders for a User</h2>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users/&lt;user-id&gt;/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -890,7 +890,7 @@ using your own pagination scheme.</p>
 </tr>
 <tr>
 <td>amount</td>
-<td>Amount of invoice as a float</td>
+<td>Amount of invoice as a float.</td>
 </tr>
 <tr>
 <td>currency</td>
@@ -898,11 +898,11 @@ using your own pagination scheme.</p>
 </tr>
 <tr>
 <td>account_number</td>
-<td>Account number to make payment of invoice</td>
+<td>Account number to issuer, to whom the payment of invoice is done to</td>
 </tr>
 <tr>
 <td>message</td>
-<td>Message (KID) used for paying invoice. How it&rsquo;ll appear on the Issuer&rsquo;s bank</td>
+<td>Message (KID) used for paying invoice. How it will appear in the Issuer&rsquo;s bank</td>
 </tr>
 <tr>
 <td>due_date</td>
@@ -917,6 +917,10 @@ using your own pagination scheme.</p>
 <td>Issuer of invoice</td>
 </tr>
 <tr>
+<td>issuer_alias</td>
+<td>regardless of the issuer existing or not, the user may want to use an alias for the issuer</td>
+</tr>
+<tr>
 <td>deleted</td>
 <td>Flag that sets Invoice object to deleted</td>
 </tr>
@@ -924,22 +928,46 @@ using your own pagination scheme.</p>
 <td>image_url</td>
 <td>The url for the invoice image which is returned from the ocr</td>
 </tr>
+<tr>
+<td>status</td>
+<td>The status of the Invoice. Default is CREATED. Additionally there is: &ldquo;SCHEDULED&rdquo;, &ldquo;DONE&rdquo;, &ldquo;FAILED&rdquo;, &ldquo;CANCELLED&rdquo;</td>
+</tr>
+<tr>
+<td>created</td>
+<td>The date and time the invoice was created</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>The last time the invoice was updated</td>
+</tr>
 </tbody></table>
 
 <h2 id="create-an-invoice">Create an Invoice</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/invoices
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/invoices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
-    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some transaction"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some transaction or KID number"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
     </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-10T18:25:43.511Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="w">
+    </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Important Firm AS"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"issuer_alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"issuer alias for Issuer"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -979,36 +1007,54 @@ using your own pagination scheme.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>message</strong></td>
-<td>Message of transaction</td>
-</tr>
-<tr>
 <td><strong>amount</strong></td>
-<td>Amount in float</td>
+<td>Amount in float. Required field</td>
 </tr>
 <tr>
 <td><strong>currency</strong></td>
-<td>ISO code of currency: &ldquo;EUR&rdquo;, &ldquo;USD&rdquo;, etc.</td>
+<td>ISO code of currency: &ldquo;EUR&rdquo;, &ldquo;USD&rdquo;, &ldquo;NOK&rdquo; etc. Required field</td>
 </tr>
 <tr>
 <td><strong>account_number</strong></td>
-<td>Account number to pay invoice to</td>
+<td>Account number to pay invoice to. Required field</td>
 </tr>
 <tr>
 <td><strong>due_date</strong></td>
-<td>Due date of invoice</td>
+<td>Due date of invoice. If missing, the due_date is today.</td>
 </tr>
 <tr>
-<td><strong>image_url</strong></td>
+<td>image_url</td>
 <td>The url for the invoice image</td>
+</tr>
+<tr>
+<td>issued_date</td>
+<td>The date the Invoice was issued. Not mandatory</td>
+</tr>
+<tr>
+<td>issuer_alias</td>
+<td>Issuer alias that User could set. Not mandatory</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Message of transaction. e.g. KID number</td>
 </tr>
 </tbody></table>
 
 <h2 id="retrieve-an-invoice">Retrieve an Invoice</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/invoices/&lt;invoice_id&gt;
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/invoices/&lt;invoice_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1039,7 +1085,7 @@ using your own pagination scheme.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves Invoice with the given ID.</p>
+<p>Retrieves an Invoice with a given ID.</p>
 
 <table><thead>
 <tr>
@@ -1049,15 +1095,25 @@ using your own pagination scheme.</p>
 </thead><tbody>
 <tr>
 <td><strong>invoice_id</strong></td>
-<td>ID of the desired Invoice</td>
+<td>ID of the queried Invoice</td>
 </tr>
 </tbody></table>
 
 <h2 id="list-all-invoices">List all Invoices</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/invoices
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/invoices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1108,9 +1164,61 @@ using your own pagination scheme.</p>
 </tr>
 <tr>
 <td>order_by</td>
-<td>field used for sorting results</td>
+<td>field used for sorting results. If missing default is &ldquo;-due_date&rdquo;. Could be other parameters in the Invoice model, like &ldquo;-created&rdquo; or &ldquo;status=DONE&rdquo;.</td>
 </tr>
 </tbody></table>
+
+<h2 id="update-an-invoice">Update an invoice</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/invoices/&lt;invoice_id&gt;
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">PUT</span> <span class="nn">/invoices/&lt;invoice_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+
+<p>Updates an Invoice with a given ID. For example:</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>invoice_id</strong></td>
+<td>ID of the queried Invoice</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-invoice">Delete invoice</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.shareactor.io/invoices/&lt;invoice_id&gt;
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">DELETE</span> <span class="nn">/invoices/&lt;invoice_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+
+<p>Deletes an invoice with a give ID.</p>
 
           <h1 id="issuers">Issuers</h1>
 
@@ -1175,8 +1283,8 @@ using your own pagination scheme.</p>
 <h2 id="create-an-issuer">Create an Issuer</h2>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/issuers</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -1279,8 +1387,8 @@ using your own pagination scheme.</p>
 <h2 id="retrieve-an-issuer">Retrieve an Issuer</h2>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/issuers/&lt;issuer_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1335,8 +1443,8 @@ using your own pagination scheme.</p>
 <h2 id="list-all-issuers">List all Issuers</h2>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/issuers</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1435,8 +1543,8 @@ using your own pagination scheme.</p>
 <h2 id="update-issuer">Update Issuer</h2>
 <pre class="highlight http"><code><span class="nf">PUT</span> <span class="nn">/issuers/&lt;issuer_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1491,8 +1599,8 @@ using your own pagination scheme.</p>
 <h2 id="issuer-search">Issuer Search</h2>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/issuers/search?query=tele</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1582,8 +1690,8 @@ using your own pagination scheme.</p>
 <h2 id="delete-issuer">Delete Issuer</h2>
 <pre class="highlight http"><code><span class="nf">DELETE</span> <span class="nn">/issuers/&lt;issuer_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1639,7 +1747,7 @@ using your own pagination scheme.</p>
 
 <p>Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore, you can retrieve this information later for recurring payments and so on.</p>
 
-<p>The user has a <code class="prettyprint">default_payment_method</code> which can be updated in the user object. This default payment method correspond to the last payment method used by the user to pay for an order.</p>
+<p>The user has a <code class="prettyprint">default_payment_method</code> which can be updated in the user object. This default payment method corresponds to the last payment method used by the user to pay for an order.</p>
 
 <h2 id="payment-method-object">Payment Method object</h2>
 
@@ -1657,17 +1765,35 @@ using your own pagination scheme.</p>
 </tr>
 <tr>
 <td><strong>method</strong></td>
-<td>Type of Payment Method. Currently acceptable methods: <code class="prettyprint">stripe</code>, <code class="prettyprint">dibs</code>, <code class="prettyprint">paypal</code>, etc.</td>
+<td>Type of Payment Method. Currently acceptable methods: <code class="prettyprint">stripe</code>, <code class="prettyprint">dibs</code>, <code class="prettyprint">paypal</code>, <code class="prettyprint">single_paypal</code>, <code class="prettyprint">future_paypal</code></td>
 </tr>
 <tr>
 <td><strong>name</strong></td>
-<td>Name of Payment Method - to be shown to final customer, if needed</td>
+<td>Name of the Payment Method - to be shown to final customer, if needed</td>
+</tr>
+<tr>
+<td>created</td>
+<td>Date and time the user created the payment method was created</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>Date and time the user last updated the payment method</td>
 </tr>
 </tbody></table>
 
 <h2 id="dibs">DIBS</h2>
 
 <p>DIBS is a Norwegian payments gateway. It works based on callbacks made via their servers to ours. This callback contains the information about the credit card that was created and we store that as a PaymentMethod object.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/dibs/payment_method
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/dibs/payment_method</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
@@ -1772,13 +1898,23 @@ using your own pagination scheme.</p>
 
 <h2 id="paypal">Paypal</h2>
 
-<p>Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the usual transaction and it&rsquo;s pretty common for simples authorize/capture transactions. The Future Payments are more used for being able to charge the user over and over again after it has given its consent.</p>
+<p>Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the most usual type of transaction and common for simple authotication and capturing of transactions. The Future Payments is mostly used for charging the user several times, after giving their consent.</p>
 
-<h2 id="single-payments-paypal">Single Payments (PayPal)</h2>
+<h2 id="single-payment-paypal">Single Payment (PayPal)</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/payment_methods
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -1831,13 +1967,27 @@ using your own pagination scheme.</p>
 <td><strong>payer_id</strong></td>
 <td>This is the ID of the creation of the payment, something which is associated with the company.</td>
 </tr>
+<tr>
+<td><strong>method</strong></td>
+<td><code class="prettyprint">single_paypal</code></td>
+</tr>
 </tbody></table>
 
 <h2 id="future-payments-paypal">Future Payments (PayPal)</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/payment_methods
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -1886,13 +2036,27 @@ using your own pagination scheme.</p>
 <td><strong>code</strong></td>
 <td>This is an Authorization code sent by the mobile apps to be exchanged by a Refresh Token.</td>
 </tr>
+<tr>
+<td><strong>method</strong></td>
+<td><code class="prettyprint">future_paypal</code></td>
+</tr>
 </tbody></table>
 
 <h2 id="retrieve-a-payment-method">Retrieve a Payment Method</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/payment_methods/&lt;payment-method-id&gt;
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment-method-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1923,7 +2087,7 @@ using your own pagination scheme.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves the payment method with the given ID.</p>
+<p>Retrieves the payment method with a given ID.</p>
 
 <table><thead>
 <tr>
@@ -1933,15 +2097,25 @@ using your own pagination scheme.</p>
 </thead><tbody>
 <tr>
 <td><strong>payment-method-id</strong></td>
-<td>ID of the desired payment method</td>
+<td>The payment method ID</td>
 </tr>
 </tbody></table>
 
 <h2 id="list-all-payment-methods">List all Payment Methods</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/payment_methods
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -1996,6 +2170,26 @@ using your own pagination scheme.</p>
 </tr>
 </tbody></table>
 
+<h2 id="delete-payment-method">Delete payment method</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.shareactor.io/payment_methods/&lt;payment_method_id&gt;
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">DELETE</span> <span class="nn">/payment_methods/&lt;payment_method_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+
+<p>Delete the payment method associated with the user.</p>
+
           <h1 id="payments">Payments</h1>
 
 <p>When you want to pay for an Order or Invoice (single or multiple items) you need to use the Payment object. Together with a
@@ -2003,7 +2197,7 @@ using your own pagination scheme.</p>
 as listing all available payments.</p>
 
 <p>When paying for an <a href="#invoices">Invoice</a> you can also provide the API with a <code class="prettyprint">payment_date</code> which allows you to schedule payments
-for later. If no <code class="prettyprint">payment_date</code> is provided, we&rsquo;ll use each Invoice&rsquo;s <code class="prettyprint">due_date</code> as the <code class="prettyprint">payment_date</code>.</p>
+for later. If no <code class="prettyprint">payment_date</code> is provided, the Invoice&rsquo;s <code class="prettyprint">due_date</code> will become the <code class="prettyprint">payment_date</code>.</p>
 
 <h2 id="payment-object">Payment object</h2>
 
@@ -2025,11 +2219,11 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
 </tr>
 <tr>
 <td><strong>currency</strong></td>
-<td>3 letter currency code as defined by <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a>.</td>
+<td>3 letter ISO currency code as defined by <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a>.</td>
 </tr>
 <tr>
 <td><strong>human_id</strong></td>
-<td>Human readable ID.</td>
+<td>Human readable ID. 6 character long.</td>
 </tr>
 <tr>
 <td><strong>subject</strong></td>
@@ -2038,6 +2232,14 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
 <tr>
 <td><strong>current_state</strong></td>
 <td>Current state of operation. Can be one of: <code class="prettyprint">created</code>, <code class="prettyprint">processing</code>, <code class="prettyprint">succeeded</code>, <code class="prettyprint">failed</code> and <code class="prettyprint">cancelled</code>.</td>
+</tr>
+<tr>
+<td>created</td>
+<td>Date the payment was created.</td>
+</tr>
+<tr>
+<td>modified</td>
+<td>Date if the payment was modified</td>
 </tr>
 <tr>
 <td>payment_date</td>
@@ -2071,11 +2273,22 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
 
 <h2 id="process-a-payment">Process a Payment</h2>
 
-<p>Creates and process a new Payment. All payments should have the following attributes:</p>
+<p>Creates and process a new Payment. Can&rsquo;t process both invoices and orders at the same time.
+All payments should have the following attributes:</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/payments
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -2107,7 +2320,7 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
   </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
   </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51Q4LN"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="p">,</span><span class="w">
@@ -2133,7 +2346,7 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
 </tr>
 <tr>
 <td><strong>payment_method</strong></td>
-<td>Selected payment method to use for paying <strong>invoices</strong> or <strong>orders</strong>.</td>
+<td>Selected payment method id to use for paying <strong>invoices</strong> or <strong>orders</strong>.</td>
 </tr>
 <tr>
 <td><strong>payment_date</strong></td>
@@ -2142,10 +2355,20 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
 </tbody></table>
 
 <h2 id="retrieve-a-payment">Retrieve a Payment</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/payments/&lt;payment-id&gt;
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payments/&lt;payment-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -2182,7 +2405,7 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves the payment with the given ID.</p>
+<p>Retrieves the payment with a given ID.</p>
 
 <table><thead>
 <tr>
@@ -2192,15 +2415,25 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
 </thead><tbody>
 <tr>
 <td><strong>payment-id</strong></td>
-<td>ID of the desired payment</td>
+<td>ID of the queried payment</td>
 </tr>
 </tbody></table>
 
 <h2 id="list-all-payments">List all Payments</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/payments/
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
 <pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;shareactor-api-key&gt;</span>
-<span class="na">X-Share-Session</span><span class="p">:</span> <span class="s">&lt;session-id&gt;</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -2228,7 +2461,7 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
     </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
     </span><span class="nt">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"created"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51rQxLN"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"human_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51Q4LN"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;invoice-id&gt;"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="p">,</span><span class="w">
@@ -2265,6 +2498,54 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
 </tr>
 </tbody></table>
 
+<h2 id="update-payment">Update payment</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/payments/&lt;payment_id&gt;
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">PUT</span> <span class="nn">/payments/&lt;payment_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight plaintext"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+
+</code></pre>
+
+<p>Update a payment. Editable fields:</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td>Boolean field. Default is <code class="prettyprint">True</code></td>
+</tr>
+<tr>
+<td>payment_method</td>
+<td>Id for payment method.</td>
+</tr>
+<tr>
+<td>billing_address</td>
+<td>String of address to whom the payment is to.</td>
+</tr>
+<tr>
+<td>payment_date</td>
+<td>Update payment date. Default payment date is <code class="prettyprint">due_date</code> for invoices. This will override the <code class="prettyprint">due_date</code>.</td>
+</tr>
+</tbody></table>
+
           <h1 id="address">Address</h1>
 
 <h2 id="address-object">Address Object</h2>
@@ -2273,7 +2554,6 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, we&r
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="http">http</a>
-                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
