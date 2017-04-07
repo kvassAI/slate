@@ -82,7 +82,7 @@ Attribute | Description
 comments | Comments. `string`.
 name | Name of Issuer. `string`.
 logo_url | The URL of the Issuer's logo. `string`.
-address | Issuer address. As an [Address object](#_addresses)
+address | Issuer address. As an [`Address`](#address) object.
 is_messaging_mandatory | Determines if *message* field is mandatory for invoices issued by this issuer. `boolean`. Default value `false`.
 
 ## Retrieve an Issuer
@@ -259,7 +259,7 @@ Arguments | Descriptions
 ## Issuer Search
 
 ``` http
-GET /issuers/search?query=tele
+GET /issuers/search?query=tele HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <shareactor-api-key>
 X-Share-Session: <session-id>
@@ -272,50 +272,52 @@ Content-type: application/json
 
 [  
    {  
-      'verified':false,
-      'name':'Telenor Norge AS',
-      'account_number':'12345678903',
-      'is_message_mandatory':false,
-      'address':{  
-         'service':'google',
-         'street_name':'Fornebuveien 6',
-         'zip_code':'0556',
-         'alias':'',
-         'city':'Oslo',
-         'country':'NOR'
+      "verified":false,
+      "name":"Telenor Norge AS",
+      "account_number":"12345678903",
+      "is_message_mandatory":false,
+      "address":{
+         "service":"google",
+         "street_name":"Fornebuveien 6",
+         "zip_code":"0556",
+         "alias":"",
+         "city":"Oslo",
+         "country":"NOR"
       },
-      'deleted':false,
-      'blacklisted':false,
-      'logo_url':'http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png',
-      'active':true,
-      'created':{  
-         '$date':1491565328234
+      "deleted":false,
+      "blacklisted":false,
+      "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png",
+      "active":true,
+      "created":{
+         "$date":1491565328234
       },
-      'modified':{  
-         '$date':1491565328235
+      "modified":{
+         "$date":1491565328235
       },
-      '_id':{  
-         '$oid':'58e77b10b70e2a7650ea6521'
+      "_id":{
+         "$oid":"58e77b10b70e2a7650ea6521"
       },
-      'company':{  
-         '$oid':'58e77b10b70e2a7650ea651f'
+      "company":{
+         "$oid":"58e77b10b70e2a7650ea651f"
       }
    }
 ]
 ```
 
-Retrieves a list of Issuers associate with company and answering that query.
+Retrieves a list of Issuers associate with search.
 
 Arguments | Description
 --------- | -----------
-query | What you want search it's will be a **name** or **account_number**.
-filters | In search you can use filters for more precision about search.
+**query** | What you want to search, like **name** or **account_number**. `string`
+filters | In search you can use filters for more accurate search.
 
 
 ### Filters
 
-For all `Boolean` flags it's possible to put:
-- True: `1`, `'1'` or `'true'` 
+For all `Boolean` flags it is possible to put:
+
+- True: `1`, `'1'` or `'true'`
+
 - False: `0`, `'0'`or `'false'`
 
 Arguments | Descriptions
@@ -327,7 +329,7 @@ blacklisted | Blacklisted is `Boolean`.
 ## Delete Issuer
 
 ``` http
-DELETE /issuers/<issuer_id>
+DELETE /issuers/<issuer_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <shareactor-api-key>
 X-Share-Session: <session-id>
@@ -339,19 +341,19 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {  
-   "active":False,
+   "active":false,
    "company":{  
       "$oid":"58e798d0b70e2a901ca32396"
    },
    "name":"Telenor Norge AS",
    "account_number":"12345678903",
-   "verified":False,
-   "deleted":True,
+   "verified":false,
+   "deleted":true,
    "_id":{  
       "$oid":"58e798d0b70e2a901ca32398"
    },
-   "blacklisted":False,
-   "is_message_mandatory":False,
+   "blacklisted":false,
+   "is_message_mandatory":false,
    "address":{  
       "service":"google",
       "alias":"",

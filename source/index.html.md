@@ -23,6 +23,7 @@ includes:
   - issuers
   - payment_methods
   - payments
+  - address
 
 
 search: true
