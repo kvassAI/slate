@@ -23,6 +23,7 @@ includes:
   - payment_methods
   - payments
   - address
+  - phone_nr_verification
 
 
 search: true
