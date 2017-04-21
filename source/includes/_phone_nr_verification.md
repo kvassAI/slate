@@ -1,23 +1,15 @@
 # Phone Number Verification
 
-Phone number verification is used to verify users, through
-[Nexmo](https://www.nexmo.com/products/verify)'s sms verification API.
+The phone number verification API allows to verify users's phone numbers, using
+[Nexmo](https://www.nexmo.com/products/verify)'s sms verification service.
 
-This method has two stages:
+This process is divided into two stages:
 
-1. POST phone number. This returns a request_id.
-The User will receive a code on their phone with SMS.
-3. The User have to POST their validation code.
+1. Sending the phone number and generating a PIN code and Request ID. An SMS is sent to the user with that same PIN code
+2. Validating user input PIN code
 
+## 1. Send PIN code to User
 
-## Phone Number Verification:
-Argument | Description
----------- | -------
-phone_number | Phone number to associated User
-request_id | Request id returned from Nexmo API
-code | Verification code returned from Nexmo API
-
-## 1. Send code to phone number
 > Definition
 
 ```
@@ -47,11 +39,13 @@ Content-Type: application/json
 }
 ```
 
+Given a phone number, the API will send a verification PIN code to the User and you should store the `request_id` resulting from this call.
+
 Argument | Description
 ---------- | -------
-**phone_number** | Phone number to associated User
+**phone_number** | Phone number of associated User
 
-## 2. Send validation code to validate user
+## 2. Validate PIN code and phone number
 
 > Definition
 
@@ -75,15 +69,17 @@ Host: api.shareactor.io
 ```
 
 ``` http
-HTTP/1.1 204 OK
-Content-Type: application/json
-
+HTTP/1.1 204 No Content
 ```
+
+Using the `request_id` stored from the API call above, together with the PIN code the user has input, this call will verify that the code is correct.
+
+The validation is successful if the status code of the response is `204`.
 
 Argument | Description
 ---------- | -------
-**request_id** | Request id returned from Nexmo API
-**code** | Code received by the User from Nexmo API
+**request_id** | Request id returned from API
+**code** | PIN code received by User
 
-The validation is succsessfull if the status code in the responce is `204`
+
 
