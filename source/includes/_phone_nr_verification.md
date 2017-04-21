@@ -19,7 +19,7 @@ POST https://api.shareactor.io/sms/verify
 > Example request:
 
 ``` http
-POST /invoices HTTP/1.1
+POST /sms/verify HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -56,7 +56,7 @@ POST https://api.shareactor.io/sms/verify
 > Example request:
 
 ``` http
-POST /invoices HTTP/1.1
+POST /sms/verify HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
