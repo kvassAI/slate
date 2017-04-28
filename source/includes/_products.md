@@ -7,22 +7,22 @@ Attribute | Type | Description
 active | `boolean` | Flag that sets Product object to active.
 created | `boolean` | The date the Product was generated.
 modified | `boolean` | The date the Product was last updated.
-deleted | `boolean` | Flag that set Issuer object to deleted.
-company_take | 
-name | `string` | Name is a product's name
-price | `float` | Price is a product's price
-currency |  `string` | Currency is a product's currency (NOK, EUR, ...)
-business_rules | `lsit` |
-description | `string` | Description about a product
+deleted | `boolean` | Flag that set Product object to deleted.
+company_take |
+name | `string` | The name of the product
+price | `float` | The price of the product
+currency |  `string` | Currency of the product (NOK, EUR, ...) ISO 4217
+business_rules | `list` |
+description | `string` | Product description
 short_description | `string` | Short description about a product
 main_product | `boolean` | To know if a product is main product or not
-_sub_products | `list` | It is a list of sub products.
-parents | `list` | Product can be a sub product it has one or more parents. So it's a list of products 
+_sub_products | `list` | It is a list of sub products under the main product.
+parents | `list` | The sub product parent, overhead product.
 default_position | `geoPoint` | Define Product position.
 max_distance | `int` |
 tags | `list` | List of Tags associated with Product.
-properties | `dict` | Properties is a dictionary where you can add somme new properties.
-path | `string` | Path is the Product path for website
+properties | `dict` | Properties is a dictionary where you could add product properties.
+path | `string` | Path is the Product URL for website
 vat | `float` |
 slug | `string` |
 
@@ -103,16 +103,16 @@ Argument | Type | Description
 **name** | `string` | Name of the Product
 **price** | `float` | Price of the Product
 currency | `string` | Currency of the Product. Default `'NOK'`
-business_riles | `list` |
-description | `string` | Description of the Product
-short_description | `string` | Short description of Product
-path | `string` | Path of the Product. Dault `'/'`
-main_product | `boolean` | To know if Product is main or not. Default `True`
+business_rules | `list` |
+description | `string` | Product description
+short_description | `string` | Short description for a Product
+path | `string` | Path of the Product. Default `'/'`
+main_product | `boolean` | If Product is main product or not. Default `True`
 _sub_product | `list` | List of sub products. Default `[]`
 parents | `list` | List of Product parents. Default `[]`
-tags | `string` | Lit of tags associate with Product
+tags | `string` | List of tags associated with Product
 default_position | `geoPoint` | Define Product position. Default `[-1, -1]`
-properties | `dict` | Properties of the Product
+properties | `dict` | Product properties
 max_distance | `int` | 
 provider | [`Provider`](#provider) | 
 company_take | `float` | 
@@ -184,7 +184,7 @@ Retrieves Product with ID
 
 Argument | Type | Description
 -------- | ---- | --------
-**product_id** | `string` | Id of the queried Product
+**product_id** | `string` | Product Id
 
 
 ## List all Products
