@@ -151,38 +151,38 @@ Host: api.shareactor.io
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-
-{
-  "is_message_mandatory":false,
-  "account_number":"12345678903",
-  "blacklisted":false,
-  "active":true,
-  "_id": {
-     "$oid":"58e10791b70e2a516c376a8c"
-  },
-  "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png",
-  "address": {
-     "country":"NOR",
-     "street_name":"Fornebuveien 6",
-     "city":"Oslo",
-     "zip_code":"0556",
-     "service":"google",
-     "alias":""
-  },
-  "created": {
-     "$date":1491142545321
-  },
-  "modified": {
-     "$date":1491142545323
-  },
-  "verified":false,
-  "deleted":false,
-  "name":"Telenor Norge AS",
-  "company": {
-     "$oid":"58e10791b70e2a516c376a8a"
-  }
-}
-
+[
+    {
+      "is_message_mandatory":false,
+      "account_number":"12345678903",
+      "blacklisted":false,
+      "active":true,
+      "_id": {
+         "$oid":"58e10791b70e2a516c376a8c"
+      },
+      "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png",
+      "address": {
+         "country":"NOR",
+         "street_name":"Fornebuveien 6",
+         "city":"Oslo",
+         "zip_code":"0556",
+         "service":"google",
+         "alias":""
+      },
+      "created": {
+         "$date":1491142545321
+      },
+      "modified": {
+         "$date":1491142545323
+      },
+      "verified":false,
+      "deleted":false,
+      "name":"Telenor Norge AS",
+      "company": {
+         "$oid":"58e10791b70e2a516c376a8a"
+      }
+    }
+]
 ```
 
 Retrieves a list of all Issuers.
@@ -200,8 +200,8 @@ sorting | Field used for sorting results
 ### date_filter
 Arguments | Description
 --------- | -----------
-created | Created is date generated when Issuer created. Type value `timestamp`.
-modified | Date generated when Issuer updated. Type value `timestamp`.
+created | Created is date generated when Issuer created.
+modified | Date generated when Issuer updated.
 
 
 ## Update Issuer

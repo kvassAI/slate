@@ -185,3 +185,71 @@ Retrieves Product with ID
 Argument | Type | Description
 -------- | ---- | --------
 **product_id** | `string` | Id of the queried Product
+
+
+## List all Products
+
+``` http
+GET /products HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+
+[  
+   {  
+      "active":True,
+      "metadata":{  
+         "charge_id":"ch_1ADY0SEeeXxFpLJti58RcN7w"
+      },
+      "user":{  
+         "$oid":"59033056b70e2a1e086d5218"
+      },
+      "subject":{  
+         "_cls":"Invoice",
+         "_ref":"59033056b70e2a1e086d521b"
+      },
+      "company":{  
+         "$oid":"5903304cb70e2a1e086d5213"
+      },
+      "payment_date":{  
+         "$date":1493381731652
+      },
+      "currency":"NOK",
+      "created":{  
+         "$date":1493381732307
+      },
+      "_id":{  
+         "$oid":"59033265b70e2a1e086d521f"
+      },
+      "modified":{  
+         "$date":1493381746495
+      },
+      "human_id":"VPXXN7",
+      "payment_method":{  
+         "$oid":"59033058b70e2a1e086d521c"
+      },
+      "current_state":"succeeded",
+      "deleted":False,
+      "amount":10.0
+   }
+]
+```
+
+Retrieves a list of all Products.
+
+Arguments | Type | Description
+--------- | ---- | -----------
+size | `int` | Number of items to retrieve
+page | `int` | Which page to retrieve. _default page size is 50_
+include_deleted| `boolean` | If `true` issuer is deleted
+sorting | Field used for sorting results
+lat | `float` | Define the latitude
+lng | `float` | Define the longitude
+all | `boolean` | If `true` get all products
