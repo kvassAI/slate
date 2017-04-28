@@ -200,8 +200,8 @@ sorting | Field used for sorting results
 ### date_filter
 Arguments | Description
 --------- | -----------
-created | Created is date generated when Issuer created.
-modified | Date generated when Issuer updated.
+created | Date generated when Issuer is created.
+modified | Date generated when Issuer is updated.
 
 
 ## Update Issuer

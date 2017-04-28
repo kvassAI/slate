@@ -74,7 +74,7 @@ Content-Type: application/json
 
    },
    "price":3.14,
-   "active":False,
+   "active":false,
    "tags":[  
 
    ],
@@ -82,12 +82,12 @@ Content-Type: application/json
    "company":{  
       "$oid":"58f9f856b70e2a56c4a0db37"
    },
-   "deleted":False,
+   "deleted":false,
    "company_take":-1.0,
    "parents":[  
 
    ],
-   "main_product":True,
+   "main_product":true,
    "currency":"NOK",
    "business_rules":[  
 
@@ -119,7 +119,7 @@ company_take | `float` |
 vat | `float` | Default `0`
 slug | `` | 
 
-## Retrieve an Product
+## Retrieve a Product
 
 ``` http
 GET /products/<product_id> HTTP/1.1
@@ -145,7 +145,7 @@ Content-Type: application/json
    "_sub_products":[  
 
    ],
-   "deleted":False,
+   "deleted":false,
    "company_take":-1.0,
    "max_distance":0,
    "description":"description",
@@ -156,7 +156,7 @@ Content-Type: application/json
    "properties":{  
 
    },
-   "active":True,
+   "active":true,
    "name":"product_name",
    "modified":{  
       "$date":1492781492461
@@ -166,7 +166,7 @@ Content-Type: application/json
    },
    "currency":"NOK",
    "path":"/",
-   "main_product":True,
+   "main_product":true,
    "_id":{  
       "$oid":"58fa09b4b70e2a4d743fdac4"
    },
@@ -204,7 +204,7 @@ Content-Type: application/json
 
 [  
    {  
-      "active":True,
+      "active":true,
       "metadata":{  
          "charge_id":"ch_1ADY0SEeeXxFpLJti58RcN7w"
       },
@@ -236,7 +236,7 @@ Content-Type: application/json
          "$oid":"59033058b70e2a1e086d521c"
       },
       "current_state":"succeeded",
-      "deleted":False,
+      "deleted":false,
       "amount":10.0
    }
 ]
@@ -248,8 +248,8 @@ Arguments | Type | Description
 --------- | ---- | -----------
 size | `int` | Number of items to retrieve
 page | `int` | Which page to retrieve. _default page size is 50_
-include_deleted| `boolean` | If `true` issuer is deleted
-sorting | Field used for sorting results
+include_deleted| `boolean` | If `true`, deleted products are also listed
+sorting | `string` | Field used for sorting results
 lat | `float` | Define the latitude
 lng | `float` | Define the longitude
 all | `boolean` | If `true` get all products
