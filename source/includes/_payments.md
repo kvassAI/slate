@@ -90,7 +90,7 @@ Content-Type: application/json
 }
 ```
 
-Attribute | Description
+Arguments | Description
 ---------- | -------
 **invoices** | List with invoices to be paid. Either this or **orders** must be set.
 **orders** | List with orders to be paid. Either this or **invoices** must be set.
