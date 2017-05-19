@@ -1,7 +1,7 @@
 # Providers
 
-Provider is a child class of [`User`](#users).
-Providers are your typical Providers.
+Provider is a child class of [`User`](#users); An User that provides a
+service to another User.
 
 ## Provider object
 
@@ -180,101 +180,6 @@ bio | `string` | Biographic note about the Provider
 
 ## Retrieve a Provider
 
-``` http
-GET /providers/<providerid> HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
-```
-
-``` http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-   "available_on_bank_holidays":False,
-   "billing_address":{
-      "alias":"",
-      "service":"google"
-   },
-   "_id":{
-      "$oid":"591ed65db70e2a42a42d382e"
-   },
-   "national_id":"",
-   "max_travel_meters":10000.0,
-   "mobile_phone_number":"+47 4242424",
-   "first_name":"John",
-   "last_name":"Doe",
-   "email":"john@email.com",
-   "active":True,
-   "max_travel_time":1.0,
-   "voucher":{
-      "consumed":0,
-      "expires":{
-         "$date":1526729181612
-      },
-      "uuid":"d2ccbc46-6951-45da-b25d-1bed4e8a7fa8",
-      "initial_quantity":0,
-      "created":{
-         "$date":1495193181611
-      }
-   },
-   "addresses":[],
-   "roles":[
-      "provider"
-   ],
-   "avatar":"",
-   "tags":[],
-   "modified":{
-      "$date":1495193181619
-   },
-   "created":{
-      "$date":1495193181614
-   },
-   "orders":[],
-   "schedule":{
-      "working_sections":[],
-      "valid_from":{
-         "$date":1495191600000
-      },
-      "day_of_week":[
-         {
-            "day_of_week":0,
-            "end_minute":0,
-            "start_minute":0,
-            "end_hour":0,
-            "start_hour":0
-         },
-         {
-            "day_of_week":1,
-            "end_minute":0,
-            "start_minute":0,
-            "end_hour":0,
-            "start_hour":0
-         }
-      ]
-   },
-   "country":"NOR",
-   "default_address":{
-      "alias":"",
-      "service":"google"
-   },
-   "bio":"",
-   "products":[],
-   "stripe_customer_id":"",
-   "auth0_id":"",
-   "_cls":"User.Provider",
-   "company":{
-      "$oid":"591ed657b70e2a42a42d381f"
-   },
-   "note":"",
-   "deleted":False
-}
-```
-
-## Retrieve a Provider
-
 > Definition
 
 ```
@@ -283,13 +188,13 @@ GET https://api.shareactor.io/providers
 
 > Example request:
 
-``` http 
-GET /providers/provider_id HTTP/1.1 
-Content-Type: application/json 
-Authorization: Bearer <jwt> 
-X-Share-Api-Key: <shareactor-api-key> 
-Host: api.shareactor.io 
-``` 
+``` http
+GET /providers/<providerid> HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+```
 
 ``` http
 HTTP/1.1 200 OK
@@ -425,13 +330,13 @@ GET https://api.shareactor.io/providers
 
 > Example request:
 
-``` http 
-GET /providers HTTP/1.1 
-Content-Type: application/json 
-Authorization: Bearer <jwt> 
-X-Share-Api-Key: <shareactor-api-key> 
-Host: api.shareactor.io 
-``` 
+``` http
+GET /providers HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+```
 
 ``` http
 HTTP/1.1 200 OK
