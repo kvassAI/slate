@@ -15,10 +15,170 @@ schedule | `schedule` | The Provider's schedule. _default lambda: Schedule_
 orders | `list` | List of [`Orders`](#orders)
 products | `list` | List of [`Products`](#products) of Provider. _default lambda: []_
 available_on_bank_holidays | `boolean` | _default `false`_
-country | `string` | The Provider's country. _default `'NOR'`_
-roles | `list` | Define the rolls that a Provider can have. _default ['provider']_
+country | `string` | The Provider's country. _default `NOR`_
+roles | `list` | Define the rolls that a Provider can have. _default ["provider"]_
 
-## Retrieve a provider
+## Add a new Provider
+
+``` http
+POST /providers HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+
+
+{
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john@email.com",
+    "mobile_phone_number": "+4712345678"
+}
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+   "max_travel_meters":10000.0,
+   "first_name":"John",
+   "created":{
+      "$date":1495195975641
+   },
+   "_id":{
+      "$oid":"591ee147d57ba28fbe0a3892"
+   },
+   "default_address":{
+      "service":"google",
+      "alias":""
+   },
+   "roles":[
+      "provider"
+   ],
+   "bio":"",
+   "deleted":false,
+   "national_id":"",
+   "country":"NOR",
+   "auth0_id":"",
+   "email":"john@email.com",
+   "voucher":{
+      "consumed":0,
+      "uuid":"268e9da1-b7e5-4111-bb6a-7cee6d58c740",
+      "created":{
+         "$date":1495195975643
+      },
+      "expires":{
+         "$date":1526731975643
+      },
+      "initial_quantity":0
+   },
+   "last_name":"Doe",
+   "addresses":[
+
+   ],
+   "note":"",
+   "schedule":{
+      "day_of_week":[
+         {
+            "end_minute":0,
+            "start_hour":0,
+            "start_minute":0,
+            "day_of_week":0,
+            "end_hour":0
+         },
+         {
+            "end_minute":0,
+            "start_hour":0,
+            "start_minute":0,
+            "day_of_week":1,
+            "end_hour":0
+         },
+         {
+            "end_minute":0,
+            "start_hour":0,
+            "start_minute":0,
+            "day_of_week":2,
+            "end_hour":0
+         },
+         {
+            "end_minute":0,
+            "start_hour":0,
+            "start_minute":0,
+            "day_of_week":3,
+            "end_hour":0
+         },
+         {
+            "end_minute":0,
+            "start_hour":0,
+            "start_minute":0,
+            "day_of_week":4,
+            "end_hour":0
+         },
+         {
+            "end_minute":0,
+            "start_hour":0,
+            "start_minute":0,
+            "day_of_week":5,
+            "end_hour":0
+         },
+         {
+            "end_minute":0,
+            "start_hour":0,
+            "start_minute":0,
+            "day_of_week":6,
+            "end_hour":0
+         }
+      ],
+      "working_sections":[
+
+      ],
+      "valid_from":{
+         "$date":1495195200000
+      }
+   },
+   "stripe_customer_id":"",
+   "avatar":"",
+   "billing_address":{
+      "service":"google",
+      "alias":""
+   },
+   "mobile_phone_number":"+4712345678",
+   "orders":[
+
+   ],
+   "modified":{
+      "$date":1495195975643
+   },
+   "max_travel_time":1.0,
+   "company":{
+      "$oid":"591ee147d57ba28fbe0a3883"
+   },
+   "products":[
+
+   ],
+   "active":true,
+   "available_on_bank_holidays":false,
+   "tags":[
+
+   ],
+   "_cls":"User.Provider"
+}
+```
+
+Creates a new Provider.
+
+Argument | Type | Description
+---------- | ---- | -------
+first_name | `string` | First name of the Provider
+last_name | `string` | Last name of the Provider
+email | `string` | E-mail of the Provider
+mobile_phone_number |  `string` | Phone number of the Provider
+billing_address | `string` | Billing Address of Provider
+bio | `string` | Biographic note about the Provider
+
+
+## Retrieve a Provider
 
 ``` http
 GET /providers/<providerid> HTTP/1.1
@@ -154,7 +314,7 @@ Content-Type: application/json
 }
 ```
 
-Retrieves the provider with a given ID
+Retrieves the Provider with a given ID
 
 Arguments | Type | Description
 --------- | ---- | ------
@@ -298,7 +458,7 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all providers.
+Retrieves a list of all Providers.
 
 Arguments | Type | Description
 --------- | ---- | ------
