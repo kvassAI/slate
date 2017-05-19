@@ -18,10 +18,121 @@ available_on_bank_holidays | `boolean` | _default `false`_
 country | `string` | The Provider's country. _default `'NOR'`_
 roles | `list` | Define the rolls that a Provider can have. _default ['provider']_
 
-## Retrieve an Product
+## Create a Provider
+
+> Definition
+
+```
+POST https://api.shareactor.io/providers
+```
+
+> Example request:
 
 ``` http 
-GET /providers HTTP/1.1 
+POST /providers HTTP/1.1 
+Content-Type: application/json 
+Authorization: Bearer <jwt> 
+X-Share-Api-Key: <shareactor-api-key> 
+Host: api.shareactor.io 
+``` 
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+   "available_on_bank_holidays":False,
+   "billing_address":{
+      "alias":"",
+      "service":"google"
+   },
+   "_id":{
+      "$oid":"591ed65db70e2a42a42d382e"
+   },
+   "national_id":"",
+   "max_travel_meters":10000.0,
+   "mobile_phone_number":"+47 4242424",
+   "first_name":"John",
+   "last_name":"Doe",
+   "email":"john@email.com",
+   "active":True,
+   "max_travel_time":1.0,
+   "voucher":{
+      "consumed":0,
+      "expires":{
+         "$date":1526729181612
+      },
+      "uuid":"d2ccbc46-6951-45da-b25d-1bed4e8a7fa8",
+      "initial_quantity":0,
+      "created":{
+         "$date":1495193181611
+      }
+   },
+   "addresses":[],
+   "roles":[
+      "provider"
+   ],
+   "avatar":"",
+   "tags":[],
+   "modified":{
+      "$date":1495193181619
+   },
+   "created":{
+      "$date":1495193181614
+   },
+   "orders":[],
+   "schedule":{
+      "working_sections":[],
+      "valid_from":{
+         "$date":1495191600000
+      },
+      "day_of_week":[
+         {
+            "day_of_week":0,
+            "end_minute":0,
+            "start_minute":0,
+            "end_hour":0,
+            "start_hour":0
+         },
+         {
+            "day_of_week":1,
+            "end_minute":0,
+            "start_minute":0,
+            "end_hour":0,
+            "start_hour":0
+         }
+      ]
+   },
+   "country":"NOR",
+   "default_address":{
+      "alias":"",
+      "service":"google"
+   },
+   "bio":"",
+   "products":[],
+   "stripe_customer_id":"",
+   "auth0_id":"",
+   "_cls":"User.Provider",
+   "company":{
+      "$oid":"591ed657b70e2a42a42d381f"
+   },
+   "note":"",
+   "deleted":False
+}
+```
+
+## Retrieve a Provider
+
+> Definition
+
+```
+GET https://api.shareactor.io/providers
+```
+
+> Example request:
+
+``` http 
+GET /providers/provider_id HTTP/1.1 
 Content-Type: application/json 
 Authorization: Bearer <jwt> 
 X-Share-Api-Key: <shareactor-api-key> 
@@ -33,10 +144,10 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {  
-   "first_name":"Mari",
-   "email":"johansenemil@gmail.com",
+   "first_name":"John",
+   "email":"john@email.com",
    "_id":{  
-      "$oid":"590c0d5eb70e2a13944ad509"
+      "$oid":"57f14227d76d43264a70c95d"
    },
    "auth0_id":"",
    "tags":[  
@@ -142,14 +253,6 @@ Content-Type: application/json
    "roles":[  
       "provider"
    ],
-   "default_address":{  
-      "service":"google",
-      "alias":"",
-      "geo":[  
-         59.927152,
-         10.741196
-      ]
-   },
    "bio":""
 }
 ```
@@ -158,9 +261,17 @@ Retrieves the provider with a given ID
 
 Arguments | Type | Description
 --------- | ---- | ------
-**providerid** | `string` | ID of the queried Provider
+**provider_id** | `string` | ID of the queried Provider
 
 ## List all Providers
+
+> Definition
+
+```
+GET https://api.shareactor.io/providers
+```
+
+> Example request:
 
 ``` http 
 GET /providers HTTP/1.1 
@@ -176,10 +287,10 @@ Content-Type: application/json
 
 [
     {  
-       "first_name":"Mari",
-       "email":"johansenemil@gmail.com",
+       "first_name":"John",
+       "email":"john@email.com",
        "_id":{  
-          "$oid":"590c0d5eb70e2a13944ad509"
+          "$oid":"57f14227d76d43264a70c95d"
        },
        "auth0_id":"",
        "tags":[  
@@ -285,14 +396,6 @@ Content-Type: application/json
        "roles":[  
           "provider"
        ],
-       "default_address":{  
-          "service":"google",
-          "alias":"",
-          "geo":[  
-             59.927152,
-             10.741196
-          ]
-       },
        "bio":""
     }
 ]
