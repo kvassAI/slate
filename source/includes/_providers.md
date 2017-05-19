@@ -18,15 +18,15 @@ available_on_bank_holidays | `boolean` | _default `false`_
 country | `string` | The Provider's country. _default `'NOR'`_
 roles | `list` | Define the rolls that a Provider can have. _default ['provider']_
 
-## Retrieve an Product
+## Retrieve a provider
 
-``` http 
-GET /providers HTTP/1.1 
-Content-Type: application/json 
-Authorization: Bearer <jwt> 
-X-Share-Api-Key: <shareactor-api-key> 
-Host: api.shareactor.io 
-``` 
+``` http
+GET /providers/<providerid> HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+```
 
 ``` http
 HTTP/1.1 200 OK
@@ -56,7 +56,7 @@ Content-Type: application/json
       "consumed":0
    },
    "orders":[],
-   "note":",
+   "note":"",
    "stripe_customer_id":"",
    "max_travel_time":1.0,
    "created":{  
@@ -125,7 +125,7 @@ Content-Type: application/json
    "_cls":"User.Provider",
    "billing_address":{  
       "service":"google",
-      "alias":"
+      "alias":""
    },
    "active":true,
    "products":[],
@@ -162,13 +162,13 @@ Arguments | Type | Description
 
 ## List all Providers
 
-``` http 
-GET /providers HTTP/1.1 
-Content-Type: application/json 
-Authorization: Bearer <jwt> 
-X-Share-Api-Key: <shareactor-api-key> 
-Host: api.shareactor.io 
-``` 
+``` http
+GET /providers HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+```
 
 ``` http
 HTTP/1.1 200 OK
@@ -199,7 +199,7 @@ Content-Type: application/json
           "consumed":0
        },
        "orders":[],
-       "note":",
+       "note":"",
        "stripe_customer_id":"",
        "max_travel_time":1.0,
        "created":{  
@@ -268,7 +268,7 @@ Content-Type: application/json
        "_cls":"User.Provider",
        "billing_address":{  
           "service":"google",
-          "alias":"
+          "alias":""
        },
        "active":true,
        "products":[],
@@ -298,12 +298,12 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all Providers.
+Retrieves a list of all providers.
 
 Arguments | Type | Description
 --------- | ---- | ------
-size | `int` | number of items to retrieve. _default is 10_
-page | `int` | which page to retrieve. _default is 0_
+size | `int` | Number of items to retrieve. _default is 10_
+page | `int` | Which page to retrieve. _default is 0_
 include_deleted | `boolean` | If `true`, deleted products are also listed. _default is `false`_
 latitude | `float` | Define the latitude. _default is `none`_
 longitude | `float` | Define the longitude. _default is `none`_
