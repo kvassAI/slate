@@ -4,29 +4,29 @@
 
 Attribute | Type | Description
 --------- | ---- | -------
-active | `boolean` | Flag that sets Product object to active.
-created | `boolean` | The date the Product was generated.
-modified | `boolean` | The date the Product was last updated.
-deleted | `boolean` | Flag that set Product object to deleted.
-company_take |
+active | `boolean` | Flag that sets product object to active.
+created | `boolean` | The date the product was generated.
+modified | `boolean` | The date the product was last updated.
+deleted | `boolean` | Flag that set product object to deleted.
+company_take |  `float` | Default percent of price to company
 name | `string` | The name of the product
 price | `float` | The price of the product
-currency |  `string` | Currency of the product (NOK, EUR, ...) ISO 4217
-business_rules | `list` |
+currency |  `string` | Currency of the price (NOK, EUR, ...) ISO 4217
 description | `string` | Product description
-short_description | `string` | Short description about a product
-main_product | `boolean` | To know if a product is main product or not
+short_description | `string` | Short description about the product
+main_product | `boolean` | Flag that marks whether or not it is a main product
 _sub_products | `list` | It is a list of sub products under the main product.
 parents | `list` | The sub product parent, overhead product.
-default_position | `geoPoint` | Define Product position.
+default_position | `geoPoint` | The geo position for the product.
+tags | `list` | List of Tags associated with product.
+properties | `dict` | Product properties.
+path | `string` | URL for product on website
+vat | `float` | Percent vat on product
 max_distance | `int` |
-tags | `list` | List of Tags associated with Product.
-properties | `dict` | Properties is a dictionary where you could add product properties.
-path | `string` | Path is the Product URL for website
-vat | `float` |
+business_rules | `list` |
 slug | `string` |
 
-## Create a Product
+## Create a new Product
 
 ``` http
 POST /products HTTP/1.1
@@ -100,24 +100,24 @@ Creates a new Product.
 
 Argument | Type | Description
 -------- | ---- | -------
-**name** | `string` | Name of the Product
-**price** | `float` | Price of the Product
-currency | `string` | Currency of the Product. Default `'NOK'`
-business_rules | `list` |
+**name** | `string` | Name of the product
+**price** | `float` | Price of the product
+currency | `string` | Currency of the Product. Default `NOK`
+vat | `float` | Default `0.0`
 description | `string` | Product description
-short_description | `string` | Short description for a Product
-path | `string` | Path of the Product. Default `'/'`
-main_product | `boolean` | If Product is main product or not. Default `True`
+short_description | `string` | Short description for the product
+path | `string` | URL for the product. Default `'/'`
+main_product | `boolean` | Flag that marks whether or not it is a main product. Default `True`
 _sub_product | `list` | List of sub products. Default `[]`
-parents | `list` | List of Product parents. Default `[]`
-tags | `string` | List of tags associated with Product
-default_position | `geoPoint` | Define Product position. Default `[-1, -1]`
+parents | `list` | List of main product to sub product. Default `[]`
+tags | `string` | List of tags associated with product
+default_position | `geoPoint` | Define product position. Default `[-1, -1]`
 properties | `dict` | Product properties
 max_distance | `int` | 
-provider | [`Provider`](#provider) | 
-company_take | `float` | 
-vat | `float` | Default `0`
-slug | `` | 
+provider | | [`Provider`](#provider) |
+company_take | `float` |
+business_rules | `list` |
+slug |  |
 
 ## Retrieve a Product
 
@@ -180,14 +180,14 @@ Content-Type: application/json
 }
 ```
 
-Retrieves Product with ID
+Get product based on product ID
 
 Argument | Type | Description
 -------- | ---- | --------
 **product_id** | `string` | Product Id
 
 
-## List all Products
+## Get list of all products associated with company
 
 ``` http
 GET /products HTTP/1.1
