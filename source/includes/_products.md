@@ -4,22 +4,22 @@
 
 Attribute | Type | Description
 --------- | ---- | -------
-active | `boolean` | Flag that sets product object to active.
-created | `boolean` | The date the product was generated.
-modified | `boolean` | The date the product was last updated.
-deleted | `boolean` | Flag that set product object to deleted.
-name | `string` | The name of the product
-price | `float` | The price of the product
-currency |  `string` | Currency of the price (NOK, EUR, ...) ISO 4217
+active | `boolean` | Flag that sets Product object to active.
+created | `boolean` | The date the Product was generated.
+modified | `boolean` | The date the Product was last updated.
+deleted | `boolean` | Flag that set Product object to deleted.
+name | `string` | The name of the Product
+price | `float` | The price of the Product
+currency |  `string` | Currency (NOK, EUR, ...) ISO 4217
 description | `string` | Product description
-short_description | `string` | Short description about the product
-main_product | `boolean` | Flag that marks whether or not it is a main product
-_sub_products | `list` | It is a list of sub products under the main product.
-parents | `list` | The sub product parent, overhead product.
-default_position | `geoPoint` | The geo position for the product.
-tags | `list` | List of Tags associated with product.
+short_description | `string` | Product description
+main_product | `boolean` | Flag that marks whether or not it is a main Product
+_sub_products | `list` | A list of sub products under the main Product.
+parents | `list` | The sub product parent, overhead Product.
+default_position | `geoPoint` | The geo position for the Product.
+tags | `list` | List of Tags associated with Product.
 properties | `dict` | Product properties.
-vat | `float` | Percent vat on product
+vat | `float` | Percent vat
 max_distance | `int` |
 slug | `string` |
 
@@ -92,19 +92,19 @@ Content-Type: application/json
 }
 ```
 
-Creates a new Product.
+Create a new Product.
 
 Argument | Type | Description
 -------- | ---- | -------
 **name** | `string` | Name of the product
 **price** | `float` | Price of the product
 currency | `string` | Currency of the Product. Default `NOK`
-vat | `float` | Default `0.0`
+vat | `float` | Percentage vat. Default `0.0`
 description | `string` | Product description
 short_description | `string` | Short description for the product
 path | `string` | URL for the product. Default `'/'`
 main_product | `boolean` | Flag that marks whether or not it is a main product. Default `True`
-_sub_product | `list` | List of sub products. Default `[]`
+_sub_product | `list` | List of sub products under Product. Default `[]`
 parents | `list` | List of main product to sub product. Default `[]`
 tags | `string` | List of tags associated with product
 default_position | `geoPoint` | Define product position. Default `[-1, -1]`
@@ -177,7 +177,7 @@ Content-Type: application/json
 }
 ```
 
-Get product based on product ID
+Get Product based on product ID
 
 Argument | Type | Description
 -------- | ---- | --------
