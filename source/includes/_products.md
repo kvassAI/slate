@@ -8,7 +8,6 @@ active | `boolean` | Flag that sets product object to active.
 created | `boolean` | The date the product was generated.
 modified | `boolean` | The date the product was last updated.
 deleted | `boolean` | Flag that set product object to deleted.
-company_take |  `float` | Default percent of price to company
 name | `string` | The name of the product
 price | `float` | The price of the product
 currency |  `string` | Currency of the price (NOK, EUR, ...) ISO 4217
@@ -20,13 +19,19 @@ parents | `list` | The sub product parent, overhead product.
 default_position | `geoPoint` | The geo position for the product.
 tags | `list` | List of Tags associated with product.
 properties | `dict` | Product properties.
-path | `string` | URL for product on website
 vat | `float` | Percent vat on product
 max_distance | `int` |
-business_rules | `list` |
 slug | `string` |
 
 ## Create a new Product
+
+> Definition
+
+```
+POST https://api.shareactor.io/products
+```
+
+> Example request:
 
 ``` http
 POST /products HTTP/1.1
@@ -41,10 +46,12 @@ Host: api.shareactor.io
         "description": "It is a test product",
         "currency": "NOK",
         "price": 3.14,
-        "name": "product_name",
+        "name": "Product Name",
+        "vat": 15
     }
 }
 ```
+
 ``` http
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -66,32 +73,21 @@ Content-Type: application/json
    "modified":{  
       "$date":1492777046369
    },
-   "_sub_products":[  
-
-   ],
-   "name":"product_name",
-   "properties":{  
-
-   },
+   "_sub_products":[],
+   "name":"Product Name",
+   "properties":{},
    "price":3.14,
    "active":false,
-   "tags":[  
-
-   ],
-   "vat":0.0,
+   "tags":[],
+   "vat":15.0,
    "company":{  
       "$oid":"58f9f856b70e2a56c4a0db37"
    },
    "deleted":false,
    "company_take":-1.0,
-   "parents":[  
-
-   ],
+   "parents":[],
    "main_product":true,
    "currency":"NOK",
-   "business_rules":[  
-
-   ],
    "path":"/"
 }
 ```
@@ -117,9 +113,18 @@ max_distance | `int` |
 provider | | [`Provider`](#provider) |
 company_take | `float` |
 business_rules | `list` |
-slug |  |
+slug | `list` |
+
 
 ## Retrieve a Product
+
+> Definition
+
+```
+GET https://api.shareactor.io/products/<product_id>
+```
+
+> Example request:
 
 ``` http
 GET /products/<product_id> HTTP/1.1
@@ -135,16 +140,12 @@ Content-Type: application/json
 
 {  
    "_cls":"Product",
-   "parents":[  
-
-   ],
+   "parents":[],
    "tags":[  
       "fuzz"
    ],
    "price":3.14,
-   "_sub_products":[  
-
-   ],
+   "_sub_products":[],
    "deleted":false,
    "company_take":-1.0,
    "max_distance":0,
@@ -153,11 +154,9 @@ Content-Type: application/json
       "$date":1492781492460
    },
    "vat":0.0,
-   "properties":{  
-
-   },
+   "properties":{},
    "active":true,
-   "name":"product_name",
+   "name":"Product Name",
    "modified":{  
       "$date":1492781492461
    },
@@ -170,9 +169,7 @@ Content-Type: application/json
    "_id":{  
       "$oid":"58fa09b4b70e2a4d743fdac4"
    },
-   "business_rules":[  
-
-   ],
+   "business_rules":[],
    "default_position":[  
       -1,
       -1
@@ -189,6 +186,14 @@ Argument | Type | Description
 
 ## Get list of all products associated with company
 
+> Definition
+
+```
+GET https://api.shareactor.io/products
+```
+
+> Example request:
+
 ``` http
 GET /products HTTP/1.1
 Content-Type: application/json
@@ -200,7 +205,6 @@ Host: api.shareactor.io
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
 
 [  
    {  
