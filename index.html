@@ -862,7 +862,1028 @@ These list API methods share a common structure, taking at least these two param
 
           <h1 id="providers">Providers</h1>
 
+<p>Provider is a child class of <a href="#users"><code class="prettyprint">User</code></a>; An User that provides a
+service to another User.</p>
+
+<h2 id="provider-object">Provider object</h2>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>max_travel_time</td>
+<td><code class="prettyprint">float</code></td>
+<td>The maximum time of travel. <em>default 1.0</em></td>
+</tr>
+<tr>
+<td>max_travel_meters</td>
+<td><code class="prettyprint">float</code></td>
+<td>The maximum range of travel <em>default 10000.0</em></td>
+</tr>
+<tr>
+<td>default_position</td>
+<td><code class="prettyprint">geoPoint</code></td>
+<td>The Provider&rsquo;s position by default</td>
+</tr>
+<tr>
+<td>default_address</td>
+<td><code class="prettyprint">address</code></td>
+<td>The Provider&rsquo;s address by default. <em>default lambda: Address</em></td>
+</tr>
+<tr>
+<td>schedule</td>
+<td><code class="prettyprint">schedule</code></td>
+<td>The Provider&rsquo;s schedule. <em>default lambda: Schedule</em></td>
+</tr>
+<tr>
+<td>orders</td>
+<td><code class="prettyprint">list</code></td>
+<td>List of <a href="#orders"><code class="prettyprint">Orders</code></a></td>
+</tr>
+<tr>
+<td>products</td>
+<td><code class="prettyprint">list</code></td>
+<td>List of <a href="#products"><code class="prettyprint">Products</code></a> of Provider. <em>default lambda: []</em></td>
+</tr>
+<tr>
+<td>available_on_bank_holidays</td>
+<td><code class="prettyprint">boolean</code></td>
+<td><em>default <code class="prettyprint">false</code></em></td>
+</tr>
+<tr>
+<td>country</td>
+<td><code class="prettyprint">string</code></td>
+<td>The Provider&rsquo;s country. <em>default <code class="prettyprint">NOR</code></em></td>
+</tr>
+<tr>
+<td>roles</td>
+<td><code class="prettyprint">list</code></td>
+<td>Define the rolls that a Provider can have. <em>default [&ldquo;provider&rdquo;]</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="add-a-new-provider">Add a new Provider</h2>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/providers</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+4712345678"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="nt">"max_travel_meters"</span><span class="p">:</span><span class="mf">10000.0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1495195975641</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"591ee147d57ba28fbe0a3892"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"default_address"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"roles"</span><span class="p">:[</span><span class="w">
+      </span><span class="s2">"provider"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"national_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"auth0_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"voucher"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"consumed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="s2">"268e9da1-b7e5-4111-bb6a-7cee6d58c740"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1495195975643</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"expires"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1526731975643</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"initial_quantity"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"addresses"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"schedule"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"day_of_week"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"working_sections"</span><span class="p">:[</span><span class="w">
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1495195200000</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"billing_address"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"orders"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1495195975643</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"max_travel_time"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"591ee147d57ba28fbe0a3883"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"products"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"available_on_bank_holidays"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"tags"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"User.Provider"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Creates a new Provider.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td><code class="prettyprint">string</code></td>
+<td>First name of the Provider</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td><code class="prettyprint">string</code></td>
+<td>Last name of the Provider</td>
+</tr>
+<tr>
+<td>email</td>
+<td><code class="prettyprint">string</code></td>
+<td>E-mail of the Provider</td>
+</tr>
+<tr>
+<td>mobile_phone_number</td>
+<td><code class="prettyprint">string</code></td>
+<td>Phone number of the Provider</td>
+</tr>
+<tr>
+<td>billing_address</td>
+<td><code class="prettyprint">string</code></td>
+<td>Billing Address of Provider</td>
+</tr>
+<tr>
+<td>bio</td>
+<td><code class="prettyprint">string</code></td>
+<td>Biographic note about the Provider</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-a-provider">Retrieve a Provider</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/providers
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/providers/&lt;providerid&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">  
+   </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c95d"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"auth0_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"tags"</span><span class="p">:[</span><span class="w">  
+      </span><span class="s2">"fuzz"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"available_on_bank_holidays"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+47 42 42 42 42"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"voucher"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"initial_quantity"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493962078102</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"expires"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1525498078102</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="s2">"e9878af0-c607-486c-872f-6e23e7a15821"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"consumed"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"orders"</span><span class="p">:[],</span><span class="w">
+   </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"max_travel_time"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493962078119</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"schedule"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"day_of_week"</span><span class="p">:[</span><span class="w">  
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">  
+            </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"valid_from"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493098078525</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"working_sections"</span><span class="p">:[]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"max_travel_meters"</span><span class="p">:</span><span class="mf">10000.0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Iversen"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"User.Provider"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"billing_address"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"products"</span><span class="p">:[],</span><span class="w">
+   </span><span class="nt">"addresses"</span><span class="p">:[],</span><span class="w">
+   </span><span class="nt">"national_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493962078526</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"590c0d5eb70e2a13944ad508"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"roles"</span><span class="p">:[</span><span class="w">  
+      </span><span class="s2">"provider"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves the Provider with a given ID</p>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>provider_id</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>ID of the queried Provider</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-all-providers">List all Providers</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/providers
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/providers</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">  
+       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">  
+          </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"57f14227d76d43264a70c95d"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"auth0_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"tags"</span><span class="p">:[</span><span class="w">  
+          </span><span class="s2">"fuzz"</span><span class="w">
+       </span><span class="p">],</span><span class="w">
+       </span><span class="nt">"available_on_bank_holidays"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+47 42 42 42 42"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"voucher"</span><span class="p">:{</span><span class="w">  
+          </span><span class="nt">"initial_quantity"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">  
+             </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493962078102</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"expires"</span><span class="p">:{</span><span class="w">  
+             </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1525498078102</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"uuid"</span><span class="p">:</span><span class="s2">"e9878af0-c607-486c-872f-6e23e7a15821"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"consumed"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"orders"</span><span class="p">:[],</span><span class="w">
+       </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"max_travel_time"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">  
+          </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493962078119</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"schedule"</span><span class="p">:{</span><span class="w">  
+          </span><span class="nt">"day_of_week"</span><span class="p">:[</span><span class="w">  
+             </span><span class="p">{</span><span class="w">  
+                </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="p">{</span><span class="w">  
+                </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="p">{</span><span class="w">  
+                </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="p">{</span><span class="w">  
+                </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="p">{</span><span class="w">  
+                </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="p">{</span><span class="w">  
+                </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+             </span><span class="p">},</span><span class="w">
+             </span><span class="p">{</span><span class="w">  
+                </span><span class="nt">"end_hour"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"end_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_minute"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"start_hour"</span><span class="p">:</span><span class="mi">8</span><span class="w">
+             </span><span class="p">}</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nt">"valid_from"</span><span class="p">:{</span><span class="w">  
+             </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493098078525</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"working_sections"</span><span class="p">:[]</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"max_travel_meters"</span><span class="p">:</span><span class="mf">10000.0</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Iversen"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"User.Provider"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"billing_address"</span><span class="p">:{</span><span class="w">  
+          </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"products"</span><span class="p">:[],</span><span class="w">
+       </span><span class="nt">"addresses"</span><span class="p">:[],</span><span class="w">
+       </span><span class="nt">"national_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">  
+          </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493962078526</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">  
+          </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"590c0d5eb70e2a13944ad508"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"roles"</span><span class="p">:[</span><span class="w">  
+          </span><span class="s2">"provider"</span><span class="w">
+       </span><span class="p">],</span><span class="w">
+       </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves a list of all Providers.</p>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">int</code></td>
+<td>Number of items to retrieve. <em>default is 10</em></td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">int</code></td>
+<td>Which page to retrieve. <em>default is 0</em></td>
+</tr>
+<tr>
+<td>include_deleted</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If <code class="prettyprint">true</code>, deleted products are also listed. <em>default is <code class="prettyprint">false</code></em></td>
+</tr>
+<tr>
+<td>latitude</td>
+<td><code class="prettyprint">float</code></td>
+<td>Define the latitude. <em>default is <code class="prettyprint">none</code></em></td>
+</tr>
+<tr>
+<td>longitude</td>
+<td><code class="prettyprint">float</code></td>
+<td>Define the longitude. <em>default is <code class="prettyprint">none</code></em></td>
+</tr>
+</tbody></table>
+
           <h1 id="products">Products</h1>
+
+<h2 id="product-object">Product Object</h2>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Flag that sets Product object to active.</td>
+</tr>
+<tr>
+<td>created</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>The date the Product was generated.</td>
+</tr>
+<tr>
+<td>modified</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>The date the Product was last updated.</td>
+</tr>
+<tr>
+<td>deleted</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Flag that set Product object to deleted.</td>
+</tr>
+<tr>
+<td>name</td>
+<td><code class="prettyprint">string</code></td>
+<td>The name of the Product</td>
+</tr>
+<tr>
+<td>price</td>
+<td><code class="prettyprint">float</code></td>
+<td>The price of the Product</td>
+</tr>
+<tr>
+<td>currency</td>
+<td><code class="prettyprint">string</code></td>
+<td>Currency (NOK, EUR, &hellip;) ISO 4217</td>
+</tr>
+<tr>
+<td>description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Product description</td>
+</tr>
+<tr>
+<td>short_description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Product description</td>
+</tr>
+<tr>
+<td>main_product</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Flag that marks whether or not it is a main Product</td>
+</tr>
+<tr>
+<td>_sub_products</td>
+<td><code class="prettyprint">list</code></td>
+<td>A list of sub products under the main Product.</td>
+</tr>
+<tr>
+<td>parents</td>
+<td><code class="prettyprint">list</code></td>
+<td>The sub product parent, overhead Product.</td>
+</tr>
+<tr>
+<td>default_position</td>
+<td><code class="prettyprint">geoPoint</code></td>
+<td>The geo position for the Product.</td>
+</tr>
+<tr>
+<td>tags</td>
+<td><code class="prettyprint">list</code></td>
+<td>List of Tags associated with Product.</td>
+</tr>
+<tr>
+<td>properties</td>
+<td><code class="prettyprint">dict</code></td>
+<td>Product properties.</td>
+</tr>
+<tr>
+<td>vat</td>
+<td><code class="prettyprint">float</code></td>
+<td>Percent vat</td>
+</tr>
+<tr>
+<td>max_distance</td>
+<td><code class="prettyprint">int</code></td>
+<td></td>
+</tr>
+<tr>
+<td>slug</td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-product">Create a new Product</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/products
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">POST</span> <span class="nn">/products</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nt">"product"</span><span class="p">:</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"It is a test product"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product Name"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"vat"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">  
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58f9f856b70e2a56c4a0db3d"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1492777046366</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"default_position"</span><span class="p">:[</span><span class="w">  
+      </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+      </span><span class="mi">-1</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"Product"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"zuuped prod"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1492777046369</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"_sub_products"</span><span class="p">:[],</span><span class="w">
+   </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Product Name"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"properties"</span><span class="p">:{},</span><span class="w">
+   </span><span class="nt">"price"</span><span class="p">:</span><span class="mf">3.14</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"tags"</span><span class="p">:[],</span><span class="w">
+   </span><span class="nt">"vat"</span><span class="p">:</span><span class="mf">15.0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58f9f856b70e2a56c4a0db37"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"parents"</span><span class="p">:[],</span><span class="w">
+   </span><span class="nt">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"path"</span><span class="p">:</span><span class="s2">"/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Create a new Product.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>Name of the product</td>
+</tr>
+<tr>
+<td><strong>price</strong></td>
+<td><code class="prettyprint">float</code></td>
+<td>Price of the product</td>
+</tr>
+<tr>
+<td>currency</td>
+<td><code class="prettyprint">string</code></td>
+<td>Currency of the Product. Default <code class="prettyprint">NOK</code></td>
+</tr>
+<tr>
+<td>vat</td>
+<td><code class="prettyprint">float</code></td>
+<td>Percentage vat. Default <code class="prettyprint">0.0</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Product description</td>
+</tr>
+<tr>
+<td>short_description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Short description for the product</td>
+</tr>
+<tr>
+<td>path</td>
+<td><code class="prettyprint">string</code></td>
+<td>URL for the product. Default <code class="prettyprint">&#39;/&#39;</code></td>
+</tr>
+<tr>
+<td>main_product</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Flag that marks whether or not it is a main product. Default <code class="prettyprint">True</code></td>
+</tr>
+<tr>
+<td>_sub_product</td>
+<td><code class="prettyprint">list</code></td>
+<td>List of sub products under Product. Default <code class="prettyprint">[]</code></td>
+</tr>
+<tr>
+<td>parents</td>
+<td><code class="prettyprint">list</code></td>
+<td>List of main product to sub product. Default <code class="prettyprint">[]</code></td>
+</tr>
+<tr>
+<td>tags</td>
+<td><code class="prettyprint">string</code></td>
+<td>List of tags associated with product</td>
+</tr>
+<tr>
+<td>default_position</td>
+<td><code class="prettyprint">geoPoint</code></td>
+<td>Define product position. Default <code class="prettyprint">[-1, -1]</code></td>
+</tr>
+<tr>
+<td>properties</td>
+<td><code class="prettyprint">dict</code></td>
+<td>Product properties</td>
+</tr>
+<tr>
+<td>max_distance</td>
+<td><code class="prettyprint">int</code></td>
+<td></td>
+</tr>
+<tr>
+<td>provider</td>
+<td></td>
+<td><a href="#provider"><code class="prettyprint">Provider</code></a></td>
+</tr>
+<tr>
+<td>company_take</td>
+<td><code class="prettyprint">float</code></td>
+<td></td>
+</tr>
+<tr>
+<td>business_rules</td>
+<td><code class="prettyprint">list</code></td>
+<td></td>
+</tr>
+<tr>
+<td>slug</td>
+<td><code class="prettyprint">list</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-a-product">Retrieve a Product</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/products/&lt;product_id&gt;
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/products/&lt;product_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">  
+   </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"Product"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"parents"</span><span class="p">:[],</span><span class="w">
+   </span><span class="nt">"tags"</span><span class="p">:[</span><span class="w">  
+      </span><span class="s2">"fuzz"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"price"</span><span class="p">:</span><span class="mf">3.14</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"_sub_products"</span><span class="p">:[],</span><span class="w">
+   </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"description"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1492781492460</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"vat"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"properties"</span><span class="p">:{},</span><span class="w">
+   </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Product Name"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1492781492461</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58fa09b4b70e2a4d743fdac2"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"path"</span><span class="p">:</span><span class="s2">"/"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58fa09b4b70e2a4d743fdac4"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"business_rules"</span><span class="p">:[],</span><span class="w">
+   </span><span class="nt">"default_position"</span><span class="p">:[</span><span class="w">  
+      </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+      </span><span class="mi">-1</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Get Product based on product ID</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>product_id</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>Product Id</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-list-of-all-products-associated-with-company">Get list of all products associated with company</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/products
+</code></pre>
+
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/products</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">  
+   </span><span class="p">{</span><span class="w">  
+      </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"metadata"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"charge_id"</span><span class="p">:</span><span class="s2">"ch_1ADY0SEeeXxFpLJti58RcN7w"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"59033056b70e2a1e086d5218"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"subject"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"Invoice"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"_ref"</span><span class="p">:</span><span class="s2">"59033056b70e2a1e086d521b"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"5903304cb70e2a1e086d5213"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"payment_date"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493381731652</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493381732307</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"_id"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"59033265b70e2a1e086d521f"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1493381746495</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"human_id"</span><span class="p">:</span><span class="s2">"VPXXN7"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"payment_method"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"59033058b70e2a1e086d521c"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"current_state"</span><span class="p">:</span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="p">:</span><span class="mf">10.0</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves a list of all Products.</p>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">int</code></td>
+<td>Number of items to retrieve</td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">int</code></td>
+<td>Which page to retrieve. <em>default page size is 50</em></td>
+</tr>
+<tr>
+<td>include_deleted</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If <code class="prettyprint">true</code>, deleted products are also listed</td>
+</tr>
+<tr>
+<td>sorting</td>
+<td><code class="prettyprint">string</code></td>
+<td>Field used for sorting results</td>
+</tr>
+<tr>
+<td>lat</td>
+<td><code class="prettyprint">float</code></td>
+<td>Define the latitude</td>
+</tr>
+<tr>
+<td>lng</td>
+<td><code class="prettyprint">float</code></td>
+<td>Define the longitude</td>
+</tr>
+<tr>
+<td>all</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If <code class="prettyprint">true</code> get all products</td>
+</tr>
+</tbody></table>
 
           <h1 id="bulks">Bulks</h1>
 
@@ -1450,38 +2471,38 @@ These list API methods share a common structure, taking at least these two param
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
-<span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"is_message_mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"blacklisted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e10791b70e2a516c376a8c"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"logo_url"</span><span class="p">:</span><span class="s2">"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"street_name"</span><span class="p">:</span><span class="s2">"Fornebuveien 6"</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="s2">"0556"</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491142545321</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491142545323</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Telenor Norge AS"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e10791b70e2a516c376a8a"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"is_message_mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"blacklisted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e10791b70e2a516c376a8c"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"logo_url"</span><span class="p">:</span><span class="s2">"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"street_name"</span><span class="p">:</span><span class="s2">"Fornebuveien 6"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="s2">"0556"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491142545321</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1491142545323</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Telenor Norge AS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"58e10791b70e2a516c376a8a"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
 
 <p>Retrieves a list of all Issuers.</p>
@@ -1532,11 +2553,11 @@ These list API methods share a common structure, taking at least these two param
 </thead><tbody>
 <tr>
 <td>created</td>
-<td>Created is date generated when Issuer created. Type value <code class="prettyprint">timestamp</code>.</td>
+<td>Date generated when Issuer is created.</td>
 </tr>
 <tr>
 <td>modified</td>
-<td>Date generated when Issuer updated. Type value <code class="prettyprint">timestamp</code>.</td>
+<td>Date generated when Issuer is updated.</td>
 </tr>
 </tbody></table>
 
@@ -2332,7 +3353,7 @@ All payments should have the following attributes:</p>
 
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Arguments</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
