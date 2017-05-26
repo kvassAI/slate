@@ -118,6 +118,6 @@ Host: api.shareactor.io
 All top-level API resources have support for bulk fetches via "list" API methods. For instance you can list orders, users, providers, etc.
 These list API methods share a common structure, taking at least these two parameters: size and page.
 
-Shareactor uses a pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
+ShareActor uses a pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
 
 One of the missing features we are looking into implementing is the return of a response header with total count: `Share-Pagination-Total: 212`
