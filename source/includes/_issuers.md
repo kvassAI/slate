@@ -20,6 +20,12 @@ is_message_mandatory | Flag that determines if `message` field is mandatory for 
 
 ## Create an Issuer
 
+> Definition
+
+POST https://api.shareactor.io/issuers
+
+> Example request:
+
 ``` http
 POST /issuers HTTP/1.1
 Content-Type: application/json
@@ -87,6 +93,12 @@ is_messaging_mandatory | Determines if *message* field is mandatory for invoices
 
 ## Retrieve an Issuer
 
+> Definition
+
+GET https://api.shareactor.io/issuers/<issuer_id>
+
+> Example request:
+
 ``` http
 GET /issuers/<issuer_id> HTTP/1.1
 Content-Type: application/json
@@ -138,6 +150,12 @@ Argument | Description
 **issuer_id** | ID of the queried Issuer.
 
 ## List all Issuers
+
+> Definition
+
+GET https://api.shareactor.io/issuers
+
+> Example request:
 
 ``` http
 GET /issuers HTTP/1.1
@@ -206,6 +224,12 @@ modified | Date generated when Issuer is updated.
 
 ## Update Issuer
 
+> Definition
+
+PUT https://api.shareactor.io/issuers/issuer_id
+
+> Example request:
+
 ``` http
 PUT /issuers/<issuer_id> HTTP/1.1
 Content-Type: application/json
@@ -257,6 +281,12 @@ Arguments | Descriptions
 **issuer_id** | ID of the desired Issuer.
 
 ## Issuer Search
+
+> Definition
+
+GET https://api.shareactor.io/issuers/search
+
+> Example request:
 
 ``` http
 GET /issuers/search?query=tele HTTP/1.1
@@ -327,6 +357,12 @@ verified | Verified is `Boolean`.
 blacklisted | Blacklisted is `Boolean`.
 
 ## Delete Issuer
+
+> Definition
+
+DELETE https://api.shareactor.io/issuers/<issuer_id>
+
+> Example request:
 
 ``` http
 DELETE /issuers/<issuer_id> HTTP/1.1
