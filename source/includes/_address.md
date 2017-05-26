@@ -155,4 +155,4 @@ Arguments | Type | Description
 --------- | ---- | ------
 service | `string` | Chose service you want use
 type | `string` | Define the type of your search, if it's street name, zip code, etc
-query | `string` | Query is what you want search e.q: "Tordenskioldsgate 3, Oslo"
+**query** | `string` | Query is what you want search e.q: "Tordenskioldsgate 3, Oslo"
