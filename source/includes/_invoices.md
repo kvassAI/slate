@@ -4,22 +4,22 @@ Invoices allow you to store invoice information for later payment.
 
 ## Invoice object
 
-Attributes | Description
----------- | -------
-user | User associated with Invoice
-amount | Amount of invoice as a float.
-currency | ISO code of currency, for example: "EUR"
-account_number | Account number to issuer, to whom the payment of invoice is done to
-message | Message (KID) used for paying invoice. How it will appear in the Issuer's bank
-due_date | The due date of the invoice
-issued_date | The date the invoice was generated
-issuer | Issuer of invoice
-issuer_alias | regardless of the issuer existing or not, the user may want to use an alias for the issuer
-deleted | Flag that sets Invoice object to deleted
-image_url | The url for the invoice image which is returned from the ocr
-status | The status of the Invoice. Default is CREATED. Additionally there is: "SCHEDULED", "DONE", "FAILED", "CANCELLED"
-created| The date and time the invoice was created
-updated | The last time the invoice was updated
+Attributes | Type | Description
+---------- | ---- | ------
+user | `string` | User associated with Invoice
+amount | `float` | Amount of invoice as a float.
+currency | `string` | ISO code of currency, for example: "EUR"
+account_number | `string` | Account number to issuer, to whom the payment of invoice is done to
+message | `string` | Message (KID) used for paying invoice. How it will appear in the Issuer's bank
+due_date | `timestamp` | The due date of the invoice
+issued_date | `timestamp` | The date the invoice was generated
+issuer | `string` | [Issuer](#issuers) of invoice
+issuer_alias | `string` | regardless of the issuer existing or not, the user may want to use an alias for the issuer
+deleted | `boolean` | Flag that sets Invoice object to deleted
+image_url | `string` | The url for the invoice image which is returned from the ocr
+status | `string` | The status of the Invoice. Default is CREATED. Additionally there is: "SCHEDULED", "DONE", "FAILED", "CANCELLED"
+created| `timestamp` | The date and time the invoice was created
+updated | `timestamp` | The last time the invoice was updated
 
 
 ## Create an Invoice
@@ -82,16 +82,16 @@ Content-Type: application/json
 
 Creates a new Invoice.
 
-Attribute | Description
----------- | -------
-**amount** | Amount in float. Required field
-**currency** | ISO code of currency: "EUR", "USD", "NOK" etc. Required field
-**account_number** | Account number to pay invoice to. Required field
-**due_date** | Due date of invoice. If missing, the due_date is today.
-image_url | The url for the invoice image
-issued_date| The date the Invoice was issued. Not mandatory
-issuer_alias| Issuer alias that User could set. Not mandatory
-message | Message of transaction. e.g. KID number
+Attribute | Type | Description
+---------- | --- | -------
+**amount** | `float` | The amount of invoice. Required field
+**currency** | `string` | ISO code of currency: "EUR", "USD", "NOK" etc. Required field
+**account_number** | `string` | Account number to pay invoice to. Required field
+**due_date** | `timestamp` | Due date of invoice. If missing, the due_date is today.
+image_url | `string` | The url for the invoice image
+issued_date| `timestamp` | The date the Invoice was issued. Not mandatory
+issuer_alias| `string` | Issuer alias that User could set. Not mandatory
+message | `string` | Message of transaction. e.g. KID number
 
 ## Retrieve an Invoice
 
@@ -142,9 +142,9 @@ Content-Type: application/json
 
 Retrieves an Invoice with a given ID.
 
-Argument | Description
----------- | -------
-**invoice_id** | ID of the queried Invoice
+Argument | Type | Description
+-------- | ---- | ------
+**invoice_id** | `string` | ID of the queried Invoice
 
 
 ## List all Invoices
@@ -198,11 +198,11 @@ Content-Type: application/json
 
 Retrieves a list of all Invoices associated with the user.
 
-Arguments | Description
----------- | -------
-size | number of items to retrieve
-page | which page to retrieve. _default page size is 10_
-order_by | field used for sorting results. If missing default is "-due_date". Could be other parameters in the Invoice model, like "-created" or "status=DONE".
+Arguments | Type | Description
+--------- | ---- | ------
+size | `int` | number of items to retrieve
+page | `int` | which page to retrieve. _default page size is 10_
+order_by | `string` | field used for sorting results. If missing default is "-due_date". Could be other parameters in the Invoice model, like "-created" or "status=DONE".
 
 ## Update an invoice
 > Definition
@@ -223,9 +223,9 @@ Host: api.shareactor.io
 
 Updates an Invoice with a given ID. For example:
 
-Argument | Description
----------- | -------
-**invoice_id** | ID of the queried Invoice
+Argument | Type | Description
+-------- | ---- | -----
+**invoice_id** | `string` | ID of the queried Invoice
 
 ## Delete invoice
 > Definition
