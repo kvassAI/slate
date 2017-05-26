@@ -53,7 +53,7 @@ Content-Type: application/json
 
 {
   "company": {
-    "$oid": "<company-id>"
+    "$oid": "57ee9c71d76d431f8511142f"
   },
   "created": {
     "$date": 1476118043580
@@ -66,7 +66,7 @@ Content-Type: application/json
   },
   "deleted": false,
   "user": {
-    "$oid": "<user-id>"
+    "$oid": "57ee9c72d76d431f85111432"
   },
   "method": "dibs",
   "name": "DIBS",
@@ -130,7 +130,7 @@ Content-Type: application/json
 
 {
   "company": {
-    "$oid": "<company-id>"
+    "$oid": "57ee9c71d76d431f8511142f"
   },
   "created": {
     "$date": 1476118043580
@@ -143,7 +143,7 @@ Content-Type: application/json
   },
   "deleted": false,
   "user": {
-    "$oid": "<user-id>"
+    "$oid": "57ee9c72d76d431f85111432"
   },
   "method": "single_paypal",
   "name": "PayPal",
@@ -191,7 +191,7 @@ Content-Type: application/json
 
 {
   "company": {
-    "$oid": "<company-id>"
+    "$oid": "57ee9c71d76d431f8511142f"
   },
   "created": {
     "$date": 1476118043580
@@ -204,7 +204,7 @@ Content-Type: application/json
   },
   "deleted": false,
   "user": {
-    "$oid": "<user-id>"
+    "$oid": "57ee9c72d76d431f85111432"
   },
   "method": "future_paypal",
   "name": "PayPal",
@@ -249,12 +249,12 @@ Content-Type: application/json
   "masked_card_number":"XXXXXXXXXXXX1234",
   "merchant":"some_merchant_id",
   "user":{
-      "$oid":"57ee9705d76d431e56769b38"
+      "$oid":"57ee9c72d76d431f85111432"
   },
   "deleted":false,
   "method":"dibs",
   "company":{
-      "$oid":"57ee9705d76d431e56769b35"
+      "$oid":"57ee9c71d76d431f8511142f"
   },
   "created":{
       "$date":1475254021326
@@ -265,7 +265,7 @@ Content-Type: application/json
   },
   "active":true,
   "_id":{
-      "$oid":"57ee9705d76d431e56769b39"
+      "$oid":"<payment-method-id>"
   }
 }
 ```
@@ -304,12 +304,12 @@ Content-Type: application/json
     "masked_card_number":"XXXXXXXXXXXX1234",
     "merchant":"some_merchant_id",
     "user":{
-      "$oid":"57ee9705d76d431e56769b38"
+      "$oid":"57ee9c72d76d431f85111432"
     },
     "deleted":false,
     "method":"dibs",
     "company":{
-      "$oid":"57ee9705d76d431e56769b35"
+      "$oid":"57ee9c71d76d431f8511142f"
     },
     "created":{
       "$date":1475254021326
@@ -320,7 +320,7 @@ Content-Type: application/json
     },
     "active":true,
     "_id":{
-      "$oid":"57ee9705d76d431e56769b39"
+      "$oid":"<payment-method-id>"
     }
   }
 ]
