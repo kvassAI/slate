@@ -20,13 +20,18 @@ roles | `list` | Define the rolls that a Provider can have. _default ["provider"
 
 ## Add a new Provider
 
+> Definition
+
+POST https://api.shareactor.io/providers
+
+> Example request:
+
 ``` http
 POST /providers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
-
 
 {
     "first_name": "John",
@@ -138,13 +143,13 @@ bio | `string` | Biographic note about the Provider
 > Definition
 
 ```
-GET https://api.shareactor.io/providers
+GET https://api.shareactor.io/providers/<provider_id>
 ```
 
 > Example request:
 
 ``` http
-GET /providers/<providerid> HTTP/1.1
+GET /providers/<provider_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
