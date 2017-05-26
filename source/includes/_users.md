@@ -48,7 +48,7 @@ Content-Type: application/json
 
 {
   "_id":{
-    "$oid":"[User_id](#users)"
+    "$oid":"57ee9c72d76d431f85111432"
   },
   "_cls":"User",
   "created":{
@@ -67,7 +67,7 @@ Content-Type: application/json
   "note":"",
   "avatar":"",
   "company":{
-    "$oid":"[Company_id](#companies)"
+    "$oid":"57ee9c71d76d431f8511142f"
   },
   "tags":[],
   "stripe_customer_id":"",
