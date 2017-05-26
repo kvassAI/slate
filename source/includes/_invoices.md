@@ -64,7 +64,7 @@ Content-Type: application/json
    "due_date":{
       "$date":1476551410009
    },
-   "message":"12313123",
+   "message":"Some message to the Issuer",
    "account_number":"12345678903",
    "user":{
       "$oid":"57ee9c72d76d431f85111432"

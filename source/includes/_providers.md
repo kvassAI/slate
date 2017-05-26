@@ -116,7 +116,7 @@ Content-Type: application/json
    },
    "max_travel_time":1.0,
    "company":{
-      "$oid":"[Company_id](#companies)"
+      "$oid":"57ee9c71d76d431f8511142f"
    },
    "products":[],
    "active":true,
@@ -164,7 +164,7 @@ Content-Type: application/json
    "first_name":"John",
    "email":"john@email.com",
    "_id":{  
-      "$oid":"[User_id](#users)"
+      "$oid":"591ee147d57ba28fbe0a3892"
    },
    "auth0_id":"",
    "tags":[  
@@ -214,7 +214,7 @@ Content-Type: application/json
    },
    "max_travel_meters":10000.0,
    "country":"NOR",
-   "last_name":"Iversen",
+   "last_name":"Doe",
    "_cls":"User.Provider",
    "billing_address":{  
       "service":"google",
@@ -229,7 +229,7 @@ Content-Type: application/json
       "$date":1493962078526
    },
    "company":{  
-      "$oid":"[Company_id](#companies)"
+      "$oid":"57ee9c71d76d431f8511142f"
    },
    "deleted":false,
    "roles":[  
@@ -272,7 +272,7 @@ Content-Type: application/json
        "first_name":"John",
        "email":"john@email.com",
        "_id":{  
-          "$oid":"[User_id](#users)"
+          "$oid":"591ee147d57ba28fbe0a3892"
        },
        "auth0_id":"",
        "tags":[  
@@ -322,7 +322,7 @@ Content-Type: application/json
        },
        "max_travel_meters":10000.0,
        "country":"NOR",
-       "last_name":"Iversen",
+       "last_name":"Doe",
        "_cls":"User.Provider",
        "billing_address":{  
           "service":"google",
@@ -337,7 +337,7 @@ Content-Type: application/json
           "$date":1493962078526
        },
        "company":{  
-          "$oid":"[Company_id](#companies)"
+          "$oid":"57ee9c71d76d431f8511142f"
        },
        "deleted":false,
        "roles":[  
