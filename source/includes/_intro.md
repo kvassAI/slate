@@ -83,7 +83,7 @@ You can expand multiple objects at once by identifying multiple items in the exp
 
 ## Common Object fields
 
-Here's a list of fields which you will see often on the API responses:
+Here's a list of fields which you will see often in the API responses:
 
 Field | Description
 ---------- | -------
@@ -115,7 +115,7 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
-All top-level API resources have support for bulk fetches via "list" API methods. For instance you can list orders, list users, list providers, etc.
+All top-level API resources have support for bulk fetches via "list" API methods. For instance you can list orders, users, providers, etc.
 These list API methods share a common structure, taking at least these two parameters: size and page.
 
 Shareactor uses a pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
