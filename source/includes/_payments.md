@@ -61,7 +61,7 @@ Content-Type: application/json
 
 {
   "company": {
-    "$oid": "<company-id>"
+    "$oid": "57ee9c71d76d431f8511142f"
   },
   "created": {
     "$date": 1476118043580
@@ -74,7 +74,7 @@ Content-Type: application/json
   },
   "deleted": false,
   "user": {
-    "$oid": "<user-id>"
+    "$oid": "57ee9c72d76d431f85111432"
   },
   "amount": 450.2,
   "metadata": {},
@@ -121,7 +121,7 @@ Content-Type: application/json
 
 {
   "company": {
-    "$oid": "<company-id>"
+    "$oid": "57ee9c71d76d431f8511142f"
   },
   "created": {
     "$date": 1476118043580
@@ -134,7 +134,7 @@ Content-Type: application/json
   },
   "deleted": false,
   "user": {
-    "$oid": "<user-id>"
+    "$oid": "57ee9c72d76d431f85111432"
   },
   "amount": 450.2,
   "metadata": {},
@@ -181,7 +181,7 @@ Content-Type: application/json
 [
   {
     "company": {
-      "$oid": "<company-id>"
+      "$oid": "57ee9c71d76d431f8511142f"
     },
     "created": {
       "$date": 1476118043580
@@ -194,7 +194,7 @@ Content-Type: application/json
     },
     "deleted": false,
     "user": {
-      "$oid": "<user-id>"
+      "$oid": "57ee9c72d76d431f85111432"
     },
     "amount": 450.2,
     "metadata": {},
@@ -202,7 +202,7 @@ Content-Type: application/json
     "active": true,
     "human_id": "51Q4LN",
     "currency": "NOK",
-    "subject": "<invoice-id>",
+    "subject": "57ee9c72d76d431f85111434",
     "payment_method": "<payment-method-id>",
     "payment_date": {
       "$date": 147998016470
