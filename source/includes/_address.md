@@ -27,7 +27,7 @@ pca
 > Definition
 
 ```
-GET https://api.sahreactor.io/addresses/lookuo
+GET https://api.sahreactor.io/addresses/lookup
 ```
 
 > Example request:
