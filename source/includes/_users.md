@@ -42,7 +42,7 @@ Content-Type: application/json
 
 {
   "_id":{
-    "$oid":"57f14227d76d43264a70c95d"
+    "$oid":"[User_id](#users)"
   },
   "_cls":"User",
   "created":{
@@ -61,7 +61,7 @@ Content-Type: application/json
   "note":"",
   "avatar":"",
   "company":{
-    "$oid":"57f14227d76d43264a70c93c"
+    "$oid":"[Company_id](#companies)"
   },
   "tags":[],
   "stripe_customer_id":"",
@@ -101,7 +101,7 @@ Content-Type: application/json
 
 {
   "_id":{
-    "$oid":"57f14227d76d43264a70c95d"
+    "$oid":"[User_id](#users)"
   },
   "_cls":"User",
   "created":{
@@ -120,7 +120,7 @@ Content-Type: application/json
   "note":"",
   "avatar":"",
   "company":{
-    "$oid":"57f14227d76d43264a70c93c"
+    "$oid":"[Company_id](#companies)"
   },
   "tags":[],
   "stripe_customer_id":"",
@@ -158,7 +158,7 @@ Content-Type: application/json
 
 {
   "_id":{
-    "$oid":"57f14227d76d43264a70c95d"
+    "$oid":"[User_id](#users)"
   },
   "_cls":"User",
   "created":{
@@ -177,7 +177,7 @@ Content-Type: application/json
   "note":"",
   "avatar":"",
   "company":{
-    "$oid":"57f14227d76d43264a70c93c"
+    "$oid":"[Company_id](#companies)"
   },
   "tags":[],
   "stripe_customer_id":"",
@@ -218,7 +218,7 @@ Content-Type: application/json
 
 {
   "_id":{
-    "$oid":"57f14227d76d43264a70c95d"
+    "$oid":"[User_id](#users)"
   },
   "_cls":"User",
   "created":{
@@ -237,7 +237,7 @@ Content-Type: application/json
   "note":"",
   "avatar":"",
   "company":{
-    "$oid":"57f14227d76d43264a70c93c"
+    "$oid":"[Company_id](#companies)"
   },
   "tags":[],
   "stripe_customer_id":"",
@@ -273,7 +273,7 @@ Content-Type: application/json
 [
   {
   "_id":{
-    "$oid":"57f14227d76d43264a70c95d"
+    "$oid":"[User_id](#users)"
   },
   "_cls":"User",
   "created":{
@@ -292,7 +292,7 @@ Content-Type: application/json
   "note":"",
   "avatar":"",
   "company":{
-    "$oid":"57f14227d76d43264a70c93c"
+    "$oid":"[Company_id](#companies)"
   },
   "tags":[],
   "stripe_customer_id":"",
@@ -329,7 +329,7 @@ Content-Type: application/json
 [
   {
   "_id":{
-    "$oid":"57f14227d76d43264a70c95d"
+    "$oid":"[User_id](#users)"
   },
   "_cls":"User",
   "created":{
@@ -348,7 +348,7 @@ Content-Type: application/json
   "note":"",
   "avatar":"",
   "company":{
-    "$oid":"57f14227d76d43264a70c93c"
+    "$oid":"[Company_id](#companies)"
   },
   "tags":[],
   "stripe_customer_id":"",
