@@ -19,6 +19,12 @@ deleted | Flag that sets User object to deleted
 
 ## Create a User
 
+> Definition
+
+POST https://api.shareactor.io/users
+
+> Example request:
+
 ``` http
 POST /users HTTP/1.1
 Content-Type: application/json
@@ -87,6 +93,12 @@ tags | List of Tags associated with User
 
 ## Retrieve a User
 
+> Definition
+
+GET https://api.shareactor.io/users/<user_id>
+
+> Example request:
+
 ``` http
 GET /users/<user_id> HTTP/1.1
 Content-Type: application/json
@@ -139,6 +151,12 @@ Argument | Description
 
 
 ## Update a User
+
+> Definition
+
+PUT https://api.shareactor.io/users/<user_id>
+
+> Example request:
 
 ``` http
 PUT /users/<user-id> HTTP/1.1
@@ -204,6 +222,12 @@ tags | List of Tags associated with User
 
 ## Delete a User
 
+> Definition
+
+DELETE https://api.shareactor.io/users/<user_id>
+
+> Example request:
+
 ``` http
 DELETE /users/<user-id> HTTP/1.1
 Content-Type: application/json
@@ -257,6 +281,12 @@ user-id | ID of the User to delete
 
 
 ## List all Users
+
+> Definition
+
+GET https://api.shareactor.io/users
+
+> Example request:
 
 ``` http
 GET /users HTTP/1.1
@@ -314,6 +344,12 @@ order_by | field used for sorting results
 
 
 ## Search User
+
+> Definition
+
+GET https://api.shareactor.io/users/search
+
+> Example request:
 
 ``` http
 GET /users/search?query=doe HTTP/1.1
