@@ -17,7 +17,7 @@ Our API supports multiple login mechanisms such as the following:
 
 [Here](https://auth0.com/docs/identityproviders) is a full list of Auth0 supported integrations and [here](https://auth0.com/docs/quickstart/native)  you can see a guide on how to implement Auth0 with iOS, Android, Ionic, etc. 
 
-In order to authorize a user on the API side we use [JWT tokens](https://jwt.io/) which have to be added to all requests using the following header:
+In order to authorize a user on the API side, we use [JWT tokens](https://jwt.io/). These have to be added to all requests using the following header:
 
 `Authorization: Bearer <jwt>`
 
@@ -37,7 +37,7 @@ In order to authorize with our APIs, there's just a couple of things you need to
 
 After this flow, you should use the JWT provided for all other API calls.
 
-OAuth2 is a standard of authorization so if you need more information on how to use/implement it, you can find various resources online, but here are a few good starting points:
+OAuth2 is a standard for authorization, so if you need more information on how to use/implement it, you can find various resources online, but here are a few good starting points:
 
 * [OAuth2 Spec - RFC6749](https://tools.ietf.org/html/rfc6749)
 * [OAuth Bible](http://oauthbible.com/)
