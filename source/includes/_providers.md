@@ -47,7 +47,7 @@ Content-Type: application/json
       "$date":1495195975641
    },
    "_id":{
-      "$oid":"591ee147d57ba28fbe0a3892"
+      "$oid":"[User_id](#user)"
    },
    "default_address":{
       "service":"google",
@@ -64,7 +64,7 @@ Content-Type: application/json
    "email":"john@email.com",
    "voucher":{
       "consumed":0,
-      "uuid":"268e9da1-b7e5-4111-bb6a-7cee6d58c740",
+      "uuid":"0000aaaa-aaaa-0000-aaaa-aaaa0000aa00",
       "created":{
          "$date":1495195975643
       },
@@ -74,9 +74,7 @@ Content-Type: application/json
       "initial_quantity":0
    },
    "last_name":"Doe",
-   "addresses":[
-
-   ],
+   "addresses":[],
    "note":"",
    "schedule":{
       "day_of_week":[
@@ -91,48 +89,11 @@ Content-Type: application/json
             "end_minute":0,
             "start_hour":0,
             "start_minute":0,
-            "day_of_week":1,
-            "end_hour":0
-         },
-         {
-            "end_minute":0,
-            "start_hour":0,
-            "start_minute":0,
-            "day_of_week":2,
-            "end_hour":0
-         },
-         {
-            "end_minute":0,
-            "start_hour":0,
-            "start_minute":0,
-            "day_of_week":3,
-            "end_hour":0
-         },
-         {
-            "end_minute":0,
-            "start_hour":0,
-            "start_minute":0,
-            "day_of_week":4,
-            "end_hour":0
-         },
-         {
-            "end_minute":0,
-            "start_hour":0,
-            "start_minute":0,
             "day_of_week":5,
-            "end_hour":0
-         },
-         {
-            "end_minute":0,
-            "start_hour":0,
-            "start_minute":0,
-            "day_of_week":6,
             "end_hour":0
          }
       ],
-      "working_sections":[
-
-      ],
+      "working_sections":[],
       "valid_from":{
          "$date":1495195200000
       }
@@ -144,24 +105,18 @@ Content-Type: application/json
       "alias":""
    },
    "mobile_phone_number":"+4712345678",
-   "orders":[
-
-   ],
+   "orders":[],
    "modified":{
       "$date":1495195975643
    },
    "max_travel_time":1.0,
    "company":{
-      "$oid":"591ee147d57ba28fbe0a3883"
+      "$oid":"[Company_id](#companies)"
    },
-   "products":[
-
-   ],
+   "products":[],
    "active":true,
    "available_on_bank_holidays":false,
-   "tags":[
-
-   ],
+   "tags":[],
    "_cls":"User.Provider"
 }
 ```
@@ -204,7 +159,7 @@ Content-Type: application/json
    "first_name":"John",
    "email":"john@email.com",
    "_id":{  
-      "$oid":"57f14227d76d43264a70c95d"
+      "$oid":"[User_id](#users)"
    },
    "auth0_id":"",
    "tags":[  
@@ -245,41 +200,6 @@ Content-Type: application/json
             "end_minute":30,
             "start_minute":30,
             "start_hour":8
-         },
-         {  
-            "end_hour":18,
-            "day_of_week":2,
-            "end_minute":30,
-            "start_minute":30,
-            "start_hour":8
-         },
-         {  
-            "end_hour":18,
-            "day_of_week":3,
-            "end_minute":30,
-            "start_minute":30,
-            "start_hour":8
-         },
-         {  
-            "end_hour":18,
-            "day_of_week":4,
-            "end_minute":30,
-            "start_minute":30,
-            "start_hour":8
-         },
-         {  
-            "end_hour":18,
-            "day_of_week":5,
-            "end_minute":30,
-            "start_minute":30,
-            "start_hour":8
-         },
-         {  
-            "end_hour":18,
-            "day_of_week":6,
-            "end_minute":30,
-            "start_minute":30,
-            "start_hour":8
          }
       ],
       "valid_from":{  
@@ -304,7 +224,7 @@ Content-Type: application/json
       "$date":1493962078526
    },
    "company":{  
-      "$oid":"590c0d5eb70e2a13944ad508"
+      "$oid":"[Company_id](#companies)"
    },
    "deleted":false,
    "roles":[  
@@ -347,7 +267,7 @@ Content-Type: application/json
        "first_name":"John",
        "email":"john@email.com",
        "_id":{  
-          "$oid":"57f14227d76d43264a70c95d"
+          "$oid":"[User_id](#users)"
        },
        "auth0_id":"",
        "tags":[  
@@ -388,41 +308,6 @@ Content-Type: application/json
                 "end_minute":30,
                 "start_minute":30,
                 "start_hour":8
-             },
-             {  
-                "end_hour":18,
-                "day_of_week":2,
-                "end_minute":30,
-                "start_minute":30,
-                "start_hour":8
-             },
-             {  
-                "end_hour":18,
-                "day_of_week":3,
-                "end_minute":30,
-                "start_minute":30,
-                "start_hour":8
-             },
-             {  
-                "end_hour":18,
-                "day_of_week":4,
-                "end_minute":30,
-                "start_minute":30,
-                "start_hour":8
-             },
-             {  
-                "end_hour":18,
-                "day_of_week":5,
-                "end_minute":30,
-                "start_minute":30,
-                "start_hour":8
-             },
-             {  
-                "end_hour":18,
-                "day_of_week":6,
-                "end_minute":30,
-                "start_minute":30,
-                "start_hour":8
              }
           ],
           "valid_from":{  
@@ -447,7 +332,7 @@ Content-Type: application/json
           "$date":1493962078526
        },
        "company":{  
-          "$oid":"590c0d5eb70e2a13944ad508"
+          "$oid":"[Company_id](#companies)"
        },
        "deleted":false,
        "roles":[  
