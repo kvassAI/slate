@@ -20,6 +20,7 @@ includes:
   - payment_methods
   - payments
   - address
+  - plans
   - phone_nr_verification
   - bulks
   - tags
