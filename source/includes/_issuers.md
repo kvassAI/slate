@@ -2,20 +2,20 @@
 
 
 ## Issuers object
-Attributes | Description
----------- | -------
-created | The date the Issuer was generated.
-updated | The date the Issuer was last updated.
-active | Flag that sets Issuer object to active.
-deleted | Flag that set Issuer object to deleted.
-verified | Flag that set Issuer object to verified. Changes to true after AML check up.
-blacklisted | Flag that set Issuer object to blacklisted. `false` if AML status is either `Potential Match`, `true Positive` or `true Positive`. `true` if AML status value is either `No Match`, `false Positive` or `true Positive - Reject`.
-comments | Comments used for add a comment about Issuer.
-account_number | Account number to Issuer. Used when handling Invoice's
-name | Name of Issuer
-logo_url | Path for logo for Issuer.
-address | Address corresponding to payment address.
-is_message_mandatory | Flag that determines if `message` field is mandatory for invoices issued by this issuer.
+Attributes | Type | Description
+---------- | ---- | -------
+created | `timestamp` | The date the Issuer was generated.
+updated | `timestamp` | The date the Issuer was last updated.
+active | `boolean` | Flag that sets Issuer object to active.
+deleted | `boolean` | Flag that set Issuer object to deleted.
+verified | `boolean` | Flag that set Issuer object to verified. Changes to true after AML check up.
+blacklisted | `boolean` | Flag that set Issuer object to blacklisted. `false` if AML status is either `Potential Match`, `true Positive` or `true Positive`. `true` if AML status value is either `No Match`, `false Positive` or `true Positive - Reject`.
+comments | `string` | Comments used for add a comment about Issuer.
+account_number | `string` | Account number to Issuer. Used when handling Invoice's
+name | `string` | Name of Issuer
+logo_url | `string` | Path for logo for Issuer.
+address | [`Address`](#Address) | Address corresponding to payment address.
+is_message_mandatory | `boolean` | Flag that determines if `message` field is mandatory for invoices issued by this issuer.
 
 
 ## Create an Issuer
@@ -76,31 +76,31 @@ Content-Type: application/json
 
 Create a new Issuer.
 
-Attribute | Description
---------- | -----------
-**created** | Created is date generated when Issuer created. Default value `now date`: `timestamp`.
-**modified** | Date generated when Issuer is updated. Default value `now date`: `timestamp`.
-**active** | Active is `boolean`. Default `true`.
-**deleted** | Deleted is `boolean`. Default `false`.
-**verified** | Verified is `boolean`. Default `false`.
-**blacklisted** | Blacklisted is `boolean`. Default `false`.
-**account_number** | Account_number is `string`, must contain 11 digits.
-comments | Comments. `string`.
-name | Name of Issuer. `string`.
-logo_url | The URL of the Issuer's logo. `string`.
-address | Issuer address. As an [`Address`](#address) object.
-is_messaging_mandatory | Determines if *message* field is mandatory for invoices issued by this issuer. `boolean`. Default value `false`.
+Arguments | Type | Description
+--------- | ---- | ------
+**created** | `timestamp` | Created is date generated when Issuer created. _default value `now date`_
+**modified** | `timestamp` | Date generated when Issuer is updated. _default value `now date`_
+**active** | `boolean` | Flag that sets Issuer object to active. _default `true`_
+**deleted** | `boolean` | Flag that sets Issuer object to deleted. _default `false`_
+**verified** | `boolean` | Flag that sets Issuer object to verified. _default `false`_
+**blacklisted** | `boolean` | Flag that sets Issuer object to blacklisted. _default `false`_
+**account_number** | `string` | Account number to Issuer, must contain 11 digits.
+comments | `string` | Comments.
+name | `string` | Name of Issuer.
+logo_url | `string` | The URL of the Issuer's logo.
+address | [`Address`](#address) | Address corresponding to payment address. 
+is_messaging_mandatory | `boolean` | Determines if *message* field is mandatory for invoices issued by this issuer. _default value `false`_
 
 ## Retrieve an Issuer
 
 > Definition
 
-GET https://api.shareactor.io/issuers/<issuer_id>
+GET https://api.shareactor.io/issuers/<issuer-id>
 
 > Example request:
 
 ``` http
-GET /issuers/<issuer_id> HTTP/1.1
+GET /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -145,9 +145,9 @@ Content-Type: application/json
 
 Retrieves Issuer with ID.
 
-Argument | Description
--------- | -----------
-**issuer_id** | ID of the queried Issuer.
+Argument | Type | Description
+-------- | ---- | -------
+**issuer_id** | `string` | ID of the queried Issuer.
 
 ## List all Issuers
 
@@ -205,15 +205,15 @@ Content-Type: application/json
 
 Retrieves a list of all Issuers.
 
-Arguments | Description
---------- | -----------
-size | Number of items to retrieve
-page | Which page to retrieve. _default page size is 10_
-from_date | Start date. Type value `timestamp`.
-to_date | End date. Type value `timestamp`.
-date_filter | Date field used for filter results.
-deleted | It's a `boolean`. If `true` issuer is deleted.
-sorting | Field used for sorting results
+Arguments | Type | Description
+--------- | ---- | -------
+size | `int` | Number of items to retrieve _default is 10_
+page | `int` | Which page to retrieve _default is 0_
+from_date | `timestamp` | Start date.
+to_date | `timestamp` | End date.
+date_filter | `string` | Date field used for filter results. _default is `created`_
+deleted | `boolean` | If `true`, deleted issuer are also listed. _default is `false`_
+sorting | `string` | Field used for sorting results
 
 ### date_filter
 Arguments | Description
@@ -226,12 +226,12 @@ modified | Date generated when Issuer is updated.
 
 > Definition
 
-PUT https://api.shareactor.io/issuers/issuer_id
+PUT https://api.shareactor.io/issuers/<issuer-id>
 
 > Example request:
 
 ``` http
-PUT /issuers/<issuer_id> HTTP/1.1
+PUT /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -276,9 +276,9 @@ Content-Type: application/json
 
 Updates an Issuer
 
-Arguments | Descriptions
---------- | ----------
-**issuer_id** | ID of the desired Issuer.
+Arguments | Type | Descriptions
+--------- | ---- | ------
+**issuer_id** | `string` |  ID of the desired Issuer.
 
 ## Issuer Search
 
@@ -336,13 +336,15 @@ Content-type: application/json
 
 Retrieves a list of Issuers associate with search.
 
-Arguments | Description
+Arguments | Type | Description
 --------- | -----------
-**query** | What you want to search, like **name** or **account_number**. `string`
-filters | In search you can use filters for more accurate search.
+**query** | `string` | What you want to search, like **name** or **account_number**.
+filters | `string` | In search you can use filters for more accurate search.
+active | `boolean` | Active issuer are also listed.
+verified | `boolean` | Verified issuer are also listed.
+blacklisted | `boolean` | Blacklisted are also listed.
 
-
-### Filters
+### Active, Verified & Blacklisted
 
 For all `Boolean` flags it is possible to put:
 
@@ -350,22 +352,17 @@ For all `Boolean` flags it is possible to put:
 
 - False: `0`, `'0'`or `'false'`
 
-Arguments | Descriptions
---------- | ---------
-active | Active is `Boolean`.
-verified | Verified is `Boolean`.
-blacklisted | Blacklisted is `Boolean`.
 
 ## Delete Issuer
 
 > Definition
 
-DELETE https://api.shareactor.io/issuers/<issuer_id>
+DELETE https://api.shareactor.io/issuers/<issuer-id>
 
 > Example request:
 
 ``` http
-DELETE /issuers/<issuer_id> HTTP/1.1
+DELETE /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -410,7 +407,7 @@ Content-Type: application/json
 
 Deletes an Issuer
 
-Argument | Description
--------- | -----------
-issuer_id | ID of the Issuer to delete.
+Argument | Type | Description
+-------- | ---- | -------
+**issuer_id** | `string` | ID of the Issuer to delete.
 
