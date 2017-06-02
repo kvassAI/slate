@@ -55,7 +55,7 @@ Content-Type: application/json
    "active":true,
    "name":"Create_issuer",
    "company":{
-      "$oid":"58de5a46b70e2a8840ea4aa6"
+      "$oid":"57ee9c71d76d431f8511142f"
    },
    "comments":"It is a comment",
    "address":{
@@ -69,7 +69,7 @@ Content-Type: application/json
    "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png",
    "account_number":"12345678903",
    "_id":{
-      "$oid":"58de5a47b70e2a8840ea4aae"
+      "$oid":"57ee9c72d76d431f85111433"
    }
 }
 ```
@@ -113,23 +113,23 @@ Content-Type: application/json
 
 {
     "blacklisted": false,
-    "name": "Telenor Norge AS",
+    "name": "Big Company Inc",
     "company": {
-        "$oid": "58e104d5b70e2a76c0e94c83"
+        "$oid": "57ee9c71d76d431f8511142f"
     }, 
     "deleted": false,
     "verified": false,
     "_id": {
-        "$oid": "58e104d5b70e2a76c0e94c85"
+        "$oid": "57ee9c72d76d431f85111433"
     },
     "account_number": "12345678903",
-    "logo_url": "http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png",
+    "logo_url": "<logo-url.png>",
     "address": {
-        "street_name": "Fornebuveien 6",
+        "street_name": "Money Lane 99",
         "alias": "",
         "service": "google",
         "city": "Oslo",
-        "zip_code": "0556",
+        "zip_code": "1234",
         "country": "NOR"
     }, 
     "is_message_mandatory": false,
@@ -176,16 +176,16 @@ Content-Type: application/json
       "blacklisted":false,
       "active":true,
       "_id": {
-         "$oid":"58e10791b70e2a516c376a8c"
+         "$oid":"57ee9c72d76d431f85111433"
       },
-      "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png",
-      "address": {
-         "country":"NOR",
-         "street_name":"Fornebuveien 6",
-         "city":"Oslo",
-         "zip_code":"0556",
-         "service":"google",
-         "alias":""
+      "logo_url": "<logo-url.png>",
+      "address": { 
+            "street_name": "Money Lane 99", 
+            "alias": "", 
+            "service": "google", 
+            "city": "Oslo", 
+            "zip_code": "1234", 
+            "country": "NOR" 
       },
       "created": {
          "$date":1491142545321
@@ -195,9 +195,9 @@ Content-Type: application/json
       },
       "verified":false,
       "deleted":false,
-      "name":"Telenor Norge AS",
+      "name":"Big Company Inc",
       "company": {
-         "$oid":"58e10791b70e2a516c376a8a"
+         "$oid":"57ee9c71d76d431f8511142f"
       }
     }
 ]
@@ -244,28 +244,28 @@ Content-Type: application/json
 
 {  
    "company":{
-      "$oid":"58e112acb70e2a326cf1f955"
+      "$oid":"57ee9c71d76d431f8511142f"
    },
-   "name":"Telenor updated",
+   "name":"Big Company Ltd",
    "modified":{
       "$date":1491145388209
    },
    "is_message_mandatory":false,
    "_id":{
-      "$oid":"58e112acb70e2a326cf1f957"
+      "$oid":"57ee9c72d76d431f85111433"
    },
    "created":{
       "$date":1491145388109
    },
    "deleted":false,
-   "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png",
-   "address":{
-      "service":"google",
-      "street_name":"Fornebuveien 6",
-      "city":"Oslo",
-      "zip_code":"0556",
-      "country":"NOR",
-      "alias":""
+   "logo_url":"<logo-url.png>",
+    "address": {
+        "street_name": "Money Lane 99",
+        "alias": "",
+        "service": "google",
+        "city": "Oslo",
+        "zip_code": "1234",
+        "country": "NOR"
    },
    "verified":false,
    "account_number":"12345678903",
@@ -289,7 +289,7 @@ GET https://api.shareactor.io/issuers/search
 > Example request:
 
 ``` http
-GET /issuers/search?query=tele HTTP/1.1
+GET /issuers/search?query=Big HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -303,20 +303,20 @@ Content-type: application/json
 [  
    {  
       "verified":false,
-      "name":"Telenor Norge AS",
+      "name":"Big Company Inc",
       "account_number":"12345678903",
       "is_message_mandatory":false,
-      "address":{
-         "service":"google",
-         "street_name":"Fornebuveien 6",
-         "zip_code":"0556",
-         "alias":"",
-         "city":"Oslo",
-         "country":"NOR"
+      "logo_url":"<logo-url.png>",
+      "address": {
+          "street_name": "Money Lane 99",
+          "alias": "",
+          "service": "google",
+          "city": "Oslo",
+          "zip_code": "1234",
+          "country": "NOR"
       },
       "deleted":false,
       "blacklisted":false,
-      "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png",
       "active":true,
       "created":{
          "$date":1491565328234
@@ -325,10 +325,10 @@ Content-type: application/json
          "$date":1491565328235
       },
       "_id":{
-         "$oid":"58e77b10b70e2a7650ea6521"
+         "$oid":"57ee9c72d76d431f85111433"
       },
       "company":{
-         "$oid":"58e77b10b70e2a7650ea651f"
+         "$oid":"57ee9c71d76d431f8511142f"
       }
    }
 ]
@@ -379,32 +379,32 @@ Content-Type: application/json
 {  
    "active":false,
    "company":{  
-      "$oid":"58e798d0b70e2a901ca32396"
+      "$oid":"57ee9c71d76d431f8511142f"
    },
-   "name":"Telenor Norge AS",
+   "name":"Big Company Inc",
    "account_number":"12345678903",
    "verified":false,
    "deleted":true,
    "_id":{  
-      "$oid":"58e798d0b70e2a901ca32398"
+      "$oid":"57ee9c72d76d431f85111433"
    },
    "blacklisted":false,
    "is_message_mandatory":false,
-   "address":{  
-      "service":"google",
-      "alias":"",
-      "zip_code":"0556",
-      "street_name":"Fornebuveien 6",
-      "country":"NOR",
-      "city":"Oslo"
+   "address": {
+       "street_name": "Money Lane 99",
+       "alias": "",
+       "service": "google",
+       "city": "Oslo",
+       "zip_code": "1234",
+       "country": "NOR"
    },
-   "created":{  
+   "created":{
       "$date":1491572944202
    },
    "modified":{  
       "$date":1491572947166
    },
-   "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"
+   "logo_url": "<logo-url.png>"
 }
 ```
 
