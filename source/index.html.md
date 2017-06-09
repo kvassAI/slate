@@ -21,6 +21,7 @@ includes:
   - payments
   - address
   - plans
+  - subscriptions
   - phone_nr_verification
   - bulks
   - tags
