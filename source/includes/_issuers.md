@@ -338,11 +338,11 @@ Retrieves a list of Issuers associate with search.
 
 Arguments | Type | Description
 --------- | -----------
-**query** | `string` | What you want to search, like **name** or **account_number**.
-filters | `string` | In search you can use filters for more accurate search.
-active | `boolean` | Active issuer are also listed.
-verified | `boolean` | Verified issuer are also listed.
-blacklisted | `boolean` | Blacklisted are also listed.
+**query** | `string` | What you want to search, like **name** or **account_number**
+filters | `string` | Use filters for more accurate results
+active | `boolean` | Active issuer are also listed
+verified | `boolean` | Verified issuer are also listed
+blacklisted | `boolean` | Blacklisted are also listed
 
 ### Active, Verified & Blacklisted
 
