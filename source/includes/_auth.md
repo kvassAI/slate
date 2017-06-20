@@ -17,13 +17,13 @@ Our API supports multiple login mechanisms such as the following:
 
 [Here](https://auth0.com/docs/identityproviders) is a full list of Auth0 supported integrations and [here](https://auth0.com/docs/quickstart/native)  you can see a guide on how to implement Auth0 with iOS, Android, Ionic, etc. 
 
-In order to authorize a user on the API side, we use [JWT tokens](https://jwt.io/). These have to be added to all requests using the following header:
+To authorize a user on the API side, we use [JWT tokens](https://jwt.io/). These have to be added to all requests using the following header:
 
 `Authorization: Bearer <jwt>`
 
 ## How-to 
 
-In order to authorize with our APIs, there's just a couple of things you need to do, after we provide you with the necessary configuration settings:
+There are just a couple of things you need to do to authorize with our APIs after we provide you with the necessary configuration settings:
 
 1. Install your favourite OAuth2 SDK:
   * [Android](https://github.com/wuman/android-oauth-client)
@@ -32,12 +32,12 @@ In order to authorize with our APIs, there's just a couple of things you need to
   * [React Native](https://www.npmjs.com/package/react-native-oauth)
   * Manual - you can also use no SDK and just implement a typical OAuth2 flow
 2. Configure the SDK with the settings given by us
-3. Perform the authentication request which will return you a JWT and a profile
+3. Perform the authentication request, which will return you a JWT and a profile
 4. Create or authenticate your user with our API - `POST /v2/users`
 
 After this flow, you should use the JWT provided for all other API calls.
 
-OAuth2 is a standard for authorization, so if you need more information on how to use/implement it, you can find various resources online, but here are a few good starting points:
+OAuth2 is a standard for authorization, so if you need more information on how to use/implement it, you can find various resources online. However, here are a few good starting points:
 
 * [OAuth2 Spec - RFC6749](https://tools.ietf.org/html/rfc6749)
 * [OAuth Bible](http://oauthbible.com/)
