@@ -197,7 +197,7 @@ first_name | First name of the User
 last_name | Last name of the User
 email | E-mail of the User
 mobile_phone_number | Phone number of the User
-billing_address | Billing Address of User
+billing_address | Billing Address of the User
 bio | Biographic note about the User
 tags | List of Tags associated with User
 
@@ -304,13 +304,13 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all Users beloging to some Company.
+Retrieves a list of all Users belonging to a Company.
 
 Argument | Description
 ---------- | -------
-size | number of items to retrieve
-page | which page to retrieve. _default page size is 10_
-order_by | field used for sorting results
+size | Number of items to retrieve
+page | Which page to retrieve. _Default page size is 10_
+order_by | Field used for sorting results
 
 
 ## Search User
@@ -366,7 +366,7 @@ Argument | Description
 ---------- | -------
 query | Query to use for searching
 size | Number of items to retrieve
-page | Which page to retrieve. _default page size is 10_
+page | Which page to retrieve. _Default page size is 10_
 
 
 ## List all Orders for a User
@@ -392,7 +392,7 @@ Retrieves a list of all Orders associated with a given User.
 
 Argument | Description
 ---------- | -------
-user-id | ID of the user to retrieve Orders from
-size | number of items to retrieve
-page | which page to retrieve. _default page size is 10_
-order_by | field used for sorting results
+user-id | ID of the User to retrieve Orders from
+size | Number of items to retrieve
+page | Which page to retrieve. _default page size is 10_
+order_by | Field used for sorting results
