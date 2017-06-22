@@ -10,7 +10,7 @@ modified | `boolean` | The date the Product was last updated.
 deleted | `boolean` | Flag that set Product object to deleted.
 name | `string` | The name of the Product.
 price | `float` | The price of the Product.
-currency |  `string` | Currency (NOK, EUR, ...) ISO 4217
+currency |  `string` | Currency (NOK, EUR, ...) ISO 4217.
 description | `string` | A full description of the Product.
 short_description | `string` | A brief description of the Product.
 main_product | `boolean` | Flag that marks whether or not it is a main Product.
