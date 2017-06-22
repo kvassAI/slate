@@ -13,7 +13,7 @@ price | `float` | The price of the Product.
 currency |  `string` | Currency (NOK, EUR, ...) ISO 4217.
 description | `string` | A full description of the Product.
 short_description | `string` | A brief description of the Product.
-main_product | `boolean` | Flag that marks whether or not it is a main Product.
+main_product | `boolean` | Flag that marks whether or not it is a main Product._
 _sub_products | `list` | A list of sub products under the main Product.
 parents | `list` | The sub product parent, overhead Product.
 default_position | `geoPoint` | The geo position for the Product.
@@ -251,7 +251,7 @@ Retrieves a list of all Products.
 Arguments | Type | Description
 --------- | ---- | -----------
 size | `int` | Number of items to retrieve.
-page | `int` | Which page to retrieve. _default page size is 50_
+page | `int` | Which page to retrieve. _default page size is 50._
 include_deleted| `boolean` | If `true`, deleted products are also listed.
 sorting | `string` | Field used for sorting results.
 lat | `float` | Define the latitude.
