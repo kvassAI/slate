@@ -6,16 +6,16 @@ User is the class that holds all the CRUD functions for your customers and is th
 
 Attributes | Description
 ---------- | -------
-first_name | First name of the User
-last_name | Last name of the User
-email | E-mail of the User
-mobile_phone_number | Phone number of the User
-addresses | List of Addresses belonging to User
-billing_address | Billing Address of User
-bio | Biographic note about the User
-tags | List of Tags associated with User
-roles | List of Roles associated with User
-deleted | Flag that sets User object to deleted
+first_name | First name of the User.
+last_name | Last name of the User.
+email | E-mail of the User.
+mobile_phone_number | Phone number of the User.
+addresses | List of Addresses belonging to User.
+billing_address | Billing Address of User.
+bio | Biographic note about the User.
+tags | List of Tags associated with User.
+roles | List of Roles associated with User.
+deleted | Flag that sets User object to deleted.
 
 ## Create a User
 
@@ -76,13 +76,13 @@ Creates a new User.
 
 Argument | Description
 ---------- | -------
-first_name | First name of the User
-last_name | Last name of the User
-email | E-mail of the User
-mobile_phone_number | Phone number of the User
-billing_address | Billing Address of User
-bio | Biographic note about the User
-tags | List of Tags associated with User
+first_name | First name of the User.
+last_name | Last name of the User.
+email | E-mail of the User.
+mobile_phone_number | Phone number of the User.
+billing_address | Billing Address of User.
+bio | Biographic note about the User.
+tags | List of Tags associated with User.
 
 
 ## Retrieve a User
@@ -192,14 +192,14 @@ Updates an existing User.
 
 Argument | Description
 ---------- | -------
-user-id | ID of the User to update
-first_name | First name of the User
-last_name | Last name of the User
-email | E-mail of the User
-mobile_phone_number | Phone number of the User
-billing_address | Billing Address of the User
-bio | Biographic note about the User
-tags | List of Tags associated with User
+user-id | ID of the User to update.
+first_name | First name of the User.
+last_name | Last name of the User.
+email | E-mail of the User.
+mobile_phone_number | Phone number of the User.
+billing_address | Billing Address of the User.
+bio | Biographic note about the User.
+tags | List of Tags associated with User.
 
 
 ## Delete a User
@@ -253,7 +253,7 @@ Deletes a User.
 
 Argument | Description
 ---------- | -------
-user-id | ID of the User to delete
+user-id | ID of the User to delete.
 
 
 ## List all Users
@@ -308,9 +308,9 @@ Retrieves a list of all Users belonging to a Company.
 
 Argument | Description
 ---------- | -------
-size | Number of items to retrieve
-page | Which page to retrieve. _Default page size is 10_
-order_by | Field used for sorting results
+size | Number of items to retrieve.
+page | Which page to retrieve. _default page size is 10_
+order_by | Field used for sorting results.
 
 
 ## Search User
@@ -364,9 +364,9 @@ Retrieves a list of Users whose first or last name match a given query.
 
 Argument | Description
 ---------- | -------
-query | Query to use for searching
-size | Number of items to retrieve
-page | Which page to retrieve. _Default page size is 10_
+query | Query to use for searching.
+size | Number of items to retrieve.
+page | Which page to retrieve. _default page size is 10_
 
 
 ## List all Orders for a User
@@ -392,7 +392,7 @@ Retrieves a list of all Orders associated with a given User.
 
 Argument | Description
 ---------- | -------
-user-id | ID of the User to retrieve Orders from
-size | Number of items to retrieve
+user-id | ID of the User to retrieve Orders from.
+size | Number of items to retrieve.
 page | Which page to retrieve. _default page size is 10_
-order_by | Field used for sorting results
+order_by | Field used for sorting results.
