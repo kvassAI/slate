@@ -1,6 +1,6 @@
 # Users
 
-Users are your typical Customer.
+User is the class that holds all the CRUD functions for your customers and is the parent class to Provider.  
 
 ## User object
 
