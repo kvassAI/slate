@@ -1,6 +1,6 @@
 # Providers
 
-Provider is a child class of [`User`](#users); An User that provides a
+Provider is a child class of [`User`](#users). They are Users that provide a
 service to another User.
 
 ## Provider object
@@ -8,15 +8,15 @@ service to another User.
 Attributes | Type | Description
 ---------- | ---- | -------
 max_travel_time | `float` | The maximum time of travel. _default 1.0_
-max_travel_meters | `float` | The maximum range of travel _default 10000.0_
-default_position | `geoPoint` | The Provider's position by default
+max_travel_meters | `float` | The maximum range of travel. _default 10000.0_
+default_position | `geoPoint` | The Provider's position by default.
 default_address | `address` | The Provider's address by default. _default lambda: Address_
 schedule | `schedule` | The Provider's schedule. _default lambda: Schedule_
 orders | `list` | List of [`Orders`](#orders)
 products | `list` | List of [`Products`](#products) of Provider. _default lambda: []_
 available_on_bank_holidays | `boolean` | _default `false`_
 country | `string` | The Provider's country. _default `NOR`_
-roles | `list` | Define the rolls that a Provider can have. _default ["provider"]_
+roles | `list` | Define the roles that a Provider can have. _default ["provider"]_
 
 ## Add a new Provider
 
@@ -130,12 +130,12 @@ Creates a new Provider.
 
 Argument | Type | Description
 ---------- | ---- | -------
-first_name | `string` | First name of the Provider
-last_name | `string` | Last name of the Provider
-email | `string` | E-mail of the Provider
-mobile_phone_number |  `string` | Phone number of the Provider
-billing_address | `string` | Billing Address of Provider
-bio | `string` | Biographic note about the Provider
+first_name | `string` | First name of the Provider.
+last_name | `string` | Last name of the Provider.
+email | `string` | E-mail of the Provider.
+mobile_phone_number |  `string` | Phone number of the Provider.
+billing_address | `string` | Billing Address of Provider.
+bio | `string` | Biographic note about the Provider.
 
 
 ## Retrieve a Provider
@@ -243,7 +243,7 @@ Retrieves the Provider with a given ID
 
 Arguments | Type | Description
 --------- | ---- | ------
-**provider_id** | `string` | ID of the queried Provider
+**provider_id** | `string` | ID of the queried Provider.
 
 ## List all Providers
 

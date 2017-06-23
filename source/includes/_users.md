@@ -1,21 +1,21 @@
 # Users
 
-Users are your typical Customer.
+User is the class that holds all the CRUD functions for your customers and is the parent class to Provider.  
 
 ## User object
 
 Attributes | Type | Description
 ---------- | ---- | -----
-first_name | `string` | First name of the User
-last_name | `string` | Last name of the User
-email | `string` | E-mail of the User
-mobile_phone_number | `string` | Phone number of the User
-addresses | `list` [`Address`](#address) | List of Addresses belonging to User
-billing_address | [`Address`](#address) | Billing Address of User
-bio | `string` | Biographic note about the User
-tags | `string` | List of Tags associated with User
-roles | `string` | List of Roles associated with User. _default `user`_
-deleted | `boolean` | Flag that sets User object to deleted
+first_name | `string` | First name of the User.
+last_name | `string` | Last name of the User.
+email | `string` | E-mail of the User.
+mobile_phone_number | `string` | Phone number of the User.
+addresses | `list` [`Address`](#address) | List of Addresses belonging to User.
+billing_address | [`Address`](#address) | Billing Address of User.
+bio | `string` | Biographic note about the User.
+tags | `string` | List of Tags associated with User.
+roles | `string` | List of Roles associated with User.
+deleted | `boolean` | Flag that sets User object to deleted.
 
 ## Create a User
 
@@ -82,13 +82,13 @@ Creates a new User.
 
 Argument | Type | Description
 -------- | ---- | -----
-first_name | `string` | First name of the User
-last_name | `string` | Last name of the User
-email | `string` | E-mail of the User
-mobile_phone_number | `string` | Phone number of the User
-billing_address | [`Address`](#address) | Billing Address of User
-bio | `string` | Biographic note about the User
-tags | `string` | List of Tags associated with User
+first_name | `string` | First name of the User.
+last_name | `string` | Last name of the User.
+email | `string` | E-mail of the User.
+mobile_phone_number | `string` | Phone number of the User.
+billing_address | [`Address`](#address) | Billing Address of User.
+bio | `string` | Biographic note about the User.
+tags | `string` | List of Tags associated with User.
 
 
 ## Retrieve a User
@@ -210,14 +210,14 @@ Updates an existing User.
 
 Argument | Type | Description
 -------- | ---- | ------
-**user_id** | `string` | ID of the User to update
-first_name | `string` | First name of the User
-last_name | `string` | Last name of the User
-email | `string` | E-mail of the User
-mobile_phone_number | `string` | Phone number of the User
-billing_address | [`Address`](#address) | Billing Address of User
-bio | `string` | Biographic note about the User
-tags | `string` | List of Tags associated with User
+**user_id** | `string` | ID of the User to update.
+first_name | `string` | First name of the User.
+last_name | `string` | Last name of the User.
+email | `string` | E-mail of the User.
+mobile_phone_number | `string` | Phone number of the User.
+billing_address | [`Address`](#address) | Billing Address of the User.
+bio | `string` | Biographic note about the User.
+tags | `string` | List of Tags associated with User.
 
 
 ## Delete a User
@@ -277,7 +277,7 @@ Deletes a User.
 
 Argument | Type | Description
 -------- | ---- | -------
-**user_id** | `string` | ID of the User to delete
+**user_id** | `string` | ID of the User to delete.
 
 
 ## List all Users
@@ -338,9 +338,9 @@ Retrieves a list of all Users be logging to some Company.
 
 Argument | Type | Description
 -------- | ---- | -------
-size | `int` | number of items to retrieve. _default size is 50_
-page | `int` | which page to retrieve. _default page 0_
-order_by | `string` | field used for sorting results. _default is `last_name`_
+size | `int` | Number of items to retrieve. _default size is 50_
+page | `int` | Which page to retrieve. _default page 0_
+order_by | `string` | Field used for sorting results. _default is `last_name`_
 
 
 ## Search User
@@ -400,9 +400,9 @@ Retrieves a list of Users whose first or last name match a given query.
 
 Argument | Type | Description
 -------- | ---- | -----
-query | `string` | Query to use for searching
-size | `int` | Number of items to retrieve _default is 10_
-page | `int` | Which page to retrieve _default is 0_
+query | `string` | Query to use for searching.
+size | `int` | Number of items to retrieve. _default is 10_
+page | `int` | Which page to retrieve. _default is 0_
 
 
 ## List all Orders for a User
@@ -428,10 +428,10 @@ Retrieves a list of all Orders associated with a given User.
 
 Arguments | Type | Description
 -------- | ----- | -----
-**user_id** | `string` | ID of the user to retrieve Orders from
-size | `int` | number of items to retrieve. _default is 10_
-page | `int` | which page to retrieve. _default is 0_
-order_by | `string` | field used for sorting results. _default `created`_
+**user_id** | `string` | ID of the user to retrieve Orders from.
+size | `int` | Number of items to retrieve.
+page | `int` | Which page to retrieve. _default page size is 10_
+order_by | `string` | Field used for sorting results. _default `created`_
 from_date | `timestamp` | Start date. _default now minus 15 days_
 to_date | `timestamp` | End date._default now plus 15 days_
 date_filter | `string` | Date field used for filter results. _default `created`_
@@ -465,4 +465,4 @@ CANCELLED | Delivery cancelled
 DONE | Delivery is done
 UNKNOWN | Delivery status is unknown
 QUEUED | Delivery is in queue
-    
+
