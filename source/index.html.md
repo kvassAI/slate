@@ -14,16 +14,20 @@ includes:
   - users
   - providers
   - products
-  - bulks
   - orders
-  - tags
-  - campaigns
   - invoices
   - issuers
   - payment_methods
   - payments
   - address
+  - plans
+  - subscriptions
   - phone_nr_verification
+  - bulks
+  - tags
+  - campaigns
+
+
 
 
 search: true

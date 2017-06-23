@@ -20,13 +20,18 @@ roles | `list` | Define the roles that a Provider can have. _default ["provider"
 
 ## Add a new Provider
 
+> Definition
+
+POST https://api.shareactor.io/providers
+
+> Example request:
+
 ``` http
 POST /providers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
-
 
 {
     "first_name": "John",
@@ -47,7 +52,7 @@ Content-Type: application/json
       "$date":1495195975641
    },
    "_id":{
-      "$oid":"591ee147d57ba28fbe0a3892"
+      "$oid":"57ee9c72d76d431f85111432"
    },
    "default_address":{
       "service":"google",
@@ -64,7 +69,7 @@ Content-Type: application/json
    "email":"john@email.com",
    "voucher":{
       "consumed":0,
-      "uuid":"268e9da1-b7e5-4111-bb6a-7cee6d58c740",
+      "uuid":"0000aaaa-aaaa-0000-aaaa-aaaa0000aa00",
       "created":{
          "$date":1495195975643
       },
@@ -74,9 +79,7 @@ Content-Type: application/json
       "initial_quantity":0
    },
    "last_name":"Doe",
-   "addresses":[
-
-   ],
+   "addresses":[],
    "note":"",
    "schedule":{
       "day_of_week":[
@@ -91,48 +94,11 @@ Content-Type: application/json
             "end_minute":0,
             "start_hour":0,
             "start_minute":0,
-            "day_of_week":1,
-            "end_hour":0
-         },
-         {
-            "end_minute":0,
-            "start_hour":0,
-            "start_minute":0,
-            "day_of_week":2,
-            "end_hour":0
-         },
-         {
-            "end_minute":0,
-            "start_hour":0,
-            "start_minute":0,
-            "day_of_week":3,
-            "end_hour":0
-         },
-         {
-            "end_minute":0,
-            "start_hour":0,
-            "start_minute":0,
-            "day_of_week":4,
-            "end_hour":0
-         },
-         {
-            "end_minute":0,
-            "start_hour":0,
-            "start_minute":0,
             "day_of_week":5,
-            "end_hour":0
-         },
-         {
-            "end_minute":0,
-            "start_hour":0,
-            "start_minute":0,
-            "day_of_week":6,
             "end_hour":0
          }
       ],
-      "working_sections":[
-
-      ],
+      "working_sections":[],
       "valid_from":{
          "$date":1495195200000
       }
@@ -144,24 +110,18 @@ Content-Type: application/json
       "alias":""
    },
    "mobile_phone_number":"+4712345678",
-   "orders":[
-
-   ],
+   "orders":[],
    "modified":{
       "$date":1495195975643
    },
    "max_travel_time":1.0,
    "company":{
-      "$oid":"591ee147d57ba28fbe0a3883"
+      "$oid":"57ee9c71d76d431f8511142f"
    },
-   "products":[
-
-   ],
+   "products":[],
    "active":true,
    "available_on_bank_holidays":false,
-   "tags":[
-
-   ],
+   "tags":[],
    "_cls":"User.Provider"
 }
 ```
@@ -183,13 +143,13 @@ bio | `string` | Biographic note about the Provider.
 > Definition
 
 ```
-GET https://api.shareactor.io/providers
+GET https://api.shareactor.io/providers/<provider_id>
 ```
 
 > Example request:
 
 ``` http
-GET /providers/<providerid> HTTP/1.1
+GET /providers/<provider_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -204,7 +164,7 @@ Content-Type: application/json
    "first_name":"John",
    "email":"john@email.com",
    "_id":{  
-      "$oid":"57f14227d76d43264a70c95d"
+      "$oid":"591ee147d57ba28fbe0a3892"
    },
    "auth0_id":"",
    "tags":[  
@@ -245,41 +205,6 @@ Content-Type: application/json
             "end_minute":30,
             "start_minute":30,
             "start_hour":8
-         },
-         {  
-            "end_hour":18,
-            "day_of_week":2,
-            "end_minute":30,
-            "start_minute":30,
-            "start_hour":8
-         },
-         {  
-            "end_hour":18,
-            "day_of_week":3,
-            "end_minute":30,
-            "start_minute":30,
-            "start_hour":8
-         },
-         {  
-            "end_hour":18,
-            "day_of_week":4,
-            "end_minute":30,
-            "start_minute":30,
-            "start_hour":8
-         },
-         {  
-            "end_hour":18,
-            "day_of_week":5,
-            "end_minute":30,
-            "start_minute":30,
-            "start_hour":8
-         },
-         {  
-            "end_hour":18,
-            "day_of_week":6,
-            "end_minute":30,
-            "start_minute":30,
-            "start_hour":8
          }
       ],
       "valid_from":{  
@@ -289,7 +214,7 @@ Content-Type: application/json
    },
    "max_travel_meters":10000.0,
    "country":"NOR",
-   "last_name":"Iversen",
+   "last_name":"Doe",
    "_cls":"User.Provider",
    "billing_address":{  
       "service":"google",
@@ -304,7 +229,7 @@ Content-Type: application/json
       "$date":1493962078526
    },
    "company":{  
-      "$oid":"590c0d5eb70e2a13944ad508"
+      "$oid":"57ee9c71d76d431f8511142f"
    },
    "deleted":false,
    "roles":[  
@@ -347,7 +272,7 @@ Content-Type: application/json
        "first_name":"John",
        "email":"john@email.com",
        "_id":{  
-          "$oid":"57f14227d76d43264a70c95d"
+          "$oid":"591ee147d57ba28fbe0a3892"
        },
        "auth0_id":"",
        "tags":[  
@@ -388,41 +313,6 @@ Content-Type: application/json
                 "end_minute":30,
                 "start_minute":30,
                 "start_hour":8
-             },
-             {  
-                "end_hour":18,
-                "day_of_week":2,
-                "end_minute":30,
-                "start_minute":30,
-                "start_hour":8
-             },
-             {  
-                "end_hour":18,
-                "day_of_week":3,
-                "end_minute":30,
-                "start_minute":30,
-                "start_hour":8
-             },
-             {  
-                "end_hour":18,
-                "day_of_week":4,
-                "end_minute":30,
-                "start_minute":30,
-                "start_hour":8
-             },
-             {  
-                "end_hour":18,
-                "day_of_week":5,
-                "end_minute":30,
-                "start_minute":30,
-                "start_hour":8
-             },
-             {  
-                "end_hour":18,
-                "day_of_week":6,
-                "end_minute":30,
-                "start_minute":30,
-                "start_hour":8
              }
           ],
           "valid_from":{  
@@ -432,7 +322,7 @@ Content-Type: application/json
        },
        "max_travel_meters":10000.0,
        "country":"NOR",
-       "last_name":"Iversen",
+       "last_name":"Doe",
        "_cls":"User.Provider",
        "billing_address":{  
           "service":"google",
@@ -447,7 +337,7 @@ Content-Type: application/json
           "$date":1493962078526
        },
        "company":{  
-          "$oid":"590c0d5eb70e2a13944ad508"
+          "$oid":"57ee9c71d76d431f8511142f"
        },
        "deleted":false,
        "roles":[  

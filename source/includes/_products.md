@@ -69,7 +69,7 @@ Content-Type: application/json
       -1
    ],
    "_cls":"Product",
-   "description":"zuuped prod",
+   "description":"",
    "modified":{  
       "$date":1492777046369
    },
@@ -81,7 +81,7 @@ Content-Type: application/json
    "tags":[],
    "vat":15.0,
    "company":{  
-      "$oid":"58f9f856b70e2a56c4a0db37"
+      "$oid":"57ee9c71d76d431f8511142f"
    },
    "deleted":false,
    "company_take":-1.0,
@@ -142,7 +142,9 @@ Content-Type: application/json
    "_cls":"Product",
    "parents":[],
    "tags":[  
-      "fuzz"
+      "fuzz",
+      "Foo",
+      "Bar"
    ],
    "price":3.14,
    "_sub_products":[],
@@ -161,13 +163,13 @@ Content-Type: application/json
       "$date":1492781492461
    },
    "company":{  
-      "$oid":"58fa09b4b70e2a4d743fdac2"
+      "$oid":"57ee9c71d76d431f8511142f"
    },
    "currency":"NOK",
    "path":"/",
    "main_product":true,
    "_id":{  
-      "$oid":"58fa09b4b70e2a4d743fdac4"
+      "$oid":"58f9f856b70e2a56c4a0db3d"
    },
    "business_rules":[],
    "default_position":[  
@@ -213,14 +215,14 @@ Content-Type: application/json
          "charge_id":"ch_1ADY0SEeeXxFpLJti58RcN7w"
       },
       "user":{  
-         "$oid":"59033056b70e2a1e086d5218"
+         "$oid":"57ee9c72d76d431f85111432"
       },
       "subject":{  
          "_cls":"Invoice",
-         "_ref":"59033056b70e2a1e086d521b"
+         "_ref":"57ee9c72d76d431f85111434"
       },
       "company":{  
-         "$oid":"5903304cb70e2a1e086d5213"
+         "$oid":"57ee9c71d76d431f8511142f"
       },
       "payment_date":{  
          "$date":1493381731652
@@ -230,14 +232,14 @@ Content-Type: application/json
          "$date":1493381732307
       },
       "_id":{  
-         "$oid":"59033265b70e2a1e086d521f"
+         "$oid":"58f9f856b70e2a56c4a0db3d"
       },
       "modified":{  
          "$date":1493381746495
       },
       "human_id":"VPXXN7",
       "payment_method":{  
-         "$oid":"59033058b70e2a1e086d521c"
+         "$oid":"<payment_method_id>"
       },
       "current_state":"succeeded",
       "deleted":false,
