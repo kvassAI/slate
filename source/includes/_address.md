@@ -19,8 +19,8 @@ service_address_id  | `string` |
 
 Possibilities |
 -------------
-google
-pca
+google |
+pca |
 
 ## Retrieves an Address
 
@@ -41,7 +41,7 @@ Host: api.shareactor.io
 
 {
    "service_address_id":"ChIJR0HKYoduQUYRkho1K1zkZpA",
-   "alias":",
+   "alias":"",
    "country":"Norway",
    "zip_code":"0160",
    "street_name":"Tordenskiolds gate 3",

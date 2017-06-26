@@ -21,7 +21,9 @@ deleted | `boolean` | Flag that sets User object to deleted.
 
 > Definition
 
+```
 POST https://api.shareactor.io/users
+```
 
 > Example request:
 
@@ -95,7 +97,9 @@ tags | `string` | List of Tags associated with User.
 
 > Definition
 
+```
 GET https://api.shareactor.io/users/<user-id>
+```
 
 > Example request:
 
@@ -154,7 +158,9 @@ Argument | Type | Description
 
 > Definition
 
+```
 PUT https://api.shareactor.io/users/<user-id>
+```
 
 > Example request:
 
@@ -224,7 +230,9 @@ tags | `string` | List of Tags associated with User.
 
 > Definition
 
+```
 DELETE https://api.shareactor.io/users/<user-id>
+```
 
 > Example request:
 
@@ -284,7 +292,9 @@ Argument | Type | Description
 
 > Definition
 
+```
 GET https://api.shareactor.io/users
+```
 
 > Example request:
 
@@ -347,7 +357,9 @@ order_by | `string` | Field used for sorting results. _default is `last_name`_
 
 > Definition
 
+```
 GET https://api.shareactor.io/users/search
+```
 
 > Example request:
 
@@ -407,6 +419,13 @@ page | `int` | Which page to retrieve. _default is 0_
 
 ## List all Orders for a User
 
+> Definition
+
+```
+GET https://api.shareactor.io/users/<user-id>/orders
+```
+
+> Example request:
 ``` http
 GET /users/<user-id>/orders HTTP/1.1
 Content-Type: application/json

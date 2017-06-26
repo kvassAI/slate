@@ -110,7 +110,7 @@ tags | `string` | List of tags associated with product.
 default_position | `geoPoint` | Define product position. _default set to `[-1, -1]`._
 properties | `dict` | Product properties.
 max_distance | `int` | 
-provider | | [`Provider`](#provider) |
+provider | [`Provider`](#provider) |
 company_take | `float` |
 business_rules | `list` |
 slug | `list` |
