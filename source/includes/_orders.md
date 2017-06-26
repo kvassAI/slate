@@ -240,7 +240,7 @@ Content-type: application/json
             }
          ]
       },
-      "available_on_bank_holidays":False,
+      "available_on_bank_holidays":false,
       "bio":"",
       "avatar":"",
       "created":{
@@ -253,8 +253,8 @@ Content-type: application/json
       },
       "addresses":[],
       "auth0_id":"",
-      "deleted":False,
-      "active":True,
+      "deleted":false,
+      "active":true,
       "country":"NOR",
       "email":"john@email.com",
       "billing_address":{
@@ -298,17 +298,17 @@ Content-type: application/json
             },
             "tags":[],
             "max_distance":0,
-            "main_product":True,
+            "main_product":true,
             "modified":{
                "$date":1495195998969
             },
-            "deleted":False,
+            "deleted":false,
             "name":"Ivar",
             "vat":0.0,
             "company":{
                "$oid":"591ee15db70e2a10acb65362"
             },
-            "active":True,
+            "active":true,
             "_cls":"Product",
             "currency":"USD",
             "company_take":-1.0,
@@ -370,7 +370,7 @@ Content-type: application/json
       "modified":{
          "$date":1495195998670
       },
-      "deleted":False,
+      "deleted":false,
       "voucher":{
          "created":{
             "$date":1495195998667
@@ -489,7 +489,7 @@ Content-Type: application/json
                 }
              ]
           },
-          "available_on_bank_holidays":False,
+          "available_on_bank_holidays":false,
           "bio":"",
           "avatar":"",
           "created":{
@@ -502,8 +502,8 @@ Content-Type: application/json
           },
           "addresses":[],
           "auth0_id":"",
-          "deleted":False,
-          "active":True,
+          "deleted":false,
+          "active":true,
           "country":"NOR",
           "email":"john@email.com",
           "billing_address":{
@@ -547,17 +547,17 @@ Content-Type: application/json
                 },
                 "tags":[],
                 "max_distance":0,
-                "main_product":True,
+                "main_product":true,
                 "modified":{
                    "$date":1495195998969
                 },
-                "deleted":False,
+                "deleted":false,
                 "name":"Ivar",
                 "vat":0.0,
                 "company":{
                    "$oid":"591ee15db70e2a10acb65362"
                 },
-                "active":True,
+                "active":true,
                 "_cls":"Product",
                 "currency":"USD",
                 "company_take":-1.0,
@@ -619,7 +619,7 @@ Content-Type: application/json
           "modified":{
              "$date":1495195998670
           },
-          "deleted":False,
+          "deleted":false,
           "voucher":{
              "created":{
                 "$date":1495195998667
