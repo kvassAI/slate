@@ -10,7 +10,7 @@ first_name | `string` | First name of the User.
 last_name | `string` | Last name of the User.
 email | `string` | E-mail of the User.
 mobile_phone_number | `string` | Phone number of the User.
-addresses | `list` [`Address`](#address) | List of Addresses belonging to User.
+addresses | `array` [`Address`](#address) | List of Addresses belonging to User.
 billing_address | [`Address`](#address) | Billing Address of User.
 bio | `string` | Biographic note about the User.
 tags | `string` | List of Tags associated with User.
@@ -338,8 +338,8 @@ Retrieves a list of all Users be logging to some Company.
 
 Argument | Type | Description
 -------- | ---- | -------
-size | `int` | Number of items to retrieve. _default size is 50_
-page | `int` | Which page to retrieve. _default page 0_
+size | `integer` | Number of items to retrieve. _default size is 50_
+page | `integer` | Which page to retrieve. _default page 0_
 order_by | `string` | Field used for sorting results. _default is `last_name`_
 
 
@@ -401,8 +401,8 @@ Retrieves a list of Users whose first or last name match a given query.
 Argument | Type | Description
 -------- | ---- | -----
 query | `string` | Query to use for searching.
-size | `int` | Number of items to retrieve. _default is 10_
-page | `int` | Which page to retrieve. _default is 0_
+size | `integer` | Number of items to retrieve. _default is 10_
+page | `integer` | Which page to retrieve. _default is 0_
 
 
 ## List all Orders for a User
@@ -429,11 +429,11 @@ Retrieves a list of all Orders associated with a given User.
 Arguments | Type | Description
 -------- | ----- | -----
 **user_id** | `string` | ID of the user to retrieve Orders from.
-size | `int` | Number of items to retrieve.
-page | `int` | Which page to retrieve. _default page size is 10_
+size | `integer` | Number of items to retrieve.
+page | `integer` | Which page to retrieve. _default page size is 10_
 order_by | `string` | Field used for sorting results. _default `created`_
-from_date | `timestamp` | Start date. _default now minus 15 days_
-to_date | `timestamp` | End date._default now plus 15 days_
+from_date | `integer` | Start date on `timestamp` format. _default now minus 15 days_
+to_date | `integer` | End date on `timestamp` format._default now plus 15 days_
 date_filter | `string` | Date field used for filter results. _default `created`_
 order_status | `string` | Order with specific status are also listed. The value accept comma like separator, e.q: 'success, processing'
 delivery_status | `string` | Order with specific delivery status are also listed. The value accept comma like separator, e.q: 'assigning, done, created'
