@@ -8,13 +8,13 @@ The user has a `default_payment_method` which can be updated in the user object.
 
 A payment method object varies according to the system, however there are some fields which will always be present.
 
-Attributes | Description
----------- | -------
-**user** | User associated with Payment Method
-**method** | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`
-**name** | Name of the Payment Method - to be shown to final customer, if needed
-created| Date and time the user created the payment method was created
-updated | Date and time the user last updated the payment method
+Attributes | Type | Description
+---------- | ---- | ------
+**user** | `object` | User associated with Payment Method
+**method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`
+**name** | `string` | Name of the Payment Method - to be shown to final customer, if needed
+created | `integer` | Date and time the user created the payment method was created, `timestamp` format
+updated | `integer` | Date and time the user last updated the payment method, `timestamp` format
 
 
 ## DIBS
@@ -82,19 +82,19 @@ Content-Type: application/json
 }
 ```
 
-Attribute | Description
----------- | -------
-**payment_method** | must be "dibs" for triggering a DIBS payment method
-**merchant** | merchant id of company
-**transact** | id of card (ticket)
-**orderid** | unique order id
-**share-authorization-header** | JWT used by user
-**share-api-key-header** | Bearer token used for API access
-cardnomask | "XXXXXXXXXXXX1234"
-cardprefix | first 5 numbers of the card (for type check: VISA, MasterCard, etc.)
-paytype | type of credit card: MC, VISA, etc.
-expdate | expiry date
-cardholder_name | Card holder's name
+Attribute | Type | Description
+---------- | ---- | ------
+**payment_method** | `string` | must be "dibs" for triggering a DIBS payment method
+**merchant** | `string` | merchant id of company
+**transact** | `object` | id of card (ticket)
+**orderid** | `object` | unique order id
+**share-authorization-header** | `` | JWT used by user
+**share-api-key-header** | `` | Bearer token used for API access
+cardnomask | `` | "XXXXXXXXXXXX1234"
+cardprefix | `` | first 5 numbers of the card (for type check: VISA, MasterCard, etc.)
+paytype | `` | type of credit card: MC, VISA, etc.
+expdate | `` | expiry date
+cardholder_name | `` | Card holder's name
 
 ## Paypal
 
