@@ -5,17 +5,13 @@
 
 Attributes | Type | Description
 ---------- | ---- | -------
-created | `integer` | The date the Issuer was generated, `timestamp` format
-updated | `integer` | The date the Issuer was last updated, `timestamp` format
-active | `boolean` | Flag that sets Issuer object to active.
-deleted | `boolean` | Flag that set Issuer object to deleted.
-verified | `boolean` | Flag that set Issuer object to verified. Changes to true after AML check up.
-blacklisted | `boolean` | Flag that set Issuer object to blacklisted. `false` if AML status is either `Potential Match`, `true Positive` or `true Positive`. `true` if AML status value is either `No Match`, `false Positive` or `true Positive - Reject`.
+**verified** | `boolean` | Flag that set Issuer object to verified. Changes to true after AML check up.
+**blacklisted** | `boolean` | Flag that set Issuer object to blacklisted. `false` if AML status is either `Potential Match`, `true Positive` or `true Positive`. `true` if AML status value is either `No Match`, `false Positive` or `true Positive - Reject`.
 comments | `string` | Comments used for add a comment about Issuer.
 account_number | `string` | Account number to Issuer. Used when handling Invoice's
 name | `string` | Name of Issuer
 logo_url | `string` | Path for logo for Issuer.
-address | [`object`](#address) | Address corresponding to payment address.
+address | `object` of [`Address`](#address) | Address corresponding to payment address.
 is_message_mandatory | `boolean` | Flag that determines if `message` field is mandatory for invoices issued by this issuer.
 
 

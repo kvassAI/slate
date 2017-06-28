@@ -7,16 +7,16 @@ service to another User.
 
 Attributes | Type | Description
 ---------- | ---- | -------
-max_travel_time | `float` | The maximum time of travel. _default 1.0_
-max_travel_meters | `float` | The maximum range of travel. _default 10000.0_
-default_position | `geoPoint` | The Provider's position by default.
-default_address | `address` | The Provider's address by default. _default lambda: Address_
-schedule | `schedule` | The Provider's schedule. _default lambda: Schedule_
-orders | `list` | List of [`Orders`](#orders)
-products | `list` | List of [`Products`](#products) of Provider. _default lambda: []_
+max_travel_time | `number` | The maximum time of travel. _default 1.0_
+max_travel_meters | `number` | The maximum range of travel. _default 10000.0_
+default_position | `array` | The Provider's position by default
+default_address | `object` of [`Address`](#address) | The Provider's address by default. _default lambda: Address_
+schedule | `object` | The Provider's schedule. _default lambda: Schedule_
+orders | `array` | List of [`Orders`](#orders)
+products | `array` | List of [`Products`](#products) of Provider. _default lambda: []_
 available_on_bank_holidays | `boolean` | _default `false`_
 country | `string` | The Provider's country. _default `NOR`_
-roles | `list` | Define the roles that a Provider can have. _default ["provider"]_
+roles | `array` | Define the roles that a Provider can have. _default ["provider"]_
 
 ## Add a new Provider
 
@@ -130,8 +130,8 @@ Creates a new Provider.
 
 Argument | Type | Description
 ---------- | ---- | -------
-first_name | `string` | First name of the Provider.
-last_name | `string` | Last name of the Provider.
+**first_name** | `string` | First name of the Provider.
+**last_name** | `string` | Last name of the Provider.
 email | `string` | E-mail of the Provider.
 mobile_phone_number |  `string` | Phone number of the Provider.
 billing_address | `string` | Billing Address of Provider.
@@ -352,8 +352,8 @@ Retrieves a list of all Providers.
 
 Arguments | Type | Description
 --------- | ---- | ------
-size | `int` | Number of items to retrieve. _default is 10_
-page | `int` | Which page to retrieve. _default is 0_
+size | `integer` | Number of items to retrieve. _default is 10_
+page | `integer` | Which page to retrieve. _default is 0_
 include_deleted | `boolean` | If `true`, deleted products are also listed. _default is `false`_
-latitude | `float` | Define the latitude. _default is `none`_
-longitude | `float` | Define the longitude. _default is `none`_
+latitude | `number` | Define the latitude. _default is `none`_
+longitude | `number` | Define the longitude. _default is `none`_

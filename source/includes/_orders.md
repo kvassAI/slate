@@ -6,26 +6,24 @@ Orders are the result of a User buying a given set of Products and it's what con
 
 Attributes | Type | Description
 ---------- | ---- | -------
-**created** | `integer` | The date the Order was generated, `timestamp` format
-**modified** | `integer` | The date the Order was last modified, `timestamp` format
 **user** | `object` | User associated with Order
+**total_amount** | `number` | Amount as a Float with decimal points (`.`). Example: 10.23 NOK.
+**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+**order_status** | `string` | Status of the Order. Default is CREATED. Additionally there are: PROCESSING, SUCCESS, CANCELLED, FAILED
+**delivery_status** | `string` | Status of the Delivery. Default is PENDING. Additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE, READY_FOR_DELIVERY
 human_id | `string` | Human readable ID that identifies the Order easily
 provider | `string` | Provider assigned to Order
 items | `array` | List of Items associated with an Order
 units | `integer` | Amount of unique Items associated with the Order
 total_quantity | `integer` | Total number of Products in Order
-**total_amount** | `number` | Amount as a Float with decimal points (`.`). Example: 10.23 NOK.
-**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 top_up_amount | `number` | Extra amount to fulfill company's minimum Order value 
-delivery_time | `integer` | Time expected for delivery, `timestamp` format
-delivery_address | [`object`](#address) | Address used for delivery
+delivery_time | `object` | Time expected for delivery
+delivery_address | `object` of [`Address`](#address)| Address used for delivery
 deliveries | `array` | If the Order has multiple deliveries, this is used for storing that Delivery history
-billing_address | [`object`](#address) | Address used for billing purposes
-payments | `array` of [`object`](#payments) | List of Payment objects associated with Order
+billing_address | `object` of [`Address`](#address) | Address used for billing purposes
+payments | `array` of [`Payment`](#payments) `object` | List of Payment objects associated with Order
 note | `string` | Field used to provide extra notes between User and Provider
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there is: "SCHEDULED", "DONE", "FAILED", "CANCELLED"
-**order_status** | `string` | Status of the Order. Default is CREATED. Additionally there are: PROCESSING, SUCCESS, CANCELLED, FAILED
-**delivery_status** | `string` | Status of the Delivery. Default is PENDING. Additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE, READY_FOR_DELIVERY
 
 ## Create an Order
 
@@ -153,10 +151,10 @@ Argument | Type | Description
 -------- | ---- | -------
 **user** | `object` | Id of the User who's creating the Order
 **items** | `array` | List of Order's items
-delivery_time | `integer` | Time expected for delivery, `timestamp` format
-delivery_address | [`object`](#address) | Address used for delivery
-billing_address | [`object`](#address) | Address used for billing purposes
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+delivery_time | `integer` | Time expected for delivery, `timestamp` format
+delivery_address | `object` of [`Address`](#address) | Address used for delivery
+billing_address | `object` of [`Address`](#address) | Address used for billing purposes
 note | `string` | Field used to provide extra notes between User and Provider
 
 ## Retrieve an Order

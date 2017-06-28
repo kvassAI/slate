@@ -41,9 +41,9 @@ Content-Type: application/json
 
 Given a phone number, the API will send a verification PIN code to the User and you should store the `request_id` resulting from this call.
 
-Argument | Description
----------- | -------
-**phone_number** | Phone number of associated User
+Argument | Type | Description
+-------- | ---- | ------
+**phone_number** | `string` | Phone number of associated User
 
 ## 2. Validate PIN code and phone number
 
@@ -76,10 +76,10 @@ Using the `request_id` stored from the API call above, together with the PIN cod
 
 The validation is successful if the status code of the response is `204`.
 
-Argument | Description
----------- | -------
-**request_id** | Request id returned from API
-**code** | PIN code received by User
+Arguments | Type | Description
+--------- | ---- | ------
+**request_id** | `string` | Request id returned from API
+**code** | `string` | PIN code received by User
 
 
 

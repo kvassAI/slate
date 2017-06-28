@@ -6,20 +6,17 @@ Invoices allow you to store invoice information for later payment.
 
 Attributes | Type | Description
 ---------- | ---- | ------
-user | `object` | User associated with Invoice
-amount | `number` | Amount of invoice as a float.
-currency | `string` | ISO code of currency, for example: "EUR"
-account_number | `string` | Account number to issuer, to whom the payment of invoice is done to
+**user** | `object` | User associated with Invoice
+**amount** | `number` | Amount of invoice as a float.
+**currency** | `string` | ISO code of currency, for example: "EUR"
+**account_number** | `string` | Account number to issuer, to whom the payment of invoice is done to
+**due_date** | `object` | The due date of the invoice
+**issued_date** | `object` | The date the invoice was generated
 message | `string` | Message (KID) used for paying invoice. How it will appear in the Issuer's bank
-due_date | `integer` | The due date of the invoice, `timestamp` format
-issued_date | `integer` | The date the invoice was generated, `timestamp` format
 issuer | `object`| [Issuer](#issuers) of invoice
 issuer_alias | `string` | regardless of the issuer existing or not, the user may want to use an alias for the issuer
-deleted | `boolean` | Flag that sets Invoice object to deleted
 image_url | `string` | The url for the invoice image which is returned from the ocr
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there is: "SCHEDULED", "DONE", "FAILED", "CANCELLED"
-created| `integer` | The date and time the invoice was created, `timestamp` format
-updated | `integer` | The last time the invoice was updated, `timestamp` format
 
 
 ## Create an Invoice

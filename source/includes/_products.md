@@ -4,23 +4,19 @@
 
 Attribute | Type | Description
 --------- | ---- | -------
-active | `boolean` | Flag that sets Product object to active.
-created | `boolean` | The date the Product was generated.
-modified | `boolean` | The date the Product was last updated.
-deleted | `boolean` | Flag that set Product object to deleted.
-name | `string` | The name of the Product.
-price | `float` | The price of the Product.
-currency |  `string` | Currency (NOK, EUR, ...) ISO 4217.
-description | `string` | A full description of the Product.
-short_description | `string` | A brief description of the Product.
-main_product | `boolean` | Flag that marks whether or not it is a main Product._
-_sub_products | `list` | A list of sub products under the main Product.
-parents | `list` | The sub product parent, overhead Product.
-default_position | `geoPoint` | The geo position for the Product.
-tags | `list` | List of Tags associated with Product.
-properties | `dict` | Product properties.
-vat | `float` | The percentage of the price of the product that will be paid in addition for the VAT.
-max_distance | `int` |
+**name** | `string` | The name of the Product
+**price** | `number` | The price of the Product
+**currency** |  `string` | Currency (NOK, EUR, ...) ISO 4217
+description | `string` | A full description of the Product
+short_description | `string` | A brief description of the Product
+main_product | `boolean` | Flag that marks whether or not it is a main Product
+_sub_products | `array` | A list of sub products under the main Product
+parents | `array` | The sub product parent, overhead Product
+default_position | `array` | The geo position for the Product
+tags | `array` | List of Tags associated with Product
+properties | `object` | Product properties
+vat | `number` | The percentage of the price of the product that will be paid in addition for the VAT
+max_distance | `integer` |
 slug | `string` |
 
 ## Create a new Product
@@ -96,24 +92,24 @@ Create a new Product.
 
 Argument | Type | Description
 -------- | ---- | -------
-**name** | `string` | Name of the product.
-**price** | `float` | Price of the product.
-currency | `string` | Currency of the Product. _default set to `NOK`._
-vat | `float` | Percentage of price to be paid for VAT. _default set to `0.0`._
-description | `string` | Full description of the Product.
-short_description | `string` | Short description for the product.
-path | `string` | URL for the product. _default set to `'/'`._
-main_product | `boolean` | Flag that marks whether or not it is a main product. _default set to `True`.
-_sub_product | `list` | List of sub products under Product. _default set to `[]`._
-parents | `list` | List of main product to sub product. _default set to `[]`._
-tags | `string` | List of tags associated with product.
-default_position | `geoPoint` | Define product position. _default set to `[-1, -1]`._
-properties | `dict` | Product properties.
-max_distance | `int` | 
-provider | | [`Provider`](#provider) |
-company_take | `float` |
-business_rules | `list` |
-slug | `list` |
+**name** | `string` | Name of the product
+**price** | `number` | Price of the product
+currency | `string` | Currency of the Product. _default set to `NOK`_
+vat | `number` | Percentage of price to be paid for VAT. _default set to `0.0`_
+description | `string` | Full description of the Product
+short_description | `string` | Short description for the product
+path | `string` | URL for the product. _default set to `'/'`_
+main_product | `boolean` | Flag that marks whether or not it is a main product. _default set to `True`_
+_sub_product | `array` | List of sub products under Product. _default set to `[]`_
+parents | `array` | List of main product to sub product. _default set to `[]`_
+tags | `string` | List of tags associated with product
+default_position | `array` | Define product position. _default set to `[-1, -1]`_
+properties | `object` | Product properties
+max_distance | `integer` | 
+provider | `string` | The provider assign for the product. Use the id provider
+company_take | `number` |
+business_rules | `array` |
+slug | `array` |
 
 
 ## Retrieve a Product
@@ -252,10 +248,10 @@ Retrieves a list of all Products.
 
 Arguments | Type | Description
 --------- | ---- | -----------
-size | `int` | Number of items to retrieve.
-page | `int` | Which page to retrieve. _default page size is 50._
-include_deleted| `boolean` | If `true`, deleted products are also listed.
-sorting | `string` | Field used for sorting results.
-lat | `float` | Define the latitude.
-lng | `float` | Define the longitude.
-all | `boolean` | If `true` get all products.
+size | `integer` | Number of items to retrieve. _default is 10_
+page | `integer` | Which page to retrieve. _default is 0_
+include_deleted| `boolean` | If `true`, deleted products are also listed
+sorting | `string` | Field used for sorting results
+lat | `number` | Define the latitude
+lng | `number` | Define the longitude
+all | `boolean` | If `true` get all products

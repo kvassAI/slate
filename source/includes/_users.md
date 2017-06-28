@@ -6,8 +6,8 @@ User is the class that holds all the CRUD functions for your customers and is th
 
 Attributes | Type | Description
 ---------- | ---- | -----
-first_name | `string` | First name of the User.
-last_name | `string` | Last name of the User.
+**first_name** | `string` | First name of the User.
+**last_name** | `string` | Last name of the User.
 email | `string` | E-mail of the User.
 mobile_phone_number | `string` | Phone number of the User.
 addresses | `array` of [`object`](#address) | List of Addresses belonging to User.
@@ -15,7 +15,6 @@ billing_address | [`object`](#address) | Billing Address of User.
 bio | `string` | Biographic note about the User.
 tags | `string` | List of Tags associated with User.
 roles | `string` | List of Roles associated with User.
-deleted | `boolean` | Flag that sets User object to deleted.
 
 ## Create a User
 
