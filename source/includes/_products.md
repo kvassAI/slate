@@ -106,7 +106,7 @@ tags | `string` | List of tags associated with product
 default_position | `array` | Define product position. _default set to `[-1, -1]`_
 properties | `object` | Product properties
 max_distance | `integer` | 
-provider | `string` | The provider assign for the product. Use the id provider
+provider | `string` | The [`provider`](#providers) assign for the product. Use the id provider
 company_take | `number` |
 business_rules | `array` |
 slug | `array` |

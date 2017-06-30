@@ -22,7 +22,9 @@ roles | `array` | Define the roles that a Provider can have. _default ["provider
 
 > Definition
 
+```
 POST https://api.shareactor.io/providers
+```
 
 > Example request:
 
