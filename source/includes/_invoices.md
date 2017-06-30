@@ -6,14 +6,14 @@ Invoices allow you to store invoice information for later payment.
 
 Attributes | Type | Description
 ---------- | ---- | ------
-**user** | `object` | User associated with Invoice
+**user** | `object` | [`User`](#issuers) associated with Invoice
 **amount** | `number` | Amount of invoice as a float.
 **currency** | `string` | ISO code of currency, for example: "EUR"
 **account_number** | `string` | Account number to issuer, to whom the payment of invoice is done to
-**due_date** | `object` | The due date of the invoice
-**issued_date** | `object` | The date the invoice was generated
+**due_date** | `object` | The due date of the invoice, `timestamp` format
+**issued_date** | `object` | The date the invoice was generated, `timestamp` format
 message | `string` | Message (KID) used for paying invoice. How it will appear in the Issuer's bank
-issuer | `object`| [Issuer](#issuers) of invoice
+issuer | `object`| [`Issuer`](#issuers) of invoice
 issuer_alias | `string` | regardless of the issuer existing or not, the user may want to use an alias for the issuer
 image_url | `string` | The url for the invoice image which is returned from the ocr
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there is: "SCHEDULED", "DONE", "FAILED", "CANCELLED"

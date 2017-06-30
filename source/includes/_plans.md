@@ -17,7 +17,7 @@ interval_unit | `string` | The frequency that the Subscription acts upon. <br> i
 interval_count | `integer`| Total umber of intervals_units
 billing_interval | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
 static | `boolean`| Defines if it is allowed to change the Plan
-items | `array` of [`Order_items`](#orders) | [`Products`](#products) Items associated in Plan. <br> The total_amount will be calculated based on the total sum of the Products.
+items | `array` | List of [`Order_items`](#orders) containing [`Products`](#products) Items associated in Plan. <br> The total_amount will be calculated based on the total sum of the Products.
 currency | `string` | ISO 4217 standard
 total_amount | `integer` | Total amount per `interval_unit`. If missing, it is the sum of Product Items
 discount | `number` | Set discount on Plan. Min 0.0, max 1.0. This will affect the total_amount

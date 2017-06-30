@@ -10,7 +10,7 @@ Attributes | Type | Description
 max_travel_time | `number` | The maximum time of travel. _default 1.0_
 max_travel_meters | `number` | The maximum range of travel. _default 10000.0_
 default_position | `array` | The Provider's position by default
-default_address | `object` of [`Address`](#address) | The Provider's address by default. _default lambda: Address_
+default_address | `object` | The Provider's [`Address`](#address) by default. _default lambda: Address_
 schedule | `object` | The Provider's schedule. _default lambda: Schedule_
 orders | `array` | List of [`Orders`](#orders)
 products | `array` | List of [`Products`](#products) of Provider. _default lambda: []_

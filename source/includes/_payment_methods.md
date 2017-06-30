@@ -10,7 +10,7 @@ A payment method object varies according to the system, however there are some f
 
 Attributes | Type | Description
 ---------- | ---- | ------
-**user** | `object` | User associated with Payment Method
+**user** | `object` | [`User`](#users) associated with Payment Method
 **method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`
 **name** | `string` | Name of the Payment Method - to be shown to final customer, if needed
 

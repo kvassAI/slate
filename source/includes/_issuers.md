@@ -11,7 +11,7 @@ comments | `string` | Comments used for add a comment about Issuer.
 account_number | `string` | Account number to Issuer. Used when handling Invoice's
 name | `string` | Name of Issuer
 logo_url | `string` | Path for logo for Issuer.
-address | `object` of [`Address`](#address) | Address corresponding to payment address.
+address | `object` | [`Address`](#address) corresponding to payment address.
 is_message_mandatory | `boolean` | Flag that determines if `message` field is mandatory for invoices issued by this issuer.
 
 
@@ -75,17 +75,13 @@ Create a new Issuer.
 
 Arguments | Type | Description
 --------- | ---- | ------
-**created** | `integer` | Created is date generated when Issuer created, `timestamp` format. _default value `now date`_
-**modified** | `integer` | Date generated when Issuer is updated, `timestamp` format. _default value `now date`_
-**active** | `boolean` | Flag that sets Issuer object to active. _default `true`_
-**deleted** | `boolean` | Flag that sets Issuer object to deleted. _default `false`_
 **verified** | `boolean` | Flag that sets Issuer object to verified. _default `false`_
 **blacklisted** | `boolean` | Flag that sets Issuer object to blacklisted. _default `false`_
 **account_number** | `string` | Account number to Issuer, must contain 11 digits.
 comments | `string` | Comments.
 name | `string` | Name of Issuer.
 logo_url | `string` | The URL of the Issuer's logo.
-address | [`object`](#address) | Address corresponding to payment address. 
+address | `object` | [`Address`](#address) corresponding to payment address. 
 is_messaging_mandatory | `boolean` | Determines if *message* field is mandatory for invoices issued by this issuer. _default value `false`_
 
 ## Retrieve an Issuer

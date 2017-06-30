@@ -6,7 +6,7 @@ Orders are the result of a User buying a given set of Products and it's what con
 
 Attributes | Type | Description
 ---------- | ---- | -------
-**user** | `object` | User associated with Order
+**user** | `object` | [`User`](#users) associated with Order
 **total_amount** | `number` | Amount as a Float with decimal points (`.`). Example: 10.23 NOK.
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 **order_status** | `string` | Status of the Order. Default is CREATED. Additionally there are: PROCESSING, SUCCESS, CANCELLED, FAILED
@@ -17,11 +17,11 @@ items | `array` | List of Items associated with an Order
 units | `integer` | Amount of unique Items associated with the Order
 total_quantity | `integer` | Total number of Products in Order
 top_up_amount | `number` | Extra amount to fulfill company's minimum Order value 
-delivery_time | `object` | Time expected for delivery
-delivery_address | `object` of [`Address`](#address)| Address used for delivery
+delivery_time | `object` | Time expected for delivery, `timestamp` format
+delivery_address | `object` | [`Address`](#address) used for delivery
 deliveries | `array` | If the Order has multiple deliveries, this is used for storing that Delivery history
-billing_address | `object` of [`Address`](#address) | Address used for billing purposes
-payments | `array` of [`Payment`](#payments) `object` | List of Payment objects associated with Order
+billing_address | `object` | [`Address`](#address) used for billing purposes
+payments | `array` | List of [`Payment`](#payments) objects associated with Order
 note | `string` | Field used to provide extra notes between User and Provider
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there is: "SCHEDULED", "DONE", "FAILED", "CANCELLED"
 
@@ -149,12 +149,12 @@ Creates a new Order.
 
 Argument | Type | Description
 -------- | ---- | -------
-**user** | `object` | Id of the User who's creating the Order
-**items** | `array` | List of Order's items
+**user** | `object` | Id of the [`User`](#address) who's creating the Order
+**items** | `array` | List of [`Order`](#orders)'s items
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 delivery_time | `integer` | Time expected for delivery, `timestamp` format
-delivery_address | `object` of [`Address`](#address) | Address used for delivery
-billing_address | `object` of [`Address`](#address) | Address used for billing purposes
+delivery_address | `object`  | [`Address`](#address) used for delivery
+billing_address | `object` | [`Address`](#address) used for billing purposes
 note | `string` | Field used to provide extra notes between User and Provider
 
 ## Retrieve an Order
