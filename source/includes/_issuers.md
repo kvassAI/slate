@@ -22,7 +22,9 @@ is_message_mandatory | `boolean` | Flag that determines if `message` field is ma
 
 > Definition
 
+````
 POST https://api.shareactor.io/issuers
+````
 
 > Example request:
 
@@ -95,7 +97,9 @@ is_messaging_mandatory | `boolean` | Determines if *message* field is mandatory 
 
 > Definition
 
+```
 GET https://api.shareactor.io/issuers/<issuer-id>
+```
 
 > Example request:
 
@@ -153,7 +157,9 @@ Argument | Type | Description
 
 > Definition
 
+```
 GET https://api.shareactor.io/issuers
+```
 
 > Example request:
 
@@ -226,7 +232,9 @@ modified | Date generated when Issuer is updated.
 
 > Definition
 
+```
 PUT https://api.shareactor.io/issuers/<issuer-id>
+```
 
 > Example request:
 
@@ -284,7 +292,9 @@ Arguments | Type | Descriptions
 
 > Definition
 
+```
 GET https://api.shareactor.io/issuers/search
+```
 
 > Example request:
 
@@ -357,7 +367,9 @@ For all `Boolean` flags it is possible to put:
 
 > Definition
 
+```
 DELETE https://api.shareactor.io/issuers/<issuer-id>
+```
 
 > Example request:
 
