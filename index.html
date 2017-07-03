@@ -99,7 +99,9 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <div class="logo-container">
+        <img src="images/logo.png" />
+      </div>
         <div class="lang-selector">
               <a href="#" data-language-name="http">http</a>
         </div>
@@ -415,8 +417,8 @@ These list API methods share a common structure, taking at least these two param
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>POST https://api.shareactor.io/users</p>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/users
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -522,8 +524,8 @@ These list API methods share a common structure, taking at least these two param
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>GET https://api.shareactor.io/users/<user-id></p>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/users/&lt;user-id&gt;
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -590,8 +592,8 @@ These list API methods share a common structure, taking at least these two param
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>PUT https://api.shareactor.io/users/<user-id></p>
+<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/users/&lt;user-id&gt;
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -697,8 +699,8 @@ These list API methods share a common structure, taking at least these two param
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>DELETE https://api.shareactor.io/users/<user-id></p>
+<pre class="highlight plaintext"><code>DELETE https://api.shareactor.io/users/&lt;user-id&gt;
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -765,8 +767,8 @@ These list API methods share a common structure, taking at least these two param
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>GET https://api.shareactor.io/users</p>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/users
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -845,8 +847,8 @@ These list API methods share a common structure, taking at least these two param
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>GET https://api.shareactor.io/users/search</p>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/users/search
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -920,12 +922,23 @@ These list API methods share a common structure, taking at least these two param
 </tbody></table>
 
 <h2 id="list-all-orders-for-a-user">List all Orders for a User</h2>
-<pre class="highlight http"><code><span class="nf">GET</span> <span class="nn">/users/&lt;user-id&gt;/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/users/&lt;user-id&gt;/orders
 </code></pre>
+
+<blockquote>
+<p>Example request:
+<code class="prettyprint">http
+GET /users/&lt;user-id&gt;/orders HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer &lt;jwt&gt;
+X-Share-Api-Key: &lt;shareactor-api-key&gt;
+Host: api.shareactor.io
+</code></p>
+</blockquote>
 <pre class="highlight http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
@@ -1153,8 +1166,8 @@ service to another User.</p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>POST https://api.shareactor.io/providers</p>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/providers
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -1800,8 +1813,8 @@ service to another User.</p>
 </tr>
 <tr>
 <td>provider</td>
-<td></td>
 <td><a href="#provider"><code class="prettyprint">Provider</code></a></td>
+<td></td>
 </tr>
 <tr>
 <td>company_take</td>
@@ -2332,7 +2345,7 @@ service to another User.</p>
             </span><span class="p">}</span><span class="w">
          </span><span class="p">]</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"available_on_bank_holidays"</span><span class="p">:</span><span class="err">False</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"available_on_bank_holidays"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
@@ -2345,8 +2358,8 @@ service to another User.</p>
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"addresses"</span><span class="p">:[],</span><span class="w">
       </span><span class="nt">"auth0_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"deleted"</span><span class="p">:</span><span class="err">False</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"active"</span><span class="p">:</span><span class="err">True</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"billing_address"</span><span class="p">:{</span><span class="w">
@@ -2390,17 +2403,17 @@ service to another User.</p>
             </span><span class="p">},</span><span class="w">
             </span><span class="nt">"tags"</span><span class="p">:[],</span><span class="w">
             </span><span class="nt">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"main_product"</span><span class="p">:</span><span class="err">True</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
                </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1495195998969</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"deleted"</span><span class="p">:</span><span class="err">False</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Ivar"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"vat"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
             </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
                </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"591ee15db70e2a10acb65362"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"active"</span><span class="p">:</span><span class="err">True</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"Product"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
@@ -2462,7 +2475,7 @@ service to another User.</p>
       </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
          </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1495195998670</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"deleted"</span><span class="p">:</span><span class="err">False</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nt">"voucher"</span><span class="p">:{</span><span class="w">
          </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
             </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1495195998667</span><span class="w">
@@ -2588,7 +2601,7 @@ service to another User.</p>
                 </span><span class="p">}</span><span class="w">
              </span><span class="p">]</span><span class="w">
           </span><span class="p">},</span><span class="w">
-          </span><span class="nt">"available_on_bank_holidays"</span><span class="p">:</span><span class="err">False</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"available_on_bank_holidays"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
           </span><span class="nt">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
           </span><span class="nt">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
           </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
@@ -2601,8 +2614,8 @@ service to another User.</p>
           </span><span class="p">},</span><span class="w">
           </span><span class="nt">"addresses"</span><span class="p">:[],</span><span class="w">
           </span><span class="nt">"auth0_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"deleted"</span><span class="p">:</span><span class="err">False</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"active"</span><span class="p">:</span><span class="err">True</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"NOR"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"billing_address"</span><span class="p">:{</span><span class="w">
@@ -2646,17 +2659,17 @@ service to another User.</p>
                 </span><span class="p">},</span><span class="w">
                 </span><span class="nt">"tags"</span><span class="p">:[],</span><span class="w">
                 </span><span class="nt">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"main_product"</span><span class="p">:</span><span class="err">True</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
                    </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1495195998969</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nt">"deleted"</span><span class="p">:</span><span class="err">False</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Ivar"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"vat"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"company"</span><span class="p">:{</span><span class="w">
                    </span><span class="nt">"$oid"</span><span class="p">:</span><span class="s2">"591ee15db70e2a10acb65362"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nt">"active"</span><span class="p">:</span><span class="err">True</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"_cls"</span><span class="p">:</span><span class="s2">"Product"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"currency"</span><span class="p">:</span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
@@ -2718,7 +2731,7 @@ service to another User.</p>
           </span><span class="nt">"modified"</span><span class="p">:{</span><span class="w">
              </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1495195998670</span><span class="w">
           </span><span class="p">},</span><span class="w">
-          </span><span class="nt">"deleted"</span><span class="p">:</span><span class="err">False</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
           </span><span class="nt">"voucher"</span><span class="p">:{</span><span class="w">
              </span><span class="nt">"created"</span><span class="p">:{</span><span class="w">
                 </span><span class="nt">"$date"</span><span class="p">:</span><span class="mi">1495195998667</span><span class="w">
@@ -3368,8 +3381,8 @@ service to another User.</p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>POST https://api.shareactor.io/issuers</p>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/issuers
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -3495,8 +3508,8 @@ service to another User.</p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>GET https://api.shareactor.io/issuers/<issuer-id></p>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/issuers/&lt;issuer-id&gt;
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -3563,8 +3576,8 @@ service to another User.</p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>GET https://api.shareactor.io/issuers</p>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/issuers
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -3681,8 +3694,8 @@ service to another User.</p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>PUT https://api.shareactor.io/issuers/<issuer-id></p>
+<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/issuers/&lt;issuer-id&gt;
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -3749,8 +3762,8 @@ service to another User.</p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>GET https://api.shareactor.io/issuers/search</p>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/issuers/search
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -3822,8 +3835,8 @@ blacklisted | <code class="prettyprint">boolean</code> | Blacklisted are also li
 <blockquote>
 <p>Definition</p>
 </blockquote>
-
-<p>DELETE https://api.shareactor.io/issuers/<issuer-id></p>
+<pre class="highlight plaintext"><code>DELETE https://api.shareactor.io/issuers/&lt;issuer-id&gt;
+</code></pre>
 
 <blockquote>
 <p>Example request:</p>
@@ -4758,10 +4771,13 @@ Content-Type: application/json
 <th>Possibilities</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>google</td>
+</tr>
+<tr>
+<td>pca</td>
+</tr>
 </tbody></table>
-
-<p>google
-pca</p>
 
 <h2 id="retrieves-an-address">Retrieves an Address</h2>
 
@@ -4782,114 +4798,114 @@ pca</p>
 
 <span class="p">{</span><span class="w">
    </span><span class="nt">"service_address_id"</span><span class="p">:</span><span class="s2">"ChIJR0HKYoduQUYRkho1K1zkZpA"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">",
-   "</span><span class="err">country</span><span class="s2">":"</span><span class="err">Norway</span><span class="s2">",
-   "</span><span class="err">zip_code</span><span class="s2">":"</span><span class="mi">0160</span><span class="s2">",
-   "</span><span class="err">street_name</span><span class="s2">":"</span><span class="err">Tordenskiolds</span><span class="w"> </span><span class="err">gate</span><span class="w"> </span><span class="mi">3</span><span class="s2">",
-   "</span><span class="err">geo</span><span class="s2">":[
-      59.9131976,
-      10.7361056
-   ],
-   "</span><span class="err">raw</span><span class="s2">":{
-      "</span><span class="err">address_components</span><span class="s2">":[
-         {
-            "</span><span class="err">types</span><span class="s2">":[
-               "</span><span class="err">street_number</span><span class="s2">"
-            ],
-            "</span><span class="err">short_name</span><span class="s2">":"</span><span class="mi">3</span><span class="s2">",
-            "</span><span class="err">long_name</span><span class="s2">":"</span><span class="mi">3</span><span class="s2">"
-         },
-         {
-            "</span><span class="err">types</span><span class="s2">":[
-               "</span><span class="err">route</span><span class="s2">"
-            ],
-            "</span><span class="err">short_name</span><span class="s2">":"</span><span class="err">Tordenskiolds</span><span class="w"> </span><span class="err">gate</span><span class="s2">",
-            "</span><span class="err">long_name</span><span class="s2">":"</span><span class="err">Tordenskiolds</span><span class="w"> </span><span class="err">gate</span><span class="s2">"
-         },
-         {
-            "</span><span class="err">types</span><span class="s2">":[
-               "</span><span class="err">political</span><span class="s2">",
-               "</span><span class="err">sublocality</span><span class="s2">",
-               "</span><span class="err">sublocality_level_</span><span class="mi">1</span><span class="s2">"
-            ],
-            "</span><span class="err">short_name</span><span class="s2">":"</span><span class="err">Sentrum</span><span class="s2">",
-            "</span><span class="err">long_name</span><span class="s2">":"</span><span class="err">Sentrum</span><span class="s2">"
-         },
-         {
-            "</span><span class="err">types</span><span class="s2">":[
-               "</span><span class="err">postal_town</span><span class="s2">"
-            ],
-            "</span><span class="err">short_name</span><span class="s2">":"</span><span class="err">Oslo</span><span class="s2">",
-            "</span><span class="err">long_name</span><span class="s2">":"</span><span class="err">Oslo</span><span class="s2">"
-         },
-         {
-            "</span><span class="err">types</span><span class="s2">":[
-               "</span><span class="err">administrative_area_level_</span><span class="mi">2</span><span class="s2">",
-               "</span><span class="err">political</span><span class="s2">"
-            ],
-            "</span><span class="err">short_name</span><span class="s2">":"</span><span class="err">Oslo</span><span class="w"> </span><span class="err">kommune</span><span class="s2">",
-            "</span><span class="err">long_name</span><span class="s2">":"</span><span class="err">Oslo</span><span class="w"> </span><span class="err">kommune</span><span class="s2">"
-         },
-         {
-            "</span><span class="err">types</span><span class="s2">":[
-               "</span><span class="err">administrative_area_level_</span><span class="mi">1</span><span class="s2">",
-               "</span><span class="err">political</span><span class="s2">"
-            ],
-            "</span><span class="err">short_name</span><span class="s2">":"</span><span class="err">Oslo</span><span class="s2">",
-            "</span><span class="err">long_name</span><span class="s2">":"</span><span class="err">Oslo</span><span class="s2">"
-         },
-         {
-            "</span><span class="err">types</span><span class="s2">":[
-               "</span><span class="err">country</span><span class="s2">",
-               "</span><span class="err">political</span><span class="s2">"
-            ],
-            "</span><span class="err">short_name</span><span class="s2">":"</span><span class="err">NO</span><span class="s2">",
-            "</span><span class="err">long_name</span><span class="s2">":"</span><span class="err">Norway</span><span class="s2">"
-         },
-         {
-            "</span><span class="err">types</span><span class="s2">":[
-               "</span><span class="err">postal_code</span><span class="s2">"
-            ],
-            "</span><span class="err">short_name</span><span class="s2">":"</span><span class="mi">0160</span><span class="s2">",
-            "</span><span class="err">long_name</span><span class="s2">":"</span><span class="mi">0160</span><span class="s2">"
-         }
-      ],
-      "</span><span class="err">formatted_address</span><span class="s2">":"</span><span class="err">Tordenskiolds</span><span class="w"> </span><span class="err">gate</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="err">0160</span><span class="w"> </span><span class="err">Oslo,</span><span class="w"> </span><span class="err">Norway</span><span class="nt">",
-      "</span><span class="err">types</span><span class="nt">":[
-         "</span><span class="err">premise</span><span class="nt">"
-      ],
-      "</span><span class="err">geometry</span><span class="nt">":{
-         "</span><span class="err">location_type</span><span class="nt">":"</span><span class="err">ROOFTOP</span><span class="nt">",
-         "</span><span class="err">location</span><span class="nt">":{
-            "</span><span class="err">lat</span><span class="nt">":59.9131976,
-            "</span><span class="err">lng</span><span class="nt">":10.7361056
-         },
-         "</span><span class="err">viewport</span><span class="nt">":{
-            "</span><span class="err">northeast</span><span class="nt">":{
-               "</span><span class="err">lat</span><span class="nt">":59.9145465802915,
-               "</span><span class="err">lng</span><span class="nt">":10.7374546302915
-            },
-            "</span><span class="err">southwest</span><span class="nt">":{
-               "</span><span class="err">lat</span><span class="nt">":59.91184861970849,
-               "</span><span class="err">lng</span><span class="nt">":10.7347566697085
-            }
-         },
-         "</span><span class="err">bounds</span><span class="nt">":{
-            "</span><span class="err">northeast</span><span class="nt">":{
-               "</span><span class="err">lat</span><span class="nt">":59.91333940000001,
-               "</span><span class="err">lng</span><span class="nt">":10.736447
-            },
-            "</span><span class="err">southwest</span><span class="nt">":{
-               "</span><span class="err">lat</span><span class="nt">":59.91305579999999,
-               "</span><span class="err">lng</span><span class="nt">":10.7357643
-            }
-         }
-      },
-      "</span><span class="err">place_id</span><span class="nt">":"</span><span class="err">ChIJR0HKYoduQUYRkho1K1zkZpA</span><span class="nt">"
-   },
-   "</span><span class="err">service</span><span class="nt">":"</span><span class="err">google</span><span class="nt">",
-   "</span><span class="err">city</span><span class="nt">":"</span><span class="err">Oslo"</span><span class="w">
-</span><span class="err">}</span><span class="w">
+   </span><span class="nt">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"Norway"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="s2">"0160"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"street_name"</span><span class="p">:</span><span class="s2">"Tordenskiolds gate 3"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"geo"</span><span class="p">:[</span><span class="w">
+      </span><span class="mf">59.9131976</span><span class="p">,</span><span class="w">
+      </span><span class="mf">10.7361056</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"raw"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"address_components"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"street_number"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"short_name"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"long_name"</span><span class="p">:</span><span class="s2">"3"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"route"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"short_name"</span><span class="p">:</span><span class="s2">"Tordenskiolds gate"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"long_name"</span><span class="p">:</span><span class="s2">"Tordenskiolds gate"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"political"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"sublocality"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"sublocality_level_1"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"short_name"</span><span class="p">:</span><span class="s2">"Sentrum"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"long_name"</span><span class="p">:</span><span class="s2">"Sentrum"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"postal_town"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"short_name"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"long_name"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"administrative_area_level_2"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"political"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"short_name"</span><span class="p">:</span><span class="s2">"Oslo kommune"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"long_name"</span><span class="p">:</span><span class="s2">"Oslo kommune"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"administrative_area_level_1"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"political"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"short_name"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"long_name"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"political"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"short_name"</span><span class="p">:</span><span class="s2">"NO"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"long_name"</span><span class="p">:</span><span class="s2">"Norway"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"postal_code"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"short_name"</span><span class="p">:</span><span class="s2">"0160"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"long_name"</span><span class="p">:</span><span class="s2">"0160"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"formatted_address"</span><span class="p">:</span><span class="s2">"Tordenskiolds gate 3, 0160 Oslo, Norway"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"types"</span><span class="p">:[</span><span class="w">
+         </span><span class="s2">"premise"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"geometry"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"location_type"</span><span class="p">:</span><span class="s2">"ROOFTOP"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"lat"</span><span class="p">:</span><span class="mf">59.9131976</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lng"</span><span class="p">:</span><span class="mf">10.7361056</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"viewport"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"northeast"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"lat"</span><span class="p">:</span><span class="mf">59.9145465802915</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"lng"</span><span class="p">:</span><span class="mf">10.7374546302915</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"southwest"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"lat"</span><span class="p">:</span><span class="mf">59.91184861970849</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"lng"</span><span class="p">:</span><span class="mf">10.7347566697085</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"bounds"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"northeast"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"lat"</span><span class="p">:</span><span class="mf">59.91333940000001</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"lng"</span><span class="p">:</span><span class="mf">10.736447</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"southwest"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"lat"</span><span class="p">:</span><span class="mf">59.91305579999999</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"lng"</span><span class="p">:</span><span class="mf">10.7357643</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"place_id"</span><span class="p">:</span><span class="s2">"ChIJR0HKYoduQUYRkho1K1zkZpA"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <table><thead>
@@ -5509,5 +5525,8 @@ Not all fields are possible to update. See fields in Argument under.</p>
           </div>
       </div>
     </div>
+    <script>
+
+    </script>
   </body>
 </html>
