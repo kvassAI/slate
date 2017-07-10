@@ -6,20 +6,17 @@ Invoices allow you to store invoice information for later payment.
 
 Attributes | Type | Description
 ---------- | ---- | ------
-user | `string` | User associated with Invoice
-amount | `float` | Amount of invoice as a float.
-currency | `string` | ISO code of currency, for example: "EUR"
-account_number | `string` | Account number to issuer, to whom the payment of invoice is done to
+**user** | `object` | [`User`](#issuers) associated with Invoice
+**amount** | `number` | Amount of invoice as a float.
+**currency** | `string` | ISO code of currency, for example: "EUR"
+**account_number** | `string` | Account number to issuer, to whom the payment of invoice is done to
+**due_date** | `object` | The due date of the invoice, `timestamp` format
+**issued_date** | `object` | The date the invoice was generated, `timestamp` format
 message | `string` | Message (KID) used for paying invoice. How it will appear in the Issuer's bank
-due_date | `timestamp` | The due date of the invoice
-issued_date | `timestamp` | The date the invoice was generated
-issuer | `string` | [Issuer](#issuers) of invoice
+issuer | `object`| [`Issuer`](#issuers) of invoice
 issuer_alias | `string` | regardless of the issuer existing or not, the user may want to use an alias for the issuer
-deleted | `boolean` | Flag that sets Invoice object to deleted
 image_url | `string` | The url for the invoice image which is returned from the ocr
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there is: "SCHEDULED", "DONE", "FAILED", "CANCELLED"
-created| `timestamp` | The date and time the invoice was created
-updated | `timestamp` | The last time the invoice was updated
 
 
 ## Create an Invoice
@@ -84,12 +81,12 @@ Creates a new Invoice.
 
 Attribute | Type | Description
 ---------- | --- | -------
-**amount** | `float` | The amount of invoice. Required field
+**amount** | `number` | The amount of invoice. Required field
 **currency** | `string` | ISO code of currency: "EUR", "USD", "NOK" etc. Required field
 **account_number** | `string` | Account number to pay invoice to. Required field
-**due_date** | `timestamp` | Due date of invoice. If missing, the due_date is today.
+**due_date** | `integer` | Due date of invoice, `timestamp` format. If missing, the due_date is today.
 image_url | `string` | The url for the invoice image
-issued_date| `timestamp` | The date the Invoice was issued. Not mandatory
+issued_date| `integer` | The date the Invoice was issued, `timestamp` format. Not mandatory
 issuer_alias| `string` | Issuer alias that User could set. Not mandatory
 message | `string` | Message of transaction. e.g. KID number
 
@@ -200,8 +197,8 @@ Retrieves a list of all Invoices associated with the user.
 
 Arguments | Type | Description
 --------- | ---- | ------
-size | `int` | number of items to retrieve
-page | `int` | which page to retrieve. _default page size is 10_
+size | `integer` | number of items to retrieve
+page | `integer` | which page to retrieve. _default page size is 10_
 order_by | `string` | field used for sorting results. If missing default is "-due_date". Could be other parameters in the Invoice model, like "-created" or "status=DONE".
 
 ## Update an invoice

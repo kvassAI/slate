@@ -8,13 +8,11 @@ The user has a `default_payment_method` which can be updated in the user object.
 
 A payment method object varies according to the system, however there are some fields which will always be present.
 
-Attributes | Description
----------- | -------
-**user** | User associated with Payment Method
-**method** | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`
-**name** | Name of the Payment Method - to be shown to final customer, if needed
-created| Date and time the user created the payment method was created
-updated | Date and time the user last updated the payment method
+Attributes | Type | Description
+---------- | ---- | ------
+**user** | `object` | [`User`](#users) associated with Payment Method
+**method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`
+**name** | `string` | Name of the Payment Method - to be shown to final customer, if needed
 
 
 ## DIBS
@@ -82,19 +80,19 @@ Content-Type: application/json
 }
 ```
 
-Attribute | Description
----------- | -------
-**payment_method** | must be "dibs" for triggering a DIBS payment method
-**merchant** | merchant id of company
-**transact** | id of card (ticket)
-**orderid** | unique order id
-**share-authorization-header** | JWT used by user
-**share-api-key-header** | Bearer token used for API access
-cardnomask | "XXXXXXXXXXXX1234"
-cardprefix | first 5 numbers of the card (for type check: VISA, MasterCard, etc.)
-paytype | type of credit card: MC, VISA, etc.
-expdate | expiry date
-cardholder_name | Card holder's name
+Attribute | Type | Description
+---------- | ---- | ------
+**payment_method** | `string` | must be "dibs" for triggering a DIBS payment method
+**merchant** | `string` | merchant id of company
+**transact** | `object` | id of card (ticket)
+**orderid** | `string` | unique order id
+**share-authorization-header** | `` | JWT used by user
+**share-api-key-header** | `` | Bearer token used for API access
+cardnomask | `string` | "XXXXXXXXXXXX1234"
+cardprefix | `string` | first 5 numbers of the card (for type check: VISA, MasterCard, etc.)
+paytype | `string` | type of credit card: MC, VISA, etc.
+expdate | `string` | expiry date
+cardholder_name | `string` | Card holder's name
 
 ## Paypal
 
@@ -155,11 +153,11 @@ Content-Type: application/json
 
 In this case, the website/app will create a Payment using their own SDK and then they send it to the API for verification and capture. The payment must be in the state: `approved` otherwise the API will return a `403` error.
 
-Attribute | Description
----------- | -------
-**payment_id** | This is the ID of the payment. A verification is ran on this Payment to see its state is "approved", otherwise an exception is raised
-**payer_id** | This is the ID of the creation of the payment, something which is associated with the company.
-**method**| `single_paypal`
+Attribute | Type | Description
+--------- | ---- | ------
+**payment_id** | `string` | This is the ID of the payment. A verification is ran on this Payment to see its state is "approved", otherwise an exception is raised
+**payer_id** | `string` | This is the ID of the creation of the payment, something which is associated with the company.
+**method**| `string` | `single_paypal`
 
 
 ## Future Payments (PayPal)
@@ -217,10 +215,10 @@ Content-Type: application/json
 
 This feature is only available for the mobile SDK and for using it, the app needs to send the API an authorization code which the API then changed for a Refresh Token which is also stored in the object. When paying for an invoice, you should also add the `PayPal-Client-Metadata-Id` header to the API `/payments` in [Payments](#payments).
 
-Attribute | Description
----------- | -------
-**code** | This is an Authorization code sent by the mobile apps to be exchanged by a Refresh Token.
-**method**| `future_paypal`
+Attribute | Type | Description
+--------- | ---- | ------
+**code** | `string` | This is an Authorization code sent by the mobile apps to be exchanged by a Refresh Token.
+**method**| `string` | `future_paypal`
 
 
 ## Retrieve a Payment Method
@@ -272,9 +270,9 @@ Content-Type: application/json
 
 Retrieves the payment method with a given ID.
 
-Argument | Description
----------- | -------
-**payment-method-id** | The payment method ID
+Attribute | Type | Description
+--------- | ---- | ------
+**payment-method-id** | `string` | The payment method ID
 
 
 ## List all Payment Methods
@@ -328,11 +326,11 @@ Content-Type: application/json
 
 Retrieves a list of all Payment Methods associated with the user.
 
-Argument | Description
----------- | -------
-size | number of items to retrieve
-page | which page to retrieve. _default page size is 10_
-order_by | field used for sorting results
+Attribute | Type | Description
+--------- | ---- | ------
+size | `integer` | number of items to retrieve
+page | `integer` | which page to retrieve. _default page size is 10_
+order_by | `string` | field used for sorting results
 
 ## Delete payment method
 

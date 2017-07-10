@@ -9,8 +9,8 @@ building | `string` | The building of Address
 zip_code | `string` | The zip code of Address
 city | `string` | The city of Address 
 country | `string` | The country of Address 
-geo | `GeoPoint` | The geo position of Address
-raw | `dynamic` | ##IDK how to describe this
+geo | `array` | The geo position of Address
+raw | `object` | All information like address, country, zip code, etc... from service
 alias | `string` | The alias of Address
 service  | `string` | The service used for Address. _default google_
 service_address_id  | `string` | 
@@ -18,7 +18,7 @@ service_address_id  | `string` |
 ### service
 
 Possibilities |
--------------
+------------- |
 google |
 pca |
 
