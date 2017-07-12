@@ -3,7 +3,7 @@
 The Subscription method enables you to charge [`Customers`](#Users) at
 specified intervals set by a [`Plan`](#Plans) of their choice.
 
-We offer a `licence` subscription. The Customers will be
+We offer a `license` subscription. The Customers will be
 charged the amount specified in the Plan, at an interval set by the
 Plan.
 
@@ -14,7 +14,7 @@ Attribute | Type | Description
 name | `string` | The name of the Subscription type
 note | `string` | A short description
 user | `object`  | [`User`](#Users) ID associated with Subscription
-method | `string`| Subscription method. For now set `licence`
+method | `string`| Subscription method. For now set `license`
 status | `string` | Status for the subscription. Default is `CREATED`. Additional: `ACTIVE`, `FUTURE`, `NON_RENEWING`, `CANCELLED`
 plan | `object` | ID of the [`Plan`](#Plans) associated with the subscription.
 payment_method | `string` | ID of already created Payment Method
@@ -51,7 +51,7 @@ Host: api.shareactor.io
 
 {
     "plan": "5931697ed57ba271c0c7de66",
-    "subscription_method": "licence"
+    "subscription_method": "license"
 }
 ```
 ``` http
@@ -79,7 +79,7 @@ Content-Type: application/json
 
 Attribute | Type | Description
 --------- | ---- | -------
-**method** | `string`| Subscription method. For now set `licence`
+**method** | `string`| Subscription method. For now set `license`
 **plan** | `string` | ID of the [`Plan`](#Plans) associated with the subscription.
 note | `string` | A short description
 prorate | `boolean` | flag telling us whether to prorate amount if </br> User stops it in the middle of a billing cycle.
