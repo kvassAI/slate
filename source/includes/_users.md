@@ -38,7 +38,16 @@ Host: api.shareactor.io
     "first_name": "John",
     "last_name": "Doe",
     "email": "john@email.com",
-    "mobile_phone_number": "+4712345678"
+    "mobile_phone_number": "+4712345678",
+    "addresses": [{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }]
   }
 }
 ```
@@ -62,7 +71,15 @@ Content-Type: application/json
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -129,7 +146,15 @@ Content-Type: application/json
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -194,7 +219,15 @@ Content-Type: application/json
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -258,11 +291,19 @@ Content-Type: application/json
   "modified":{
     "$date":1475428903951
   },
-  "first_name":"Oliver",
+  "first_name":"John",
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -325,7 +366,15 @@ Content-Type: application/json
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -389,7 +438,15 @@ Content-Type: application/json
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",

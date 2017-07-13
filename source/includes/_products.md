@@ -168,10 +168,7 @@ Content-Type: application/json
       "$oid":"58f9f856b70e2a56c4a0db3d"
    },
    "business_rules":[],
-   "default_position":[  
-      -1,
-      -1
-   ]
+   "default_position":[-1,-1]
 }
 ```
 
@@ -233,7 +230,7 @@ Content-Type: application/json
       "modified":{  
          "$date":1493381746495
       },
-      "human_id":"VPXXN7",
+      "human_id":"51Q4LN",
       "payment_method":{  
          "$oid":"<payment_method_id>"
       },
