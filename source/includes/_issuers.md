@@ -35,7 +35,7 @@ Host: api.shareactor.io
 {
     "account_number": "12345678903",
     "name": "Create_issuer",
-    "logo_url": "https://www.shareactor.io/hs-fs/hubfs/Shareactor_Dec2016_Theme/img/Shareactor_logo.png?t=1490176701994&width=200&name=Shareactor_logo.png",
+    "logo_url": "<logo-url.png>",
     "comments": "It is a comment"
 }
 ```
@@ -65,7 +65,7 @@ Content-Type: application/json
    "is_message_mandatory":false,
    "verified":false,
    "deleted":false,
-   "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png",
+   "logo_url":"<logo-url.png>",
    "account_number":"12345678903",
    "_id":{
       "$oid":"57ee9c72d76d431f85111433"
