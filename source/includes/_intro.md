@@ -44,9 +44,9 @@ Error Code | Reason | Description
 ---------- | ------- | -------
 400 | Bad Request | Your request is malformed or missing mandatory data
 401 | Unauthorized | Your API key is either wrong, missing or you have no permissions for such request
-403 | Forbidden | Because your request is not allowed, maybe you are trying to update something therefore that his current status to allow not
+403 | Forbidden | our request is trying to access data it has no credentials for
 404 | Not Found | The specified resource could not be found
-409 | Conflict | Your request can't be processed because of conflict in the request
+409 | Conflict | There was a conflict with processing your request. Try later or change the data being submitted
 500 | Internal Server Error | We had a problem with our server. Try again later
 503 | Service Unavailable | We're temporarily offline for maintenance. Please try again later
 
