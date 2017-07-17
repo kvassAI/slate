@@ -22,6 +22,7 @@ includes:
   - address
   - plans
   - subscriptions
+  - resources
   - phone_nr_verification
   - bulks
   - tags
