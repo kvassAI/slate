@@ -6,10 +6,15 @@ All responses from the API, including errors, are returned as JSON objects.
 
 The API is separated into 2 different environments: 
 
-* QA: [https://qa.shareactor.io](https://qa.shareactor.io)
-* PROD: [https://api.shareactor.io](https://api.shareactor.io)
 
-To separate the API usage for both environments, we'll issue two different API keys, one per environment.
+Environment | Endpoint
+--------- | -------
+**QA** | qa.shareactor.io
+**PROD** | api.shareactor.io
+
+Each environment has its separate API keys which you can manage through our Admin dashboard.
+
+All the example API calls are using the PROD endpoint.
 
 
 ## Authentication
@@ -23,7 +28,7 @@ Host: api.shareactor.io
 
 > Make sure to replace `<shareactor-api-key>` with your API key.
 
-ShareActor uses API keys to allow access to the API. If you want access to our APIs please get in touch through our [website](https://www.shareactor.io/contact).
+ShareActor uses API keys to allow access to the API. If you want access to our APIs please get in touch through our [website](https://www.shareactor.io/contact) or via [e-mail](mailto:hello@shareactor.io).
 
 All API requests should include this key in the headers like the following:
 
@@ -121,5 +126,5 @@ X-Pagination-Total: 212
 All top-level API resources have support for bulk fetches via "list" API methods. For instance you can list orders, users, providers, etc.
 These list API methods share a common structure, taking at least these two parameters: size and page.
 
-ShareActor uses a pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
+ShareActor uses pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
 The return of a response header contains the total count: `X-Pagination-Total: 212`
