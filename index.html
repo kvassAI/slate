@@ -3458,7 +3458,7 @@ service to another User.</p>
 <span class="p">{</span><span class="w">
     </span><span class="s2">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Create_issuer"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.shareactor.io/hs-fs/hubfs/Shareactor_Dec2016_Theme/img/Shareactor_logo.png?t=1490176701994&amp;width=200&amp;name=Shareactor_logo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;logo-url.png&gt;"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"It is a comment"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -3485,7 +3485,7 @@ service to another User.</p>
    </span><span class="s2">"is_message_mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
    </span><span class="s2">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="s2">"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="s2">"&lt;logo-url.png&gt;"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"_id"</span><span class="p">:{</span><span class="w">
       </span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111433"</span><span class="w">
@@ -4743,6 +4743,9 @@ Content-Type: application/json
 
           <h1 id="address">Address</h1>
 
+<p>Address is the class which structures all addresses used by <a href="@users"><code class="prettyprint">User</code></a>, <a href="@providers"><code class="prettyprint">Provider</code></a> 
+and the delivery system (pickup and drop off).</p>
+
 <h2 id="address-object">Address Object</h2>
 
 <table><thead>
@@ -5257,7 +5260,7 @@ when creating a new plan.</p>
 <span class="s">        "discount": 0.0,</span>
 <span class="s">        "total_amount": 500.0,</span>
 <span class="s">        "company": {</span>
-<span class="s">            "$oid": "59317069d57ba2781c739471"</span>
+<span class="s">            "$oid": "57ee9c71d76d431f8511142f"</span>
 <span class="s">        },</span>
 <span class="s">        "deleted": false,</span>
 <span class="s">        "items": [{</span>
