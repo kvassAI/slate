@@ -1,5 +1,8 @@
 # Address
 
+Address is the class which structures all addresses used by [`User`](@users), [`Provider`](@providers) 
+and the delivery system (pickup and drop off).
+
 ## Address Object
 
 Attribute | Type | Description
