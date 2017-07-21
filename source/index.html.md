@@ -10,22 +10,21 @@ toc_footers:
   
 includes:
   - intro
-  - auth
-  - users
-  - providers
-  - products
-  - orders
+  - addresses
+  - bulks
+  - campaigns
   - invoices
   - issuers
-  - payment_methods
-  - payments
-  - address
+  - orders
   - plans
-  - subscriptions
+  - payment_methods  
+  - payments
   - phone_nr_verification
-  - bulks
+  - products
+  - providers
+  - subscriptions
   - tags
-  - campaigns
+  - users
 
 
 
