@@ -121,7 +121,7 @@ html, body {
     }
   }
 
-  img+.tocify {
+  img+.tocify, .lang-selector+.tocify {
     margin-top: $logo-margin;
   }
 
