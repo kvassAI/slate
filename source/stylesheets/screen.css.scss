@@ -636,3 +636,24 @@ html, body {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+
+// StatuPage
+.color-dot {
+  border-radius: 99px;
+  display:inline-block;
+  width:10px;
+  height:10px;
+  margin-right:5px;
+  &.critical {
+    background-color:$red;
+  }
+  &.major {
+    background-color:$orange;
+  }
+  &.minor {
+    background-color:$yellow;
+  }
+  &.none {
+    background-color:$green;
+  }
+}
