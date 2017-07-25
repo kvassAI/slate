@@ -9,11 +9,12 @@ Attribute | Type | Description
 --------- | ---- | -------
 _id | `object` | The resource ID
 user | `object`  | [`User`](#Users) associated with the resource
-image_url | `string` | Image associated with resource
-items | `array` | List of items associated with resource
 name | `string` | Name of Resource item
-quantity | `number` | Quantity of resource item
 description | `string`| Description of resource item
+image_url | `string` | Image associated with resource
+reference_id | `string` | Reference id associated with resource
+product | `object`  | [`Product`](#Products) associated with the resource
+status | `string` | Status for the resource. Default is `CREATED`. Additional: `PROCESSING`, `UTILIZED`, `IDLE`
 
 ## Create a new resource
 Created a new resource associated with the  [`User`](#Users).
@@ -35,15 +36,10 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
-"items":[
-    {"name": "resource 1",
-    "quantity": 1,
-    "description": "A short description regarding the resource"},
-    {"name": "resource 2",
-    "quantity": 5,
-    "description": "A short description regarding the resource"}
-    ],
-"image_url": "image url"}
+    "product": "58f9f856b70e2a56c4a0db3d",
+    "description": "description of the resource",
+    "name": "name of resource",
+    "image_url": "http://docs.shareactor.io/images/logo.png"}
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -53,18 +49,14 @@ Content-Type: application/json
     "updated": {"$date": 1500275774067},
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
     "user": {"$oid": "57ee9c72d76d431f85111432"},
-    "items": [
-        {"quantity": 1,
-         "description": "A short description regarding the resource",
-         "name": "resource 1"},
-        {"quantity": 5,
-         "description": "A short description regarding the resource",
-         "name": "resource 2"}
-    ],
+    "description": "description of the resource",
+    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "name": "name of resource",
+    "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
+    "status": "CREATED",
     "deleted": false,
     "created": {"$date": 1500275774067},
-    "company": {"$oid": "57ee9c71d76d431f8511142f"},
-    "image_url": "image url"
+    "company": {"$oid": "57ee9c71d76d431f8511142f"}
 }
 
 ```
@@ -72,11 +64,12 @@ Content-Type: application/json
 
 Attribute | Type | Description
 --------- | ---- | -------
-image_url | `string` | Image associated with resource
-items | `array` | List of items associated with resource
 name | `string` | Name of Resource item
-quantity | `number` | Quantity of resource item. If missing, default is 1.
 description | `string`| Description of resource item
+status | `string` | Status for the resource. Default is `CREATED`. Additional: `PROCESSING`, `UTILIZED`, `IDLE`
+product | `string`  | [`Product`](#Products) id to be associated to the resource
+image_url | `string` | Image url associated with resource
+reference_id | `string` | Customizable id for resource
 
 
 ## Receive a Resource by id
@@ -85,7 +78,7 @@ Receive a resource, based on its id.
 > Definition
 
 ```
-GET https://api.shareactor.io/resource/<resource_id>
+GET https://api.shareactor.io/resources/<resource_id>
 ```
 
 > Example request:
@@ -105,19 +98,14 @@ Content-Type: application/json
     "updated": {"$date": 1500275774067},
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
     "user": {"$oid": "57ee9c72d76d431f85111432"},
-    "items": [
-        {"quantity": 1,
-         "description": "A short description regarding the resource",
-         "name": "resource 1"},
-        {"quantity": 5,
-         "description":
-         "A short description regarding the resource",
-         "name": "resource 2"}
-    ],
+    "description": "description of the resource",
+    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "name": "name of resource",
+    "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
+    "status": "CREATED",
     "deleted": false,
     "created": {"$date": 1500275774067},
-    "company": {"$oid": "57ee9c71d76d431f8511142f"},
-    "image_url": "image url"
+    "company": {"$oid": "57ee9c71d76d431f8511142f"}
 }
 
 ```
@@ -128,12 +116,12 @@ Update attributes in resource
 
 Attribute | Type | Description
 --------- | ---- | -------
-image_url | `string` | Image associated with resource
-items | `array` | List of items associated with resource
 name | `string` | Name of Resource item
-quantity | `number` | Quantity of resource item. If missing, default is 1.
 description | `string`| Description of resource item
-
+status | `string` | Status for the resource. Default is `CREATED`. Additional: `PROCESSING`, `UTILIZED`, `IDLE`
+product | `string`  | [`Product`](#Products) id to be associated to the resource
+image_url | `string` | Image url associated with resource
+reference_id | `string` | Customizable id for resource
 
 > Definition
 
@@ -151,17 +139,9 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
-"items":[
-    {"name": "resource 1",
-    "quantity": 1,
-    "description": "A short description regarding the resource"},
-    {"name": "resource 2",
-    "quantity": 5,
-    "description": "A short description regarding the resource"},
-    {"name": "resource 3",
-    "quantity": 2,
-    "description": "A short description regarding the resource"},
-    ]
+    "name": "Resource 2",
+    "description": "An updated Resource",
+    "status": "IDLE"
 }
 ```
 ``` http
@@ -169,32 +149,25 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
+    "updated": {"$date": 1500276434527},
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
-    "company": {"$oid": "57ee9c71d76d431f8511142f"},
-    "items":[
-        {"name": "resource 1",
-         "description": "A short description regarding the resource",
-         "quantity": 1},
-        {"name": "resource 2",
-         "description": "A short description regarding the resource",
-         "quantity": 5},
-        {"name": "resource 3",
-         "description": "A short description regarding the resource",
-         "quantity": 2}
-    ],
     "user": {"$oid": "57ee9c72d76d431f85111432"},
-    "image_url": "image url",
+    "description": "An updated Resource",
+    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "name": "Resource 2",
+    "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
+    "status": "IDLE",
+    "deleted": false,
     "created": {"$date": 1500275774067},
-    "updated": {"$date": 1500276782322},
-    "deleted": false
+    "company": {"$oid": "57ee9c71d76d431f8511142f"}
 }
 
 ```
 
 
 ## Receive all resources
-Return an array with all resources associated with company. It is
-possible to filter and sort the results.
+Return an array with all resources associated with request and company.
+It is possible to add filters and sort to the query.
 
 
 > Definition
@@ -215,13 +188,18 @@ Host: api.shareactor.io
 
 Attribute | Type | Description
 --------- | ---- | -------
-include_deleted | `boolean`| if `true` the request also returns all deleted subscriptions
+include_deleted | `boolean`| if `true` the request also returns deleted subscriptions
 size | `number` | Default 10. Number of subscriptions per page.
 page | `number` | Default 0.
+from_date | `number` | Start date, `timestamp` format. _default is None_
+to_date | `number` | End date, `timestamp` format. _default is None_
 sort | `string` | Default is `-created`, thus latest created first.
+status | `string` | Default is `CREATED`
 
 
 ## Delete resource
+Delete the resource associated with resource id.
+
 
 > Definition
 
@@ -246,20 +224,24 @@ Content-Type: application/json
 {
     "created": {"$date": 1500275774067},
     "deleted": true,
-    "items":[
-        {"name": "resource 1",
-         "description": "A short description regarding the resource",
-         "quantity": 1},
-        {"name": "resource 2",
-         "description": "A short description regarding the resource",
-         "quantity": 5},
-        {"name": "resource 3",
-         "description": "A short description regarding the resource",
-         "quantity": 2}
-    ],
+    "description": "An updated Resource",
+    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "name": "Resource 2",
+    "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
+    "status": "IDLE",
     "company": {"$oid": "57ee9c71d76d431f8511142f"},
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
     "updated": {"$date": 1500278314163},
-    "image_url": "image url",
     "user": {"$oid": "57ee9c72d76d431f85111432"}
 }
+```
+
+
+## Resources Status
+
+Arguments | Description
+--------- | -----
+CREATED | "CREATED"
+PROCESSING | "PROCESSING"
+UTILIZED | "UTILIZED"
+IDLE | "IDLE"
