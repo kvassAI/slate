@@ -11,13 +11,14 @@ Plan.
 
 Attribute | Type | Description
 --------- | ---- | -------
+_id | `object` | The subscription ID
 name | `string` | The name of the Subscription type
 note | `string` | A short description
 user | `object`  | [`User`](#Users) ID associated with Subscription
-method | `string`| Subscription method. For now set `license`
+method | `string`| Subscription method.
 status | `string` | Status for the subscription. Default is `CREATED`. Additional: `ACTIVE`, `FUTURE`, `NON_RENEWING`, `CANCELLED`
 plan | `object` | ID of the [`Plan`](#Plans) associated with the subscription.
-payment_method | `string` | ID of already created Payment Method
+payment_method | `object` | ID of already created Payment Method
 payments | `array` | Array of [`Payment`](#payments) objects associated with Subscription
 starting_date | `string`| Timestamp for starting date of the subscription. If missing, default starting date is now.
 ending_date | `string`| Timestamp for ending date of the subscription.
@@ -161,12 +162,12 @@ the subscription, the User could only update one of infinite, ending_date, inter
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions/<subscription_id>/update
+PUT https://api.shareactor.io/subscriptions/<subscription_id>/update
 ```
 > Example request:
 
 ``` http
-POST /subscriptions/5964a0ead57ba2036750a3b4/update HTTP/1.1
+PUT /subscriptions/5964a0ead57ba2036750a3b4/update HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
