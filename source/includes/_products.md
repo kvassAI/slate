@@ -15,8 +15,8 @@ parents | `array` | The sub product parent, overhead Product
 default_position | `array` | The geo position for the Product
 tags | `array` | List of Tags associated with Product
 properties | `object` | Product properties
-vat | `number` | The percentage of the price of the product that will be paid in addition for the VAT
-max_distance | `integer` |
+vat | `number` | The percentage of vat in the product price
+max_distance | `number` |
 slug | `string` |
 
 ## Create a new Product
@@ -105,7 +105,7 @@ parents | `array` | List of main product to sub product. _default set to `[]`_
 tags | `string` | List of tags associated with product
 default_position | `array` | Define product position. _default set to `[-1, -1]`_
 properties | `object` | Product properties
-max_distance | `integer` | 
+max_distance | `number` |
 provider | `string` | The [`provider`](#providers) assign for the product. Use the id provider
 company_take | `number` |
 business_rules | `array` |
@@ -245,8 +245,8 @@ Retrieves a list of all Products.
 
 Arguments | Type | Description
 --------- | ---- | -----------
-size | `integer` | Number of items to retrieve. _default is 10_
-page | `integer` | Which page to retrieve. _default is 0_
+size | `number` | Number of items to retrieve. _default is 10_
+page | `number` | Which page to retrieve. _default is 0_
 include_deleted| `boolean` | If `true`, deleted products are also listed
 sorting | `string` | Field used for sorting results
 lat | `number` | Define the latitude

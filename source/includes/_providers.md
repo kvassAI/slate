@@ -1,22 +1,22 @@
 # Providers
 
-Provider is a child class of [`User`](#users). They are Users that provide a
-service to another User.
+Provider is a child class of [`User`](#users). They are Users that provides
+services other Users.
 
 ## Provider object
 
 Attributes | Type | Description
 ---------- | ---- | -------
-max_travel_time | `number` | The maximum time of travel. _default 1.0_
-max_travel_meters | `number` | The maximum range of travel. _default 10000.0_
-default_position | `array` | The Provider's position by default
-default_address | `object` | The Provider's [`Address`](#address) by default. _default lambda: Address_
-schedule | `object` | The Provider's schedule. _default lambda: Schedule_
+max_travel_time | `number` | The maximum travel time, in hours. _default 1.0_
+max_travel_meters | `number` | The maximum travel distance, in meters. _default 10000.0_
+default_position | `array` | The Provider's default position.
+default_address | `object` | The Provider's default [`Address`](#address).
+schedule | `object` | The Provider's schedule.
 orders | `array` | List of [`Orders`](#orders)
-products | `array` | List of [`Products`](#products) of Provider. _default lambda: []_
+products | `array` | List of [`Products`](#products) Provider provides.
 available_on_bank_holidays | `boolean` | _default `false`_
 country | `string` | The Provider's country. _default `NOR`_
-roles | `array` | Define the roles that a Provider can have. _default ["provider"]_
+roles | `array` | Define the roles that a Provider can have. _Default provider_
 
 ## Add a new Provider
 
@@ -132,11 +132,11 @@ Creates a new Provider.
 
 Argument | Type | Description
 ---------- | ---- | -------
-**first_name** | `string` | First name of the Provider.
-**last_name** | `string` | Last name of the Provider.
-email | `string` | E-mail of the Provider.
-mobile_phone_number |  `string` | Phone number of the Provider.
-billing_address | `string` | Billing Address of Provider.
+**first_name** | `string` | Providers first name.
+**last_name** | `string` | Providers last name.
+email | `string` | Providers E-mail address.
+mobile_phone_number |  `string` | Providers phone number.
+billing_address | `string` | Provider billing Address.
 bio | `string` | Biographic note about the Provider.
 
 
