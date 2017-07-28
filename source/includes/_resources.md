@@ -64,7 +64,7 @@ Content-Type: application/json
 ```
 
 
-Attribute | Type | Description
+Arguments | Type | Description
 --------- | ---- | -------
 name | `string` | Name of Resource item
 description | `string`| Description of resource item
@@ -116,7 +116,7 @@ Content-Type: application/json
 ## Update resource
 Update attributes in resource
 
-Attribute | Type | Description
+Arguments | Type | Description
 --------- | ---- | -------
 name | `string` | Name of Resource item
 description | `string`| Description of resource item
@@ -188,7 +188,7 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
-Attribute | Type | Description
+Arguments | Type | Description
 --------- | ---- | -------
 include_deleted | `boolean`| if `true` the request also returns deleted subscriptions
 size | `number` | Default 10. Number of subscriptions per page.
@@ -243,7 +243,7 @@ Content-Type: application/json
 Search on id, name, reference_id, description and image_url. Returns
 an `array` that matches the query. Filter the query by using pagination.
 
-Attribute | Type | Description
+Arguments | Type | Description
 --------- | ---- | -------
 query | `string`| Partial or full string of `name`, `reference_id`, `description` or `image_url`.
 include_deleted | `boolean`| if `true` the request also returns deleted resources
