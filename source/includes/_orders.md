@@ -14,8 +14,8 @@ Attributes | Type | Description
 human_id | `string` | Human readable ID that identifies the Order easily
 provider | `string` | Provider assigned to Order
 items | `array` | List of Items associated with an Order
-units | `integer` | Amount of unique Items associated with the Order
-total_quantity | `integer` | Total number of Products in Order
+units | `number` | Amount of unique Items associated with the Order
+total_quantity | `number` | Total number of Products in Order
 top_up_amount | `number` | Extra amount to fulfill company's minimum Order value 
 delivery_time | `object` | Time expected for delivery, `timestamp` format
 delivery_address | `object` | [`Address`](#address) used for delivery
@@ -23,7 +23,7 @@ deliveries | `array` | If the Order has multiple deliveries, this is used for st
 billing_address | `object` | [`Address`](#address) used for billing purposes
 payments | `array` | List of [`Payment`](#payments) objects associated with Order
 note | `string` | Field used to provide extra notes between User and Provider
-status | `string` | The status of the Invoice. Default is CREATED. Additionally there is: "SCHEDULED", "DONE", "FAILED", "CANCELLED"
+
 
 ## Create an Order
 
@@ -152,10 +152,10 @@ Argument | Type | Description
 **user** | `object` | Id of the [`User`](#address) who's creating the Order
 **items** | `array` | List of [`Order`](#orders)'s items
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
-delivery_time | `integer` | Time expected for delivery, `timestamp` format
+delivery_time | `number` | Time expected for delivery, `timestamp` format
 delivery_address | `object`  | [`Address`](#address) used for delivery
 billing_address | `object` | [`Address`](#address) used for billing purposes
-note | `string` | Field used to provide extra notes between User and Provider
+note | `string` | Field used to provide extra information to a Provider
 
 ## Retrieve an Order
 
@@ -650,11 +650,11 @@ Retrieves a list of all Orders associated with the company.
 
 Arguments | Type | Description
 --------- | ---- | -------
-from_date | `integer` | Start date, `timestamp` format. _default is None_
-to_date | `integer` | End date, `timestamp` format. _default is None_
+from_date | `number` | Start date, `timestamp` format. _default is None_
+to_date | `number` | End date, `timestamp` format. _default is None_
 date_filter | `string` | Date field used for filter results. _default is created_
-size | `integer` | Number of items to retrieve. _default is 10_
-page | `integer` | Which page to retrieve. _default is 0_
+size | `number` | Number of items to retrieve. _default is 10_
+page | `number` | Which page to retrieve. _default is 0_
 order_status | `string` | Return Orders with specific status
 delivery_status | `string` | Return Order with specific delivery status
 sort | `string` | Field used for sorting results
