@@ -23,6 +23,7 @@ includes:
   - phone_nr_verification
   - products
   - providers
+  - resources
   - subscriptions
   - tags
   - users
