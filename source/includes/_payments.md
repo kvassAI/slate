@@ -93,7 +93,7 @@ Arguments | Type | Description
 **invoices** | `array` | List with [`Invoices`](#invoices) to be paid. Either this or **orders** must be set.
 **orders** | `array` | List with [`Orders`](#orders) to be paid. Either this or **invoices** must be set.
 **payment_method** | `string` | Selected payment method id to use for paying **invoices** or **orders**.
-**payment_date** | `integer` | Date (`timestamp` format) for scheduling payment of **invoices**. Defaults to the `due_date` of each invoice.
+**payment_date** | `number` | Date (`timestamp` format) for scheduling payment of **invoices**. Defaults to the `due_date` of each invoice.
 
 
 ## Retrieve a Payment
@@ -213,8 +213,8 @@ Retrieves a list of all Payments associated with the user.
 
 Arguments | Type | Description
 --------- | ---- | ------
-size | `integer` | Number of items to retrieve. _default is 10_
-page | `integer` | Which page to retrieve. _default is 0_
+size | `number` | Number of items to retrieve. _default is 10_
+page | `number` | Which page to retrieve. _default is 0_
 order_by | `string` | Field used for sorting results. _default is -modified_
 status | `string` | Status of Payments to filter by
 
@@ -249,4 +249,4 @@ Arguments | Type | Description
 active | `boolean` | Boolean field. _default is `True`_
 payment_method | `string` | Id for payment method
 billing_address | `string` | Address to whom the payment is to
-payment_date | `integer` | Update payment date, `timestamp` format. Default payment date is `due_date` for invoices. This will override the `due_date`
+payment_date | `number` | Update payment date, `timestamp` format. Default payment date is `due_date` for invoices. This will override the `due_date`

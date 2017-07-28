@@ -275,12 +275,12 @@ Argument | Type | Description
 -------- | ---- | -----
 **plan_id** | `string` | ID of the queried Plan
 active |`boolean`| Default = `true`
-name |`string`|
-note |`string`|
+name |`string`| Name of Plan
+note |`string`| Note regarding Plan
 initial_fail_amount_action |`string`| Choices: `CONTINUE`, `CANCEL`
-max_fail_attempts |`integer`|
-discount |`number`|
-total_amount |`number`|
+max_fail_attempts |`number`| How many times a payments could fail in the subscription, but still continue
+discount |`number`| Between 0.0 an 1.0. 1.0 is 100% discount on the total_price
+total_amount |`number`| If set, the total_amount is not based on the sum of Products.
 
 
 ## Delete Plan

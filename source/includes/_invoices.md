@@ -14,7 +14,7 @@ Attributes | Type | Description
 **issued_date** | `object` | The date the invoice was generated, `timestamp` format
 message | `string` | Message (KID) used for paying invoice. How it will appear in the Issuer's bank
 issuer | `object`| [`Issuer`](#issuers) of invoice
-issuer_alias | `string` | regardless of the issuer existing or not, the user may want to use an alias for the issuer
+issuer_alias | `string` | Regardless of the issuer existing or not, the user may want to use an alias for the issuer
 image_url | `string` | The url for the invoice image which is returned from the ocr
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there is: "SCHEDULED", "DONE", "FAILED", "CANCELLED"
 
@@ -84,9 +84,9 @@ Attribute | Type | Description
 **amount** | `number` | The amount of invoice. Required field
 **currency** | `string` | ISO code of currency: "EUR", "USD", "NOK" etc. Required field
 **account_number** | `string` | Account number to pay invoice to. Required field
-**due_date** | `integer` | Due date of invoice, `timestamp` format. If missing, the due_date is today.
+**due_date** | `number` | Due date of invoice, `timestamp` format. If missing, the due_date is today.
 image_url | `string` | The url for the invoice image
-issued_date| `integer` | The date the Invoice was issued, `timestamp` format. Not mandatory
+issued_date| `number` | The date the Invoice was issued, `timestamp` format. Not mandatory
 issuer_alias| `string` | Issuer alias that User could set. Not mandatory
 message | `string` | Message of transaction. e.g. KID number
 
@@ -197,8 +197,8 @@ Retrieves a list of all Invoices associated with the user.
 
 Arguments | Type | Description
 --------- | ---- | ------
-size | `integer` | number of items to retrieve
-page | `integer` | which page to retrieve. _default page size is 10_
+size | `number` | number of items to retrieve
+page | `number` | which page to retrieve. _default page size is 10_
 order_by | `string` | field used for sorting results. If missing default is "-due_date". Could be other parameters in the Invoice model, like "-created" or "status=DONE".
 
 ## Update an invoice

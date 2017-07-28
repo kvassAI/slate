@@ -328,8 +328,8 @@ Retrieves a list of all Payment Methods associated with the user.
 
 Attribute | Type | Description
 --------- | ---- | ------
-size | `integer` | number of items to retrieve
-page | `integer` | which page to retrieve. _default page size is 10_
+size | `number` | number of items to retrieve
+page | `number` | which page to retrieve. _default page size is 10_
 order_by | `string` | field used for sorting results
 
 ## Delete payment method

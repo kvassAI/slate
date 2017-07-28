@@ -84,12 +84,13 @@ Attribute | Type | Description
 **plan** | `string` | ID of the [`Plan`](#Plans) associated with the subscription.
 note | `string` | A short description
 prorate | `boolean` | flag telling us whether to prorate amount if </br> User stops it in the middle of a billing cycle.
+start_now | `boolean`| if `true` the subscription will start now.
 
 ## Start subscription
 To start a subscription, the User need to first create a subscription.
 The User could create and start the subscription in one API call. Then you
 will have to add `{"start_now": true}` when creating a new subscription.
-When starting the subscription, we need an associated payment_method.
+When starting the subscription, we need an associated payment_method in the request data.
 
 A subscription could either have a set ending_date, thus infinite = False,
 or not have an ending_date, thus infinite = True.
