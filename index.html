@@ -198,6 +198,8 @@
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
+    <script src="https://cdn.statuspage.io/se-v2.js"></script>
+    <script src="javascripts/statuspage.js"></script>
     <link href="images/favicon.ico" rel="icon" type="image/ico" />
   </head>
 
@@ -222,6 +224,7 @@
         <ul class="toc-footer">
             <li><a href='mailto:hello@shareactor.io'>Contact us for a Developer Key</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href="http://status.shareactor.io" target="_blank"><span class="color-dot"></span><span class="color-description"></span></a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -769,7 +772,7 @@ and the delivery system (pickup and drop off).</p>
 <tr>
 <td>issuer_alias</td>
 <td><code class="prettyprint">string</code></td>
-<td>regardless of the issuer existing or not, the user may want to use an alias for the issuer</td>
+<td>Regardless of the issuer existing or not, the user may want to use an alias for the issuer</td>
 </tr>
 <tr>
 <td>image_url</td>
@@ -862,7 +865,7 @@ and the delivery system (pickup and drop off).</p>
 </tr>
 <tr>
 <td><strong>due_date</strong></td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Due date of invoice, <code class="prettyprint">timestamp</code> format. If missing, the due_date is today.</td>
 </tr>
 <tr>
@@ -872,7 +875,7 @@ and the delivery system (pickup and drop off).</p>
 </tr>
 <tr>
 <td>issued_date</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>The date the Invoice was issued, <code class="prettyprint">timestamp</code> format. Not mandatory</td>
 </tr>
 <tr>
@@ -1000,12 +1003,12 @@ and the delivery system (pickup and drop off).</p>
 </thead><tbody>
 <tr>
 <td>size</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>number of items to retrieve</td>
 </tr>
 <tr>
 <td>page</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>which page to retrieve. <em>default page size is 10</em></td>
 </tr>
 <tr>
@@ -1657,12 +1660,12 @@ blacklisted | <code class="prettyprint">boolean</code> | Blacklisted are also li
 </tr>
 <tr>
 <td>units</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Amount of unique Items associated with the Order</td>
 </tr>
 <tr>
 <td>total_quantity</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Total number of Products in Order</td>
 </tr>
 <tr>
@@ -1699,11 +1702,6 @@ blacklisted | <code class="prettyprint">boolean</code> | Blacklisted are also li
 <td>note</td>
 <td><code class="prettyprint">string</code></td>
 <td>Field used to provide extra notes between User and Provider</td>
-</tr>
-<tr>
-<td>status</td>
-<td><code class="prettyprint">string</code></td>
-<td>The status of the Invoice. Default is CREATED. Additionally there is: &ldquo;SCHEDULED&rdquo;, &ldquo;DONE&rdquo;, &ldquo;FAILED&rdquo;, &ldquo;CANCELLED&rdquo;</td>
 </tr>
 </tbody></table>
 
@@ -1848,7 +1846,7 @@ blacklisted | <code class="prettyprint">boolean</code> | Blacklisted are also li
 </tr>
 <tr>
 <td>delivery_time</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Time expected for delivery, <code class="prettyprint">timestamp</code> format</td>
 </tr>
 <tr>
@@ -1864,7 +1862,7 @@ blacklisted | <code class="prettyprint">boolean</code> | Blacklisted are also li
 <tr>
 <td>note</td>
 <td><code class="prettyprint">string</code></td>
-<td>Field used to provide extra notes between User and Provider</td>
+<td>Field used to provide extra information to a Provider</td>
 </tr>
 </tbody></table>
 
@@ -2367,12 +2365,12 @@ blacklisted | <code class="prettyprint">boolean</code> | Blacklisted are also li
 </thead><tbody>
 <tr>
 <td>from_date</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Start date, <code class="prettyprint">timestamp</code> format. <em>default is None</em></td>
 </tr>
 <tr>
 <td>to_date</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>End date, <code class="prettyprint">timestamp</code> format. <em>default is None</em></td>
 </tr>
 <tr>
@@ -2382,12 +2380,12 @@ blacklisted | <code class="prettyprint">boolean</code> | Blacklisted are also li
 </tr>
 <tr>
 <td>size</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Number of items to retrieve. <em>default is 10</em></td>
 </tr>
 <tr>
 <td>page</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Which page to retrieve. <em>default is 0</em></td>
 </tr>
 <tr>
@@ -2904,12 +2902,12 @@ Not all fields are possible to update. See fields in Argument under.</p>
 <tr>
 <td>name</td>
 <td><code class="prettyprint">string</code></td>
-<td></td>
+<td>Name of Plan</td>
 </tr>
 <tr>
 <td>note</td>
 <td><code class="prettyprint">string</code></td>
-<td></td>
+<td>Note regarding Plan</td>
 </tr>
 <tr>
 <td>initial_fail_amount_action</td>
@@ -2918,18 +2916,18 @@ Not all fields are possible to update. See fields in Argument under.</p>
 </tr>
 <tr>
 <td>max_fail_attempts</td>
-<td><code class="prettyprint">integer</code></td>
-<td></td>
+<td><code class="prettyprint">number</code></td>
+<td>How many times a payments could fail in the subscription, but still continue</td>
 </tr>
 <tr>
 <td>discount</td>
 <td><code class="prettyprint">number</code></td>
-<td></td>
+<td>Between 0.0 an 1.0. 1.0 is 100% discount on the total_price</td>
 </tr>
 <tr>
 <td>total_amount</td>
 <td><code class="prettyprint">number</code></td>
-<td></td>
+<td>If set, the total_amount is not based on the sum of Products.</td>
 </tr>
 </tbody></table>
 
@@ -3369,12 +3367,12 @@ Not all fields are possible to update. See fields in Argument under.</p>
 </thead><tbody>
 <tr>
 <td>size</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>number of items to retrieve</td>
 </tr>
 <tr>
 <td>page</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>which page to retrieve. <em>default page size is 10</em></td>
 </tr>
 <tr>
@@ -3569,7 +3567,7 @@ All payments should have the following attributes:</p>
 </tr>
 <tr>
 <td><strong>payment_date</strong></td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Date (<code class="prettyprint">timestamp</code> format) for scheduling payment of <strong>invoices</strong>. Defaults to the <code class="prettyprint">due_date</code> of each invoice.</td>
 </tr>
 </tbody></table>
@@ -3699,12 +3697,12 @@ All payments should have the following attributes:</p>
 </thead><tbody>
 <tr>
 <td>size</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Number of items to retrieve. <em>default is 10</em></td>
 </tr>
 <tr>
 <td>page</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Which page to retrieve. <em>default is 0</em></td>
 </tr>
 <tr>
@@ -3764,7 +3762,7 @@ Content-Type: application/json
 </tr>
 <tr>
 <td>payment_date</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Update payment date, <code class="prettyprint">timestamp</code> format. Default payment date is <code class="prettyprint">due_date</code> for invoices. This will override the <code class="prettyprint">due_date</code></td>
 </tr>
 </tbody></table>
@@ -3937,11 +3935,11 @@ Content-Type: application/json
 <tr>
 <td>vat</td>
 <td><code class="prettyprint">number</code></td>
-<td>The percentage of the price of the product that will be paid in addition for the VAT</td>
+<td>The percentage of vat in the product price</td>
 </tr>
 <tr>
 <td>max_distance</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td></td>
 </tr>
 <tr>
@@ -4091,7 +4089,7 @@ Content-Type: application/json
 </tr>
 <tr>
 <td>max_distance</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td></td>
 </tr>
 <tr>
@@ -4255,12 +4253,12 @@ Content-Type: application/json
 </thead><tbody>
 <tr>
 <td>size</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Number of items to retrieve. <em>default is 10</em></td>
 </tr>
 <tr>
 <td>page</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Which page to retrieve. <em>default is 0</em></td>
 </tr>
 <tr>
@@ -4292,8 +4290,8 @@ Content-Type: application/json
 
           <h1 id="providers">Providers</h1>
 
-<p>Provider is a child class of <a href="#users"><code class="prettyprint">User</code></a>. They are Users that provide a
-service to another User.</p>
+<p>Provider is a child class of <a href="#users"><code class="prettyprint">User</code></a>. They are Users that provides
+services other Users.</p>
 
 <h2 id="provider-object">Provider object</h2>
 
@@ -4307,27 +4305,27 @@ service to another User.</p>
 <tr>
 <td>max_travel_time</td>
 <td><code class="prettyprint">number</code></td>
-<td>The maximum time of travel. <em>default 1.0</em></td>
+<td>The maximum travel time, in hours. <em>default 1.0</em></td>
 </tr>
 <tr>
 <td>max_travel_meters</td>
 <td><code class="prettyprint">number</code></td>
-<td>The maximum range of travel. <em>default 10000.0</em></td>
+<td>The maximum travel distance, in meters. <em>default 10000.0</em></td>
 </tr>
 <tr>
 <td>default_position</td>
 <td><code class="prettyprint">array</code></td>
-<td>The Provider&rsquo;s position by default</td>
+<td>The Provider&rsquo;s default position.</td>
 </tr>
 <tr>
 <td>default_address</td>
 <td><code class="prettyprint">object</code></td>
-<td>The Provider&rsquo;s <a href="#address"><code class="prettyprint">Address</code></a> by default. <em>default lambda: Address</em></td>
+<td>The Provider&rsquo;s default <a href="#address"><code class="prettyprint">Address</code></a>.</td>
 </tr>
 <tr>
 <td>schedule</td>
 <td><code class="prettyprint">object</code></td>
-<td>The Provider&rsquo;s schedule. <em>default lambda: Schedule</em></td>
+<td>The Provider&rsquo;s schedule.</td>
 </tr>
 <tr>
 <td>orders</td>
@@ -4337,7 +4335,7 @@ service to another User.</p>
 <tr>
 <td>products</td>
 <td><code class="prettyprint">array</code></td>
-<td>List of <a href="#products"><code class="prettyprint">Products</code></a> of Provider. <em>default lambda: []</em></td>
+<td>List of <a href="#products"><code class="prettyprint">Products</code></a> Provider provides.</td>
 </tr>
 <tr>
 <td>available_on_bank_holidays</td>
@@ -4352,7 +4350,7 @@ service to another User.</p>
 <tr>
 <td>roles</td>
 <td><code class="prettyprint">array</code></td>
-<td>Define the roles that a Provider can have. <em>default [&ldquo;provider&rdquo;]</em></td>
+<td>Define the roles that a Provider can have. <em>Default provider</em></td>
 </tr>
 </tbody></table>
 
@@ -4473,27 +4471,27 @@ service to another User.</p>
 <tr>
 <td><strong>first_name</strong></td>
 <td><code class="prettyprint">string</code></td>
-<td>First name of the Provider.</td>
+<td>Providers first name.</td>
 </tr>
 <tr>
 <td><strong>last_name</strong></td>
 <td><code class="prettyprint">string</code></td>
-<td>Last name of the Provider.</td>
+<td>Providers last name.</td>
 </tr>
 <tr>
 <td>email</td>
 <td><code class="prettyprint">string</code></td>
-<td>E-mail of the Provider.</td>
+<td>Providers E-mail address.</td>
 </tr>
 <tr>
 <td>mobile_phone_number</td>
 <td><code class="prettyprint">string</code></td>
-<td>Phone number of the Provider.</td>
+<td>Providers phone number.</td>
 </tr>
 <tr>
 <td>billing_address</td>
 <td><code class="prettyprint">string</code></td>
-<td>Billing Address of Provider.</td>
+<td>Provider billing Address.</td>
 </tr>
 <tr>
 <td>bio</td>
@@ -4748,6 +4746,466 @@ service to another User.</p>
 </tr>
 </tbody></table>
 
+          <h1 id="resources">Resources</h1>
+
+<p>The resource model is <a href="#Users"><code class="prettyprint">User</code></a> specific attributes;
+attributes he possess or resources under his control. The resource
+could have name, description and a chosen reference id. Additionally
+an image and product associated to it.</p>
+
+<h2 id="resources-object">Resources Object</h2>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_id</td>
+<td><code class="prettyprint">object</code></td>
+<td>The resource ID</td>
+</tr>
+<tr>
+<td>user</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#Users"><code class="prettyprint">User</code></a> associated with the resource</td>
+</tr>
+<tr>
+<td>name</td>
+<td><code class="prettyprint">string</code></td>
+<td>Name of Resource item</td>
+</tr>
+<tr>
+<td>description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Description of resource item</td>
+</tr>
+<tr>
+<td>image_url</td>
+<td><code class="prettyprint">string</code></td>
+<td>Image associated with resource</td>
+</tr>
+<tr>
+<td>reference_id</td>
+<td><code class="prettyprint">string</code></td>
+<td>Reference id associated with resource</td>
+</tr>
+<tr>
+<td>product</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#Products"><code class="prettyprint">Product</code></a> associated with the resource</td>
+</tr>
+<tr>
+<td>status</td>
+<td><code class="prettyprint">string</code></td>
+<td>Status for the resource. Default is <code class="prettyprint">CREATED</code>. Additional: <code class="prettyprint">PROCESSING</code>, <code class="prettyprint">UTILIZED</code>, <code class="prettyprint">IDLE</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-resource">Create a new resource</h2>
+
+<p>Created a new resource associated with the  <a href="#Users"><code class="prettyprint">User</code></a>.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/resources
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/resources</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58f9f856b70e2a56c4a0db3d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of the resource"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of resource"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://docs.shareactor.io/images/logo.png"</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of the resource"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://docs.shareactor.io/images/logo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of resource"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58f9f856b70e2a56c4a0db3d"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><code class="prettyprint">string</code></td>
+<td>Name of Resource item</td>
+</tr>
+<tr>
+<td>description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Description of resource item</td>
+</tr>
+<tr>
+<td>status</td>
+<td><code class="prettyprint">string</code></td>
+<td>Status for the resource. Default is <code class="prettyprint">CREATED</code>. Additional: <code class="prettyprint">PROCESSING</code>, <code class="prettyprint">UTILIZED</code>, <code class="prettyprint">IDLE</code></td>
+</tr>
+<tr>
+<td>product</td>
+<td><code class="prettyprint">string</code></td>
+<td><a href="#Products"><code class="prettyprint">Product</code></a> id to be associated to the resource</td>
+</tr>
+<tr>
+<td>image_url</td>
+<td><code class="prettyprint">string</code></td>
+<td>Image url associated with resource</td>
+</tr>
+<tr>
+<td>reference_id</td>
+<td><code class="prettyprint">string</code></td>
+<td>Customizable id for resource</td>
+</tr>
+</tbody></table>
+
+<h2 id="receive-a-resource-by-id">Receive a Resource by id</h2>
+
+<p>Receive a resource, based on its id.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/resources/&lt;resource_id&gt;
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/resources/596c643ed57ba203be2cf1c9</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of the resource"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://docs.shareactor.io/images/logo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of resource"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58f9f856b70e2a56c4a0db3d"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h2 id="update-resource">Update resource</h2>
+
+<p>Update attributes in resource</p>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><code class="prettyprint">string</code></td>
+<td>Name of Resource item</td>
+</tr>
+<tr>
+<td>description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Description of resource item</td>
+</tr>
+<tr>
+<td>status</td>
+<td><code class="prettyprint">string</code></td>
+<td>Status for the resource. Default is <code class="prettyprint">CREATED</code>. Additional: <code class="prettyprint">PROCESSING</code>, <code class="prettyprint">UTILIZED</code>, <code class="prettyprint">IDLE</code></td>
+</tr>
+<tr>
+<td>product</td>
+<td><code class="prettyprint">string</code></td>
+<td><a href="#Products"><code class="prettyprint">Product</code></a> id to be associated to the resource</td>
+</tr>
+<tr>
+<td>image_url</td>
+<td><code class="prettyprint">string</code></td>
+<td>Image url associated with resource</td>
+</tr>
+<tr>
+<td>reference_id</td>
+<td><code class="prettyprint">string</code></td>
+<td>Customizable id for resource</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/resources/&lt;resource_id&gt;
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/resources/596c643ed57ba203be2cf1c9</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Resource 2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An updated Resource"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDLE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500276434527</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An updated Resource"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://docs.shareactor.io/images/logo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Resource 2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58f9f856b70e2a56c4a0db3d"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDLE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h2 id="receive-all-resources">Receive all resources</h2>
+
+<p>Return an <code class="prettyprint">array</code>with all resources associated with request and company.
+It is possible to add filters and sort to the query.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/resources
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/resources</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include_deleted</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>if <code class="prettyprint">true</code> the request also returns deleted subscriptions</td>
+</tr>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>Default 10. Number of subscriptions per page.</td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">number</code></td>
+<td>Default 0.</td>
+</tr>
+<tr>
+<td>from_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>Start date, <code class="prettyprint">timestamp</code> format. <em>default is None</em></td>
+</tr>
+<tr>
+<td>to_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>End date, <code class="prettyprint">timestamp</code> format. <em>default is None</em></td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code class="prettyprint">string</code></td>
+<td>Default is <code class="prettyprint">-created</code>, thus latest created first.</td>
+</tr>
+<tr>
+<td>status</td>
+<td><code class="prettyprint">string</code></td>
+<td>Default is <code class="prettyprint">CREATED</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-resource">Delete resource</h2>
+
+<p>Delete the resource associated with resource id.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.shareactor.io/resources/&lt;resource_id&gt;
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/resources/596c643ed57ba203be2cf1c9</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An updated Resource"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://docs.shareactor.io/images/logo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Resource 2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58f9f856b70e2a56c4a0db3d"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDLE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500278314163</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="resource-search">Resource Search</h2>
+
+<p>Search on id, name, reference_id, description and image_url. Returns
+an <code class="prettyprint">array</code> that matches the query. Filter the query by using pagination.</p>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>query</td>
+<td><code class="prettyprint">string</code></td>
+<td>Partial or full string of <code class="prettyprint">name</code>, <code class="prettyprint">reference_id</code>, <code class="prettyprint">description</code> or <code class="prettyprint">image_url</code>.</td>
+</tr>
+<tr>
+<td>include_deleted</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>if <code class="prettyprint">true</code> the request also returns deleted resources</td>
+</tr>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>Default 10. Number of subscriptions per page.</td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">number</code></td>
+<td>Default 0.</td>
+</tr>
+<tr>
+<td>from_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>Start date, <code class="prettyprint">timestamp</code> format. <em>default is None</em></td>
+</tr>
+<tr>
+<td>to_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>End date, <code class="prettyprint">timestamp</code> format. <em>default is None</em></td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code class="prettyprint">string</code></td>
+<td>Default is <code class="prettyprint">-created</code>, thus latest created first.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/resources/search
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/resources/search?query=updated</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An updated Resource"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://docs.shareactor.io/images/logo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Resource 2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58f9f856b70e2a56c4a0db3d"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDLE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500278314163</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<h2 id="resource-status">Resource Status</h2>
+
+<p>Default status for the resource is <code class="prettyprint">CREATED</code>. Change the status
+by updating the resource.</p>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CREATED</td>
+<td>&ldquo;CREATED&rdquo;</td>
+</tr>
+<tr>
+<td>PROCESSING</td>
+<td>&ldquo;PROCESSING&rdquo;</td>
+</tr>
+<tr>
+<td>UTILIZED</td>
+<td>&ldquo;UTILIZED&rdquo;</td>
+</tr>
+<tr>
+<td>IDLE</td>
+<td>&ldquo;IDLE&rdquo;</td>
+</tr>
+</tbody></table>
+
           <h1 id="subscriptions">Subscriptions</h1>
 
 <p>The Subscription method enables you to charge <a href="#Users"><code class="prettyprint">Customers</code></a> at
@@ -4767,6 +5225,11 @@ Plan.</p>
 </tr>
 </thead><tbody>
 <tr>
+<td>_id</td>
+<td><code class="prettyprint">object</code></td>
+<td>The subscription ID</td>
+</tr>
+<tr>
 <td>name</td>
 <td><code class="prettyprint">string</code></td>
 <td>The name of the Subscription type</td>
@@ -4784,7 +5247,7 @@ Plan.</p>
 <tr>
 <td>method</td>
 <td><code class="prettyprint">string</code></td>
-<td>Subscription method. For now set <code class="prettyprint">license</code></td>
+<td>Subscription method.</td>
 </tr>
 <tr>
 <td>status</td>
@@ -4798,7 +5261,7 @@ Plan.</p>
 </tr>
 <tr>
 <td>payment_method</td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">object</code></td>
 <td>ID of already created Payment Method</td>
 </tr>
 <tr>
@@ -4920,6 +5383,11 @@ This will not start the subscription, only create it.</p>
 <td><code class="prettyprint">boolean</code></td>
 <td>flag telling us whether to prorate amount if </br> User stops it in the middle of a billing cycle.</td>
 </tr>
+<tr>
+<td>start_now</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>if <code class="prettyprint">true</code> the subscription will start now.</td>
+</tr>
 </tbody></table>
 
 <h2 id="start-subscription">Start subscription</h2>
@@ -4927,7 +5395,7 @@ This will not start the subscription, only create it.</p>
 <p>To start a subscription, the User need to first create a subscription.
 The User could create and start the subscription in one API call. Then you
 will have to add <code class="prettyprint">{&quot;start_now&quot;: true}</code> when creating a new subscription.
-When starting the subscription, we need an associated payment_method.</p>
+When starting the subscription, we need an associated payment_method in the request data.</p>
 
 <p>A subscription could either have a set ending_date, thus infinite = False,
 or not have an ending_date, thus infinite = True.
@@ -5024,12 +5492,12 @@ the subscription, the User could only update one of infinite, ending_date, inter
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.shareactor.io/subscriptions/&lt;subscription_id&gt;/update
+<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/subscriptions/&lt;subscription_id&gt;/update
 </code></pre>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/subscriptions/5964a0ead57ba2036750a3b4/update</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/subscriptions/5964a0ead57ba2036750a3b4/update</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
 <span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
@@ -5360,8 +5828,8 @@ It is possible to add pagination to this request.</p>
 </tr>
 <tr>
 <td>addresses</td>
-<td><code class="prettyprint">array</code> of <a href="#address"><code class="prettyprint">object</code></a></td>
-<td>List of Addresses belonging to User.</td>
+<td><code class="prettyprint">array</code></td>
+<td>An <code class="prettyprint">array</code>of <a href="#address"><code class="prettyprint">Addresses</code></a> associated with User.</td>
 </tr>
 <tr>
 <td>billing_address</td>
@@ -5491,8 +5959,8 @@ It is possible to add pagination to this request.</p>
 </tr>
 <tr>
 <td>billing_address</td>
-<td><a href="#address"><code class="prettyprint">object</code></a></td>
-<td>Billing Address of User.</td>
+<td><code class="prettyprint">object</code></td>
+<td>Billing <a href="#address"><code class="prettyprint">Address</code></a> of User.</td>
 </tr>
 <tr>
 <td>bio</td>
@@ -5501,7 +5969,7 @@ It is possible to add pagination to this request.</p>
 </tr>
 <tr>
 <td>tags</td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">array</code></td>
 <td>List of Tags associated with User.</td>
 </tr>
 </tbody></table>
@@ -5676,8 +6144,8 @@ It is possible to add pagination to this request.</p>
 </tr>
 <tr>
 <td>billing_address</td>
-<td><a href="#address"><code class="prettyprint">object</code></a></td>
-<td>Billing Address of the User.</td>
+<td><code class="prettyprint">object</code></td>
+<td>Billing <a href="#address"><code class="prettyprint">Address</code></a> of the User.</td>
 </tr>
 <tr>
 <td>bio</td>
@@ -5686,7 +6154,7 @@ It is possible to add pagination to this request.</p>
 </tr>
 <tr>
 <td>tags</td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">array</code></td>
 <td>List of Tags associated with User.</td>
 </tr>
 </tbody></table>
@@ -5834,12 +6302,12 @@ It is possible to add pagination to this request.</p>
 </thead><tbody>
 <tr>
 <td>size</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Number of items to retrieve. <em>default size is 50</em></td>
 </tr>
 <tr>
 <td>page</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Which page to retrieve. <em>default page 0</em></td>
 </tr>
 <tr>
@@ -5923,12 +6391,12 @@ It is possible to add pagination to this request.</p>
 </tr>
 <tr>
 <td>size</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Number of items to retrieve. <em>default is 10</em></td>
 </tr>
 <tr>
 <td>page</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Which page to retrieve. <em>default is 0</em></td>
 </tr>
 </tbody></table>
@@ -5973,12 +6441,12 @@ Host: api.shareactor.io
 </tr>
 <tr>
 <td>size</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Number of items to retrieve.</td>
 </tr>
 <tr>
 <td>page</td>
-<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">number</code></td>
 <td>Which page to retrieve. <em>default page size is 10</em></td>
 </tr>
 <tr>
@@ -5988,13 +6456,13 @@ Host: api.shareactor.io
 </tr>
 <tr>
 <td>from_date</td>
-<td><code class="prettyprint">integer</code></td>
-<td>Start date on <code class="prettyprint">timestamp</code> format. <em>default now minus 15 days</em></td>
+<td><code class="prettyprint">number</code></td>
+<td>Start date, <code class="prettyprint">timestamp</code> format. <em>default now minus 15 days</em></td>
 </tr>
 <tr>
 <td>to_date</td>
-<td><code class="prettyprint">integer</code></td>
-<td>End date on <code class="prettyprint">timestamp</code> format.<em>default now plus 15 days</em></td>
+<td><code class="prettyprint">number</code></td>
+<td>End date, <code class="prettyprint">timestamp</code> format.<em>default now plus 15 days</em></td>
 </tr>
 <tr>
 <td>date_filter</td>
