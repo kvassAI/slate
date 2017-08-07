@@ -11,23 +11,21 @@ for later. If no `payment_date` is provided, the Invoice's `due_date` will becom
 
 A payment object contains the following attributes.
 
-Attributes | Description
----------- | -------
-**user** | User associated with Payment
-**amount** | Amount as a Float with decimal points (`.`). Example: 10.23 NOK.
-**currency** | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-**human_id** | Human readable ID. 6 character long.
-**subject** | Either an Invoice or Order reference.
-**current_state** | Current state of operation. Can be one of: `created`, `processing`, `succeeded`, `failed` and `cancelled`.
-created | Date the payment was created.
-modified | Date if the payment was modified
-payment_date | Date for scheduling payment of invoices. Defaults to the due_date of each invoice.
-payment_method | ID of already created Payment Method.
-billing_address | Address object with billing details.
-description | Some additional description, if wanted.
-metadata | Some additional information to Payment.
-status_code | In case the payment fails, this will have some code from the chosen payment method backend. *(if existing)*
-error_message | In case the payment fails, this will have the reason in a textual way. *(if existing)*
+Attribute | Type | Description
+--------- | ---- | ------
+**user** | `object` | [`User`](#Users) associated with Payment
+**amount** | `number` | Amount as a Float with decimal points (`.`). _Example: 10.23 NOK_
+**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+**human_id** | `string` | Human readable ID. 6 character long
+**subject** | `string` | Either an Invoice or Order reference
+**current_state** | `string` | Current state of operation. Can be one of: `created`, `processing`, `succeeded`, `failed` and `cancelled`
+payment_date | `object` | Date (`timestamp` format) for scheduling payment of invoices. Defaults to the due_date of each invoice
+payment_method | `string` | ID of already created Payment Method
+billing_address | `object` | [`Address`](#address) object with billing details
+description | `string` | Some additional description, if wanted
+metadata | `array` | Some additional information to Payment
+status_code | `string` | In case the payment fails, this will have some code from the chosen payment method backend. *(if existing)*
+error_message | `string` | In case the payment fails, this will have the reason in a textual way. *(if existing)*
 
 ## Process a Payment
 
@@ -90,12 +88,12 @@ Content-Type: application/json
 }
 ```
 
-Arguments | Description
----------- | -------
-**invoices** | List with invoices to be paid. Either this or **orders** must be set.
-**orders** | List with orders to be paid. Either this or **invoices** must be set.
-**payment_method** | Selected payment method id to use for paying **invoices** or **orders**.
-**payment_date** | Date for scheduling payment of **invoices**. Defaults to the `due_date` of each invoice.
+Arguments | Type | Description
+--------- | ---- | ------
+**invoices** | `array` | List with [`Invoices`](#invoices) to be paid. Either this or **orders** must be set.
+**orders** | `array` | List with [`Orders`](#orders) to be paid. Either this or **invoices** must be set.
+**payment_method** | `string` | Selected payment method id to use for paying **invoices** or **orders**.
+**payment_date** | `number` | Date (`timestamp` format) for scheduling payment of **invoices**. Defaults to the `due_date` of each invoice.
 
 
 ## Retrieve a Payment
@@ -152,9 +150,9 @@ Content-Type: application/json
 
 Retrieves the payment with a given ID.
 
-Argument | Description
----------- | -------
-**payment-id** | ID of the queried payment
+Argument | Type | Description
+-------- | ---- | ------
+**payment-id** | `string` | ID of the queried payment
 
 ## List all Payments
 
@@ -213,12 +211,12 @@ Content-Type: application/json
 
 Retrieves a list of all Payments associated with the user.
 
-Argument | Description
----------- | -------
-size | Number of items to retrieve
-page | Which page to retrieve. _default page size is 10_
-order_by | Field used for sorting results
-status | Status of Payments to filter by
+Arguments | Type | Description
+--------- | ---- | ------
+size | `number` | Number of items to retrieve. _default is 10_
+page | `number` | Which page to retrieve. _default is 0_
+order_by | `string` | Field used for sorting results. _default is -modified_
+status | `string` | Status of Payments to filter by
 
 ## Update payment
 
@@ -246,9 +244,9 @@ Content-Type: application/json
 
 Update a payment. Editable fields:
 
-Argument | Description
----------- | -------
-active | Boolean field. Default is `True`
-payment_method | Id for payment method.
-billing_address | String of address to whom the payment is to.
-payment_date | Update payment date. Default payment date is `due_date` for invoices. This will override the `due_date`.
+Arguments | Type | Description
+--------- | ---- | ------
+active | `boolean` | Boolean field. _default is `True`_
+payment_method | `string` | Id for payment method
+billing_address | `string` | Address to whom the payment is to
+payment_date | `number` | Update payment date, `timestamp` format. Default payment date is `due_date` for invoices. This will override the `due_date`

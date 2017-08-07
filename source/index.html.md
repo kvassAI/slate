@@ -5,27 +5,28 @@ language_tabs:
   - http
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
+  - <a href='mailto:hello@shareactor.io'>Contact us for a Developer Key</a>
+  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href="http://status.shareactor.io" target="_blank"><span class="color-dot"></span><span class="color-description"></span></a>
+  
 includes:
   - intro
-  - auth
-  - users
-  - providers
-  - products
-  - orders
+  - addresses
+  - bulks
+  - campaigns
   - invoices
   - issuers
-  - payment_methods
-  - payments
-  - address
+  - orders
   - plans
-  - subscriptions
+  - payment_methods  
+  - payments
   - phone_nr_verification
-  - bulks
+  - products
+  - providers
+  - resources
+  - subscriptions
   - tags
-  - campaigns
+  - users
 
 
 

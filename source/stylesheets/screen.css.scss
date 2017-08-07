@@ -35,6 +35,17 @@ html, body {
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
+@font-face {
+  font-family: 'Roboto-Regular';
+  src:font-url('Roboto-Regular.woff2?-syv14m') format('woff2'),
+  font-url('Roboto-Regular.woff?-syv14m') format('woff'),
+  font-url('Roboto-Regular.ttf?-syv14m') format('truetype'),
+  font-url('Roboto-Regular.svg?-syv14m#Roboto-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +121,7 @@ html, body {
     }
   }
 
-  img+.tocify {
+  img+.tocify, .lang-selector+.tocify {
     margin-top: $logo-margin;
   }
 
@@ -624,4 +635,25 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+// StatuPage
+.color-dot {
+  border-radius: 99px;
+  display:inline-block;
+  width:10px;
+  height:10px;
+  margin-right:5px;
+  &.critical {
+    background-color:$red;
+  }
+  &.major {
+    background-color:$orange;
+  }
+  &.minor {
+    background-color:$yellow;
+  }
+  &.none {
+    background-color:$green;
+  }
 }

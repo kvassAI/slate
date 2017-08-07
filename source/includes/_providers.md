@@ -1,28 +1,30 @@
 # Providers
 
-Provider is a child class of [`User`](#users). They are Users that provide a
-service to another User.
+Provider is a child class of [`User`](#users). They are Users that provides
+services other Users.
 
 ## Provider object
 
 Attributes | Type | Description
 ---------- | ---- | -------
-max_travel_time | `float` | The maximum time of travel. _default 1.0_
-max_travel_meters | `float` | The maximum range of travel. _default 10000.0_
-default_position | `geoPoint` | The Provider's position by default.
-default_address | `address` | The Provider's address by default. _default lambda: Address_
-schedule | `schedule` | The Provider's schedule. _default lambda: Schedule_
-orders | `list` | List of [`Orders`](#orders)
-products | `list` | List of [`Products`](#products) of Provider. _default lambda: []_
+max_travel_time | `number` | The maximum travel time, in hours. _default 1.0_
+max_travel_meters | `number` | The maximum travel distance, in meters. _default 10000.0_
+default_position | `array` | The Provider's default position.
+default_address | `object` | The Provider's default [`Address`](#address).
+schedule | `object` | The Provider's schedule.
+orders | `array` | List of [`Orders`](#orders)
+products | `array` | List of [`Products`](#products) Provider provides.
 available_on_bank_holidays | `boolean` | _default `false`_
 country | `string` | The Provider's country. _default `NOR`_
-roles | `list` | Define the roles that a Provider can have. _default ["provider"]_
+roles | `array` | Define the roles that a Provider can have. _Default provider_
 
 ## Add a new Provider
 
 > Definition
 
+```
 POST https://api.shareactor.io/providers
+```
 
 > Example request:
 
@@ -34,9 +36,9 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
-    "first_name": "John",
-    "last_name": "Doe",
-    "email": "john@email.com",
+    "first_name": "Jane",
+    "last_name": "Roe",
+    "email": "jane@email.com",
     "mobile_phone_number": "+4712345678"
 }
 ```
@@ -47,12 +49,12 @@ Content-Type: application/json
 
 {
    "max_travel_meters":10000.0,
-   "first_name":"John",
+   "first_name":"Jane",
    "created":{
       "$date":1495195975641
    },
    "_id":{
-      "$oid":"57ee9c72d76d431f85111432"
+      "$oid":"591ee147d57ba28fbe0a3892"
    },
    "default_address":{
       "service":"google",
@@ -66,7 +68,7 @@ Content-Type: application/json
    "national_id":"",
    "country":"NOR",
    "auth0_id":"",
-   "email":"john@email.com",
+   "email":"jane@email.com",
    "voucher":{
       "consumed":0,
       "uuid":"0000aaaa-aaaa-0000-aaaa-aaaa0000aa00",
@@ -78,7 +80,7 @@ Content-Type: application/json
       },
       "initial_quantity":0
    },
-   "last_name":"Doe",
+   "last_name":"Roe",
    "addresses":[],
    "note":"",
    "schedule":{
@@ -130,11 +132,11 @@ Creates a new Provider.
 
 Argument | Type | Description
 ---------- | ---- | -------
-first_name | `string` | First name of the Provider.
-last_name | `string` | Last name of the Provider.
-email | `string` | E-mail of the Provider.
-mobile_phone_number |  `string` | Phone number of the Provider.
-billing_address | `string` | Billing Address of Provider.
+**first_name** | `string` | Providers first name.
+**last_name** | `string` | Providers last name.
+email | `string` | Providers E-mail address.
+mobile_phone_number |  `string` | Providers phone number.
+billing_address | `string` | Provider billing Address.
 bio | `string` | Biographic note about the Provider.
 
 
@@ -161,8 +163,8 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {  
-   "first_name":"John",
-   "email":"john@email.com",
+   "first_name":"Jane",
+   "email":"jane@email.com",
    "_id":{  
       "$oid":"591ee147d57ba28fbe0a3892"
    },
@@ -171,7 +173,7 @@ Content-Type: application/json
       "fuzz"
    ],
    "available_on_bank_holidays":false,
-   "mobile_phone_number":"+47 42 42 42 42",
+   "mobile_phone_number":"+4712345678",
    "voucher":{  
       "initial_quantity":0,
       "created":{  
@@ -214,7 +216,7 @@ Content-Type: application/json
    },
    "max_travel_meters":10000.0,
    "country":"NOR",
-   "last_name":"Doe",
+   "last_name":"Roe",
    "_cls":"User.Provider",
    "billing_address":{  
       "service":"google",
@@ -269,8 +271,8 @@ Content-Type: application/json
 
 [
     {  
-       "first_name":"John",
-       "email":"john@email.com",
+       "first_name":"Jane",
+       "email":"jane@email.com",
        "_id":{  
           "$oid":"591ee147d57ba28fbe0a3892"
        },
@@ -279,7 +281,7 @@ Content-Type: application/json
           "fuzz"
        ],
        "available_on_bank_holidays":false,
-       "mobile_phone_number":"+47 42 42 42 42",
+       "mobile_phone_number":"+4712345678",
        "voucher":{  
           "initial_quantity":0,
           "created":{  
@@ -322,7 +324,7 @@ Content-Type: application/json
        },
        "max_travel_meters":10000.0,
        "country":"NOR",
-       "last_name":"Doe",
+       "last_name":"Roe",
        "_cls":"User.Provider",
        "billing_address":{  
           "service":"google",
@@ -352,8 +354,8 @@ Retrieves a list of all Providers.
 
 Arguments | Type | Description
 --------- | ---- | ------
-size | `int` | Number of items to retrieve. _default is 10_
-page | `int` | Which page to retrieve. _default is 0_
+size | `integer` | Number of items to retrieve. _default is 10_
+page | `integer` | Which page to retrieve. _default is 0_
 include_deleted | `boolean` | If `true`, deleted products are also listed. _default is `false`_
-latitude | `float` | Define the latitude. _default is `none`_
-longitude | `float` | Define the longitude. _default is `none`_
+latitude | `number` | Define the latitude. _default is `none`_
+longitude | `number` | Define the longitude. _default is `none`_

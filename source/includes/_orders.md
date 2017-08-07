@@ -4,28 +4,26 @@ Orders are the result of a User buying a given set of Products and it's what con
 
 ## Order object
 
-Attributes | Description
----------- | -------
-**created** | The date the Order was generated.
-**modified** | The date the Order was last modified.
-**user** | User associated with Order
-human_id | Human readable ID that identifies the Order easily
-provider | Provider assigned to Order
-items | List of Items associated with an Order
-units | Amount of unique Items associated with the Order
-total_quantity | Total number of Products in Order
-**total_amount** | Amount as a Float with decimal points (`.`). Example: 10.23 NOK.
-**currency** | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-top_up_amount | Extra amount to fulfill company's minimum Order value 
-delivery_time | Time expected for delivery
-delivery_address | Address used for delivery
-deliveries | If the Order has multiple deliveries, this is used for storing that Delivery history
-billing_address | Address used for billing purposes
-payments | List of Payment objects associated with Order
-note | Field used to provide extra notes between User and Provider
-status | The status of the Invoice. Default is CREATED. Additionally there is: "SCHEDULED", "DONE", "FAILED", "CANCELLED"
-**order_status** | Status of the Order. Default is CREATED. Additionally there are: PROCESSING, SUCCESS, CANCELLED, FAILED
-**delivery_status** | Status of the Delivery. Default is PENDING. Additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE, READY_FOR_DELIVERY
+Attributes | Type | Description
+---------- | ---- | -------
+**user** | `object` | [`User`](#users) associated with Order
+**total_amount** | `number` | Amount as a Float with decimal points (`.`). Example: 10.23 NOK.
+**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+**order_status** | `string` | Status of the Order. Default is CREATED. Additionally there are: PROCESSING, SUCCESS, CANCELLED, FAILED
+**delivery_status** | `string` | Status of the Delivery. Default is PENDING. Additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE, READY_FOR_DELIVERY
+human_id | `string` | Human readable ID that identifies the Order easily
+provider | `string` | Provider assigned to Order
+items | `array` | List of Items associated with an Order
+units | `number` | Amount of unique Items associated with the Order
+total_quantity | `number` | Total number of Products in Order
+top_up_amount | `number` | Extra amount to fulfill company's minimum Order value 
+delivery_time | `object` | Time expected for delivery, `timestamp` format
+delivery_address | `object` | [`Address`](#address) used for delivery
+deliveries | `array` | If the Order has multiple deliveries, this is used for storing that Delivery history
+billing_address | `object` | [`Address`](#address) used for billing purposes
+payments | `array` | List of [`Payment`](#payments) objects associated with Order
+note | `string` | Field used to provide extra notes between User and Provider
+
 
 ## Create an Order
 
@@ -149,15 +147,15 @@ Content-Type: application/json
 
 Creates a new Order.
 
-Argument | Description
----------- | -------
-user | Id of the User who's creating the Order
-items | List of Order's items
-delivery_time | Time expected for delivery 
-delivery_address | Address used for delivery
-billing_address | Address used for billing purposes
-currency | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
-note | Field used to provide extra notes between User and Provider
+Argument | Type | Description
+-------- | ---- | -------
+**user** | `object` | Id of the [`User`](#address) who's creating the Order
+**items** | `array` | List of [`Order`](#orders)'s items
+**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+delivery_time | `number` | Time expected for delivery, `timestamp` format
+delivery_address | `object`  | [`Address`](#address) used for delivery
+billing_address | `object` | [`Address`](#address) used for billing purposes
+note | `string` | Field used to provide extra information to a Provider
 
 ## Retrieve an Order
 
@@ -185,7 +183,7 @@ Content-type: application/json
    "units":2,
    "delivery_status":"ACCEPTED",
    "currency":"NOK",
-   "human_id":"YX4PVL",
+   "human_id":"51Q4LN",
    "payments":[],
    "modified":{
       "$date":1495196003948
@@ -240,7 +238,7 @@ Content-type: application/json
             }
          ]
       },
-      "available_on_bank_holidays":False,
+      "available_on_bank_holidays":false,
       "bio":"",
       "avatar":"",
       "created":{
@@ -253,8 +251,8 @@ Content-type: application/json
       },
       "addresses":[],
       "auth0_id":"",
-      "deleted":False,
-      "active":True,
+      "deleted":false,
+      "active":true,
       "country":"NOR",
       "email":"john@email.com",
       "billing_address":{
@@ -298,17 +296,17 @@ Content-type: application/json
             },
             "tags":[],
             "max_distance":0,
-            "main_product":True,
+            "main_product":true,
             "modified":{
                "$date":1495195998969
             },
-            "deleted":False,
+            "deleted":false,
             "name":"Ivar",
             "vat":0.0,
             "company":{
                "$oid":"591ee15db70e2a10acb65362"
             },
-            "active":True,
+            "active":true,
             "_cls":"Product",
             "currency":"USD",
             "company_take":-1.0,
@@ -370,7 +368,7 @@ Content-type: application/json
       "modified":{
          "$date":1495195998670
       },
-      "deleted":False,
+      "deleted":false,
       "voucher":{
          "created":{
             "$date":1495195998667
@@ -434,7 +432,7 @@ Content-Type: application/json
        "units":2,
        "delivery_status":"ACCEPTED",
        "currency":"NOK",
-       "human_id":"YX4PVL",
+       "human_id":"51Q4LN",
        "payments":[],
        "modified":{
           "$date":1495196003948
@@ -445,7 +443,7 @@ Content-Type: application/json
           ],
           "stripe_customer_id":"",
           "tags":[],
-          "first_name":"john",
+          "first_name":"Jane",
           "max_travel_time":1.0,
           "default_address":{
              "service":"google",
@@ -471,7 +469,7 @@ Content-Type: application/json
           "company":{
              "$oid":"591ee15db70e2a10acb65362"
           },
-          "mobile_phone_number":"492 09 385",
+          "mobile_phone_number":"+4712345678",
           "_cls":"User.Provider",
           "orders":[],
           "schedule":{
@@ -489,23 +487,23 @@ Content-Type: application/json
                 }
              ]
           },
-          "available_on_bank_holidays":False,
+          "available_on_bank_holidays":false,
           "bio":"",
           "avatar":"",
           "created":{
              "$date":1495195999438
           },
-          "last_name":"Doe",
+          "last_name":"Roe",
           "products":[],
           "_id":{
-             "$oid":"591ee15fb70e2a10acb6537d"
+             "$oid":"591ee147d57ba28fbe0a3892"
           },
           "addresses":[],
           "auth0_id":"",
-          "deleted":False,
-          "active":True,
+          "deleted":false,
+          "active":true,
           "country":"NOR",
-          "email":"john@email.com",
+          "email":"jane@email.com",
           "billing_address":{
              "service":"google",
              "alias":""
@@ -547,17 +545,17 @@ Content-Type: application/json
                 },
                 "tags":[],
                 "max_distance":0,
-                "main_product":True,
+                "main_product":true,
                 "modified":{
                    "$date":1495195998969
                 },
-                "deleted":False,
+                "deleted":false,
                 "name":"Ivar",
                 "vat":0.0,
                 "company":{
                    "$oid":"591ee15db70e2a10acb65362"
                 },
-                "active":True,
+                "active":true,
                 "_cls":"Product",
                 "currency":"USD",
                 "company_take":-1.0,
@@ -600,12 +598,11 @@ Content-Type: application/json
              "$date":1495195998668
           },
           "last_name":"Doe",
-          "mobile_phone_number":"+47 4242424",
+          "mobile_phone_number":"+4712345678",
           "_id":{
              "$oid":"591ee15eb70e2a10acb65372"
           },
-          "addresses":[
-             {
+          "addresses":[{
                 "city":"Danielsen",
                 "service":"google",
                 "alias":"",
@@ -613,13 +610,12 @@ Content-Type: application/json
                 "zip_code":"0556",
                 "state":"Oslo",
                 "street_name":"Iversenstien 7"
-             }
-          ],
+             }],
           "national_id":"",
           "modified":{
              "$date":1495195998670
           },
-          "deleted":False,
+          "deleted":false,
           "voucher":{
              "created":{
                 "$date":1495195998667
@@ -654,11 +650,11 @@ Retrieves a list of all Orders associated with the company.
 
 Arguments | Type | Description
 --------- | ---- | -------
-from_date | `timestamp` | Start date. _default is None_
-to_date | `timestamp` | End date. _default is None_
+from_date | `number` | Start date, `timestamp` format. _default is None_
+to_date | `number` | End date, `timestamp` format. _default is None_
 date_filter | `string` | Date field used for filter results. _default is created_
-size | `int` | Number of items to retrieve. _default is 10_
-page | `int` | Which page to retrieve. _default is 0_
+size | `number` | Number of items to retrieve. _default is 10_
+page | `number` | Which page to retrieve. _default is 0_
 order_status | `string` | Return Orders with specific status
 delivery_status | `string` | Return Order with specific delivery status
 sort | `string` | Field used for sorting results

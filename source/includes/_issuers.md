@@ -2,19 +2,16 @@
 
 
 ## Issuers object
+
 Attributes | Type | Description
 ---------- | ---- | -------
-created | `timestamp` | The date the Issuer was generated.
-updated | `timestamp` | The date the Issuer was last updated.
-active | `boolean` | Flag that sets Issuer object to active.
-deleted | `boolean` | Flag that set Issuer object to deleted.
-verified | `boolean` | Flag that set Issuer object to verified. Changes to true after AML check up.
-blacklisted | `boolean` | Flag that set Issuer object to blacklisted. `false` if AML status is either `Potential Match`, `true Positive` or `true Positive`. `true` if AML status value is either `No Match`, `false Positive` or `true Positive - Reject`.
+**verified** | `boolean` | Flag that set Issuer object to verified. Changes to true after AML check up.
+**blacklisted** | `boolean` | Flag that set Issuer object to blacklisted. `false` if AML status is either `Potential Match`, `true Positive` or `true Positive`. `true` if AML status value is either `No Match`, `false Positive` or `true Positive - Reject`.
 comments | `string` | Comments used for add a comment about Issuer.
 account_number | `string` | Account number to Issuer. Used when handling Invoice's
 name | `string` | Name of Issuer
 logo_url | `string` | Path for logo for Issuer.
-address | [`Address`](#Address) | Address corresponding to payment address.
+address | `object` | [`Address`](#address) corresponding to payment address.
 is_message_mandatory | `boolean` | Flag that determines if `message` field is mandatory for invoices issued by this issuer.
 
 
@@ -22,7 +19,9 @@ is_message_mandatory | `boolean` | Flag that determines if `message` field is ma
 
 > Definition
 
+````
 POST https://api.shareactor.io/issuers
+````
 
 > Example request:
 
@@ -36,7 +35,7 @@ Host: api.shareactor.io
 {
     "account_number": "12345678903",
     "name": "Create_issuer",
-    "logo_url": "https://www.shareactor.io/hs-fs/hubfs/Shareactor_Dec2016_Theme/img/Shareactor_logo.png?t=1490176701994&width=200&name=Shareactor_logo.png",
+    "logo_url": "<logo-url.png>",
     "comments": "It is a comment"
 }
 ```
@@ -66,7 +65,7 @@ Content-Type: application/json
    "is_message_mandatory":false,
    "verified":false,
    "deleted":false,
-   "logo_url":"http://logok.org/wp-content/uploads/2014/10/Telenor_logo-and-wordmark.png",
+   "logo_url":"<logo-url.png>",
    "account_number":"12345678903",
    "_id":{
       "$oid":"57ee9c72d76d431f85111433"
@@ -78,24 +77,22 @@ Create a new Issuer.
 
 Arguments | Type | Description
 --------- | ---- | ------
-**created** | `timestamp` | Created is date generated when Issuer created. _default value `now date`_
-**modified** | `timestamp` | Date generated when Issuer is updated. _default value `now date`_
-**active** | `boolean` | Flag that sets Issuer object to active. _default `true`_
-**deleted** | `boolean` | Flag that sets Issuer object to deleted. _default `false`_
 **verified** | `boolean` | Flag that sets Issuer object to verified. _default `false`_
 **blacklisted** | `boolean` | Flag that sets Issuer object to blacklisted. _default `false`_
 **account_number** | `string` | Account number to Issuer, must contain 11 digits.
 comments | `string` | Comments.
 name | `string` | Name of Issuer.
 logo_url | `string` | The URL of the Issuer's logo.
-address | [`Address`](#address) | Address corresponding to payment address. 
+address | `object` | [`Address`](#address) corresponding to payment address. 
 is_messaging_mandatory | `boolean` | Determines if *message* field is mandatory for invoices issued by this issuer. _default value `false`_
 
 ## Retrieve an Issuer
 
 > Definition
 
+```
 GET https://api.shareactor.io/issuers/<issuer-id>
+```
 
 > Example request:
 
@@ -153,7 +150,9 @@ Argument | Type | Description
 
 > Definition
 
+```
 GET https://api.shareactor.io/issuers
+```
 
 > Example request:
 
@@ -207,10 +206,10 @@ Retrieves a list of all Issuers.
 
 Arguments | Type | Description
 --------- | ---- | -------
-size | `int` | Number of items to retrieve _default is 10_
-page | `int` | Which page to retrieve _default is 0_
-from_date | `timestamp` | Start date.
-to_date | `timestamp` | End date.
+size | `integer` | Number of items to retrieve _default is 10_
+page | `integer` | Which page to retrieve _default is 0_
+from_date | `integer` | Start date, `timestamp` format.
+to_date | `integer` | End date, `timestamp` format.
 date_filter | `string` | Date field used for filter results. _default is `created`_
 deleted | `boolean` | If `true`, deleted issuer are also listed. _default is `false`_
 sorting | `string` | Field used for sorting results
@@ -226,7 +225,9 @@ modified | Date generated when Issuer is updated.
 
 > Definition
 
+```
 PUT https://api.shareactor.io/issuers/<issuer-id>
+```
 
 > Example request:
 
@@ -284,7 +285,9 @@ Arguments | Type | Descriptions
 
 > Definition
 
+```
 GET https://api.shareactor.io/issuers/search
+```
 
 > Example request:
 
@@ -357,7 +360,9 @@ For all `Boolean` flags it is possible to put:
 
 > Definition
 
+```
 DELETE https://api.shareactor.io/issuers/<issuer-id>
+```
 
 > Example request:
 

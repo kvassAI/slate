@@ -1,4 +1,7 @@
-# Address
+# Addresses
+
+Address is the class which structures all addresses used by [`User`](@users), [`Provider`](@providers) 
+and the delivery system (pickup and drop off).
 
 ## Address Object
 
@@ -9,8 +12,8 @@ building | `string` | The building of Address
 zip_code | `string` | The zip code of Address
 city | `string` | The city of Address 
 country | `string` | The country of Address 
-geo | `GeoPoint` | The geo position of Address
-raw | `dynamic` | ##IDK how to describe this
+geo | `array` | The geo position of Address
+raw | `object` | All information like address, country, zip code, etc... from service
 alias | `string` | The alias of Address
 service  | `string` | The service used for Address. _default google_
 service_address_id  | `string` | 
@@ -18,9 +21,9 @@ service_address_id  | `string` |
 ### service
 
 Possibilities |
--------------
-google
-pca
+------------- |
+google |
+pca |
 
 ## Retrieves an Address
 
@@ -41,7 +44,7 @@ Host: api.shareactor.io
 
 {
    "service_address_id":"ChIJR0HKYoduQUYRkho1K1zkZpA",
-   "alias":",
+   "alias":"",
    "country":"Norway",
    "zip_code":"0160",
    "street_name":"Tordenskiolds gate 3",

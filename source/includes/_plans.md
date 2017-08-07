@@ -11,23 +11,19 @@ calculated from the starting date of the subscription.
 
 Attribute | Type | Description
 --------- | ---- | -------
-created | `boolean` | The date the Plan was generated.
-modified | `boolean` | The date the Plan was last updated.
-deleted | `boolean` | Flag that set Plan object to deleted.
-active | `string`| Status on Plan. <br> Default: `active`
 name | `string` | The name of the Plan
 note | `string` | A short description
 interval_unit | `string` | The frequency that the Subscription acts upon. <br> interval_unit choices: `DAY`, `WEEK`, `MONTH`, <br> `MONTH_END`, `ANNUAL`
-interval_count | `int`| Total umber of intervals_units
+interval_count | `integer`| Total umber of intervals_units
 billing_interval | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
 static | `boolean`| Defines if it is allowed to change the Plan
-items | [`Order_items`](#orders) | [`Products`](#products) Items associated in Plan. <br> The total_amount will be calculated based on the total sum of the Products.
+items | `array` | List of [`Order_items`](#orders) containing [`Products`](#products) Items associated in Plan. <br> The total_amount will be calculated based on the total sum of the Products.
 currency | `string` | ISO 4217 standard
-total_amount | `int` | Total amount per `interval_unit`. If missing, it is the sum of Product Items
-discount | `float` | Set discount on Plan. Min 0.0, max 1.0. This will affect the total_amount
-setup_cost | `float` | A fee for setting up a new Plan. Default = 0
+total_amount | `integer` | Total amount per `interval_unit`. If missing, it is the sum of Product Items
+discount | `number` | Set discount on Plan. Min 0.0, max 1.0. This will affect the total_amount
+setup_cost | `number` | A fee for setting up a new Plan. Default = 0
 initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions) <br> Choices `CANCEL`, `CONTINUE`
-max_fail_attempts | `int`| If `initial_fail_amount_action` is `CONTINUE`, number of interval_unit that is allowed to fail before the [`Subscription`](#subscriptions) stops.
+max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, number of interval_unit that is allowed to fail before the [`Subscription`](#subscriptions) stops.
 auto_bill_amount | `boolean` | Automatically bills the outstanding balance in the next billing cycle
 
 ## Create a new Plan
@@ -116,7 +112,6 @@ Argument | Type | Description
 **currency** | `string`| The currency for the subscription. ISO 4217
 
 
-
 ## Retrieve a Plan
 
 Retrieve a Plan, based on its id.
@@ -168,9 +163,6 @@ Content-Type: application/json
      "company": {
         "$oid": "57ee9c71d76d431f8511142f"}
  }
-
-
-
 ```
 
 Argument | Type | Description
@@ -218,7 +210,7 @@ Content-Type: application/json
         "discount": 0.0,
         "total_amount": 500.0,
         "company": {
-            "$oid": "59317069d57ba2781c739471"
+            "$oid": "57ee9c71d76d431f8511142f"
         },
         "deleted": false,
         "items": [{
@@ -251,8 +243,8 @@ Content-Type: application/json
 
 Argument | Type | Description
 -------- | ---- | -------
-size | `int` | Number of items to retrieve
-page | `int` | Which page to retrieve. _default page size is 50_
+size | `integer` | Number of items to retrieve
+page | `integer` | Which page to retrieve. _default page size is 50_
 sorting | `string`| Field used for sorting results. <br> If missing, the default is `-created`
 include_deleted| `boolean` | If `true`, deleted products are also listed
 
@@ -283,12 +275,12 @@ Argument | Type | Description
 -------- | ---- | -----
 **plan_id** | `string` | ID of the queried Plan
 active |`boolean`| Default = `true`
-name |`string`|
-note |`string`|
+name |`string`| Name of Plan
+note |`string`| Note regarding Plan
 initial_fail_amount_action |`string`| Choices: `CONTINUE`, `CANCEL`
-max_fail_attempts |`int`|
-discount |`float`|
-total_amount |`float`|`
+max_fail_attempts |`number`| How many times a payments could fail in the subscription, but still continue
+discount |`number`| Between 0.0 an 1.0. 1.0 is 100% discount on the total_price
+total_amount |`number`| If set, the total_amount is not based on the sum of Products.
 
 
 ## Delete Plan

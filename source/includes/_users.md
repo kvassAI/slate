@@ -6,22 +6,23 @@ User is the class that holds all the CRUD functions for your customers and is th
 
 Attributes | Type | Description
 ---------- | ---- | -----
-first_name | `string` | First name of the User.
-last_name | `string` | Last name of the User.
+**first_name** | `string` | First name of the User.
+**last_name** | `string` | Last name of the User.
 email | `string` | E-mail of the User.
 mobile_phone_number | `string` | Phone number of the User.
-addresses | `list` [`Address`](#address) | List of Addresses belonging to User.
-billing_address | [`Address`](#address) | Billing Address of User.
+addresses | `array` |  An `array`of [`Addresses`](#address) associated with User.
+billing_address | [`object`](#address) | Billing Address of User.
 bio | `string` | Biographic note about the User.
 tags | `string` | List of Tags associated with User.
 roles | `string` | List of Roles associated with User.
-deleted | `boolean` | Flag that sets User object to deleted.
 
 ## Create a User
 
 > Definition
 
+```
 POST https://api.shareactor.io/users
+```
 
 > Example request:
 
@@ -37,7 +38,16 @@ Host: api.shareactor.io
     "first_name": "John",
     "last_name": "Doe",
     "email": "john@email.com",
-    "mobile_phone_number": "+4712345678"
+    "mobile_phone_number": "+4712345678",
+    "addresses": [{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }]
   }
 }
 ```
@@ -61,7 +71,15 @@ Content-Type: application/json
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -86,16 +104,18 @@ first_name | `string` | First name of the User.
 last_name | `string` | Last name of the User.
 email | `string` | E-mail of the User.
 mobile_phone_number | `string` | Phone number of the User.
-billing_address | [`Address`](#address) | Billing Address of User.
+billing_address | `object` | Billing [`Address`](#address) of User.
 bio | `string` | Biographic note about the User.
-tags | `string` | List of Tags associated with User.
+tags | `array` | List of Tags associated with User.
 
 
 ## Retrieve a User
 
 > Definition
 
+```
 GET https://api.shareactor.io/users/<user-id>
+```
 
 > Example request:
 
@@ -126,7 +146,15 @@ Content-Type: application/json
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -154,7 +182,9 @@ Argument | Type | Description
 
 > Definition
 
+```
 PUT https://api.shareactor.io/users/<user-id>
+```
 
 > Example request:
 
@@ -189,7 +219,15 @@ Content-Type: application/json
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -215,16 +253,18 @@ first_name | `string` | First name of the User.
 last_name | `string` | Last name of the User.
 email | `string` | E-mail of the User.
 mobile_phone_number | `string` | Phone number of the User.
-billing_address | [`Address`](#address) | Billing Address of the User.
+billing_address | `object`| Billing [`Address`](#address) of the User.
 bio | `string` | Biographic note about the User.
-tags | `string` | List of Tags associated with User.
+tags | `array` | List of Tags associated with User.
 
 
 ## Delete a User
 
 > Definition
 
+```
 DELETE https://api.shareactor.io/users/<user-id>
+```
 
 > Example request:
 
@@ -251,11 +291,19 @@ Content-Type: application/json
   "modified":{
     "$date":1475428903951
   },
-  "first_name":"Oliver",
+  "first_name":"John",
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -284,7 +332,9 @@ Argument | Type | Description
 
 > Definition
 
+```
 GET https://api.shareactor.io/users
+```
 
 > Example request:
 
@@ -316,7 +366,15 @@ Content-Type: application/json
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -338,8 +396,8 @@ Retrieves a list of all Users be logging to some Company.
 
 Argument | Type | Description
 -------- | ---- | -------
-size | `int` | Number of items to retrieve. _default size is 50_
-page | `int` | Which page to retrieve. _default page 0_
+size | `number` | Number of items to retrieve. _default size is 50_
+page | `number` | Which page to retrieve. _default page 0_
 order_by | `string` | Field used for sorting results. _default is `last_name`_
 
 
@@ -347,7 +405,9 @@ order_by | `string` | Field used for sorting results. _default is `last_name`_
 
 > Definition
 
+```
 GET https://api.shareactor.io/users/search
+```
 
 > Example request:
 
@@ -378,7 +438,15 @@ Content-Type: application/json
   "last_name":"Doe",
   "email":"john@email.com",
   "mobile_phone_number":"+4712345678",
-  "addresses":[],
+  "addresses":[{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Iversenstien 7"
+             }],
   "billing_address":{},
   "bio":"",
   "note":"",
@@ -401,12 +469,19 @@ Retrieves a list of Users whose first or last name match a given query.
 Argument | Type | Description
 -------- | ---- | -----
 query | `string` | Query to use for searching.
-size | `int` | Number of items to retrieve. _default is 10_
-page | `int` | Which page to retrieve. _default is 0_
+size | `number` | Number of items to retrieve. _default is 10_
+page | `number` | Which page to retrieve. _default is 0_
 
 
 ## List all Orders for a User
 
+> Definition
+
+```
+GET https://api.shareactor.io/users/<user-id>/orders
+```
+
+> Example request:
 ``` http
 GET /users/<user-id>/orders HTTP/1.1
 Content-Type: application/json
@@ -429,11 +504,11 @@ Retrieves a list of all Orders associated with a given User.
 Arguments | Type | Description
 -------- | ----- | -----
 **user_id** | `string` | ID of the user to retrieve Orders from.
-size | `int` | Number of items to retrieve.
-page | `int` | Which page to retrieve. _default page size is 10_
+size | `number` | Number of items to retrieve.
+page | `number` | Which page to retrieve. _default page size is 10_
 order_by | `string` | Field used for sorting results. _default `created`_
-from_date | `timestamp` | Start date. _default now minus 15 days_
-to_date | `timestamp` | End date._default now plus 15 days_
+from_date | `number` | Start date, `timestamp` format. _default now minus 15 days_
+to_date | `number` | End date, `timestamp` format._default now plus 15 days_
 date_filter | `string` | Date field used for filter results. _default `created`_
 order_status | `string` | Order with specific status are also listed. The value accept comma like separator, e.q: 'success, processing'
 delivery_status | `string` | Order with specific delivery status are also listed. The value accept comma like separator, e.q: 'assigning, done, created'
