@@ -41,7 +41,8 @@ Host: api.shareactor.io
     "product": "58f9f856b70e2a56c4a0db3d",
     "description": "description of the resource",
     "name": "name of resource",
-    "image_url": "http://docs.shareactor.io/images/logo.png"}
+    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "reference_id": "abc1234567890abc"}
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -52,6 +53,7 @@ Content-Type: application/json
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "description of the resource",
+    "reference_id": "abc1234567890abc",
     "image_url": "http://docs.shareactor.io/images/logo.png",
     "name": "name of resource",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
@@ -99,10 +101,12 @@ Host: api.shareactor.io
    {"product": "58f9f856b70e2a56c4a0db3d",
     "description": "description of the first resource",
     "name": "name of first resource",
+    "reference_id": "abc1234567890abc",
     "image_url": "http://docs.shareactor.io/images/logo.png"},
    {"product": "58f9f856b70e2a56c4a0db3d",
     "description": "description of the second resource",
     "name": "name of second resource",
+    "reference_id": "abcdefghijklm",
     "image_url": "http://docs.shareactor.io/images/logo.png"}
 ]
 ```
@@ -118,6 +122,7 @@ Content-Type: application/json
     "image_url": "http://docs.shareactor.io/images/logo.png",
     "name": "name of resource",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
+    "reference_id": "abc1234567890abc",
     "status": "CREATED",
     "deleted": false,
     "created": {"$date": 1502100873778},
@@ -129,6 +134,7 @@ Content-Type: application/json
     "image_url": "http://docs.shareactor.io/images/logo.png",
     "name": "name of resource",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
+    "reference_id": "abcdefghijklm",
     "status": "CREATED",
     "deleted": false,
     "created": {"$date": 1502100873778},
@@ -167,6 +173,7 @@ Content-Type: application/json
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "description of the resource",
     "image_url": "http://docs.shareactor.io/images/logo.png",
+    "reference_id": "abc1234567890abc",
     "name": "name of resource",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
     "status": "CREATED",
@@ -221,6 +228,7 @@ Content-Type: application/json
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "An updated Resource",
     "image_url": "http://docs.shareactor.io/images/logo.png",
+    "reference_id": "abc1234567890abc",
     "name": "Resource 2",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
     "status": "IDLE",
@@ -295,6 +303,7 @@ Content-Type: application/json
     "image_url": "http://docs.shareactor.io/images/logo.png",
     "name": "Resource 2",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
+    "reference_id": "abc1234567890abc",
     "status": "IDLE",
     "company": {"$oid": "57ee9c71d76d431f8511142f"},
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
@@ -344,6 +353,7 @@ Content-Type: application/json
     "deleted": true,
     "description": "An updated Resource",
     "image_url": "http://docs.shareactor.io/images/logo.png",
+    "reference_id": "abc1234567890abc",
     "name": "Resource 2",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
     "status": "IDLE",
