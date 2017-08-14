@@ -398,7 +398,11 @@ Argument | Type | Description
 -------- | ---- | -------
 size | `number` | Number of items to retrieve. _default size is 50_
 page | `number` | Which page to retrieve. _default page 0_
-order_by | `string` | Field used for sorting results. _default is `last_name`_
+sort | `string` | Field used for sorting results. _default is `last_name`_
+from_date | `number` | Start date, `timestamp` format. _default None_
+to_date | `number` | End date, `timestamp` format._default None_
+date_filter | `string` | Date field used for filter results. _default `created`_
+include_deleted | `boolean` | If `true`, deleted users are also listed. _default is `false`_
 
 
 ## Search User
@@ -471,7 +475,11 @@ Argument | Type | Description
 query | `string` | Query to use for searching.
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
-
+sort | `string` | field used for sorting results. If missing default is "-created". Could be other parameters in the User model, like "last_name" or "first_name".
+from_date | `number` | Start date, `timestamp` format. _default None_
+to_date | `number` | End date, `timestamp` format._default None_
+date_filter | `string` | Date field used for filter results. _default `created`_
+include_deleted | `boolean` | If `true`, deleted users are also listed. _default is `false`_
 
 ## List all Orders for a User
 
