@@ -1,6 +1,6 @@
 # Introduction
 
-The ShareActor API is a standard JSON RESTful API. The API tries to follow the HTTP standards as often as possible, but there might be some deviations from it on some specific scenarios.
+The ShareActor API is a standard JSON RESTful API. The API follows the HTTP standards as often as possible, but there might be some deviations from it in some specific scenarios.
 
 All responses from the API, including errors, are returned as JSON objects.
 
@@ -28,32 +28,32 @@ Host: api.shareactor.io
 
 > Make sure to replace `<shareactor-api-key>` with your API key.
 
-ShareActor uses API keys to allow access to the API. If you want access to our APIs please get in touch through our [website](https://www.shareactor.io/contact) or via [e-mail](mailto:hello@shareactor.io).
+ShareActor uses API keys to allow access to the API. If you want access to our APIs, please get in touch through our [website](https://www.shareactor.io/contact).
 
-All API requests should include this key in the headers like the following:
+All API requests should include this key in the headers*:
 
 `X-Share-Api-Key: <shareactor-api-key>`
 
 <aside class="notice">
-You must replace <code>shareactor-api-key</code> with your personal API key.
+*Note:  You must replace <code>shareactor-api-key</code> with your personal API key.
 </aside>
 
 ## Errors
 
 <aside class="notice">The errors below might change slightly between API calls</aside>
 
-The Shareactor API uses the following error codes:
+The ShareActor API uses the following error codes:
 
 
 Error Code | Reason | Description
 ---------- | ------- | -------
-400 | Bad Request | Your request is malformed or missing mandatory data
-401 | Unauthorized | Your API key is either wrong, missing or you have no permissions for such request
+400 | Bad Request | Your request is malformed or missing mandatory data.
+401 | Unauthorized | Your API key is either wrong, missing or you have no permissions for this request.
 403 | Forbidden | Your request is trying to access data it has no credentials for
-404 | Not Found | The specified resource could not be found
+404 | Not Found | The specified resource could not be found.
 409 | Conflict | There was a conflict with processing your request. Try later or change the data being submitted
-500 | Internal Server Error | We are having problems with our server. Try again later
-503 | Service Unavailable | We're temporarily offline for maintenance. Please try again later
+500 | Internal Server Error | We had a problem with our server. Please try again later.
+503 | Service Unavailable | We're temporarily offline for maintenance. Please try again later.
 
 ## Expanding objects
 
@@ -81,7 +81,7 @@ Content-Type: application/json
 }
 ```
 
-Many response objects will contain IDs for related objects in the response. For example, an Order might have a User ID associated. If you want to expand the actual user information you can use the `expand` query parameter for that.
+Many response objects will contain IDs for related objects in the response. For example, an Order might have a User ID associated. If you want to expand the actual user information, you can use the `expand` query parameter.
 
 You can also nest expand requests with the dot property. For example, requesting payments.payment_method on an order will expand the payments property into a list of Payment objects, and will then expand the payment method property into a full Payment Method object. 
 
@@ -97,7 +97,7 @@ Field | Description
 created  | Date when object was created
 modified | Date when object was last modified
 deleted  | Flag that shows if object has been deleted
-active   | Flag that shows if object is active or not
+active   | Flag that shows if object is active
 company  | Company associated with object
 user     | User associated with object
 
@@ -124,7 +124,7 @@ X-Pagination-Total: 212
 ```
 
 All top-level API resources have support for bulk fetches via "list" API methods. For instance you can list orders, users, providers, etc.
-These list API methods share a common structure, taking at least these two parameters: size and page.
+These "list" API methods share a common structure, taking at least these two parameters: size and page.
 
 ShareActor uses pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
 The return of a response header contains the total count: `X-Pagination-Total: 212`

@@ -163,12 +163,12 @@ the subscription, the User could only update one of infinite, ending_date, inter
 > Definition
 
 ```
-PUT https://api.shareactor.io/subscriptions/<subscription_id>/update
+PUT https://api.shareactor.io/subscriptions/<subscription_id>
 ```
 > Example request:
 
 ``` http
-PUT /subscriptions/5964a0ead57ba2036750a3b4/update HTTP/1.1
+PUT /subscriptions/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
