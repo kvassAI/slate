@@ -199,7 +199,75 @@ Arguments | Type | Description
 --------- | ---- | ------
 size | `number` | number of items to retrieve
 page | `number` | which page to retrieve. _default page size is 10_
-order_by | `string` | field used for sorting results. If missing default is "-due_date". Could be other parameters in the Invoice model, like "-created" or "status=DONE".
+sort | `string` | field used for sorting results. If missing default is "-due_date". Could be other parameters in the Invoice model, like "-created" or "status=DONE".
+status | `string` | Status of Invoice. By default there is no value, the API returns invoices regardless the status.Additionally there are : CREATED, SCHEDULED, DONE, FAILED, CANCELLED
+from_date | `number` | Start date, `timestamp` format. _default is None_
+to_date | `number` | End date, `timestamp` format. _default is None_
+date_filter | `string` | Date field used for filter results. _default is `created`_
+
+
+## Invoices Search
+
+> Definition
+
+```
+GET https://api.shareactor.io/invoices/search
+```
+
+> Example request by account_number:
+
+``` http
+GET /invoices/search/query=12345678903 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+    {
+       "currency":"NOK",
+       "issuer":{
+          "$oid":"57ee9c72d76d431f85111433"
+       },
+       "deleted":false,
+       "due_date":{
+          "$date":1476551410009
+       },
+       "message":"12313123",
+       "account_number":"12345678903",
+       "user":{
+          "$oid":"57ee9c72d76d431f85111432"
+       },
+       "company":{
+          "$oid":"57ee9c71d76d431f8511142f"
+       },
+       "amount":123.45,
+       "_id":{
+          "$oid":"57ee9c72d76d431f85111434"
+       },
+       "image_url": "<image-id>/<image-name>.jpg"
+    }
+]
+```
+
+Retrieves a list of Invoices associate with search.
+
+Arguments | Type | Description
+--------- | ---- | -------
+**query** | `string` | What you want to search, like **amount** or **account_number**
+size | `number` | number of items to retrieve
+page | `number` | which page to retrieve. _default page size is 10_
+sort | `string` | field used for sorting results. If missing default is "-created". Could be other parameters in the Invoice model, like "-created" or "status=DONE".
+from_date | `number` | Start date, `timestamp` format. _default is None_
+to_date | `number` | End date, `timestamp` format. _default is None_
+date_filter | `string` | Date field used for filter results. _default is `created`_
+include_deleted | `boolean` | If `true`, deleted products are also listed. _default is `false`_
+
 
 ## Update an invoice
 > Definition

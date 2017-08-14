@@ -215,7 +215,7 @@ Arguments | Type | Description
 --------- | ---- | ------
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
-order_by | `string` | Field used for sorting results. _default is -modified_
+sort | `string` | Field used for sorting results. _default is -modified_
 status | `string` | Status of Payments to filter by
 
 ## Update payment
