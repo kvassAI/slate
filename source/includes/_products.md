@@ -137,36 +137,24 @@ Content-Type: application/json
 {  
    "_cls":"Product",
    "parents":[],
-   "tags":[  
-      "fuzz",
-      "Foo",
-      "Bar"
-   ],
+   "tags":["fuzz", "Foo", "Bar"],
    "price":3.14,
    "_sub_products":[],
    "deleted":false,
    "company_take":-1.0,
    "max_distance":0,
    "description":"description",
-   "created":{  
-      "$date":1492781492460
-   },
+   "created":{"$date":1492781492460},
    "vat":0.0,
    "properties":{},
    "active":true,
    "name":"Product Name",
-   "modified":{  
-      "$date":1492781492461
-   },
-   "company":{  
-      "$oid":"57ee9c71d76d431f8511142f"
-   },
+   "modified":{"$date":1492781492461},
+   "company":{"$oid":"57ee9c71d76d431f8511142f"},
    "currency":"NOK",
    "path":"/",
    "main_product":true,
-   "_id":{  
-      "$oid":"58f9f856b70e2a56c4a0db3d"
-   },
+   "_id":{"$oid":"58f9f856b70e2a56c4a0db3d"},
    "business_rules":[],
    "default_position":[-1,-1]
 }
@@ -202,42 +190,30 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 [  
-   {  
-      "active":true,
-      "metadata":{  
-         "charge_id":"ch_1ADY0SEeeXxFpLJti58RcN7w"
-      },
-      "user":{  
-         "$oid":"57ee9c72d76d431f85111432"
-      },
-      "subject":{  
-         "_cls":"Invoice",
-         "_ref":"57ee9c72d76d431f85111434"
-      },
-      "company":{  
-         "$oid":"57ee9c71d76d431f8511142f"
-      },
-      "payment_date":{  
-         "$date":1493381731652
-      },
-      "currency":"NOK",
-      "created":{  
-         "$date":1493381732307
-      },
-      "_id":{  
-         "$oid":"58f9f856b70e2a56c4a0db3d"
-      },
-      "modified":{  
-         "$date":1493381746495
-      },
-      "human_id":"51Q4LN",
-      "payment_method":{  
-         "$oid":"<payment_method_id>"
-      },
-      "current_state":"succeeded",
-      "deleted":false,
-      "amount":10.0
-   }
+    {
+       "_cls":"Product",
+       "parents":[],
+       "tags":["fuzz", "Foo", "Bar"],
+       "price":3.14,
+       "_sub_products":[],
+       "deleted":false,
+       "company_take":-1.0,
+       "max_distance":0,
+       "description":"description",
+       "created":{"$date":1492781492460},
+       "vat":0.0,
+       "properties":{},
+       "active":true,
+       "name":"Product Name",
+       "modified":{"$date":1492781492461},
+       "company":{"$oid":"57ee9c71d76d431f8511142f"},
+       "currency":"NOK",
+       "path":"/",
+       "main_product":true,
+       "_id":{"$oid":"58f9f856b70e2a56c4a0db3d"},
+       "business_rules":[],
+       "default_position":[-1,-1]
+    }
 ]
 ```
 
@@ -247,8 +223,77 @@ Arguments | Type | Description
 --------- | ---- | -----------
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
-include_deleted| `boolean` | If `true`, deleted products are also listed
-sorting | `string` | Field used for sorting results
+sort | `string` | Field used for sorting results. _default is created_
+from_date | `number` | Start date, `timestamp` format. _default is None_
+to_date | `number` | End date, `timestamp` format. _default is None_
+date_filter | `string` | Date field used for filter results. _default is created_
 lat | `number` | Define the latitude
 lng | `number` | Define the longitude
 all | `boolean` | If `true` get all products
+include_deleted| `boolean` | If `true`, deleted products are also listed
+
+
+## Search Products
+
+> Definition
+
+```
+GET https://api.shareactor.io/products/search
+```
+
+> Example request:
+
+``` http
+GET /products/search?query=description HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+    {
+       "_cls":"Product",
+       "parents":[],
+       "tags":["fuzz", "Foo", "Bar"],
+       "price":3.14,
+       "_sub_products":[],
+       "deleted":false,
+       "company_take":-1.0,
+       "max_distance":0,
+       "description":"description",
+       "created":{"$date":1492781492460},
+       "vat":0.0,
+       "properties":{},
+       "active":true,
+       "name":"Product Name",
+       "modified":{"$date":1492781492461},
+       "company":{"$oid":"57ee9c71d76d431f8511142f"},
+       "currency":"NOK",
+       "path":"/",
+       "main_product":true,
+       "_id":{"$oid":"58f9f856b70e2a56c4a0db3d"},
+       "business_rules":[],
+       "default_position":[-1,-1]
+    }
+]
+```
+
+Retrieves a list of all Products associated with the search.
+
+Arguments | Type | Description
+--------- | ---- | -----------
+**query** | `string` | What you want to search, like **name** or **description**
+size | `number` | Number of items to retrieve. _default is 10_
+page | `number` | Which page to retrieve. _default is 0_
+sort | `string` | Field used for sorting results. _default is created_
+from_date | `number` | Start date, `timestamp` format. _default is None_
+to_date | `number` | End date, `timestamp` format. _default is None_
+date_filter | `string` | Date field used for filter results. _default is created_
+lat | `number` | Define the latitude
+lng | `number` | Define the longitude
+include_deleted| `boolean` | If `true`, deleted products are also listed
