@@ -266,7 +266,7 @@ sort | `string` | field used for sorting results. If missing default is "-create
 from_date | `number` | Start date, `timestamp` format. _default is None_
 to_date | `number` | End date, `timestamp` format. _default is None_
 date_filter | `string` | Date field used for filter results. _default is `created`_
-include_deleted | `boolean` | If `true`, deleted products are also listed. _default is `false`_
+include_deleted | `boolean` | If `true`, deleted invoices are also listed. _default is `false`_
 
 
 ## Update an invoice
