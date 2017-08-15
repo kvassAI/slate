@@ -31,13 +31,13 @@ There are just a couple of things you need to do to authorize with our APIs afte
   * [Ionic 2](https://auth0.com/authenticate/ionic2/oauth2)
   * [React Native](https://www.npmjs.com/package/react-native-oauth)
   * Manual - you can also use no SDK and just implement a typical OAuth2 flow
-2. Configure the SDK with the settings given by us
+2. Configure the SDK with the settings you receive from us
 3. Perform the authentication request, which will return you a JWT and a profile
 4. Create or authenticate your user with our API - `POST /v2/users`
 
 After this flow, you should use the JWT provided for all other API calls.
 
-OAuth2 is a standard for authorization, so if you need more information on how to use/implement it, you can find various resources online. However, here are a few good starting points:
+OAuth2 is an industry-standard protocol for authorization, so if you need more information on how to use/implement it, you can find various resources online. However, here are a few good starting points:
 
 * [OAuth2 Spec - RFC6749](https://tools.ietf.org/html/rfc6749)
 * [OAuth Bible](http://oauthbible.com/)
