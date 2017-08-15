@@ -235,6 +235,8 @@ include_deleted| `boolean` | If `true`, deleted products are also listed
 
 ## Search Products
 
+Retrieves a list of all Products associated with the search.
+
 > Definition
 
 ```
@@ -283,11 +285,9 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all Products associated with the search.
-
 Arguments | Type | Description
 --------- | ---- | -----------
-**query** | `string` | What you want to search, like **name** or **description**
+**query** | `string` | What you want to search, like **name**, **description**, or **id**
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
 sort | `string` | Field used for sorting results. _default is created_
