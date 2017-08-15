@@ -54,25 +54,15 @@ Content-Type: application/json
 
 {
    "currency":"NOK",
-   "issuer":{
-      "$oid":"57ee9c72d76d431f85111433"
-   },
+   "issuer":{"$oid":"57ee9c72d76d431f85111433"},
    "deleted":false,
-   "due_date":{
-      "$date":1476551410009
-   },
+   "due_date":{"$date":1476551410009},
    "message":"Some message to the Issuer",
    "account_number":"12345678903",
-   "user":{
-      "$oid":"57ee9c72d76d431f85111432"
-   },
-   "company":{
-      "$oid":"57ee9c71d76d431f8511142f"
-   },
+   "user":{"$oid":"57ee9c72d76d431f85111432"},
+   "company":{"$oid":"57ee9c71d76d431f8511142f"},
    "amount":123.45,
-   "_id":{
-      "$oid":"57ee9c72d76d431f85111434"
-   },
+   "_id":{"$oid":"57ee9c72d76d431f85111434"},
    "image_url": "<image-id>/<image-name>.jpg"
 }
 ```
@@ -114,25 +104,15 @@ Content-Type: application/json
 
 {
    "currency":"NOK",
-   "issuer":{
-      "$oid":"57ee9c72d76d431f85111433"
-   },
+   "issuer":{"$oid":"57ee9c72d76d431f85111433"},
    "deleted":false,
-   "due_date":{
-      "$date":1476551410009
-   },
+   "due_date":{"$date":1476551410009},
    "message":"12313123",
    "account_number":"12345678903",
-   "user":{
-      "$oid":"57ee9c72d76d431f85111432"
-   },
-   "company":{
-      "$oid":"57ee9c71d76d431f8511142f"
-   },
+   "user":{"$oid":"57ee9c72d76d431f85111432"},
+   "company":{"$oid":"57ee9c71d76d431f8511142f"},
    "amount":123.45,
-   "_id":{
-      "$oid":"57ee9c72d76d431f85111434"
-   },
+   "_id":{"$oid":"57ee9c72d76d431f85111434"},
    "image_url": "<image-id>/<image-name>.jpg"
 }
 ```
@@ -169,25 +149,15 @@ Content-Type: application/json
 [
     {
        "currency":"NOK",
-       "issuer":{
-          "$oid":"57ee9c72d76d431f85111433"
-       },
+       "issuer":{"$oid":"57ee9c72d76d431f85111433"},
        "deleted":false,
-       "due_date":{
-          "$date":1476551410009
-       },
+       "due_date":{"$date":1476551410009},
        "message":"12313123",
        "account_number":"12345678903",
-       "user":{
-          "$oid":"57ee9c72d76d431f85111432"
-       },
-       "company":{
-          "$oid":"57ee9c71d76d431f8511142f"
-       },
+       "user":{"$oid":"57ee9c72d76d431f85111432"},
+       "company":{"$oid":"57ee9c71d76d431f8511142f"},
        "amount":123.45,
-       "_id":{
-          "$oid":"57ee9c72d76d431f85111434"
-       },
+       "_id":{"$oid":"57ee9c72d76d431f85111434"},
        "image_url": "<image-id>/<image-name>.jpg"
     }
 ]
@@ -207,6 +177,8 @@ date_filter | `string` | Date field used for filter results. _default is `create
 
 
 ## Invoices Search
+
+Retrieves a list of Invoices associate with search.
 
 > Definition
 
@@ -231,38 +203,26 @@ Content-Type: application/json
 [
     {
        "currency":"NOK",
-       "issuer":{
-          "$oid":"57ee9c72d76d431f85111433"
-       },
+       "issuer":{"$oid":"57ee9c72d76d431f85111433"},
        "deleted":false,
-       "due_date":{
-          "$date":1476551410009
-       },
+       "due_date":{"$date":1476551410009},
        "message":"12313123",
        "account_number":"12345678903",
-       "user":{
-          "$oid":"57ee9c72d76d431f85111432"
-       },
-       "company":{
-          "$oid":"57ee9c71d76d431f8511142f"
-       },
+       "user":{"$oid":"57ee9c72d76d431f85111432"},
+       "company":{"$oid":"57ee9c71d76d431f8511142f"},
        "amount":123.45,
-       "_id":{
-          "$oid":"57ee9c72d76d431f85111434"
-       },
+       "_id":{"$oid":"57ee9c72d76d431f85111434"},
        "image_url": "<image-id>/<image-name>.jpg"
     }
 ]
 ```
 
-Retrieves a list of Invoices associate with search.
-
 Arguments | Type | Description
 --------- | ---- | -------
-**query** | `string` | What you want to search, like **amount** or **account_number**
+**query** | `string` | What you want to search, like **id**, **account_number**, **issuer name**, or **user name**
 size | `number` | number of items to retrieve
 page | `number` | which page to retrieve. _default page size is 10_
-sort | `string` | field used for sorting results. If missing default is "-created". Could be other parameters in the Invoice model, like "-created" or "status=DONE".
+sort | `string` | field used for sorting results. If missing default is "-created". Could be other parameters in the Invoice model, like "-created" or "status".
 from_date | `number` | Start date, `timestamp` format. _default is None_
 to_date | `number` | End date, `timestamp` format. _default is None_
 date_filter | `string` | Date field used for filter results. _default is `created`_
@@ -293,6 +253,9 @@ Argument | Type | Description
 **invoice_id** | `string` | ID of the queried Invoice
 
 ## Delete invoice
+
+Deletes an invoice with a give ID.
+
 > Definition
 
 ```
@@ -308,5 +271,3 @@ Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
-
-Deletes an invoice with a give ID.
