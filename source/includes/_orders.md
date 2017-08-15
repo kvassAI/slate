@@ -1,6 +1,7 @@
 # Orders
 
-Orders are the result of a User buying a given set of Products and it's what connects Users and Providers.
+Orders are the result of an User purchasing a given set of Products.
+The Product could be provided by a Provider
 
 ## Order object
 
@@ -248,7 +249,8 @@ Argument | Type | Description
 
 ## List all Orders
 
-Retrieves a list of all Orders associated with the company.
+Retrieves a list of all Orders associated with the company's database.
+It is also possible to filter the search by using pagination.
 
 > Definition
 
@@ -488,11 +490,13 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all Orders associated with the search.
+Retrieves a list of all Orders associated with the search parameters.
+It is possible to search for id, human_id and first and last name for
+Users and Providers associated with orders.
 
 Arguments | Type | Description
 --------- | ---- | -------
-**query** | `string` | What you want to search, like **human_id**, **user name**, **provider name**, or **id**
+**query** | `string` | The search query. One of **human_id**, **user name**, **provider name**, or **id**
 from_date | `number` | Start date, `timestamp` format. _default is None_
 to_date | `number` | End date, `timestamp` format. _default is None_
 date_filter | `string` | Date field used for filter results. _default is created_
