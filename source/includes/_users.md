@@ -18,6 +18,8 @@ roles | `string` | List of Roles associated with User.
 
 ## Create a User
 
+Creates a new User.
+
 > Definition
 
 ```
@@ -57,16 +59,10 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "_id":{
-    "$oid":"57ee9c72d76d431f85111432"
-  },
+  "_id":{"$oid":"57ee9c72d76d431f85111432"},
   "_cls":"User",
-  "created":{
-    "$date":1475428903950
-  },
-  "modified":{
-    "$date":1475428903951
-  },
+  "created":{"$date":1475428903950},
+  "modified":{"$date":1475428903951},
   "first_name":"John",
   "last_name":"Doe",
   "email":"john@email.com",
@@ -84,19 +80,13 @@ Content-Type: application/json
   "bio":"",
   "note":"",
   "avatar":"",
-  "company":{
-    "$oid":"57ee9c71d76d431f8511142f"
-  },
+  "company":{"$oid":"57ee9c71d76d431f8511142f"},
   "tags":[],
   "stripe_customer_id":"",
-  "roles":[
-    "user"
-  ],
-  "deleted":false
-  }
+  "roles":["user"],
+  "deleted":true
+}
 ```
-
-Creates a new User.
 
 Argument | Type | Description
 -------- | ---- | -----
@@ -132,16 +122,10 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "_id":{
-    "$oid":"57ee9c72d76d431f85111432"
-  },
+  "_id":{"$oid":"57ee9c72d76d431f85111432"},
   "_cls":"User",
-  "created":{
-    "$date":1475428903950
-  },
-  "modified":{
-    "$date":1475428903951
-  },
+  "created":{"$date":1475428903950},
+  "modified":{"$date":1475428903951},
   "first_name":"John",
   "last_name":"Doe",
   "email":"john@email.com",
@@ -159,16 +143,12 @@ Content-Type: application/json
   "bio":"",
   "note":"",
   "avatar":"",
-  "company":{
-    "$oid":"57ee9c71d76d431f8511142f"
-  },
+  "company":{"$oid":"57ee9c71d76d431f8511142f"},
   "tags":[],
   "stripe_customer_id":"",
-  "roles":[
-    "user"
-  ],
-  "deleted":false
-  }
+  "roles":["user"],
+  "deleted":true
+}
 ```
 
 Retrieves User with the given ID.
@@ -179,6 +159,8 @@ Argument | Type | Description
 
 
 ## Update a User
+
+Updates an existing User.
 
 > Definition
 
@@ -205,16 +187,10 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "_id":{
-    "$oid":"57ee9c72d76d431f85111432"
-  },
+  "_id":{"$oid":"57ee9c72d76d431f85111432"},
   "_cls":"User",
-  "created":{
-    "$date":1475428903950
-  },
-  "modified":{
-    "$date":1475428903951
-  },
+  "created":{"$date":1475428903950},
+  "modified":{"$date":1475428903951},
   "first_name":"Oliver",
   "last_name":"Doe",
   "email":"john@email.com",
@@ -232,19 +208,14 @@ Content-Type: application/json
   "bio":"",
   "note":"",
   "avatar":"",
-  "company":{
-    "$oid":"57ee9c71d76d431f8511142f"
-  },
+  "company":{"$oid":"57ee9c71d76d431f8511142f"},
   "tags":[],
   "stripe_customer_id":"",
-  "roles":[
-    "user"
-  ],
+  "roles":["user"],
   "deleted":false
-  }
+}
 ```
 
-Updates an existing User.
 
 Argument | Type | Description
 -------- | ---- | ------
@@ -259,6 +230,8 @@ tags | `array` | List of Tags associated with User.
 
 
 ## Delete a User
+
+Deletes a User.
 
 > Definition
 
@@ -281,16 +254,10 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "_id":{
-    "$oid":"57ee9c72d76d431f85111432"
-  },
+  "_id":{"$oid":"57ee9c72d76d431f85111432"},
   "_cls":"User",
-  "created":{
-    "$date":1475428903950
-  },
-  "modified":{
-    "$date":1475428903951
-  },
+  "created":{"$date":1475428903950},
+  "modified":{"$date":1475428903951},
   "first_name":"John",
   "last_name":"Doe",
   "email":"john@email.com",
@@ -308,20 +275,13 @@ Content-Type: application/json
   "bio":"",
   "note":"",
   "avatar":"",
-  "company":{
-    "$oid":"57ee9c71d76d431f8511142f"
-  },
+  "company":{"$oid":"57ee9c71d76d431f8511142f"},
   "tags":[],
   "stripe_customer_id":"",
-  "roles":[
-    "user"
-  ],
+  "roles":["user"],
   "deleted":true
-  }
+}
 ```
-
-Deletes a User.
-
 
 Argument | Type | Description
 -------- | ---- | -------
@@ -352,16 +312,10 @@ Content-Type: application/json
 
 [
   {
-  "_id":{
-    "$oid":"57ee9c72d76d431f85111432"
-  },
+  "_id":{"$oid":"57ee9c72d76d431f85111432"},
   "_cls":"User",
-  "created":{
-    "$date":1475428903950
-  },
-  "modified":{
-    "$date":1475428903951
-  },
+  "created":{"$date":1475428903950},
+  "modified":{"$date":1475428903951},
   "first_name":"John",
   "last_name":"Doe",
   "email":"john@email.com",
@@ -379,14 +333,10 @@ Content-Type: application/json
   "bio":"",
   "note":"",
   "avatar":"",
-  "company":{
-    "$oid":"57ee9c71d76d431f8511142f"
-  },
+  "company":{"$oid":"57ee9c71d76d431f8511142f"},
   "tags":[],
   "stripe_customer_id":"",
-  "roles":[
-    "user"
-  ],
+  "roles":["user"],
   "deleted":false
   }
 ]
@@ -399,6 +349,10 @@ Argument | Type | Description
 size | `number` | Number of items to retrieve. _default size is 50_
 page | `number` | Which page to retrieve. _default page 0_
 sort | `string` | Field used for sorting results. _default is `last_name`_
+from_date | `number` | Start date, `timestamp` format. _default None_
+to_date | `number` | End date, `timestamp` format._default None_
+date_filter | `string` | Date field used for filter results. _default `created`_
+include_deleted | `boolean` | If `true`, deleted users are also listed. _default is `false`_
 
 
 ## Search User
@@ -424,16 +378,10 @@ Content-Type: application/json
 
 [
   {
-  "_id":{
-    "$oid":"57ee9c72d76d431f85111432"
-  },
+  "_id":{"$oid":"57ee9c72d76d431f85111432"},
   "_cls":"User",
-  "created":{
-    "$date":1475428903950
-  },
-  "modified":{
-    "$date":1475428903951
-  },
+  "created":{"$date":1475428903950},
+  "modified":{"$date":1475428903951},
   "first_name":"John",
   "last_name":"Doe",
   "email":"john@email.com",
@@ -451,14 +399,10 @@ Content-Type: application/json
   "bio":"",
   "note":"",
   "avatar":"",
-  "company":{
-    "$oid":"57ee9c71d76d431f8511142f"
-  },
+  "company":{"$oid":"57ee9c71d76d431f8511142f"},
   "tags":[],
   "stripe_customer_id":"",
-  "roles":[
-    "user"
-  ],
+  "roles":["user"],
   "deleted":false
   }
 ]
@@ -468,10 +412,14 @@ Retrieves a list of Users whose first or last name match a given query.
 
 Argument | Type | Description
 -------- | ---- | -----
-query | `string` | Query to use for searching.
+query | `string` | What you want to search, like **first name**, **last name**, or **id**
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
-
+sort | `string` | field used for sorting results. If missing default is "-created". Could be other parameters in the User model, like "last_name" or "first_name".
+from_date | `number` | Start date, `timestamp` format. _default None_
+to_date | `number` | End date, `timestamp` format._default None_
+date_filter | `string` | Date field used for filter results. _default `created`_
+include_deleted | `boolean` | If `true`, deleted users are also listed. _default is `false`_
 
 ## List all Orders for a User
 
