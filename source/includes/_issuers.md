@@ -80,7 +80,7 @@ Arguments | Type | Description
 **verified** | `boolean` | Flag that sets Issuer object to verified. _default `false`_
 **blacklisted** | `boolean` | Flag that sets Issuer object to blacklisted. _default `false`_
 **account_number** | `string` | Account number to Issuer, must contain 11 digits.
-comments | `string` | Comments.
+comments | `string` | Comments regarding the issuer.
 name | `string` | Name of Issuer.
 logo_url | `string` | The URL of the Issuer's logo.
 address | `object` | [`Address`](#address) corresponding to payment address. 
@@ -343,8 +343,8 @@ Content-type: application/json
 Retrieves a list of Issuers associate with search.
 
 Arguments | Type | Description
---------- | -----------
-**query** | `string` | The search query. One of **name** or **account_number**
+--------- | ---- | -------
+**query** | `string` | What you want to search for, like **name**, **account_number** or **id**
 filters | `string` | Use filters for more accurate results
 active | `boolean` | Active issuer are also listed
 verified | `boolean` | Verified issuer are also listed
