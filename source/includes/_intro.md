@@ -129,6 +129,110 @@ These "list" API methods share a common structure, taking at least these two par
 ShareActor uses pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
 The return of a response header contains the total count: `X-Pagination-Total: 212`
 
+
+## Retrieve items
+
+The models ([Users](#users), [Invoices](#invoices), [Issuers](#issuers), etc.)
+describe below can be retrieve by two different ways, *searching* or an usual GET api call.
+
+In both ways, you can use pagination, sorting, and filter the results by date to navigate big lists.
+Additionally, the search method is using the argument `query`.
+Each model that has the ability to do search will be explained more thoroughly their respective chapters,
+but all the models have search by `ID` in common.
+
+> Definition GET
+
+```
+GET https://api.shareactor.io/model
+```
+
+> Example GET request:
+
+``` http
+GET /model HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+    {
+        "_id":{"$oid":"a0b1c2d3e4d5c6b7a8b94242"},
+        "company":{"$oid":"591ee15db70e2a10acb65362"},
+    }
+]
+
+```
+
+
+> Definition SEARCH
+
+```
+GET https://api.shareactor.io/model/search
+```
+
+> Example SEARCH request:
+
+``` http
+GET /model/search?query=a0b1c2d3e4d5c6b7a8b94242 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "_id":{"$oid":"a0b1c2d3e4d5c6b7a8b94242"},
+    "company":{"$oid":"591ee15db70e2a10acb65362"},
+}
+```
+
+        | Types | Description
+------- | ----- | -----------
+**Filter by date** | |
+from_date | `number` | Start date, `timestamp` format. _default is None_
+to_date | `number` | End date, `timestamp` format. _default is None_
+date_filter | `string` | Date field used for filter results. _default is created_
+**Pagination** | |
+size | `number` | Number of items to retrieve. _default is 10_
+page | `number` | Which page to retrieve. _default is 0_
+**Sorting** | |
+sort | `string` |  Model specific attributes for sorting results
+
+### Getting list of models
+
+The `Get` method allows you to retrieve all items from a model in a list.
+Some models give you additional arguments for filter the requests (e.g: status filter).
+
+        | Invoices | Issuers | Orders | Payments | Products | Providers | Users
+------- | -------- | ------- | ------ | -------- | -------- | --------- | -----
+*Filter by date*  | x | x | x | x | x | x | x
+*Pagination*      | x | x | x | x | x | x | x
+*Sorting*         | x | x | x | x | x | x | x
+
+### Search on model
+
+The `Search` method is an advanced type of the `Get` request.
+This is because the results depend on the query.
+This method allows you to retrieve a list of items matching with a search query,
+like `user name` or `account_number`, without specifying that you are searching for
+`user name` or `account_number`.
+
+        | Invoices | Issuers | Orders | Payments | Products | Providers | Users
+------- | -------- | ------- | ------ | -------- | -------- | --------- | -----
+*Filter by date*  | x | x | x | x | x | x | x
+*Pagination*      | x | x | x | x | x | x | x
+*Sorting*         | x | x | x | x | x | x | x
+
 # Authorization
 
 Our API uses OAuth2 and JWT tokens for authorizing Users, through a service called [Auth0](https://auth0.com/). 
