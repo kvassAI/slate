@@ -1,10 +1,10 @@
 # Plans
 
-The Plan is a method utilized by the [`Subscription`](#subscriptions) method.
-Its main feature is to set the billing cycle, currency, product items, and
-the duration of the subscription. The interval_unit and the billing_interval
-is the most important fields and defines the period of time between
-each subscription action and each payment. The next billing- and interval dates are
+The Plans method is utilized by the [`Subscriptions`](#subscriptions) method.
+Its main feature is to set the billing cycle, currency, product items and
+the duration of a subscription. The interval_unit and the billing_interval
+are the most important fields and define the period of time between
+each subscription action and each payment. The next billing and interval dates are
 calculated from the starting date of the subscription.
 
 ## Plans Object
