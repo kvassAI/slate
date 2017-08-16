@@ -78,7 +78,7 @@ Attribute | Type | Description
 image_url | `string` | The url for the invoice image
 issued_date| `number` | The date the Invoice was issued, `timestamp` format. Not mandatory
 issuer_alias| `string` | Issuer alias that User could set. Not mandatory
-message | `string` | Message of transaction. e.g. KID number
+message | `string` | Message in the transaction. e.g. KID number
 
 ## Retrieve an Invoice
 
