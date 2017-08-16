@@ -130,13 +130,15 @@ ShareActor uses pagination based on a page size (`size`) and current page (`page
 The return of a response header contains the total count: `X-Pagination-Total: 212`
 
 
-## Retrieve items by Searching and getting
+## Retrieve items
 
-The models ([Users](#users), [Invoices](#invoices), [Issuers](#issuers), etc.) describe below can be retrieve by two different ways *searching* and *getting*.
+The models ([Users](#users), [Invoices](#invoices), [Issuers](#issuers), etc.)
+describe below can be retrieve by two different ways, *searching* or an usual GET api call.
 
-In both ways, you can use pagination, sorting, and filter the results by date.
-Moreover, the searching method is using the argument `query`, the fields on which you can search depend the model.
-Each model including the searching method will be explain in his proper describe, but every model could be search by the `ID`.
+In both ways, you can use pagination, sorting, and filter the results by date to navigate big lists.
+Additionally, the search method is using the argument `query`.
+Each model that has the ability to do search will be explained more thoroughly their respective chapters,
+but all the models have search by `ID` in common.
 
 > Definition GET
 
@@ -204,13 +206,12 @@ date_filter | `string` | Date field used for filter results. _default is created
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
 **Sorting** | |
-sort | `string` | Field model for sorting results
+sort | `string` |  Model specific attributes for sorting results
 
 ### Getting list of models
 
-The `Get` method allows you to retrieve a all items from a model in list.
-Basically, it's very basic getting items.
-A few models give you more arguments for your getting (e.g: status filter).
+The `Get` method allows you to retrieve all items from a model in a list.
+Some models give you additional arguments for filter the requests (e.g: status filter).
 
         | Invoices | Issuers | Orders | Payments | Products | Providers | Users
 ------- | -------- | ------- | ------ | -------- | -------- | --------- | -----
@@ -220,9 +221,11 @@ A few models give you more arguments for your getting (e.g: status filter).
 
 ### Search on model
 
-The `Search` method is an advanced `Get` method because the result depends of the query.
-This method allows you to retrieve the list of items matching with an `user name`, `account_number` or ect.
-A few models give you more arguments for your searching (e.g: status filter).
+The `Search` method is an advanced type of the `Get` request.
+This is because the results depend on the query.
+This method allows you to retrieve a list of items matching with a search query,
+like `user name` or `account_number`, without specifying that you are searching for
+`user name` or `account_number`.
 
         | Invoices | Issuers | Orders | Payments | Products | Providers | Users
 ------- | -------- | ------- | ------ | -------- | -------- | --------- | -----
