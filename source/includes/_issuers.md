@@ -209,11 +209,11 @@ Arguments | Type | Description
 active | `boolean` | Active issuers are also listed
 verified | `boolean` | Verified issuers are also listed
 blacklisted | `boolean` | Blacklisted issuers are also listed
-size | `integer` | Number of items to retrieve _default 10_
-page | `integer` | Which page to retrieve _default 0_
+size | `number` | Number of items to retrieve _default 10_
+page | `number` | Which page to retrieve _default 0_
 sort | `string` | Field used for sorting results
-from_date | `integer` | Start date, `timestamp` format
-to_date | `integer` | End date, `timestamp` format
+from_date | `number` | Start date, `timestamp` format
+to_date | `number` | End date, `timestamp` format
 date_filter | `string` | Date field used for filter results _default `created`_
 include_deleted | `boolean` | If `true`, deleted issuers are also listed _default `false`_
 

@@ -7,8 +7,8 @@ The Product could be provided by a Provider
 
 Attributes | Type | Description
 ---------- | ---- | -------
-**user** | `object` | [`User`](#users) associated with an order
-**total_amount** | `number` | Amount as a float with a decimal point (`.`), e.g., 10.53 USD is 10 dollars and 53 cents
+**user** | `object` | [`User`](#users) associated with the order
+**total_amount** | `number` | Amount as a number with two decimals. e.g., 12.34
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 **order_status** | `string` | Status of the Order _default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED_
 **delivery_status** | `string` | Status of the delivery _default is PENDING, additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE and READY_FOR_DELIVERY_
@@ -23,7 +23,7 @@ delivery_address | `object` | [`Address`](#address) used for delivery
 deliveries | `array` | If the order has multiple deliveries, this is used for storing that delivery history
 billing_address | `object` | [`Address`](#address) used for billing purposes
 payments | `array` | List of [`Payment`](#payments) objects associated with order
-note | `string` | Field used to send notes between a user and a provider
+note | `string` | Field used to send notes between an user and a provider
 
 
 ## Create an Order
@@ -138,7 +138,7 @@ Creates a new order.
 
 Argument | Type | Description
 -------- | ---- | -------
-**user** | `object` | Id of the [`user`](#address) who's creating the order
+**user** | `object` | Id of the [`user`](#users) who's creating the order
 **items** | `array` | List of [`order`](#orders)'s items
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 delivery_time | `number` | Expected time of delivery, `timestamp` format
