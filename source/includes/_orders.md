@@ -1,6 +1,7 @@
 # Orders
 
-Orders are the result of a User buying a given set of Products and it's what connects Users and Providers.
+Orders are the result of an User purchasing a given set of Products.
+The Product could be provided by a Provider
 
 ## Order object
 
@@ -86,12 +87,8 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "created": {
-    "$date": 1488475795244
-  },
-  "company": {
-    "$oid": "586faf7445ed910006373513"
-  },
+  "created": {"$date": 1488475795244},
+  "company": {"$oid": "586faf7445ed910006373513"},
   "delivery_address": {
     "city": "Oslo",
     "geo": [
@@ -112,13 +109,9 @@ Content-Type: application/json
     "street_name": "Christies gate 34A",
     "country": "Norway"
   },
-  "_id": {
-    "$oid": "58b85693d76d439fdacea41b"
-  },
+  "_id": {"$oid": "58b85693d76d439fdacea41b"},
   "total_amount": 40.0,
-  "delivery_time": {
-    "$date": 1472022000000
-  },
+  "delivery_time": {"$date": 1472022000000},
   "note": "some type of note",
   "total_quantity": 4,
   "order_status": "CREATED",
@@ -133,14 +126,10 @@ Content-Type: application/json
       "quantity": 3
     }
   ],
-  "user": {
-    "$oid": "57ee9c72d76d431f85111432"
-  },
+  "user": {"$oid": "57ee9c72d76d431f85111432"},
   "units": 2,
   "delivery_status": "PENDING",
-  "modified": {
-    "$date": 1488475795244
-  },
+  "modified": {"$date": 1488475795244},
   "currency": "NOK"
 }
 ```
@@ -185,87 +174,12 @@ Content-type: application/json
    "currency":"NOK",
    "human_id":"51Q4LN",
    "payments":[],
-   "modified":{
-      "$date":1495196003948
-   },
-   "provider":{
-      "roles":[
-         "provider"
-      ],
-      "stripe_customer_id":"",
-      "tags":[],
-      "first_name":"john",
-      "max_travel_time":1.0,
-      "default_address":{
-         "service":"google",
-         "alias":""
-      },
-      "note":"",
-      "national_id":"",
-      "modified":{
-         "$date":1495195999676
-      },
-      "max_travel_meters":10000.0,
-      "voucher":{
-         "created":{
-            "$date":1495195999422
-         },
-         "expires":{
-            "$date":1526731999423
-         },
-         "consumed":0,
-         "initial_quantity":0,
-         "uuid":"d062ecff-50d3-46e7-af26-8c2e830dd84f"
-      },
-      "company":{
-         "$oid":"591ee15db70e2a10acb65362"
-      },
-      "mobile_phone_number":"492 09 385",
-      "_cls":"User.Provider",
-      "orders":[],
-      "schedule":{
-         "valid_from":{
-            "$date":1495195200000
-         },
-         "working_sections":[],
-         "day_of_week":[
-            {
-               "end_minute":59,
-               "start_hour":0,
-               "start_minute":1,
-               "end_hour":23,
-               "day_of_week":0
-            }
-         ]
-      },
-      "available_on_bank_holidays":false,
-      "bio":"",
-      "avatar":"",
-      "created":{
-         "$date":1495195999438
-      },
-      "last_name":"Doe",
-      "products":[],
-      "_id":{
-         "$oid":"591ee15fb70e2a10acb6537d"
-      },
-      "addresses":[],
-      "auth0_id":"",
-      "deleted":false,
-      "active":true,
-      "country":"NOR",
-      "email":"john@email.com",
-      "billing_address":{
-         "service":"google",
-         "alias":""
-      }
-   },
+   "modified":{"$date":1495196003948},
+   "provider":{...},
    "top_up_amount":0.0,
    "stripe_charge_id":"",
    "order_status":"CREATED",
-   "company":{
-      "$oid":"591ee15db70e2a10acb65362"
-   },
+   "company":{"$oid":"591ee15db70e2a10acb65362"},
    "billing_address":{
       "city":"Danielsen",
       "service":"google",
@@ -284,28 +198,17 @@ Content-type: application/json
             "properties":{},
             "parents":[],
             "path":"/",
-            "default_position":[
-               -1,
-               -1
-            ],
-            "created":{
-               "$date":1494479087000
-            },
-            "_id":{
-               "$oid":"591ee15eb70e2a10acb65374"
-            },
+            "default_position":[-1, -1],
+            "created":{"$date":1494479087000},
+            "_id":{"$oid":"591ee15eb70e2a10acb65374"},
             "tags":[],
             "max_distance":0,
             "main_product":true,
-            "modified":{
-               "$date":1495195998969
-            },
+            "modified":{"$date":1495195998969},
             "deleted":false,
             "name":"Ivar",
             "vat":0.0,
-            "company":{
-               "$oid":"591ee15db70e2a10acb65362"
-            },
+            "company":{"$oid":"591ee15db70e2a10acb65362"},
             "active":true,
             "_cls":"Product",
             "currency":"USD",
@@ -317,9 +220,7 @@ Content-type: application/json
       }
    ],
    "note":"",
-   "created":{
-      "$date":1495264401233
-   },
+   "created":{"$date":1495264401233},
    "delivery_address":{
       "city":"Danielsen",
       "service":"google",
@@ -330,71 +231,12 @@ Content-type: application/json
       "street_name":"Iversenstien 7"
    },
    "total_quantity":120,
-   "_id":{
-      "$oid":"591ee163b70e2a10acb653a7"
-   },
+   "_id":{"$oid":"591ee163b70e2a10acb653a7"},
    "total_amount":1200.0,
    "stripe_refund_id":"",
    "override_company_take":-1.0,
-   "user":{
-      "roles":[
-         "user"
-      ],
-      "note":"",
-      "stripe_customer_id":"",
-      "tags":[],
-      "first_name":"john",
-      "avatar":"",
-      "created":{
-         "$date":1495195998668
-      },
-      "last_name":"Doe",
-      "mobile_phone_number":"+47 4242424",
-      "_id":{
-         "$oid":"591ee15eb70e2a10acb65372"
-      },
-      "addresses":[
-         {
-            "city":"Danielsen",
-            "service":"google",
-            "alias":"",
-            "country":"Paraguay",
-            "zip_code":"0556",
-            "state":"Oslo",
-            "street_name":"Iversenstien 7"
-         }
-      ],
-      "national_id":"",
-      "modified":{
-         "$date":1495195998670
-      },
-      "deleted":false,
-      "voucher":{
-         "created":{
-            "$date":1495195998667
-         },
-         "expires":{
-            "$date":1526731998667
-         },
-         "consumed":0,
-         "initial_quantity":0,
-         "uuid":"d062ecff-50d3-46e7-af26-8c2e830dd84f"
-      },
-      "auth0_id":"",
-      "company":{
-         "$oid":"591ee15db70e2a10acb65362"
-      },
-      "billing_address":{
-         "service":"google",
-         "alias":""
-      },
-      "_cls":"User",
-      "email":"john@email.com",
-      "bio":""
-   },
-   "delivery_time":{
-      "$date":1497009600000
-   }
+   "user":{...},
+   "delivery_time":{"$date":1497009600000}
 }
 ```
 
@@ -406,6 +248,9 @@ Argument | Type | Description
 
 
 ## List all Orders
+
+Retrieves a list of all Orders associated with the company's database.
+It is also possible to filter the search by using pagination.
 
 > Definition
 
@@ -434,87 +279,12 @@ Content-Type: application/json
        "currency":"NOK",
        "human_id":"51Q4LN",
        "payments":[],
-       "modified":{
-          "$date":1495196003948
-       },
-       "provider":{
-          "roles":[
-             "provider"
-          ],
-          "stripe_customer_id":"",
-          "tags":[],
-          "first_name":"Jane",
-          "max_travel_time":1.0,
-          "default_address":{
-             "service":"google",
-             "alias":""
-          },
-          "note":"",
-          "national_id":"",
-          "modified":{
-             "$date":1495195999676
-          },
-          "max_travel_meters":10000.0,
-          "voucher":{
-             "created":{
-                "$date":1495195999422
-             },
-             "expires":{
-                "$date":1526731999423
-             },
-             "consumed":0,
-             "initial_quantity":0,
-             "uuid":"d062ecff-50d3-46e7-af26-8c2e830dd84f"
-          },
-          "company":{
-             "$oid":"591ee15db70e2a10acb65362"
-          },
-          "mobile_phone_number":"+4712345678",
-          "_cls":"User.Provider",
-          "orders":[],
-          "schedule":{
-             "valid_from":{
-                "$date":1495195200000
-             },
-             "working_sections":[],
-             "day_of_week":[
-                {
-                   "end_minute":59,
-                   "start_hour":0,
-                   "start_minute":1,
-                   "end_hour":23,
-                   "day_of_week":0
-                }
-             ]
-          },
-          "available_on_bank_holidays":false,
-          "bio":"",
-          "avatar":"",
-          "created":{
-             "$date":1495195999438
-          },
-          "last_name":"Roe",
-          "products":[],
-          "_id":{
-             "$oid":"591ee147d57ba28fbe0a3892"
-          },
-          "addresses":[],
-          "auth0_id":"",
-          "deleted":false,
-          "active":true,
-          "country":"NOR",
-          "email":"jane@email.com",
-          "billing_address":{
-             "service":"google",
-             "alias":""
-          }
-       },
+       "modified":{"$date":1495196003948},
+       "provider":{...},
        "top_up_amount":0.0,
        "stripe_charge_id":"",
        "order_status":"CREATED",
-       "company":{
-          "$oid":"591ee15db70e2a10acb65362"
-       },
+       "company":{"$oid":"591ee15db70e2a10acb65362"},
        "billing_address":{
           "city":"Danielsen",
           "service":"google",
@@ -533,28 +303,17 @@ Content-Type: application/json
                 "properties":{},
                 "parents":[],
                 "path":"/",
-                "default_position":[
-                   -1,
-                   -1
-                ],
-                "created":{
-                   "$date":1494479087000
-                },
-                "_id":{
-                   "$oid":"591ee15eb70e2a10acb65374"
-                },
+                "default_position":[-1, -1],
+                "created":{"$date":1494479087000},
+                "_id":{"$oid":"591ee15eb70e2a10acb65374"},
                 "tags":[],
                 "max_distance":0,
                 "main_product":true,
-                "modified":{
-                   "$date":1495195998969
-                },
+                "modified":{"$date":1495195998969},
                 "deleted":false,
                 "name":"Ivar",
                 "vat":0.0,
-                "company":{
-                   "$oid":"591ee15db70e2a10acb65362"
-                },
+                "company":{"$oid":"591ee15db70e2a10acb65362"},
                 "active":true,
                 "_cls":"Product",
                 "currency":"USD",
@@ -566,9 +325,7 @@ Content-Type: application/json
           }
        ],
        "note":"",
-       "created":{
-          "$date":1495264401233
-       },
+       "created":{"$date":1495264401233},
        "delivery_address":{
           "city":"Danielsen",
           "service":"google",
@@ -579,74 +336,16 @@ Content-Type: application/json
           "street_name":"Iversenstien 7"
        },
        "total_quantity":120,
-       "_id":{
-          "$oid":"591ee163b70e2a10acb653a7"
-       },
+       "_id":{"$oid":"591ee163b70e2a10acb653a7"},
        "total_amount":1200.0,
        "stripe_refund_id":"",
        "override_company_take":-1.0,
-       "user":{
-          "roles":[
-             "user"
-          ],
-          "note":"",
-          "stripe_customer_id":"",
-          "tags":[],
-          "first_name":"john",
-          "avatar":"",
-          "created":{
-             "$date":1495195998668
-          },
-          "last_name":"Doe",
-          "mobile_phone_number":"+4712345678",
-          "_id":{
-             "$oid":"591ee15eb70e2a10acb65372"
-          },
-          "addresses":[{
-                "city":"Danielsen",
-                "service":"google",
-                "alias":"",
-                "country":"Paraguay",
-                "zip_code":"0556",
-                "state":"Oslo",
-                "street_name":"Iversenstien 7"
-             }],
-          "national_id":"",
-          "modified":{
-             "$date":1495195998670
-          },
-          "deleted":false,
-          "voucher":{
-             "created":{
-                "$date":1495195998667
-             },
-             "expires":{
-                "$date":1526731998667
-             },
-             "consumed":0,
-             "initial_quantity":0,
-             "uuid":"d062ecff-50d3-46e7-af26-8c2e830dd84f"
-          },
-          "auth0_id":"",
-          "company":{
-             "$oid":"591ee15db70e2a10acb65362"
-          },
-          "billing_address":{
-             "service":"google",
-             "alias":""
-          },
-          "_cls":"User",
-          "email":"john@email.com",
-          "bio":""
-       },
-       "delivery_time":{
-          "$date":1497009600000
-       }
+       "user":{...},
+       "delivery_time":{"$date":1497009600000}
     }
 ]
 ```
 
-Retrieves a list of all Orders associated with the company.
 
 Arguments | Type | Description
 --------- | ---- | -------
@@ -693,3 +392,116 @@ CANCELLED | Delivery is cancelled
 DONE | Delivery task is done
 UNKNOWN | Delivery is unknown
 QUEUED | Delivery is on queue
+
+
+## Search Orders
+
+> Definition
+
+```
+GET https://api.shareactor.io/orders/search
+```
+
+> Example request:
+
+``` http
+GET /orders/search?query=51Q4LN HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+    {
+       "units":2,
+       "delivery_status":"ACCEPTED",
+       "currency":"NOK",
+       "human_id":"51Q4LN",
+       "payments":[],
+       "modified":{"$date":1495196003948},
+       "provider":{...},
+       "top_up_amount":0.0,
+       "stripe_charge_id":"",
+       "order_status":"CREATED",
+       "company":{"$oid":"591ee15db70e2a10acb65362"},
+       "billing_address":{
+          "city":"Danielsen",
+          "service":"google",
+          "alias":"",
+          "country":"Paraguay",
+          "zip_code":"0556",
+          "state":"Oslo",
+          "street_name":"Iversenstien 7"
+       },
+       "deliveries":[],
+       "items":[
+          {
+             "quantity":60,
+             "discount":0.9,
+             "product":{
+                "properties":{},
+                "parents":[],
+                "path":"/",
+                "default_position":[-1, -1],
+                "created":{"$date":1494479087000},
+                "_id":{"$oid":"591ee15eb70e2a10acb65374"},
+                "tags":[],
+                "max_distance":0,
+                "main_product":true,
+                "modified":{"$date":1495195998969},
+                "deleted":false,
+                "name":"Ivar",
+                "vat":0.0,
+                "company":{"$oid":"591ee15db70e2a10acb65362"},
+                "active":true,
+                "_cls":"Product",
+                "currency":"USD",
+                "company_take":-1.0,
+                "_sub_products":[],
+                "business_rules":[],
+                "price":100.0
+             }
+          }
+       ],
+       "note":"",
+       "created":{"$date":1495264401233},
+       "delivery_address":{
+          "city":"Danielsen",
+          "service":"google",
+          "alias":"",
+          "country":"Paraguay",
+          "zip_code":"0556",
+          "state":"Oslo",
+          "street_name":"Iversenstien 7"
+       },
+       "total_quantity":120,
+       "_id":{"$oid":"591ee163b70e2a10acb653a7"},
+       "total_amount":1200.0,
+       "stripe_refund_id":"",
+       "override_company_take":-1.0,
+       "user":{...},
+       "delivery_time":{"$date":1497009600000}
+    }
+]
+```
+
+Retrieves a list of all Orders associated with the search parameters.
+It is possible to search for id, human_id and first and last name for
+Users and Providers associated with orders.
+
+Arguments | Type | Description
+--------- | ---- | -------
+**query** | `string` | The search query. One of **human_id**, **user name**, **provider name**, or **id**
+from_date | `number` | Start date, `timestamp` format. _default is None_
+to_date | `number` | End date, `timestamp` format. _default is None_
+date_filter | `string` | Date field used for filter results. _default is created_
+size | `number` | Number of items to retrieve. _default is 10_
+page | `number` | Which page to retrieve. _default is 0_
+order_status | `string` | Return Orders with specific status
+delivery_status | `string` | Return Order with specific delivery status
+sort | `string` | Field used for sorting results

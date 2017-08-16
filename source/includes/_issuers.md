@@ -206,13 +206,16 @@ Retrieves a list of all Issuers.
 
 Arguments | Type | Description
 --------- | ---- | -------
+active | `boolean` | Active issuer are also listed
+verified | `boolean` | Verified issuer are also listed
+blacklisted | `boolean` | Blacklisted are also listed
 size | `integer` | Number of items to retrieve _default is 10_
 page | `integer` | Which page to retrieve _default is 0_
+sort | `string` | Field used for sorting results
 from_date | `integer` | Start date, `timestamp` format.
 to_date | `integer` | End date, `timestamp` format.
 date_filter | `string` | Date field used for filter results. _default is `created`_
-deleted | `boolean` | If `true`, deleted issuer are also listed. _default is `false`_
-sorting | `string` | Field used for sorting results
+include_deleted | `boolean` | If `true`, deleted issuers are also listed. _default is `false`_
 
 ### date_filter
 Arguments | Description
@@ -346,6 +349,11 @@ filters | `string` | Use filters for more accurate results
 active | `boolean` | Active issuer are also listed
 verified | `boolean` | Verified issuer are also listed
 blacklisted | `boolean` | Blacklisted are also listed
+sort | `string` | Field used for sorting results. _default is `-created`_
+from_date | `number` | Start date, `timestamp` format. _default None_
+to_date | `number` | End date, `timestamp` format._default None_
+date_filter | `string` | Date field used for filter results. _default `created`_
+include_deleted | `boolean` | If `true`, deleted issuers are also listed. _default is `false`_
 
 ### Active, Verified & Blacklisted
 
