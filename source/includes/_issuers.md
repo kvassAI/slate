@@ -5,14 +5,14 @@
 
 Attributes | Type | Description
 ---------- | ---- | -------
-**verified** | `boolean` | Flag that set Issuer object to verified. Changes to true after AML check up.
-**blacklisted** | `boolean` | Flag that set Issuer object to blacklisted. `false` if AML status is either `Potential Match`, `true Positive` or `true Positive`. `true` if AML status value is either `No Match`, `false Positive` or `true Positive - Reject`.
-comments | `string` | Comments used for add a comment about Issuer.
-account_number | `string` | Account number to Issuer. Used when handling Invoice's
-name | `string` | Name of Issuer
-logo_url | `string` | Path for logo for Issuer.
+**verified** | `boolean` | Flag that sets issuer object to verified. Changes to true after Anti-Money Laundering (AML) check up.
+**blacklisted** | `boolean` | Flag that sets issuer object to blacklisted. `False` if AML status is either `Potential Match`, `true Positive` or `true Positive`. `True` if AML status value is either `No Match`, `false Positive` or `true Positive - Reject`.
+comments | `string` | Add a comment about issuer.
+account_number | `string` | Account number of issuer, used when using invoices.
+name | `string` | Name of issuer.
+logo_url | `string` | Path to logo for issuer.
 address | `object` | [`Address`](#address) corresponding to payment address.
-is_message_mandatory | `boolean` | Flag that determines if `message` field is mandatory for invoices issued by this issuer.
+is_message_mandatory | `boolean` | Flag that determines if `message` field is mandatory for invoices issued by this issuer, e.g. KID number required.
 
 
 ## Create an Issuer
@@ -73,18 +73,18 @@ Content-Type: application/json
 }
 ```
 
-Create a new Issuer.
+Create a new issuer.
 
 Arguments | Type | Description
 --------- | ---- | ------
-**verified** | `boolean` | Flag that sets Issuer object to verified. _default `false`_
-**blacklisted** | `boolean` | Flag that sets Issuer object to blacklisted. _default `false`_
-**account_number** | `string` | Account number to Issuer, must contain 11 digits.
+**verified** | `boolean` | Flag that sets issuer object to verified. _default `false`_
+**blacklisted** | `boolean` | Flag that sets issuer object to blacklisted. _default `false`_
+**account_number** | `string` | Account number to issuer, must contain 11 digits.
 comments | `string` | Comments regarding the issuer.
 name | `string` | Name of Issuer.
-logo_url | `string` | The URL of the Issuer's logo.
+logo_url | `string` | The URL of the issuer's logo.
 address | `object` | [`Address`](#address) corresponding to payment address. 
-is_messaging_mandatory | `boolean` | Determines if *message* field is mandatory for invoices issued by this issuer. _default value `false`_
+is_messaging_mandatory | `boolean` | Determines if *message* field is mandatory for invoices issued by this issuer, e.g. KID number required. _default `false`_
 
 ## Retrieve an Issuer
 
@@ -140,11 +140,11 @@ Content-Type: application/json
 }
 ```
 
-Retrieves Issuer with ID.
+Retrieves issuer with a particular ID.
 
 Argument | Type | Description
 -------- | ---- | -------
-**issuer_id** | `string` | ID of the queried Issuer.
+**issuer_id** | `string` | ID of the queried issuer
 
 ## List all Issuers
 
@@ -202,26 +202,26 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all Issuers.
+Retrieves a list of all issuers.
 
 Arguments | Type | Description
 --------- | ---- | -------
-active | `boolean` | Active issuer are also listed
-verified | `boolean` | Verified issuer are also listed
-blacklisted | `boolean` | Blacklisted are also listed
-size | `integer` | Number of items to retrieve _default is 10_
-page | `integer` | Which page to retrieve _default is 0_
+active | `boolean` | Active issuers are also listed
+verified | `boolean` | Verified issuers are also listed
+blacklisted | `boolean` | Blacklisted issuers are also listed
+size | `integer` | Number of items to retrieve _default 10_
+page | `integer` | Which page to retrieve _default 0_
 sort | `string` | Field used for sorting results
-from_date | `integer` | Start date, `timestamp` format.
-to_date | `integer` | End date, `timestamp` format.
-date_filter | `string` | Date field used for filter results. _default is `created`_
-include_deleted | `boolean` | If `true`, deleted issuers are also listed. _default is `false`_
+from_date | `integer` | Start date, `timestamp` format
+to_date | `integer` | End date, `timestamp` format
+date_filter | `string` | Date field used for filter results _default `created`_
+include_deleted | `boolean` | If `true`, deleted issuers are also listed _default `false`_
 
 ### date_filter
 Arguments | Description
 --------- | -----------
-created | Date generated when Issuer is created.
-modified | Date generated when Issuer is updated.
+created | Date generated when issuer is created
+modified | Date generated when issuer is updated
 
 
 ## Update Issuer
@@ -278,11 +278,11 @@ Content-Type: application/json
 }
 ```
 
-Updates an Issuer
+Updates an issuer.
 
 Arguments | Type | Descriptions
 --------- | ---- | ------
-**issuer_id** | `string` |  ID of the desired Issuer.
+**issuer_id** | `string` |  ID of the desired issuer.
 
 ## Issuer Search
 
@@ -344,16 +344,16 @@ Retrieves a list of Issuers associate with search.
 
 Arguments | Type | Description
 --------- | ---- | -------
-**query** | `string` | What you want to search for, like **name**, **account_number** or **id**
+**query** | `string` | What you want to search for, such as **name**, **account_number** or **id**
 filters | `string` | Use filters for more accurate results
-active | `boolean` | Active issuer are also listed
-verified | `boolean` | Verified issuer are also listed
-blacklisted | `boolean` | Blacklisted are also listed
-sort | `string` | Field used for sorting results. _default is `-created`_
-from_date | `number` | Start date, `timestamp` format. _default None_
-to_date | `number` | End date, `timestamp` format._default None_
-date_filter | `string` | Date field used for filter results. _default `created`_
-include_deleted | `boolean` | If `true`, deleted issuers are also listed. _default is `false`_
+active | `boolean` | Active issuers are also listed
+verified | `boolean` | Verified issuers are also listed
+blacklisted | `boolean` | Blacklisted issuers are also listed
+sort | `string` | Field used for sorting results _default `-created`_
+from_date | `number` | Start date, `timestamp` format _default None_
+to_date | `number` | End date, `timestamp` format _default None_
+date_filter | `string` | Date field used for filter results _default `created`_
+include_deleted | `boolean` | If `true`, deleted issuers are also listed _default `false`_
 
 ### Active, Verified & Blacklisted
 
@@ -418,9 +418,9 @@ Content-Type: application/json
 }
 ```
 
-Deletes an Issuer
+Deletes an issuer.
 
 Argument | Type | Description
 -------- | ---- | -------
-**issuer_id** | `string` | ID of the Issuer to delete.
+**issuer_id** | `string` | ID of the issuer to delete
 
