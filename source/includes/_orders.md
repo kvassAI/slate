@@ -7,23 +7,23 @@ The Product could be provided by a Provider
 
 Attributes | Type | Description
 ---------- | ---- | -------
-**user** | `object` | [`User`](#users) associated with Order
-**total_amount** | `number` | Amount as a Float with decimal points (`.`). Example: 10.23 NOK.
-**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-**order_status** | `string` | Status of the Order. Default is CREATED. Additionally there are: PROCESSING, SUCCESS, CANCELLED, FAILED
-**delivery_status** | `string` | Status of the Delivery. Default is PENDING. Additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE, READY_FOR_DELIVERY
-human_id | `string` | Human readable ID that identifies the Order easily
-provider | `string` | Provider assigned to Order
-items | `array` | List of Items associated with an Order
-units | `number` | Amount of unique Items associated with the Order
-total_quantity | `number` | Total number of Products in Order
-top_up_amount | `number` | Extra amount to fulfill company's minimum Order value 
-delivery_time | `object` | Time expected for delivery, `timestamp` format
+**user** | `object` | [`User`](#users) associated with an order
+**total_amount** | `number` | Amount as a float with a decimal point (`.`), e.g., 10.53 USD is 10 dollars and 53 cents
+**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+**order_status** | `string` | Status of the Order _default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED_
+**delivery_status** | `string` | Status of the delivery _default is PENDING, additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE and READY_FOR_DELIVERY_
+human_id | `string` | Human readable ID that identifies the order easily
+provider | `string` | Provider assigned to an order
+items | `array` | List of items associated with an order
+units | `number` | Amount of unique items associated with an order
+total_quantity | `number` | Total number of products in an order
+top_up_amount | `number` | Extra amount of currency needed to fulfill the company's minimum order value 
+delivery_time | `object` | Expected arrival time for delivery, `timestamp` format
 delivery_address | `object` | [`Address`](#address) used for delivery
-deliveries | `array` | If the Order has multiple deliveries, this is used for storing that Delivery history
+deliveries | `array` | If the order has multiple deliveries, this is used for storing that delivery history
 billing_address | `object` | [`Address`](#address) used for billing purposes
-payments | `array` | List of [`Payment`](#payments) objects associated with Order
-note | `string` | Field used to provide extra notes between User and Provider
+payments | `array` | List of [`Payment`](#payments) objects associated with order
+note | `string` | Field used to send notes between a user and a provider
 
 
 ## Create an Order
@@ -134,17 +134,17 @@ Content-Type: application/json
 }
 ```
 
-Creates a new Order.
+Creates a new order.
 
 Argument | Type | Description
 -------- | ---- | -------
-**user** | `object` | Id of the [`User`](#address) who's creating the Order
-**items** | `array` | List of [`Order`](#orders)'s items
+**user** | `object` | Id of the [`user`](#address) who's creating the order
+**items** | `array` | List of [`order`](#orders)'s items
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
-delivery_time | `number` | Time expected for delivery, `timestamp` format
+delivery_time | `number` | Expected time of delivery, `timestamp` format
 delivery_address | `object`  | [`Address`](#address) used for delivery
 billing_address | `object` | [`Address`](#address) used for billing purposes
-note | `string` | Field used to provide extra information to a Provider
+note | `string` | Field used to provide extra information to a provider
 
 ## Retrieve an Order
 
@@ -244,13 +244,13 @@ Retrieves an Order with a given ID.
 
 Argument | Type | Description
 -------- | ---- | ------
-**orderid** | `string` | ID of the queried Order
+**orderid** | `string` | ID of the queried order
 
 
 ## List all Orders
 
 Retrieves a list of all Orders associated with the company's database.
-It is also possible to filter the search by using pagination.
+It is also possible to filter the search using pagination.
 
 > Definition
 
@@ -349,31 +349,31 @@ Content-Type: application/json
 
 Arguments | Type | Description
 --------- | ---- | -------
-from_date | `number` | Start date, `timestamp` format. _default is None_
-to_date | `number` | End date, `timestamp` format. _default is None_
-date_filter | `string` | Date field used for filter results. _default is created_
-size | `number` | Number of items to retrieve. _default is 10_
-page | `number` | Which page to retrieve. _default is 0_
-order_status | `string` | Return Orders with specific status
-delivery_status | `string` | Return Order with specific delivery status
+from_date | `number` | Start date, `timestamp` format _default is None_
+to_date | `number` | End date, `timestamp` format _default is None_
+date_filter | `string` | Date field used to filter results. _default is created_
+size | `number` | Number of items to retrieve _default is 10_
+page | `number` | Which page to retrieve _default is 0_
+order_status | `string` | Return orders with a specific status
+delivery_status | `string` | Return orders with a specific delivery status
 sort | `string` | Field used for sorting results
 
 ### date_filter
 
 Arguments | Description
 --------- | ------
-created | Order by created order date 
-delivery | Order by delivery time
+created | Shows orders by date of creation 
+delivery | Shows orders by delivery time
 
 ### order_status
 
 Arguments | Description
 --------- | ------
 created | Order is created
-processing | Order is on processing
+processing | Order is being processed
 declined | Order is declined for some reason
-failed | Order is failed for some reason
-success | Order is succeeded
+failed | Order has failed for some reason
+success | Order has succeeded
 cancelled | Order is cancelled
 
 ### delivery_status
@@ -381,17 +381,17 @@ cancelled | Order is cancelled
 Arguments | Description
 --------- | -----
 CREATED | Delivery is created
-PENDING | Delivery is on pending
-PROCESSING | Delivery is on processing
-ASSIGNING | Delivery assign to provider
-PICKUP_STARTED | Delivery pickup the stuff
-PICKUP_ARRIVED | Delivery drop the stuff in company
-DROPOFF_STARTED | Start to drop the stuff to customer
-DROPOFF_ARRIVED | Drop stuff is finished
+PENDING | Delivery is pending
+PROCESSING | Delivery is being processed
+ASSIGNING | Delivery has been assigned to a provider
+PICKUP_STARTED | Pickup from customer has been sent
+PICKUP_ARRIVED | Pickup from customer is complete
+DROPOFF_STARTED | Dropoff to customer has been sent
+DROPOFF_ARRIVED | Dropoff to customer is complete
 CANCELLED | Delivery is cancelled
 DONE | Delivery task is done
 UNKNOWN | Delivery is unknown
-QUEUED | Delivery is on queue
+QUEUED | Delivery is in queue
 
 
 ## Search Orders
@@ -502,6 +502,6 @@ to_date | `number` | End date, `timestamp` format. _default is None_
 date_filter | `string` | Date field used for filter results. _default is created_
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
-order_status | `string` | Return Orders with specific status
-delivery_status | `string` | Return Order with specific delivery status
+order_status | `string` | Return orders with specific status
+delivery_status | `string` | Return orders with specific delivery status
 sort | `string` | Field used for sorting results
