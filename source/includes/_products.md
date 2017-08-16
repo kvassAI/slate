@@ -287,7 +287,7 @@ Content-Type: application/json
 
 Arguments | Type | Description
 --------- | ---- | -----------
-**query** | `string` | What you want to search, like **name**, **description**, or **id**
+**query** | `string` | What you want to search for, like **name**, **description**, or **id**
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
 sort | `string` | Field used for sorting results. _default is created_
