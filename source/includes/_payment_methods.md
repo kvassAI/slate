@@ -330,7 +330,7 @@ Attribute | Type | Description
 --------- | ---- | ------
 size | `number` | number of items to retrieve
 page | `number` | which page to retrieve. _default page size is 10_
-order_by | `string` | field used for sorting results
+sort | `string` | field used for sorting results
 
 ## Delete payment method
 

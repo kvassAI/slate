@@ -8,14 +8,14 @@ and the delivery system (pickup and drop off).
 Attribute | Type | Description
 --------- | ---- | -----
 street_name | `string` | The street name of Address
-building | `string` | The building of Address
+building | `string` | The building number of Address
 zip_code | `string` | The zip code of Address
 city | `string` | The city of Address 
 country | `string` | The country of Address 
 geo | `array` | The geo position of Address
 raw | `object` | All information like address, country, zip code, etc... from service
 alias | `string` | The alias of Address
-service  | `string` | The service used for Address. _default google_
+service  | `string` | The service used for Address _default google_
 service_address_id  | `string` | 
 
 ### service
@@ -156,6 +156,6 @@ Host: api.shareactor.io
 
 Arguments | Type | Description
 --------- | ---- | ------
-service | `string` | Chose service you want use
+service | `string` | Chose the service you want use
 type | `string` | Define the type of your search, if it's street name, zip code, etc
-**query** | `string` | Query is what you want search e.q: "Tordenskioldsgate 3, Oslo"
+**query** | `string` | Query is what you want to search for e.g.: "Tordenskioldsgate 3, Oslo"

@@ -80,7 +80,7 @@ Arguments | Type | Description
 **verified** | `boolean` | Flag that sets Issuer object to verified. _default `false`_
 **blacklisted** | `boolean` | Flag that sets Issuer object to blacklisted. _default `false`_
 **account_number** | `string` | Account number to Issuer, must contain 11 digits.
-comments | `string` | Comments.
+comments | `string` | Comments regarding the issuer.
 name | `string` | Name of Issuer.
 logo_url | `string` | The URL of the Issuer's logo.
 address | `object` | [`Address`](#address) corresponding to payment address. 
@@ -206,13 +206,16 @@ Retrieves a list of all Issuers.
 
 Arguments | Type | Description
 --------- | ---- | -------
+active | `boolean` | Active issuer are also listed
+verified | `boolean` | Verified issuer are also listed
+blacklisted | `boolean` | Blacklisted are also listed
 size | `integer` | Number of items to retrieve _default is 10_
 page | `integer` | Which page to retrieve _default is 0_
+sort | `string` | Field used for sorting results
 from_date | `integer` | Start date, `timestamp` format.
 to_date | `integer` | End date, `timestamp` format.
 date_filter | `string` | Date field used for filter results. _default is `created`_
-deleted | `boolean` | If `true`, deleted issuer are also listed. _default is `false`_
-sorting | `string` | Field used for sorting results
+include_deleted | `boolean` | If `true`, deleted issuers are also listed. _default is `false`_
 
 ### date_filter
 Arguments | Description
@@ -340,12 +343,17 @@ Content-type: application/json
 Retrieves a list of Issuers associate with search.
 
 Arguments | Type | Description
---------- | -----------
-**query** | `string` | What you want to search, like **name** or **account_number**
+--------- | ---- | -------
+**query** | `string` | What you want to search for, like **name**, **account_number** or **id**
 filters | `string` | Use filters for more accurate results
 active | `boolean` | Active issuer are also listed
 verified | `boolean` | Verified issuer are also listed
 blacklisted | `boolean` | Blacklisted are also listed
+sort | `string` | Field used for sorting results. _default is `-created`_
+from_date | `number` | Start date, `timestamp` format. _default None_
+to_date | `number` | End date, `timestamp` format._default None_
+date_filter | `string` | Date field used for filter results. _default `created`_
+include_deleted | `boolean` | If `true`, deleted issuers are also listed. _default is `false`_
 
 ### Active, Verified & Blacklisted
 

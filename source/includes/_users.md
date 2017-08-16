@@ -454,7 +454,7 @@ Arguments | Type | Description
 **user_id** | `string` | ID of the user to retrieve Orders from.
 size | `number` | Number of items to retrieve.
 page | `number` | Which page to retrieve. _default page size is 10_
-order_by | `string` | Field used for sorting results. _default `created`_
+sort | `string` | Field used for sorting results. _default `created`_
 from_date | `number` | Start date, `timestamp` format. _default now minus 15 days_
 to_date | `number` | End date, `timestamp` format._default now plus 15 days_
 date_filter | `string` | Date field used for filter results. _default `created`_
