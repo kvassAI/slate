@@ -213,11 +213,11 @@ sort | `string` |  Model specific attributes for sorting results
 The `Get` method allows you to retrieve all items from a model in a list.
 Some models give you additional arguments for filter the requests (e.g: status filter).
 
-        | Invoices | Issuers | Orders | Payments | Products | Providers | Users
-------- | -------- | ------- | ------ | -------- | -------- | --------- | -----
-*Filter by date*  | x | x | x | x | x | x | x
-*Pagination*      | x | x | x | x | x | x | x
-*Sorting*         | x | x | x | x | x | x | x
+        | Invoices | Issuers | Orders | Payments | Products | Providers | Users | Resources
+------- | -------- | ------- | ------ | -------- | -------- | --------- | ----- | -----
+*Filter by date*  | x | x | x | x | x | x | x | x
+*Pagination*      | x | x | x | x | x | x | x | x
+*Sorting*         | x | x | x | x | x | x | x | x
 
 ### Search on model
 
@@ -227,11 +227,11 @@ This method allows you to retrieve a list of items matching with a search query,
 like `user name` or `account_number`, without specifying that you are searching for
 `user name` or `account_number`.
 
-        | Invoices | Issuers | Orders | Payments | Products | Providers | Users
-------- | -------- | ------- | ------ | -------- | -------- | --------- | -----
-*Filter by date*  | x | x | x | x | x | x | x
-*Pagination*      | x | x | x | x | x | x | x
-*Sorting*         | x | x | x | x | x | x | x
+        | Invoices | Issuers | Orders | Payments | Products | Providers | Users | Resources
+------- | -------- | ------- | ------ | -------- | -------- | --------- | ----- | -----
+*Filter by date*  | x | x | x | x | x | x | x | x
+*Pagination*      | x | x | x | x | x | x | x | x
+*Sorting*         | x | x | x | x | x | x | x | x
 
 # Authorization
 
