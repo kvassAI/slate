@@ -17,14 +17,22 @@ interval_unit | `string` | The frequency that the subscription acts upon. <br> C
 interval_count | `integer`| Total number of interval_units.
 billing_interval | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
 static | `boolean`| Defines if plan is allowed to be changed.
-items | `array` | List of [`order_items`](#orders) containing [`products`](#products). Items associated in Plan. <br> The total_amount will be calculated based on the total sum of the products.
+items | `array` | List of items associated with Plan. Se description under
 currency | `string` | 3 letter ISO currency code as defined by ISO 4217.
-total_amount | `integer` | Sum of the product items per `interval_unit`. If `interval_unit` is missing, the total_amount will be the sum of the product items.
+total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`
 discount | `number` | Set a discount on a plan. Min 0.0, max 1.0. This will be calculated on the total_amount.
 setup_cost | `number` | A fee for setting up a new plan. _default is 0_
 initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices `CANCEL`, `CONTINUE`
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
 auto_bill_amount | `boolean` | Automatically bills the outstanding balance in the next billing cycle.
+
+### Plan items
+
+The plan could contain items as a list. These items describe the products the plan is based on.
+The items consists of a [`product`](#products), `quantity` and `discount`
+The `quantity` describes the number of that product. The `discount` sets the percent of
+discount of that product, from 0.0 to 1.0. 0.0 is no discount and 1.0 is 100 % discount.
+The `total_amount` of the plan will be calculated from the total sum of the products.
 
 ## Create a new Plan
 
