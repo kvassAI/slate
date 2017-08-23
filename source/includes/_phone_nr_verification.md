@@ -1,12 +1,12 @@
 # Phone Number Verification
 
-The phone number verification API allows to verify users's phone numbers, using
+The phone number verification API allows you to verify a user's phone numbers, using
 [Nexmo](https://www.nexmo.com/products/verify)'s sms verification service.
 
 This process is divided into two stages:
 
-1. Sending the phone number and generating a PIN code and Request ID. An SMS is sent to the user with that same PIN code
-2. Validating user input PIN code
+1. Sending the phone number and generating a PIN code and Request ID. An SMS is sent to the user with that same PIN code.
+2. Validating the PIN code input given by the user.
 
 ## 1. Send PIN code to User
 
@@ -39,11 +39,11 @@ Content-Type: application/json
 }
 ```
 
-Given a phone number, the API will send a verification PIN code to the User and you should store the `request_id` resulting from this call.
+Given a phone number, the API will send a verification PIN code to the user and you should store the `request_id` resulting from this call.
 
 Argument | Type | Description
 -------- | ---- | ------
-**phone_number** | `string` | Phone number of associated User
+**phone_number** | `string` | Phone number of the associated user
 
 ## 2. Validate PIN code and phone number
 
@@ -78,8 +78,8 @@ The validation is successful if the status code of the response is `204`.
 
 Arguments | Type | Description
 --------- | ---- | ------
-**request_id** | `string` | Request id returned from API
-**code** | `string` | PIN code received by User
+**request_id** | `string` | Request ID returned from the API
+**code** | `string` | PIN code received by the user
 
 
 
