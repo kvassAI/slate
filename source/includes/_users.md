@@ -6,19 +6,19 @@ User is the class that holds all the CRUD functions for your customers and is th
 
 Attributes | Type | Description
 ---------- | ---- | -----
-**first_name** | `string` | First name of the User.
-**last_name** | `string` | Last name of the User.
-email | `string` | E-mail of the User.
-mobile_phone_number | `string` | Phone number of the User.
-addresses | `array` |  An `array`of [`Addresses`](#address) associated with User.
-billing_address | [`object`](#address) | Billing Address of User.
-bio | `string` | Biographic note about the User.
-tags | `string` | List of Tags associated with User.
-roles | `string` | List of Roles associated with User.
+**first_name** | `string` | First name of the user
+**last_name** | `string` | Last name of the user
+email | `string` | E-mail of the user
+mobile_phone_number | `string` | Phone number of the user
+addresses | `array` |  An `array`of [`Addresses`](#address) associated with the user
+billing_address | [`object`](#address) | Billing Address of the user
+bio | `string` | Biographic note about the user
+tags | `string` | List of tags associated with user
+roles | `string` | List of roles associated with user
 
 ## Create a User
 
-Creates a new User.
+Creates a new user.
 
 > Definition
 
@@ -90,13 +90,13 @@ Content-Type: application/json
 
 Argument | Type | Description
 -------- | ---- | -----
-first_name | `string` | First name of the User.
-last_name | `string` | Last name of the User.
-email | `string` | E-mail of the User.
-mobile_phone_number | `string` | Phone number of the User.
-billing_address | `object` | Billing [`Address`](#address) of User.
-bio | `string` | Biographic note about the User.
-tags | `array` | List of Tags associated with User.
+first_name | `string` | First name of the user
+last_name | `string` | Last name of the user
+email | `string` | E-mail of the user
+mobile_phone_number | `string` | Phone number of the user
+billing_address | `object` | Billing [`Address`](#address) of the user
+bio | `string` | Biographic note about the user
+tags | `array` | List of tags associated with the user
 
 
 ## Retrieve a User
@@ -151,16 +151,16 @@ Content-Type: application/json
 }
 ```
 
-Retrieves User with the given ID.
+Retrieves a user with the given ID.
 
 Argument | Type | Description
 -------- | ---- | ------
-**user_id** | `string` | ID of the desired User
+**user_id** | `string` | ID of the desired user
 
 
 ## Update a User
 
-Updates an existing User.
+Updates an existing user.
 
 > Definition
 
@@ -219,14 +219,14 @@ Content-Type: application/json
 
 Argument | Type | Description
 -------- | ---- | ------
-**user_id** | `string` | ID of the User to update.
-first_name | `string` | First name of the User.
-last_name | `string` | Last name of the User.
-email | `string` | E-mail of the User.
-mobile_phone_number | `string` | Phone number of the User.
-billing_address | `object`| Billing [`Address`](#address) of the User.
-bio | `string` | Biographic note about the User.
-tags | `array` | List of Tags associated with User.
+**user_id** | `string` | ID of the user to update
+first_name | `string` | First name of the user
+last_name | `string` | Last name of the user
+email | `string` | E-mail of the user
+mobile_phone_number | `string` | Phone number of the user
+billing_address | `object`| Billing [`Address`](#address) of the user
+bio | `string` | Biographic note about the user
+tags | `array` | List of tags associated with the user
 
 
 ## Delete a User
@@ -285,10 +285,10 @@ Content-Type: application/json
 
 Argument | Type | Description
 -------- | ---- | -------
-**user_id** | `string` | ID of the User to delete.
+**user_id** | `string` | ID of the user to delete
 
 
-## List all Users
+## List All Users
 
 > Definition
 
@@ -342,17 +342,17 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all Users be logging to some Company.
+Retrieves a list of all users associated with a company.
 
 Argument | Type | Description
 -------- | ---- | -------
-size | `number` | Number of items to retrieve. _default size is 50_
-page | `number` | Which page to retrieve. _default page 0_
-sort | `string` | Field used for sorting results. _default is `last_name`_
-from_date | `number` | Start date, `timestamp` format. _default None_
-to_date | `number` | End date, `timestamp` format._default None_
-date_filter | `string` | Date field used for filter results. _default `created`_
-include_deleted | `boolean` | If `true`, deleted users are also listed. _default is `false`_
+size | `number` | Number of items to retrieve _default size is 50_
+page | `number` | Which page to retrieve _default page 0_
+sort | `string` | Field used for sorting results _default is `last_name`_
+from_date | `number` | Start date, `timestamp` format _default is `None`_
+to_date | `number` | End date, `timestamp` format _default is `None`_
+date_filter | `string` | Date field used to filter results _default is `created`_
+include_deleted | `boolean` | If `true`, deleted users are also listed _default is `false`_
 
 
 ## Search User
@@ -408,20 +408,20 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of Users whose first or last name match a given query.
+Retrieves a list of users whose first or last name matches a given query.
 
 Argument | Type | Description
 -------- | ---- | -----
-query | `string` | What you want to search, like **first name**, **last name**, or **id**
-size | `number` | Number of items to retrieve. _default is 10_
-page | `number` | Which page to retrieve. _default is 0_
-sort | `string` | field used for sorting results. If missing default is "-created". Could be other parameters in the User model, like "last_name" or "first_name".
-from_date | `number` | Start date, `timestamp` format. _default None_
-to_date | `number` | End date, `timestamp` format._default None_
-date_filter | `string` | Date field used for filter results. _default `created`_
-include_deleted | `boolean` | If `true`, deleted users are also listed. _default is `false`_
+query | `string` | What you want to search, e.g., **first name**, **last name** or **id**
+size | `number` | Number of items to retrieve _default is 10_
+page | `number` | Which page to retrieve _default is 0_
+sort | `string` | Field used for sorting results  _default is `-created` if missing; other parameters in the user model could be used, e.g., "last_name" or "first_name"_
+from_date | `number` | Start date, `timestamp` format _default is `None`_
+to_date | `number` | End date, `timestamp` format _default is `None`_
+date_filter | `string` | Date field used to filter results. _default is `created`_
+include_deleted | `boolean` | If `true`, deleted users are also listed _default is `false`_
 
-## List all Orders for a User
+## List All Orders for a User
 
 > Definition
 
@@ -447,44 +447,44 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all Orders associated with a given User.
+Retrieves a list of all orders associated with a given user.
 
 Arguments | Type | Description
 -------- | ----- | -----
-**user_id** | `string` | ID of the user to retrieve Orders from.
+**user_id** | `string` | ID of the user to retrieve Orders for.
 size | `number` | Number of items to retrieve.
-page | `number` | Which page to retrieve. _default page size is 10_
-sort | `string` | Field used for sorting results. _default `created`_
-from_date | `number` | Start date, `timestamp` format. _default now minus 15 days_
-to_date | `number` | End date, `timestamp` format._default now plus 15 days_
-date_filter | `string` | Date field used for filter results. _default `created`_
-order_status | `string` | Order with specific status are also listed. The value accept comma like separator, e.q: 'success, processing'
-delivery_status | `string` | Order with specific delivery status are also listed. The value accept comma like separator, e.q: 'assigning, done, created'
+page | `number` | Which page to retrieve. _default is 10_
+sort | `string` | Field used for sorting results. _default is `created`_
+from_date | `number` | Start date, `timestamp` format. _default is current date minus 15 days_
+to_date | `number` | End date, `timestamp` format. _default current date plus 15 days_
+date_filter | `string` | Date field used to filter results. _default is `created`_
+order_status | `string` | Orders with a specific status are also listed. Values can be separated by a comma, e.g., 'success, processing'.
+delivery_status | `string` | Orders with a specific delivery status are also listed. Values can be separated by a comma, e.g.,  'assigning, done, created.'
 
 ### order_status
 
 Arguments | Description
 --------- | -----
-CREATED | Order created
-PROCESSING | Order is on processing
-DECLINED | Order declined for certain reason
-FAILED | Order failed for certain reason
+CREATED | Order has been created
+PROCESSING | Order is being processed
+DECLINED | Order has been declined for a particular reason
+FAILED | Order has failed for a particular reason
 SUCCESS | Order succeeded
-CANCELLED | Order cancelled
+CANCELLED | Order has been cancelled
 
 ### delivery_status
 
 Arguments | Description
 --------- | -----
-CREATED | Delivery created
-PENDING | Delivery is on pending
-PROCESSING | Delivery is on processing
-ASSIGNING | Delivery is assigning to a provider
-PICKUP_STARTED | Delivery starting to pickup the package
-PICKUP_ARRIVED | Delivery arrived on destination
-DROPOFF_STARTED | Delivery starting to drop off the package
-DROPOFF_ARRIVED | Delivery arrived on destination
-CANCELLED | Delivery cancelled
+CREATED | Delivery has been created
+PENDING | Delivery is pending
+PROCESSING | Delivery is being processed
+ASSIGNING | Delivery is being assigned to a provider
+PICKUP_STARTED | Pickup for the package has been sent
+PICKUP_ARRIVED | Pickup for the package has arrived
+DROPOFF_STARTED | The package has been sent to be dropped off
+DROPOFF_ARRIVED | The package has been dropped off
+CANCELLED | Delivery is cancelled
 DONE | Delivery is done
 UNKNOWN | Delivery status is unknown
 QUEUED | Delivery is in queue
