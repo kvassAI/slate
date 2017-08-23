@@ -17,28 +17,28 @@ interval_unit | `string` | The frequency that the subscription acts upon. <br> C
 interval_count | `integer`| Total number of interval_units.
 billing_interval | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
 static | `boolean`| Defines if plan is allowed to be changed.
-items | `array` | List of items associated with Plan. Se description under
-currency | `string` | 3 letter ISO currency code as defined by ISO 4217.
-total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`
+items | `array` | List of items associated with Plan. See description below.
+currency | `string` | Three letter ISO currency code as defined by ISO 4217.
+total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`.
 discount | `number` | Set a discount on a plan. Min 0.0, max 1.0. This will be calculated on the total_amount.
 setup_cost | `number` | A fee for setting up a new plan. _default is 0_
-initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices `CANCEL`, `CONTINUE`
+initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices: `CANCEL`, `CONTINUE`
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
 auto_bill_amount | `boolean` | Automatically bills the outstanding balance in the next billing cycle.
 
 ### Plan items
 
 The plan could contain items as a list. These items describe the products the plan is based on.
-The items consists of a [`product`](#products), `quantity` and `discount`
+The items consist of a [`product`](#products), `quantity` and `discount`
 The `quantity` describes the number of that product. The `discount` sets the percent of
-discount of that product, from 0.0 to 1.0. 0.0 is no discount and 1.0 is 100 % discount.
+discount of that product, from 0.0 to 1.0, where 0.0 is no discount and 1.0 is a 100% discount.
 The `total_amount` of the plan will be calculated from the total sum of the products.
 
 ## Create a new Plan
 
-This creates a new Plan. The Plan is not [`User`](#users) specific,
-but an User could create a Plan based on their demands. If The Company
-wants a non-customizable plan, <br> set `static_plan` to `true`
+This creates a new plan. The plan is not [`user`](#users) specific,
+but a user could create a plan based on their demands. If you
+want a non-customizable plan, <br> set `static_plan` to `true`
 when creating a new plan.
 
 > Definition
@@ -117,12 +117,12 @@ Argument | Type | Description
 -------- | ---- | -------
 **interval_unit** | `string` | The frequency that the Subscription acts upon. <br> interval_unit choices: `DAY`, `WEEK`, `MONTH`, `MONTH_END`, `ANNUAL`
 **billing_interval** | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
-**currency** | `string`| The currency for the subscription. ISO 4217
+**currency** | `string`| Three letter ISO currency code as defined by ISO 4217.7
 
 
 ## Retrieve a Plan
 
-Retrieve a Plan, based on its id.
+Retrieve a particular Plan, based on its id.
 
 > Definition
 
@@ -175,7 +175,7 @@ Content-Type: application/json
 
 Argument | Type | Description
 -------- | ---- | -------
-**plan_id** |`string`| Plan id
+**plan_id** |`string`| The unique id of a particular plan
 
 ## Get list of all Plans associated with Company
 
@@ -251,16 +251,16 @@ Content-Type: application/json
 
 Argument | Type | Description
 -------- | ---- | -------
-size | `integer` | Number of items to retrieve
+size | `integer` | Number of items to retrieve.
 page | `integer` | Which page to retrieve. _default page size is 50_
-sorting | `string`| Field used for sorting results. <br> If missing, the default is `-created`
-include_deleted| `boolean` | If `true`, deleted products are also listed
+sorting | `string`| Field used for sorting results. <br> If missing, the default is `-created`.
+include_deleted| `boolean` | If `true`, deleted products are also listed.
 
 
 ## Update Plan
 
 Update a Plan. This is only possible if `static_plan` is `false`.
-Not all fields are possible to update. See fields in Argument under.
+Not all fields are possible to update. See fields in Argument below.
 > Definition
 
 ```
@@ -277,18 +277,16 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
-Updates a Plan with a given ID. For example:
-
 Argument | Type | Description
 -------- | ---- | -----
-**plan_id** | `string` | ID of the queried Plan
-active |`boolean`| Default = `true`
-name |`string`| Name of Plan
-note |`string`| Note regarding Plan
-initial_fail_amount_action |`string`| Choices: `CONTINUE`, `CANCEL`
-max_fail_attempts |`number`| How many times a payments could fail in the subscription, but still continue
-discount |`number`| Between 0.0 an 1.0. 1.0 is 100% discount on the total_price
-total_amount |`number`| If set, the total_amount is not based on the sum of Products.
+**plan_id** | `string` | ID of the queried plan.
+active |`boolean`| Indicates if the plan is currently active. _default is `true`_
+name |`string`| Name of the plan.
+note |`string`| Note regarding the plan.
+initial_fail_amount_action |`string`| Indicates what happens when payment for the plan fails.  Choices: `CONTINUE`, `CANCEL`
+max_fail_attempts |`number`| How many times a payment can fail in the subscription, but still continue.
+discount |`number`| Between 0.0 an 1.0, where 1.0 is 100% discount on the total_price.
+total_amount |`number`| The total cost of the subscription payment. If set, the total_amount is not based on the sum of products.
 
 
 ## Delete Plan
