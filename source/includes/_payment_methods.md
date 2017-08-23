@@ -1,6 +1,6 @@
 # Payment Methods
 
-Payment Methods allows you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS, etc. Furthermore, you can retrieve this information later for recurring payments and so on.
+Payment Methods allow you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS and more. You can also retrieve this information later for recurring payments or however you may require.
 
 The user has a `default_payment_method` which can be updated in the user object. This default payment method corresponds to the last payment method used by the user to pay for an order.
 
@@ -10,14 +10,14 @@ A payment method object varies according to the system, however there are some f
 
 Attributes | Type | Description
 ---------- | ---- | ------
-**user** | `object` | [`User`](#users) associated with Payment Method
-**method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`
-**name** | `string` | Name of the Payment Method - to be shown to final customer, if needed
+**user** | `object` | [`User`](#users) associated with Payment Method.
+**method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`.
+**name** | `string` | Name of the Payment Method - to be shown to final customer, if desired.
 
 
 ## DIBS
 
-DIBS is a Norwegian payments gateway. It works based on callbacks made via their servers to ours. This callback contains the information about the credit card that was created and we store that as a PaymentMethod object.
+DIBS is a Norwegian payments gateway. It works based on callbacks made via their servers to ours. This callback contains the information about the credit card that was created and we store that as a Payment Method object.
 
 > Definition
 
@@ -82,21 +82,21 @@ Content-Type: application/json
 
 Attribute | Type | Description
 ---------- | ---- | ------
-**payment_method** | `string` | must be "dibs" for triggering a DIBS payment method
-**merchant** | `string` | merchant id of company
-**transact** | `object` | id of card (ticket)
-**orderid** | `string` | unique order id
+**payment_method** | `string` | Must be "dibs" for triggering a DIBS payment method
+**merchant** | `string` | Merchant id of company
+**transact** | `object` | ID of card (ticket)
+**orderid** | `string` | Unique order ID
 **share-authorization-header** | `` | JWT used by user
 **share-api-key-header** | `` | Bearer token used for API access
-cardnomask | `string` | "XXXXXXXXXXXX1234"
-cardprefix | `string` | first 5 numbers of the card (for type check: VISA, MasterCard, etc.)
-paytype | `string` | type of credit card: MC, VISA, etc.
-expdate | `string` | expiry date
-cardholder_name | `string` | Card holder's name
+cardnomask | `string` | The last four numbers of the users credit card, e.g., "XXXXXXXXXXXX1234"
+cardprefix | `string` | First 5 numbers of the card (for type check: VISA, MasterCard, etc.)
+paytype | `string` | Type of credit card: MC, VISA, etc.
+expdate | `string` | Expiration date on the credit card
+cardholder_name | `string` | The name of the card holder
 
 ## Paypal
 
-Paypal allows for 2 types of payments: Single Payments or Future Payments. Single Payments is the most usual type of transaction and common for simple authotication and capturing of transactions. The Future Payments is mostly used for charging the user several times, after giving their consent.
+Paypal allows for 2 types of payments: Single Payments or Future Payments. A Single Payment is the most usual type of transaction and common for simple authentication and capturing of transactions. Future Payments are mostly used for charging the user several times, after giving their consent.
 
 ## Single Payment (PayPal)
 
@@ -151,13 +151,13 @@ Content-Type: application/json
 }
 ```
 
-In this case, the website/app will create a Payment using their own SDK and then they send it to the API for verification and capture. The payment must be in the state: `approved` otherwise the API will return a `403` error.
+In this case, the website/app will create a Payment using their own SDK and then send it to the API for verification and capture. The payment must be in the state `approved`, otherwise the API will return a `403` error.
 
 Attribute | Type | Description
 --------- | ---- | ------
-**payment_id** | `string` | This is the ID of the payment. A verification is ran on this Payment to see its state is "approved", otherwise an exception is raised
+**payment_id** | `string` | This is the ID of the payment. The payment recieves a verification to see if its state is "approved", otherwise an exception is raised, `403`.
 **payer_id** | `string` | This is the ID of the creation of the payment, something which is associated with the company.
-**method**| `string` | `single_paypal`
+**method**| `string` | This must be `single_paypal`.
 
 
 ## Future Payments (PayPal)
@@ -213,12 +213,12 @@ Content-Type: application/json
 }
 ```
 
-This feature is only available for the mobile SDK and for using it, the app needs to send the API an authorization code which the API then changed for a Refresh Token which is also stored in the object. When paying for an invoice, you should also add the `PayPal-Client-Metadata-Id` header to the API `/payments` in [Payments](#payments).
+This feature is only available for the mobile SDK.  To use it, the app sends the API an authorization code. The API is then exchanged for a Refresh Token, which is also stored in the object. When paying for an invoice, you should also add the `PayPal-Client-Metadata-Id` header to the API `/payments` in [Payments](#payments).
 
 Attribute | Type | Description
 --------- | ---- | ------
-**code** | `string` | This is an Authorization code sent by the mobile apps to be exchanged by a Refresh Token.
-**method**| `string` | `future_paypal`
+**code** | `string` | This is an authorization code sent by the mobile app to be exchanged for a Refresh Token.
+**method**| `string` | This must be `future_paypal`.
 
 
 ## Retrieve a Payment Method
@@ -272,7 +272,7 @@ Retrieves the payment method with a given ID.
 
 Attribute | Type | Description
 --------- | ---- | ------
-**payment-method-id** | `string` | The payment method ID
+**payment-method-id** | `string` | This is the unique ID of the queried payment method.
 
 
 ## List all Payment Methods
@@ -329,7 +329,7 @@ Retrieves a list of all Payment Methods associated with the user.
 Attribute | Type | Description
 --------- | ---- | ------
 size | `number` | number of items to retrieve
-page | `number` | which page to retrieve. _default page size is 10_
+page | `number` | which page to retrieve _default page size is 10_
 sort | `string` | field used for sorting results
 
 ## Delete payment method
