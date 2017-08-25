@@ -1,12 +1,18 @@
 # Payment Methods
 
-Payment Methods allow you to use multiple payment systems: Credit Card (Stripe, Braintree, etc.), PayPal, DIBS and more. You can also retrieve this information later for recurring payments or however you may require.
+Payment Methods allow you to use multiple payment systems:
+Credit Card (Stripe, Braintree, etc.), PayPal, DIBS and more.
+Other integrations available on request.
+
+You can also retrieve this information later for recurring payments or
+however you may require.
 
 The user has a `default_payment_method` which can be updated in the user object. This default payment method corresponds to the last payment method used by the user to pay for an order.
 
 ## Payment Method object
 
-A payment method object varies according to the system, however there are some fields which will always be present.
+A payment method object varies according to the system,
+however there are some fields which will always be present.
 
 Attributes | Type | Description
 ---------- | ---- | ------
@@ -86,8 +92,8 @@ Attribute | Type | Description
 **merchant** | `string` | Merchant id of company
 **transact** | `object` | ID of card (ticket)
 **orderid** | `string` | Unique order ID
-**share-authorization-header** | `` | JWT used by user
-**share-api-key-header** | `` | Bearer token used for API access
+**share-authorization-header** | `string` | JWT token used for authentication the user
+**share-api-key-header** | `string` | Bearer token used for API access
 cardnomask | `string` | The last four numbers of the users credit card, e.g., "XXXXXXXXXXXX1234"
 cardprefix | `string` | First 5 numbers of the card (for type check: VISA, MasterCard, etc.)
 paytype | `string` | Type of credit card: MC, VISA, etc.
@@ -156,7 +162,7 @@ In this case, the website/app will create a Payment using their own SDK and then
 Attribute | Type | Description
 --------- | ---- | ------
 **payment_id** | `string` | This is the ID of the payment. The payment recieves a verification to see if its state is "approved", otherwise an exception is raised, `403`.
-**payer_id** | `string` | This is the ID of the creation of the payment, something which is associated with the company.
+**payer_id** | `string` | The payment ID created by PayPal.
 **method**| `string` | This must be `single_paypal`.
 
 
@@ -223,6 +229,8 @@ Attribute | Type | Description
 
 ## Retrieve a Payment Method
 
+Retrieves the payment method with a given ID.
+
 > Definition
 
 ```
@@ -268,7 +276,6 @@ Content-Type: application/json
 }
 ```
 
-Retrieves the payment method with a given ID.
 
 Attribute | Type | Description
 --------- | ---- | ------
@@ -334,6 +341,8 @@ sort | `string` | field used for sorting results
 
 ## Delete payment method
 
+Delete the payment method associated with the user.
+
 > Definition
 
 ```
@@ -350,4 +359,8 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
-Delete the payment method associated with the user.
+
+Argument | Type | Description
+--------- | ---- | ------
+**payment-method-id** | `string` | This is the unique ID of the payment method.
+

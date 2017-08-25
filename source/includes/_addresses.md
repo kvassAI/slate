@@ -16,7 +16,6 @@ geo | `array` | The geo position of Address
 raw | `object` | All information like address, country, zip code, etc... from service
 alias | `string` | The alias of Address
 service  | `string` | The service used for Address _default google_
-service_address_id  | `string` | 
 
 ### service
 
@@ -30,7 +29,7 @@ pca |
 > Definition
 
 ```
-GET https://api.sahreactor.io/addresses/lookup
+GET https://api.shareactor.io/addresses/lookup
 ```
 
 > Example request:

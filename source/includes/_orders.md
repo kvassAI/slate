@@ -1,7 +1,9 @@
 # Orders
 
-Orders are the result of an User purchasing a given set of Products.
-The Product could be provided by a Provider
+Orders are the result of a User purchasing a given set of Products.
+A key function of this feature os that you can associate a particular
+product to a particular provider.
+
 
 ## Order object
 
@@ -12,15 +14,15 @@ Attributes | Type | Description
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 **order_status** | `string` | Status of the Order _default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED_
 **delivery_status** | `string` | Status of the delivery _default is PENDING, additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE and READY_FOR_DELIVERY_
-human_id | `string` | Human readable ID that identifies the order easily
+human_id | `string` | Human readable ID that identifies the order easily. e.g. `3AG7UA`
 provider | `string` | Provider assigned to an order
 items | `array` | List of items associated with an order
-units | `number` | Amount of unique items associated with an order
+units | `number` | Number of unique products in an order
 total_quantity | `number` | Total number of products in an order
 top_up_amount | `number` | Extra amount of currency needed to fulfill the company's minimum order value 
 delivery_time | `object` | Expected arrival time for delivery, `timestamp` format
 delivery_address | `object` | [`Address`](#address) used for delivery
-deliveries | `array` | If the order has multiple deliveries, this is used for storing that delivery history
+deliveries | `array` | Used to store the delivery history for an order
 billing_address | `object` | [`Address`](#address) used for billing purposes
 payments | `array` | List of [`Payment`](#payments) objects associated with order
 note | `string` | Field used to send notes between an user and a provider

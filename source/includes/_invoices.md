@@ -14,7 +14,7 @@ due_date | `object` | The due date of the invoice, `timestamp` format
 issued_date | `object` | The date the invoice was generated, `timestamp` format
 message | `string` | Message (KID) used for paying the invoice as it will appear in the issuer's bank
 issuer | `object`| [`Issuer`](#issuers) of the invoice
-issuer_alias | `string` | Regardless of the issuer existing or not, the user may want to use an alias for the issuer
+issuer_alias | `string` | The user may want to use an alias for the [`issuer`](#issuers)
 image_url | `string` | The url for the image of the invoice that is returned from the ocr
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there are: "SCHEDULED", "DONE", "FAILED" and "CANCELLED"
 
@@ -168,9 +168,9 @@ Retrieves a list of all Invoices associated with the user.
 
 Arguments | Type | Description
 --------- | ---- | ------
-size | `number` | number of items to retrieve
-page | `number` | which page to retrieve. _default page size is 10_
-sort | `string` | field used for sorting results. If missing default is "-due_date". Could be other parameters in the Invoice model, like "-created" or "status=DONE".
+size | `number` | Number of items to retrieve
+page | `number` | Which page to retrieve. _default is 10_
+sort | `string` | Field used for sorting results. _default sorting is `-due_date`_.
 status | `string` | Status of Invoice. By default there is no value, the API returns invoices regardless the status.Additionally there are : CREATED, SCHEDULED, DONE, FAILED, CANCELLED
 from_date | `number` | Start date, `timestamp` format. _default is None_
 to_date | `number` | End date, `timestamp` format. _default is None_
@@ -229,7 +229,10 @@ to_date | `number` | End date, `timestamp` format. _default is None_
 date_filter | `string` | Date field used for filter results. _default is `created`_
 include_deleted | `boolean` | If `true`, deleted invoices are also listed. _default is `false`_
 
-## Update an invoice
+## Update an Invoice
+
+Updates an Invoice with a given ID.
+
 > Definition
 
 ```
@@ -246,11 +249,10 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
-Updates an Invoice with a given ID. 
 
 Argument | Type | Description
 -------- | ---- | -----
-**invoice_id** | `string` | ID of the queried Invoice
+**invoice_id** | `string` | ID of the Invoice
 
 ## Delete invoice
 
@@ -271,3 +273,7 @@ Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
+
+Argument | Type | Description
+-------- | ---- | -----
+**invoice_id** | `string` | ID of the Invoice

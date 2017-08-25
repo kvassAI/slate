@@ -85,8 +85,12 @@ Many response objects will contain IDs for related objects in the response. For 
 
 You can also nest expand requests with the dot property. For example, requesting payments.payment_method on an order will expand the payments property into a list of Payment objects, and will then expand the payment method property into a full Payment Method object. 
 
-You can expand multiple objects at once by identifying multiple items in the expand array, separated with commas.
+You can expand multiple objects at once by identifying multiple items
+in the expand array, separated with commas.
 
+For example:
+
+`GET /orders/<order-id>/?expand=user,provider,items.product`
 
 ## Common Object fields
 
