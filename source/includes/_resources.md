@@ -1,9 +1,9 @@
 # Resources
 
 The resource model is [`User`](#Users) specific attributes;
-attributes he possess or resources under his control. The resource
-could have name, description and a chosen reference id. Additionally
-an image and product associated to it.
+attributes they possess or resources under their control. The resource
+could have name, description and a chosen reference id. Additionally, it can have
+an image and product associated with it.
 
 ## Resources Object
 
@@ -11,15 +11,15 @@ Attribute | Type | Description
 --------- | ---- | -------
 _id | `object` | The resource ID
 user | `object`  | [`User`](#Users) associated with the resource
-name | `string` | Name of Resource item
-description | `string`| Description of resource item
-image_url | `string` | Image associated with resource
-reference_id | `string` | Reference id associated with resource
+name | `string` | Name of the resource item
+description | `string`| Description of the resource item
+image_url | `string` | Image associated with the resource
+reference_id | `string` | Reference ID associated with the resource
 product | `object`  | [`Product`](#Products) associated with the resource
-status | `string` | Status for the resource. Default is `CREATED`. Additional: `PROCESSING`, `UTILIZED`, `IDLE`
+status | `string` | Status of the resource _default is `CREATED`, other options are `PROCESSING`, `UTILIZED` or `IDLE`_
 
-## Create a new resource
-Created a new resource associated with the  [`User`](#Users).
+## Create a New Resource
+Create a new resource associated with the  [`User`](#Users).
 
 > Definition
 
@@ -68,17 +68,17 @@ Content-Type: application/json
 
 Arguments | Type | Description
 --------- | ---- | -------
-name | `string` | Name of Resource item
-description | `string`| Description of resource item
-status | `string` | Status for the resource. Default is `CREATED`. Additional: `PROCESSING`, `UTILIZED`, `IDLE`
-product | `string`  | [`Product`](#Products) id to be associated to the resource
-image_url | `string` | Image url associated with resource
-reference_id | `string` | Customizable id for resource
+name | `string` | Name of the resource item
+description | `string`| Description of the resource item
+status | `string` | Status of the resource _default is `CREATED`; other options are `PROCESSING`, `UTILIZED` or `IDLE`_
+product | `string`  | [`Product`](#Products) ID to be associated with the resource
+image_url | `string` | Image url associated with the resource
+reference_id | `string` | Customizable ID for the resource
 
-## Create several new Resources in bulk
-This call creates several new resources for an [`User`](#Users) in
+## Create Several New Resources in Bulk
+This call creates several new resources for a [`User`](#Users) in
 one API call. Use the same attributes as when creating a new resource
-for an User, but in an `array`.
+for a user, but in an `array`.
 
 
 > Definition
@@ -145,8 +145,8 @@ Content-Type: application/json
 
 
 
-## Receive a Resource by id
-Receive a resource, based on its id.
+## Retreive a Resource by ID
+Retreive a resource based on its ID.
 
 > Definition
 
@@ -185,17 +185,17 @@ Content-Type: application/json
 ```
 
 
-## Update resource
-Update attributes in resource
+## Update Resource
+Update attributes in a resource.
 
 Arguments | Type | Description
 --------- | ---- | -------
-name | `string` | Name of Resource item
-description | `string`| Description of resource item
-status | `string` | Status for the resource. Default is `CREATED`. Additional: `PROCESSING`, `UTILIZED`, `IDLE`
-product | `string`  | [`Product`](#Products) id to be associated to the resource
-image_url | `string` | Image url associated with resource
-reference_id | `string` | Customizable id for resource
+name | `string` | Name of the resource item
+description | `string`| Description of the resource item
+status | `string` | Status of the resource _default is `CREATED`; other options are `PROCESSING`, `UTILIZED` or `IDLE`_
+product | `string`  | [`Product`](#Products) ID to be associated with the resource
+image_url | `string` | Image url associated with the resource
+reference_id | `string` | Customizable ID for the resource
 
 > Definition
 
@@ -240,9 +240,9 @@ Content-Type: application/json
 ```
 
 
-## Receive all resources
-Return an `array`with all resources associated with request and company.
-It is possible to add filters and sort to the query.
+## List All Resources
+Return an `array` with all resources associated with the request and company.
+It is possible to add filters and sorting to the query.
 
 
 > Definition
@@ -263,17 +263,17 @@ Host: api.shareactor.io
 
 Arguments | Type | Description
 --------- | ---- | -------
-include_deleted | `boolean`| if `true` the request also returns deleted subscriptions
-size | `number` | Default 10. Number of subscriptions per page.
-page | `number` | Default 0.
-from_date | `number` | Start date, `timestamp` format. _default is None_
-to_date | `number` | End date, `timestamp` format. _default is None_
-sort | `string` | Default is `-created`, thus latest created first.
-status | `string` | Default is `CREATED`
+include_deleted | `boolean`| If `true`, the request also returns deleted resources
+size | `number` | Number of resources per page _default is 10_
+page | `number` | Defines which page to retrieve _default is 0_
+from_date | `number` | Start date, `timestamp` format _default is `None`_
+to_date | `number` | End date, `timestamp` format _default is `None`_
+sort | `string` | Field used to sort results _default is `-created`_
+status | `string` | Status of the resource _default is `CREATED`; other options are `PROCESSING`, `UTILIZED` or `IDLE`_
 
 
-## Delete resource
-Delete the resource associated with resource id.
+## Delete Resource
+Delete the resource associated with the resource ID.
 
 
 > Definition
@@ -314,18 +314,18 @@ Content-Type: application/json
 
 
 ## Resource Search
-Search on id, name, reference_id, description and image_url. Returns
+Search by ID, name, reference_id, description and image_url. Returns
 an `array` that matches the query. Filter the query by using pagination.
 
 Arguments | Type | Description
 --------- | ---- | -------
-query | `string`| Partial or full string of `name`, `reference_id`, `description` or `image_url`.
-include_deleted | `boolean`| if `true` the request also returns deleted resources
-size | `number` | Default 10. Number of subscriptions per page.
-page | `number` | Default 0.
-from_date | `number` | Start date, `timestamp` format. _default is None_
-to_date | `number` | End date, `timestamp` format. _default is None_
-sort | `string` | Default is `-created`, thus latest created first.
+query | `string`| Partial or full string of `name`, `reference_id`, `description` or `image_url`
+include_deleted | `boolean`| If `true`, the request also returns deleted resources
+size | `number` | Number of resources per page _default is 10_
+page | `number` | Defines which page to retrieve _default is 0_
+from_date | `number` | Start date, `timestamp` format _default is `None`_
+to_date | `number` | End date, `timestamp` format _default is `None`_
+sort | `string` | Field used to sort results _default is `-created`_
 
 > Definition
 

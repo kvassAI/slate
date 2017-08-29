@@ -1,24 +1,24 @@
 # Providers
 
-Provider is a child class of [`User`](#users). They are Users that provides
-services other Users.
+Provider is a child class of [`User`](#users). They are users that provide
+services to other users.
 
 ## Provider object
 
 Attributes | Type | Description
 ---------- | ---- | -------
-max_travel_time | `number` | The maximum travel time, in hours. _default 1.0_
-max_travel_meters | `number` | The maximum travel distance, in meters. _default 10000.0_
-default_position | `array` | The Provider's default position.
-default_address | `object` | The Provider's default [`Address`](#address).
-schedule | `object` | The Provider's schedule.
-orders | `array` | List of [`Orders`](#orders)
-products | `array` | List of [`Products`](#products) Provider provides.
-available_on_bank_holidays | `boolean` | _default `false`_
-country | `string` | The Provider's country. _default `NOR`_
-roles | `array` | Define the roles that a Provider can have. _Default provider_
+max_travel_time | `number` | The maximum travel time, in hours. _default is 1.0_
+max_travel_meters | `number` | The maximum travel distance, in meters. _default is 10000.0_
+default_position | `array` | The provider's default position.
+default_address | `object` | The provider's default [`Address`](#address).
+schedule | `object` | The provider's schedule.
+orders | `array` | List of [`Orders`](#orders).
+products | `array` | List of [`Products`](#products) the provider provides.
+available_on_bank_holidays | `boolean` | Indicates if the provider wishes to be available on bank holidays.  _default `false`_
+country | `string` | The provider's country. _default `NOR`_
+roles | `array` | Define the roles that a provider can have. _Default is provider_
 
-## Add a new Provider
+## Add a New Provider
 
 > Definition
 
@@ -132,12 +132,12 @@ Creates a new Provider.
 
 Argument | Type | Description
 ---------- | ---- | -------
-**first_name** | `string` | Providers first name.
-**last_name** | `string` | Providers last name.
-email | `string` | Providers E-mail address.
-mobile_phone_number |  `string` | Providers phone number.
-billing_address | `string` | Provider billing Address.
-bio | `string` | Biographic note about the Provider.
+**first_name** | `string` | Provider's first name
+**last_name** | `string` | Provider's last name
+email | `string` | Provider's e-mail address
+mobile_phone_number |  `string` | Provider's phone number
+billing_address | `string` | Provider's billing address
+bio | `string` | Biographic note about the provider
 
 
 ## Retrieve a Provider
@@ -241,13 +241,13 @@ Content-Type: application/json
 }
 ```
 
-Retrieves the Provider with a given ID
+Retrieves the Provider with a particular ID
 
 Arguments | Type | Description
 --------- | ---- | ------
-**provider_id** | `string` | ID of the queried Provider.
+**provider_id** | `string` | ID of the queried provider
 
-## List all Providers
+## List All Providers
 
 > Definition
 
@@ -357,5 +357,5 @@ Arguments | Type | Description
 size | `integer` | Number of items to retrieve. _default is 10_
 page | `integer` | Which page to retrieve. _default is 0_
 include_deleted | `boolean` | If `true`, deleted products are also listed. _default is `false`_
-latitude | `number` | Define the latitude. _default is `none`_
-longitude | `number` | Define the longitude. _default is `none`_
+latitude | `number` | Define the latitude. _default is `None`_
+longitude | `number` | Define the longitude. _default is `None`_

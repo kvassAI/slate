@@ -4,22 +4,22 @@
 
 Attribute | Type | Description
 --------- | ---- | -------
-**name** | `string` | The name of the Product
-**price** | `number` | The price of the Product
-**currency** |  `string` | Currency (NOK, EUR, ...) ISO 4217
-description | `string` | A full description of the Product
-short_description | `string` | A brief description of the Product
-main_product | `boolean` | Flag that marks whether or not it is a main Product
-_sub_products | `array` | A list of sub products under the main Product
-parents | `array` | The sub product parent, overhead Product
-default_position | `array` | The geo position for the Product
-tags | `array` | List of Tags associated with Product
-properties | `object` | Product properties
-vat | `number` | The percentage of vat in the product price
+**name** | `string` | The name of the product
+**price** | `number` | The price of the product
+**currency** |  `string` | Three letter currency code in standard ISO 4217 format.
+description | `string` | A full description of the product
+short_description | `string` | A brief description of the product
+main_product | `boolean` | Flag that marks whether or not it is a main product
+_sub_products | `array` | A list of sub products under the main product
+parents | `array` | The sub product's parent
+default_position | `array` | The geo position for the product
+tags | `array` | List of tags associated with the product
+properties | `object` | The product's properties
+vat | `number` | The percentage of VAT in the product price
 max_distance | `number` |
 slug | `string` |
 
-## Create a new Product
+## Create a New Product
 
 > Definition
 
@@ -88,25 +88,25 @@ Content-Type: application/json
 }
 ```
 
-Create a new Product.
+This creates a new Product.
 
 Argument | Type | Description
 -------- | ---- | -------
 **name** | `string` | Name of the product
 **price** | `number` | Price of the product
-currency | `string` | Currency of the Product. _default set to `NOK`_
-vat | `number` | Percentage of price to be paid for VAT. _default set to `0.0`_
-description | `string` | Full description of the Product
+currency | `string` | Currency of the product _default set to `NOK`_
+vat | `number` | Percentage of price to be paid for VAT _default set to `0.0`_
+description | `string` | Full description of the product
 short_description | `string` | Short description for the product
-path | `string` | URL for the product. _default set to `'/'`_
-main_product | `boolean` | Flag that marks whether or not it is a main product. _default set to `True`_
-_sub_product | `array` | List of sub products under Product. _default set to `[]`_
-parents | `array` | List of main product to sub product. _default set to `[]`_
-tags | `string` | List of tags associated with product
-default_position | `array` | Define product position. _default set to `[-1, -1]`_
-properties | `object` | Product properties
+path | `string` | URL for the product _default set to `'/'`_
+main_product | `boolean` | Flag that marks whether or not it is a main product _default set to `True`_
+_sub_product | `array` | List of sub products under the product. _default set to `[]`_
+parents | `array` | List of the parent products to the sub product. _default set to `[]`_
+tags | `string` | List of tags associated with the product
+default_position | `array` | Geo position of the product _default set to `[-1, -1]`_
+properties | `object` | The product's properties
 max_distance | `number` |
-provider | `string` | The [`provider`](#providers) assign for the product. Use the id provider
+provider | `string` | The [`provider`](#providers) assigned to the product, defined by the provider's ID
 company_take | `number` |
 business_rules | `array` |
 slug | `array` |
@@ -160,14 +160,14 @@ Content-Type: application/json
 }
 ```
 
-Get Product based on product ID
+Get a Product based on the product's unique ID.
 
 Argument | Type | Description
 -------- | ---- | --------
-**product_id** | `string` | Product Id
+**product_id** | `string` | The product's ID
 
 
-## Get list of all products associated with company
+## Get List of All Products Associated with a Company
 
 > Definition
 
@@ -223,14 +223,14 @@ Arguments | Type | Description
 --------- | ---- | -----------
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
-sort | `string` | Field used for sorting results. _default is created_
-from_date | `number` | Start date, `timestamp` format. _default is None_
-to_date | `number` | End date, `timestamp` format. _default is None_
-date_filter | `string` | Date field used for filter results. _default is created_
-lat | `number` | Define the latitude
-lng | `number` | Define the longitude
-all | `boolean` | If `true` get all products
-include_deleted| `boolean` | If `true`, deleted products are also listed
+sort | `string` | Field used for sorting results. _default is `created`_
+from_date | `number` | Start date, `timestamp` format. _default is `None`_
+to_date | `number` | End date, `timestamp` format. _default is `None`_
+date_filter | `string` | Date field used to filter results. _default is `created`_
+lat | `number` | Define the latitude.
+lng | `number` | Define the longitude.
+all | `boolean` | If `true`, get all products.
+include_deleted| `boolean` | If `true`, deleted products are also listed.
 
 
 ## Search Products
@@ -287,13 +287,13 @@ Content-Type: application/json
 
 Arguments | Type | Description
 --------- | ---- | -----------
-**query** | `string` | What you want to search for, like **name**, **description**, or **id**
+**query** | `string` | What you want to search for, e.g., **name**, **description**, or **id**.
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
-sort | `string` | Field used for sorting results. _default is created_
-from_date | `number` | Start date, `timestamp` format. _default is None_
-to_date | `number` | End date, `timestamp` format. _default is None_
-date_filter | `string` | Date field used for filter results. _default is created_
-lat | `number` | Define the latitude
-lng | `number` | Define the longitude
-include_deleted| `boolean` | If `true`, deleted products are also listed
+sort | `string` | Field used for sorting results. _default is `created`_
+from_date | `number` | Start date, `timestamp` format. _default is `None`_
+to_date | `number` | End date, `timestamp` format. _default is `None`_
+date_filter | `string` | Date field used to filter results. _default is `created`_
+lat | `number` | Define the latitude.
+lng | `number` | Define the longitude.
+include_deleted| `boolean` | If `true`, deleted products are also listed.

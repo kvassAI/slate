@@ -3,35 +3,35 @@
 The Subscription method enables you to charge [`Customers`](#Users) at
 specified intervals set by a [`Plan`](#Plans) of their choice.
 
-We offer a `license` subscription. The Customers will be
-charged the amount specified in the Plan, at an interval set by the
-Plan.
+We offer a `license` subscription. The customers will be
+charged the amount specified in the plan at an interval set by the
+plan.
 
 ## Subscriptions Object
 
 Attribute | Type | Description
 --------- | ---- | -------
-_id | `object` | The subscription ID
-name | `string` | The name of the Subscription type
-note | `string` | A short description
-user | `object`  | [`User`](#Users) ID associated with Subscription
-method | `string`| Subscription method.
-status | `string` | Status for the subscription. Default is `CREATED`. Additional: `ACTIVE`, `FUTURE`, `NON_RENEWING`, `CANCELLED`
+_id | `object` | The subscription ID.
+name | `string` | The name of the subscription type.
+note | `string` | A short description of the description.
+user | `object`  | [`User`](#Users) ID associated with the subscription.
+method | `string`| The subscription method.
+status | `string` | Status for the subscription. _default is `CREATED`, also available are `ACTIVE`, `FUTURE`, `NON_RENEWING`and `CANCELLED`_
 plan | `object` | ID of the [`Plan`](#Plans) associated with the subscription.
-payment_method | `object` | ID of already created Payment Method
-payments | `array` | Array of [`Payment`](#payments) objects associated with Subscription
-starting_date | `string`| Timestamp for starting date of the subscription. If missing, default starting date is now.
-ending_date | `string`| Timestamp for ending date of the subscription.
-interval_total | `number` | Number of intervals, set in the [`Plan`](#Plans), the subscription will run.
-infinite | `boolean` | If `true`, the subscription will run until the User stops it.
+payment_method | `object` | ID of already created payment method.
+payments | `array` | Array of [`Payment`](#payments) objects associated with the subscription.
+starting_date | `string`| Start date, `timestamp` format. _default is current date if missing_ 
+ending_date | `string`| End date of subscription, `timestamp` format .
+interval_total | `number` | Number of intervals set in the [`Plan`](#Plans) the subscription will run.
+infinite | `boolean` | If `true`, the subscription will run until the user stops it.
 current_billing_date_period_start | `string`| The date on which the customer was billed last.
 current_billing_date_period_end | `string`| The date on which the customer will be billed next. This will also be the date on which the next current_billing_date_period_start of the subscription starts.
-prorate | `boolean` | flag telling us whether to prorate amount if User stops it in the middle of a billing cycle.
+prorate | `boolean` | Flag telling us whether to prorate amount if user stops the subscription in the middle of a billing cycle.
 prorate_amount | `number` | The amount prorated. Currency set in [`Plan`](#Plans).
 
-## Create a new subscription
-To create a new subscription, The User needs to have a plan associated with the
-subscription. Additionally, the User needs to specify a subscription method.
+## Create a New Subscription
+To create a new subscription, the user needs to have a plan associated with the
+subscription. Additionally, the user needs to specify a subscription method.
 This will not start the subscription, only create it.
 
 > Definition
@@ -80,23 +80,23 @@ Content-Type: application/json
 
 Attribute | Type | Description
 --------- | ---- | -------
-**method** | `string`| Subscription method. For now set `license`
+**method** | `string`| Subscription method. _default is `license`_
 **plan** | `string` | ID of the [`Plan`](#Plans) associated with the subscription.
-note | `string` | A short description
-prorate | `boolean` | flag telling us whether to prorate amount if </br> User stops it in the middle of a billing cycle.
-start_now | `boolean`| if `true` the subscription will start now.
+note | `string` | A short description.
+prorate | `boolean` | Flag telling us whether to prorate the billing amount if </br> a user stops a subscription in the middle of a billing cycle.
+start_now | `boolean`| If `true`, the subscription will start now.
 
-## Start subscription
-To start a subscription, the User need to first create a subscription.
-The User could create and start the subscription in one API call. Then you
+## Start Subscription
+To start a subscription, the user needs to first create a subscription.
+The user could create and start the subscription in one API call. Then you
 will have to add `{"start_now": true}` when creating a new subscription.
 When starting the subscription, we need an associated payment_method in the request data.
 
-A subscription could either have a set ending_date, thus infinite = False,
-or not have an ending_date, thus infinite = True.
-The ending date could be set by the User, either as an ending_date
+A subscription could either have a set ending_date, where infinite = `false`,
+or not have an ending_date, where infinite = `true`.
+The ending date could be set by the user, either as an ending_date
 or as number of interval_units from the starting_date to the ending_date.
-If the User set more than one of the parameters
+If the user set more than one of the parameters
 infinite, ending_date or interval_total, the API overrides the
 parameters by: infinite > ending_date > interval_total.
 
@@ -150,15 +150,15 @@ Content-Type: application/json
 
 Attribute | Type | Description
 --------- | ---- | -------
-**payment_method** | `string` | ID of already created Payment Method
-starting_date | `string`| Timestamp for starting date of the subscription. If missing, default starting date is now.
-ending_date | `string`| Timestamp for ending date of the subscription.
+**payment_method** | `string` | ID of an already created payment method.
+starting_date | `string`| Start date, `timestamp` format. _default is current date if missing_ 
+ending_date | `string`| End date, `timestamp` format.
 interval_total | `number` | Number of intervals, set in the [`Plan`](#Plans), the subscription will run.
-infinite | `boolean` | If `true`, the subscription will run until the User stops it.
+infinite | `boolean` | If `true`, the subscription will run until the user stops it.
 
-## Update subscription
-The User could update some fields in the subscription. Like when starting
-the subscription, the User could only update one of infinite, ending_date, interval_total.
+## Update Subscription
+The user could update certain fields in the subscription. If, when starting
+the subscription, the user could only update one of the fields infinite, ending_date or interval_total, they could use this to update the fields.
 
 > Definition
 
@@ -212,15 +212,15 @@ Content-Type: application/json
 Attribute | Type | Description
 --------- | ---- | -------
 note | `string` | A short description
-interval_total | `number` | Number of intervals, set in the [`Plan`](#Plans), the subscription will run.
-infinite | `boolean` | If `true`, the subscription will run until the User stops it.
-ending_date | `string`| Timestamp for ending date of the subscription.
-payment_method | `string` | ID of already created Payment Method
+interval_total | `number` | Number of intervals, set in the [`Plan`](#Plans), the subscription will run
+infinite | `boolean` | If `true`, the subscription will run until the User stops it
+ending_date | `string`| End date, `timestamp` format
+payment_method | `string` | ID of an already created payment method
 
-## Stop subscription
-To stop the subscription. The User could either choose stop it on a chosen
-`ending_date` or, if missing, now. The remaining amount will be prorated
-to the User at the next `current_billing_date_period_end` if `prorate`
+## Stop Subscription
+To stop the subscription, the user could either choose to stop it on a chosen
+`ending_date` or, if missing, at the current time. The remaining amount will be prorated
+to the user at the next `current_billing_date_period_end` if `prorate`
 is `true`.
 
 
@@ -272,11 +272,11 @@ Content-Type: application/json
 
 Attribute | Type | Description
 --------- | ---- | -------
-ending_date | `string`| Timestamp for ending date of the subscription.
+ending_date | `string`| End date, `timestamp` format
 
 
-## Receive Subscription by id
-Receive a subscription, based on its id.
+## Receive Subscription by ID
+Receive a subscription, based on its ID.
 
 > Definition
 
@@ -323,7 +323,7 @@ Content-Type: application/json
 }
 ```
 
-## Get all subscriptions for an User
+## Get All Subscriptions for a User
 Receives a list of all subscriptions associated with the user.
 It is possible to add pagination to this request.
 
@@ -345,14 +345,14 @@ Host: api.shareactor.io
 Attribute | Type | Description
 --------- | ---- | -------
 user_id | `string`| The ID for the user
-include_deleted | `boolean`| if `true` the request also returns all deleted subscriptions
-size | `number` | Number of subscriptions per page. Default is 10.
-page | `number` | Default 0, the first page.
-sort | `string` | Default is `-modified`, thus last modified first.
-status | `string` | The subscription status. Default is `ACTIVE`.
+include_deleted | `boolean`| If `true`, the request also returns all deleted subscriptions
+size | `number` | Number of subscriptions per page _default is 10_
+page | `number` | Which page to retrieve _default is 0_
+sort | `string` | Field used to sort results _default is `-modified`_
+status | `string` | The subscription status _default is `ACTIVE`_
 
-## Get all subscriptions
-Receives a list of all subscriptions associated with company.
+## Get All Subscriptions
+Receives a list of all subscriptions associated with a company.
 
 > Definition
 
@@ -371,8 +371,8 @@ Host: api.shareactor.io
 
 Attribute | Type | Description
 --------- | ---- | -------
-include_deleted | `boolean`| if `true` the request also returns all deleted subscriptions
-size | `number` | Default 10. Number of subscriptions per page.
-page | `number` | Default 0.
-sort | `string` | Default is `-modified`, thus last modified first.
-status | `string` | The subscription status. Default is `ACTIVE`.
+include_deleted | `boolean`| If `true`, the request also returns all deleted subscriptions
+size | `number` | Number of subscriptions per page _default is 10_
+page | `number` | Which page to retrieve _default is 0_
+sort | `string` | Field used to sort results _default is `-modified`_
+status | `string` | The subscription status _default is `ACTIVE`_

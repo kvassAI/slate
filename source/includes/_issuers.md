@@ -1,21 +1,24 @@
 # Issuers
 
+Issuers receive the payment for an [`invoice`](#invoices).
 
 ## Issuers object
 
 Attributes | Type | Description
 ---------- | ---- | -------
 **verified** | `boolean` | Flag that sets issuer object to verified. Changes to true after Anti-Money Laundering (AML) check up.
-**blacklisted** | `boolean` | Flag that sets issuer object to blacklisted. `False` if AML status is either `Potential Match`, `true Positive` or `true Positive`. `True` if AML status value is either `No Match`, `false Positive` or `true Positive - Reject`.
+**blacklisted** | `boolean` | Flag that sets issuer object to blacklisted. `false` if AML status is either `potential_match`, `true_positive` or `true_positive_approved`. `true` if AML status value is either `no_match`, `false_positive` or `true_positive_reject`.
 comments | `string` | Add a comment about issuer.
 account_number | `string` | Account number of issuer, used when using invoices.
 name | `string` | Name of issuer.
 logo_url | `string` | Path to logo for issuer.
-address | `object` | [`Address`](#address) corresponding to payment address.
+address | `object` | Billing [`address`](#address) for the issuer.
 is_message_mandatory | `boolean` | Flag that determines if `message` field is mandatory for invoices issued by this issuer, e.g. KID number required.
 
 
 ## Create an Issuer
+
+Create a new issuer.
 
 > Definition
 
@@ -34,7 +37,7 @@ Host: api.shareactor.io
 
 {
     "account_number": "12345678903",
-    "name": "Create_issuer",
+    "name": "issuer name",
     "logo_url": "<logo-url.png>",
     "comments": "It is a comment"
 }
@@ -52,7 +55,7 @@ Content-Type: application/json
       "$date":1490967111446
    },
    "active":true,
-   "name":"Create_issuer",
+   "name":"issuer name",
    "company":{
       "$oid":"57ee9c71d76d431f8511142f"
    },
@@ -73,7 +76,6 @@ Content-Type: application/json
 }
 ```
 
-Create a new issuer.
 
 Arguments | Type | Description
 --------- | ---- | ------
@@ -83,10 +85,12 @@ Arguments | Type | Description
 comments | `string` | Comments regarding the issuer.
 name | `string` | Name of Issuer.
 logo_url | `string` | The URL of the issuer's logo.
-address | `object` | [`Address`](#address) corresponding to payment address. 
+address | `object` | Billing [`address`](#address) for the issuer.
 is_messaging_mandatory | `boolean` | Determines if *message* field is mandatory for invoices issued by this issuer, e.g. KID number required. _default `false`_
 
 ## Retrieve an Issuer
+
+Retrieves issuer with a particular ID.
 
 > Definition
 
@@ -140,13 +144,14 @@ Content-Type: application/json
 }
 ```
 
-Retrieves issuer with a particular ID.
 
 Argument | Type | Description
 -------- | ---- | -------
 **issuer_id** | `string` | ID of the queried issuer
 
 ## List all Issuers
+
+Retrieves a list of all issuers.
 
 > Definition
 
@@ -202,7 +207,6 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all issuers.
 
 Arguments | Type | Description
 --------- | ---- | -------
@@ -225,6 +229,8 @@ modified | Date generated when issuer is updated
 
 
 ## Update Issuer
+
+Updates an issuer.
 
 > Definition
 
@@ -278,13 +284,14 @@ Content-Type: application/json
 }
 ```
 
-Updates an issuer.
 
 Arguments | Type | Descriptions
 --------- | ---- | ------
 **issuer_id** | `string` |  ID of the desired issuer.
 
 ## Issuer Search
+
+Retrieves a list of Issuers associate with search.
 
 > Definition
 
@@ -340,7 +347,6 @@ Content-type: application/json
 ]
 ```
 
-Retrieves a list of Issuers associate with search.
 
 Arguments | Type | Description
 --------- | ---- | -------
@@ -357,7 +363,7 @@ include_deleted | `boolean` | If `true`, deleted issuers are also listed _defaul
 
 ### Active, Verified & Blacklisted
 
-For all `Boolean` flags it is possible to put:
+For all `boolean` flags it is possible to put:
 
 - True: `1`, `'1'` or `'true'`
 
@@ -365,6 +371,8 @@ For all `Boolean` flags it is possible to put:
 
 
 ## Delete Issuer
+
+Deletes an issuer.
 
 > Definition
 
@@ -418,7 +426,6 @@ Content-Type: application/json
 }
 ```
 
-Deletes an issuer.
 
 Argument | Type | Description
 -------- | ---- | -------
