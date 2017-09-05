@@ -7,6 +7,10 @@ are the most important fields and define the period of time between
 each subscription action and each payment. The next billing and interval dates are
 calculated from the starting date of the subscription.
 
+Only Admins could create, edit or delete a plan.
+If your company want to allow your customers to create plans,
+see `Create Subscription with a pre-set company specific Plan` in the [`Subscriptions`](#subscriptions).
+
 ## Plans Object
 
 Attribute | Type | Description
@@ -18,13 +22,14 @@ interval_count | `integer`| Total number of interval_units.
 billing_interval | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
 static | `boolean`| Defines if plan is allowed to be changed.
 items | `array` | List of items associated with Plan. See description below.
+units | `number` | Total number of items in the plan.
 currency | `string` | Three letter ISO currency code as defined by ISO 4217.
 total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`.
 discount | `number` | Set a discount on a plan. Min 0.0, max 1.0. This will be calculated on the total_amount.
-setup_cost | `number` | A fee for setting up a new plan. _default is 0_
 initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices: `CANCEL`, `CONTINUE`
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
-auto_bill_amount | `boolean` | Automatically bills the outstanding balance in the next billing cycle.
+prorate | `boolean` | Flag telling us whether to prorate amount if user stops the subscription in the middle of a billing cycle.
+
 
 ### Plan items
 
@@ -66,12 +71,11 @@ Host: api.shareactor.io
               {"product": "<product2_id>", "quantity": 2, "discount": 0.5}],
     "initial_fail_amount_action": "CONTINUE",
     "max_fail_attempts": 1,
-    "auto_bill_amount": false,
     "note": "This is a note regarding the Plan",
     "interval_count": false,
     "total_amount": false,
     "discount": 0,
-    "setup_cost": 100
+    "prorate": false
 }
 
 ```
@@ -93,7 +97,6 @@ Content-Type: application/json
     "max_fail_attempts": 1,
     "discount": 0.0,
     "name": "Plan Deluxe",
-    "setup_cost": 100.0,
     "total_amount": 300.0,
     "interval_unit": "WEEK",
     "items": [
@@ -109,7 +112,8 @@ Content-Type: application/json
     "deleted": false,
     "company": {
         "$oid": "57ee9c71d76d431f8511142f"},
-    "static": true
+    "static": true,
+    "prorate": false
 }
 ```
 
@@ -164,12 +168,11 @@ Content-Type: application/json
      "currency": "NOK", 
      "name": "Golden Plan",
      "interval_unit": "WEEK",
-     "auto_bill_amount": false,
      "static": false,
-     "setup_cost": 0.0, 
      "total_amount": 500.0,
      "company": {
-        "$oid": "57ee9c71d76d431f8511142f"}
+        "$oid": "57ee9c71d76d431f8511142f"},
+    "prorate" false
  }
 ```
 
@@ -209,7 +212,6 @@ Content-Type: application/json
         "updated": {
             "$date": 1496412265911
         },
-        "setup_cost": 0.0,
         "static": false,
         "billing_interval": "MONTH",
         "_id": {
@@ -236,8 +238,8 @@ Content-Type: application/json
                 }
             }
         ],
-        "auto_bill_amount": false,
-        "status": "CREATED"
+        "status": "CREATED",
+        "prorate" false
     },
     {
         "created": {

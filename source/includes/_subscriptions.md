@@ -3,7 +3,7 @@
 The Subscription method enables you to charge [`Customers`](#Users) at
 specified intervals set by a [`Plan`](#Plans) of their choice.
 
-We offer a `license` subscription. The customers will be
+We offer a `license` subscription method. The customers will be
 charged the amount specified in the plan at an interval set by the
 plan.
 
@@ -12,10 +12,10 @@ plan.
 Attribute | Type | Description
 --------- | ---- | -------
 _id | `object` | The subscription ID.
+method | `string` | Name of subscription method. `license`
 name | `string` | The name of the subscription type.
 note | `string` | A short description of the description.
 user | `object`  | [`User`](#Users) ID associated with the subscription.
-method | `string`| The subscription method.
 status | `string` | Status for the subscription. _default is `CREATED`, also available are `ACTIVE`, `FUTURE`, `NON_RENEWING`and `CANCELLED`_
 plan | `object` | ID of the [`Plan`](#Plans) associated with the subscription.
 payment_method | `object` | ID of already created payment method.
@@ -26,8 +26,10 @@ interval_total | `number` | Number of intervals set in the [`Plan`](#Plans) the 
 infinite | `boolean` | If `true`, the subscription will run until the user stops it.
 current_billing_date_period_start | `string`| The date on which the customer was billed last.
 current_billing_date_period_end | `string`| The date on which the customer will be billed next. This will also be the date on which the next current_billing_date_period_start of the subscription starts.
-prorate | `boolean` | Flag telling us whether to prorate amount if user stops the subscription in the middle of a billing cycle.
 prorate_amount | `number` | The amount prorated. Currency set in [`Plan`](#Plans).
+prorate_date | `number`| The date of the last time an amount was prorated
+last_billing_amount | `number`| The amount that was subtracted at the last payment. `plan.total_amount`+`prorate_amount`
+total_fail_attempts | `number` | The number of failed payment attempts in the subscription. See [`Plan`](#Plans)`.max_fail_attempts
 
 ## Create a New Subscription
 To create a new subscription, the user needs to have a plan associated with the
@@ -59,14 +61,12 @@ Host: api.shareactor.io
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
-    "prorate": false,
     "company": {"$oid": "57ee9c71d76d431f8511142f"},
     "active": true,
     "status": "CREATED",
     "name": "LICENSE",
     "method": "license",
     "_id": {"$oid": "5964a0ead57ba2036750a3b4"},
-    "trial": false,
     "deleted": false,
     "prorate_amount": 0.0,
     "_cls": "SubscriptionMethod.LicenseSubscription",
@@ -80,10 +80,9 @@ Content-Type: application/json
 
 Attribute | Type | Description
 --------- | ---- | -------
-**method** | `string`| Subscription method. _default is `license`_
 **plan** | `string` | ID of the [`Plan`](#Plans) associated with the subscription.
+**subscription_method** | `string` | Name of subscription method. `license`
 note | `string` | A short description.
-prorate | `boolean` | Flag telling us whether to prorate the billing amount if </br> a user stops a subscription in the middle of a billing cycle.
 start_now | `boolean`| If `true`, the subscription will start now.
 
 ## Start Subscription
@@ -132,10 +131,8 @@ Content-Type: application/json
     "status": "ACTIVE",
     "active": true,
     "updated": {"$date": 1499768160086},
-    "prorate": false,
     "_cls": "SubscriptionMethod.LicenseSubscription",
     "infinite": false,
-    "trial": false,
     "starting_date": {"$date": 1499854560000},
     "ending_date": {"$date": 1511954560000},
     "created": {"$date": 1499767018360},
@@ -151,10 +148,82 @@ Content-Type: application/json
 Attribute | Type | Description
 --------- | ---- | -------
 **payment_method** | `string` | ID of an already created payment method.
+**subscription_method** | `string` | Name of subscription method. `license`
 starting_date | `string`| Start date, `timestamp` format. _default is current date if missing_ 
 ending_date | `string`| End date, `timestamp` format.
 interval_total | `number` | Number of intervals, set in the [`Plan`](#Plans), the subscription will run.
 infinite | `boolean` | If `true`, the subscription will run until the user stops it.
+
+## Create Subscription with a pre-set company specific Plan
+
+If your company only allows one type of [`plan`](#Plans), this method could be utilized.
+The customer could add their `plan.items` and name of the plan
+when creating a new subscription, and the rest of the plan is set by the
+company specifics.
+
+> Definition
+
+```
+POST https://api.shareactor.io/subscriptions
+```
+
+
+> Example request:
+
+``` http
+POST /subscriptions HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+
+{"plan": {"name": "Plan Name",
+          "items": [{"product": "<product_id>", "quantity": 2}],
+          },
+"subscription_method": "license",
+"start_now": true,
+"payment_method": "<payment-method-id>"
+}
+```
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+    "plan": {"$oid": "5931697ed57ba271c0c7de66"},
+    "payment_method": {"$oid": "<payment-method-id>"},
+    "user": {"$oid": "57ee9c72d76d431f85111432"},
+    "prorate_amount": 0.0,'
+    "name": "LICENSE",
+    "payments": [],
+    "status": "ACTIVE",
+    "active": true,
+    "updated": {"$date": 1499768160086},
+    "_cls": "SubscriptionMethod.LicenseSubscription",
+    "infinite": false,
+    "starting_date": {"$date": 1499854560000},
+    "ending_date": {"$date": 1511954560000},
+    "created": {"$date": 1499767018360},
+    "current_billing_date_period_end": {"$date": 1502532960000},
+    "current_billing_date_period_start": {"$date": 1499854560000},
+    "company": {"$oid": "57ee9c71d76d431f8511142f"},
+    "deleted": false,
+    "method": "license",
+    "_id": {"$oid": "5964a0ead57ba2036750a3b4"}
+}
+```
+
+
+Attribute | Type | Description
+--------- | ---- | -------
+**subscription_method** | `string` | Name of subscription method
+**plan** | `array`| An array with name and items regarding the [`plan`](#Plans).
+start_now | `boolean`| If true, the subscription will start now. Needs a payment_method if `start_now` is true.
+payment_method | `string` | ID of an already created payment method.
+starting_date | `string`| Start date, `timestamp` format. _default is current date if missing_
+ending_date | `string`| End date, `timestamp` format.
+interval_total | `number` | Number of intervals, set in the [`Plan`](#Plans), the subscription will run.
+infinite | `boolean` | If `true`, the subscription will run until the user stops it.
+
 
 ## Update Subscription
 The user could update certain fields in the subscription. If, when starting
@@ -194,10 +263,8 @@ Content-Type: application/json
     "status": "ACTIVE",
     "active": true,
     "updated": {"$date": 1499773617984},
-    "prorate": false,
     "_cls": "SubscriptionMethod.LicenseSubscription",
     "infinite": true,
-    "trial": false,
     "starting_date": {"$date": 1499854560000},
     "created": {"$date": 1499767018360},
     "current_billing_date_period_end": {"$date": 1502532960000},
@@ -220,7 +287,7 @@ payment_method | `string` | ID of an already created payment method
 ## Stop Subscription
 To stop the subscription, the user could either choose to stop it on a chosen
 `ending_date` or, if missing, at the current time. The remaining amount will be prorated
-to the user at the next `current_billing_date_period_end` if `prorate`
+to the user at the next `current_billing_date_period_end` if [`Plan`](#Plans).`prorate`
 is `true`.
 
 
@@ -254,10 +321,8 @@ Content-Type: application/json
     "status": "NON_RENEWING",
     "active": true,
     "updated": {"$date": 1499773617984},
-    "prorate": false,
     "_cls": "SubscriptionMethod.LicenseSubscription",
     "infinite": false,
-    "trial": false,
     "starting_date": {"$date": 1499854560000},
     "ending_date": {"$date": 1499860512000},
     "created": {"$date": 1499767018360},
@@ -307,10 +372,8 @@ Content-Type: application/json
     "status": "NON_RENEWING",
     "active": true,
     "updated": {"$date": 1499773617984},
-    "prorate": false,
     "_cls": "SubscriptionMethod.LicenseSubscription",
     "infinite": false,
-    "trial": false,
     "starting_date": {"$date": 1499854560000},
     "ending_date": {"$date": 1499860512000},
     "created": {"$date": 1499767018360},
