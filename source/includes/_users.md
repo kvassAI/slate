@@ -101,6 +101,8 @@ tags | `array` | List of tags associated with the user
 
 ## Retrieve a User
 
+Retrieves a user with the given ID.
+
 > Definition
 
 ```
@@ -151,7 +153,6 @@ Content-Type: application/json
 }
 ```
 
-Retrieves a user with the given ID.
 
 Argument | Type | Description
 -------- | ---- | ------
@@ -290,6 +291,8 @@ Argument | Type | Description
 
 ## List All Users
 
+Retrieves a list of all users associated with a company.
+
 > Definition
 
 ```
@@ -342,8 +345,6 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all users associated with a company.
-
 Argument | Type | Description
 -------- | ---- | -------
 size | `number` | Number of items to retrieve _default size is 50_
@@ -356,6 +357,8 @@ include_deleted | `boolean` | If `true`, deleted users are also listed _default 
 
 
 ## Search User
+
+Retrieves a list of users whose first or last name matches a given query.
 
 > Definition
 
@@ -408,8 +411,6 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of users whose first or last name matches a given query.
-
 Argument | Type | Description
 -------- | ---- | -----
 query | `string` | What you want to search, e.g., **first name**, **last name** or **id**
@@ -418,10 +419,12 @@ page | `number` | Which page to retrieve _default is 0_
 sort | `string` | Field used for sorting results  _default is `-created` if missing; other parameters in the user model could be used, e.g., "last_name" or "first_name"_
 from_date | `number` | Start date, `timestamp` format _default is `None`_
 to_date | `number` | End date, `timestamp` format _default is `None`_
-date_filter | `string` | Date field used to filter results. _default is `created`_
+date_filter | `string` | Date field used to filter results _default is `created`_
 include_deleted | `boolean` | If `true`, deleted users are also listed _default is `false`_
 
 ## List All Orders for a User
+
+Retrieves a list of all orders associated with a given user.
 
 > Definition
 
@@ -446,8 +449,6 @@ Content-Type: application/json
   {}
 ]
 ```
-
-Retrieves a list of all orders associated with a given user.
 
 Arguments | Type | Description
 -------- | ----- | -----
