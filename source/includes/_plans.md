@@ -17,7 +17,7 @@ interval_unit | `string` | The frequency that the subscription acts upon. <br> C
 interval_count | `integer`| Total number of interval_units.
 billing_interval | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
 static | `boolean`| Defines if plan is allowed to be changed.
-items | `array` | List of items associated with Plan. See description below.
+items | `array` | List of items associated with plan. See description below.
 currency | `string` | Three letter ISO currency code as defined by ISO 4217.
 total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`.
 discount | `number` | Set a discount on a plan. Min 0.0, max 1.0. This will be calculated on the total_amount.
@@ -29,7 +29,7 @@ auto_bill_amount | `boolean` | Automatically bills the outstanding balance in th
 ### Plan items
 
 The plan could contain items as a list. These items describe the products the plan is based on.
-The items consist of a [`product`](#products), `quantity` and `discount`
+The items consist of a [`product`](#products), `quantity` and `discount`.
 The `quantity` describes the number of that product. The `discount` sets the percent of
 discount of that product, from 0.0 to 1.0, where 0.0 is no discount and 1.0 is a 100% discount.
 The `total_amount` of the plan will be calculated from the total sum of the products.
@@ -290,6 +290,9 @@ total_amount |`number`| The total cost of the subscription payment. If set, the 
 
 
 ## Delete Plan
+
+Deletes a plan with a given ID.
+
 > Definition
 
 ```
@@ -306,4 +309,3 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
-Deletes a plan with a given ID.
