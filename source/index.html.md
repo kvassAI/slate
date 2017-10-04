@@ -12,8 +12,6 @@ toc_footers:
 includes:
   - intro
   - addresses
-  - bulks
-  - campaigns
   - invoices
   - issuers
   - orders
@@ -25,7 +23,6 @@ includes:
   - providers
   - resources
   - subscriptions
-  - tags
   - users
 
 

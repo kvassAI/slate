@@ -1,3 +1,0 @@
-# Campaigns
-
-Documentation not ready.
