@@ -1,8 +1,9 @@
 # Products
 
-If your company is selling some or lot of products our API would be happy to help you to create yours show them
+If your company is selling some or a lot of products, our API would be happy to help you create them and show them
 on your app.
-The Products are using in a [`Product`](#products) as a **sub-product**, in an [`Order`](#orders) and in a [`Resource`](#ressources).
+
+The Products are used in [`Product`](#products) as a **sub-product**, in an [`Order`](#orders) and in a [`Resource`](#resources).
 
 
 
@@ -27,8 +28,8 @@ slug | `string` |
 
 ## Create a New Product
 
-If you want your favorite API to create your fancy Products you need to follow the notice below.
-Products required at least three important things to be created: the best **name**, an attractive **price** and of course a **currency**.
+If you want your favorite API to create your fancy Products, you need to provide the info below.
+Products require at least three important things to be created: the best **name**, an attractive **price** and, of course, a **currency**.
 
 > Definition
 
@@ -169,8 +170,8 @@ Content-Type: application/json
 }
 ```
 
-Create a product is pretty good but how can you retrieve one of them?
-Easy, you only need the product ID then you will receive all details about it.
+Creating a product is pretty good, but how can you retrieve one of them?
+Easy. You only need the product ID to receive all details about it.
 
 Argument | Type | Description
 -------- | ---- | --------
@@ -228,9 +229,9 @@ Content-Type: application/json
 ]
 ```
 
-Retrieve one is nice but if you want more products?
-To retrieve more than one Product you could use the following route `GET https://api.shareactor.io/products`.
-By the way, like other get list you can use different arguments to optimise your retrieving.
+Retrieving one product is nice, but if you want more?
+To retrieve more than one Product, you could use the following route `GET https://api.shareactor.io/products`.
+By the way, like other get lists, you can use different arguments to optimise your listing.
 
 Arguments | Type | Description
 --------- | ---- | -----------
@@ -296,12 +297,10 @@ Content-Type: application/json
 ]
 ```
 
-Retrieve a simple list is ok but if you want to search a specific product... it means more difficult, right?
+Retrieving a simple list is ok, but if you want to search for a specific product?
 
-Actually, no because our API allows you to do it and simply! 
-
-It's pretty similar as the previous method but you should use `GET https://api.shareactor.io/products/search` and it's more accurate.
-For that, you must use the **query** to be more specific.
+It's pretty similar to the previous method, but you should use `GET https://api.shareactor.io/products/search` and it's more accurate.
+Use the **query** to be more specific.
 
 Arguments | Type | Description
 --------- | ---- | -----------
