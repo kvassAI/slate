@@ -4,6 +4,7 @@ Orders are the result of a User purchasing a given set of Products.
 A key function of this feature os that you can associate a particular
 product to a particular provider.
 
+The `total_amount` is set by the `items` and the `resources`. See section below.
 
 ## Order object
 
@@ -17,6 +18,7 @@ Attributes | Type | Description
 human_id | `string` | Human readable ID that identifies the order easily. e.g. `3AG7UA`
 provider | `string` | Provider assigned to an order
 items | `array` | List of items associated with an order
+resources | `array` | An array of [`resources`](#resources) associated with the order.
 units | `number` | Number of unique products in an order
 total_quantity | `number` | Total number of products in an order
 top_up_amount | `number` | Extra amount of currency needed to fulfill the company's minimum order value 
@@ -26,6 +28,31 @@ deliveries | `array` | Used to store the delivery history for an order
 billing_address | `object` | [`Address`](#address) used for billing purposes
 payments | `array` | List of [`Payment`](#payments) objects associated with order
 note | `string` | Field used to send notes between an user and a provider
+
+
+### Order items
+Attributes | Type | Description
+---------- | ---- | -------
+**product** | `string` | A [`Product`](#products)  ID
+quantity | `number` | The quantity of product
+discount | `number` | The discount of the product.price in the order
+sub_products | `array` | An array of sub-product ID's associated in order
+
+The order could have items in it. These items is in an array.
+The items contains information to specify the `total_amount` in the order.
+Items specify which products that is associated to the order.
+
+The sub_products in the `array` could either have a price or a `price_change_percentage`.
+If the `price_change_percentage` is not 0,
+this percentage will multiplied with the `product.price` in that item, affecting the `total_amount`.
+If the `price_change_percentage` is 0, the price in the sub-product adds that price to the `total_amount`.
+
+
+
+### Resources in the order
+The order could have [`resources`](#resources) associated to it.
+The `total_amount` is affected by every `retail` resource in the array, by the
+field `retail_price`.
 
 
 ## Create an Order

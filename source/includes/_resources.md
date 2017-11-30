@@ -1,22 +1,40 @@
 # Resources
 
-The resource model is [`User`](#Users) specific attributes;
-attributes they possess or resources under their control. The resource
+The resource model is [`User`](#Users) specific attributes, assets or retail resources;
+resources they possess or that under their ownership. The resource
 could have name, description and a chosen reference id. Additionally, it can have
 an image and product associated with it.
+
+There is two types of resources, `asset` or `retail`. If not specified, an `asset` resource
+ is created. The `asset` resource is an asset that belongs to the user. The `retail` resource is
+  a sellable object that the user possess, but is able to sell. Thus, it has a price.
 
 ## Resources Object
 
 Attribute | Type | Description
 --------- | ---- | -------
 _id | `object` | The resource ID
+method | `string` | The resource type. `asset` or `retail`.
 user | `object`  | [`User`](#Users) associated with the resource
 name | `string` | Name of the resource item
 description | `string`| Description of the resource item
 image_url | `string` | Image associated with the resource
 reference_id | `string` | Reference ID associated with the resource
 product | `object`  | [`Product`](#Products) associated with the resource
+tags | `array` | An array of tags
+human_id | `string` | 6 character ID.
 status | `string` | Status of the resource _default is `CREATED`, other options are `PROCESSING`, `UTILIZED` or `IDLE`_
+
+## Retail Resource Object
+In addition to the attributes in the `asset` resource, the `retail` resource has the following attributes.
+
+Attribute | Type | Description
+--------- | ---- | -------
+_sub_products | `array`| An array with sub-products associated with the resource
+base_price | `number` | The sum of the `product.price` and price in all the `_sub_products`
+retail_price | `number` | The amount that this resource is sold for
+currency | `string` | The currency in the main product in the resource
+vat | `number` | The VAT from the main product in the resource
 
 ## Create a New Resource
 Create a new resource associated with the  [`User`](#Users).
@@ -51,6 +69,7 @@ Content-Type: application/json
 {
     "updated": {"$date": 1500275774067},
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
+    "method" "asset",
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "description of the resource",
     "reference_id": "abc1234567890abc",
@@ -58,6 +77,7 @@ Content-Type: application/json
     "name": "name of resource",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
     "status": "CREATED",
+    "human_id" "1EBY8A",
     "deleted": false,
     "created": {"$date": 1500275774067},
     "company": {"$oid": "57ee9c71d76d431f8511142f"}
