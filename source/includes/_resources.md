@@ -7,7 +7,7 @@ an image and product associated with it.
 
 There is two types of resources, `asset` or `retail`. If not specified, an `asset` resource
  is created. The `asset` resource is an asset that belongs to the user. The `retail` resource is
-  a sellable object that the user possess, but is able to sell. Thus, it has a price.
+  a sellable object that the user possess, but is able to sell. Thus, it has a price, currency and VAT.
 
 ## Resources Object
 
@@ -119,6 +119,7 @@ Host: api.shareactor.io
 
 [
    {"product": "58f9f856b70e2a56c4a0db3d",
+    "method" "asset",
     "description": "description of the first resource",
     "name": "name of first resource",
     "reference_id": "abc1234567890abc",
@@ -136,6 +137,7 @@ Content-Type: application/json
 
 [
     {"updated": {"$date": 1502100873778},
+    "method" "asset",
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "description of the resource",
@@ -148,6 +150,7 @@ Content-Type: application/json
     "created": {"$date": 1502100873778},
     "company": {"$oid": "57ee9c71d76d431f8511142f"}},
     {"updated": {"$date": 1502100873778},
+    "method" "asset",
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "description of the resource",
@@ -190,6 +193,7 @@ Content-Type: application/json
 {
     "updated": {"$date": 1500275774067},
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
+    "method" "asset",
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "description of the resource",
     "image_url": "http://docs.shareactor.io/images/logo.png",
@@ -244,6 +248,7 @@ Content-Type: application/json
 
 {
     "updated": {"$date": 1500276434527},
+    "method" "asset",
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "An updated Resource",
@@ -318,6 +323,7 @@ Content-Type: application/json
 
 {
     "created": {"$date": 1500275774067},
+    "method" "asset",
     "deleted": true,
     "description": "An updated Resource",
     "image_url": "http://docs.shareactor.io/images/logo.png",
@@ -370,6 +376,7 @@ Content-Type: application/json
 [
 {
     "created": {"$date": 1500275774067},
+    "method" "asset",
     "deleted": true,
     "description": "An updated Resource",
     "image_url": "http://docs.shareactor.io/images/logo.png",
@@ -396,3 +403,6 @@ CREATED | "CREATED"
 PROCESSING | "PROCESSING"
 UTILIZED | "UTILIZED"
 IDLE | "IDLE"
+ON_THE_WAY_FROM | "ON_THE_WAY_FROM"
+ON_THE_WAY_TO | "ON_THE_WAY_TO"
+DONE | "DONE"
