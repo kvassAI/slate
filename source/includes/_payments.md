@@ -18,12 +18,12 @@ Attribute | Type | Description
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 **human_id** | `string` | Human readable ID. 6 character long
 **subject** | `string` | Either an Invoice or Order reference
-**current_state** | `string` | Current state of operation. Can be one of: `created`, `processing`, `succeeded`, `failed` and `cancelled`
+**current_state** | `string` | Current state of operation. Can be one of: `created`, `processing`, `captured`, `succeeded`, `failed` and `cancelled
 payment_date | `object` | Date (`timestamp` format) for scheduling payment of invoices. Defaults to the due_date of each invoice
 payment_method | `string` | ID of already created Payment Method
 billing_address | `object` | [`Address`](#address) object with billing details
 description | `string` | Some additional description, if wanted
-metadata | `array` | Some additional information to Payment
+metadata | `array` |  Additional information on the payment
 status_code | `string` | In case the payment fails, this will have some code from the chosen payment method backend. *(if existing)*
 error_message | `string` | In case the payment fails, this will have the reason in a textual way. *(if existing)*
 
@@ -93,7 +93,7 @@ Arguments | Type | Description
 **invoices** | `array` | List with [`Invoices`](#invoices) to be paid. Either this or **orders** must be set.
 **orders** | `array` | List with [`Orders`](#orders) to be paid. Either this or **invoices** must be set.
 **payment_method** | `string` | Selected payment method id to use for paying **invoices** or **orders**.
-**payment_date** | `number` | Date (`timestamp` format) for scheduling payment of **invoices**. Defaults to the `due_date` of each invoice.
+payment_date | `number` | Date (`timestamp` format) for scheduling payment of **invoices**. Defaults to the `due_date` of each invoice or now.
 
 
 ## Retrieve a Payment
@@ -216,7 +216,8 @@ Arguments | Type | Description
 size | `number` | Number of items to retrieve. _default is 10_
 page | `number` | Which page to retrieve. _default is 0_
 sort | `string` | Field used for sorting results. _default is -modified_
-status | `string` | Status of Payments to filter by
+date_filter | `string` | Date field used for filter results.
+current_state | `string` | Status of Payments to filter by
 
 ## Update payment
 

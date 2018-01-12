@@ -5,8 +5,9 @@
 Attribute | Type | Description
 --------- | ---- | -------
 **name** | `string` | The name of the product
-**price** | `number` | The price of the product
 **currency** |  `string` | Three letter currency code in standard ISO 4217 format.
+price | `number` | The price of the product
+price_change_percentage | `number`| How much percentage the products changes the price
 description | `string` | A full description of the product
 short_description | `string` | A brief description of the product
 main_product | `boolean` | Flag that marks whether or not it is a main product
@@ -18,6 +19,12 @@ properties | `object` | The product's properties
 vat | `number` | The percentage of VAT in the product price
 max_distance | `number` |
 slug | `string` |
+
+
+### Price and price_change_percentage
+When creating a product, you need one of the fields `price` or `price_change_percentage`.
+The `price_change_percentage` could be used in the order.items when creating an order.
+
 
 ## Create a New Product
 
@@ -297,3 +304,35 @@ date_filter | `string` | Date field used to filter results. _default is `created
 lat | `number` | Define the latitude.
 lng | `number` | Define the longitude.
 include_deleted| `boolean` | If `true`, deleted products are also listed.
+
+
+## Add sub-products to product
+The product could have multiple sub-products associated with the product.
+These are found in the field `_sub_products`.
+
+Argument | Type | Description
+-------- | ---- | --------
+**product_id** | `string` | The product's ID
+
+> Definition
+
+```
+PUT https://api.shareactor.io/products/<product_id>/sub_products
+```
+
+> Example request:
+
+``` http
+PUT /products/<product_id>/sub_products HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+
+{
+    "add": [<product_id>, <product_id>]
+}
+
+```
+
+

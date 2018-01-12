@@ -90,13 +90,98 @@ Content-Type: application/json
 
 Argument | Type | Description
 -------- | ---- | -----
-first_name | `string` | First name of the user
-last_name | `string` | Last name of the user
+**first_name** | `string` | First name of the user
+**last_name** | `string` | Last name of the user
 email | `string` | E-mail of the user
 mobile_phone_number | `string` | Phone number of the user
 billing_address | `object` | Billing [`Address`](#address) of the user
 bio | `string` | Biographic note about the user
 tags | `array` | List of tags associated with the user
+
+
+## Create a User with a JWT token
+See [`Authorization`](#authorization) for how to get a JWT token.
+With the route POST `/v2/users`, you could both create a new user with a JWT token, and
+log in a user with their JWT token.
+
+> Definition
+
+```
+POST https://api.shareactor.io/v2/users
+```
+
+> Example request:
+
+``` http
+POST /v2/users HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+
+{
+  "user": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john@email.com",
+    "mobile_phone_number": "+4712345678",
+    "addresses": [{
+                "city":"Danielsen",
+                "service":"google",
+                "alias":"",
+                "country":"Paraguay",
+                "zip_code":"0556",
+                "state":"Oslo",
+                "street_name":"Streetname 7"
+             }]
+  }
+}
+```
+
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "roles": ["user"],
+    "tags": [],
+    "auth0_id": "some-id",
+    "mobile_phone_number": "+4712345678",
+    "billing_address":
+        {"service": "google",
+        "alias": " "},
+    "voucher": {"uuid": "b498e02b-2031-4d84-b55b-b460d22f44b4",
+                "consumed": 0,
+                "initial_quantity": 0,
+                "created": {"$date": 1512383756277},
+                "expires": {"$date": 1543919756277}},
+    "_cls": "User",
+    "created": {"$date": 1512383756277},
+    "addresses":
+        [{"zip_code": "0556",
+        "city": "Danielsen",
+        "street_name": "Streetname 7",
+        "country": "Paraguay",
+        "alias": " ",
+        "service": "google"}],
+    "company": {"$oid": "57ee9c71d76d431f8511142f"},
+    "email": "john@email.com",
+    "national_id": "1234567890",
+    "modified": {"$date": 1512383756279},
+    "avatar": " ",
+    "bio": " ",
+    "stripe_customer_id": " ",
+    "note": " ",
+    "first_name": "John",
+    "_id": {"$oid": "5a25250cd57ba213edcba515"},
+    "new_customer": true,
+    "last_name": "Doe",
+    "last_login": {"$date": 1512383756278},
+    "deleted": false}
+
+```
+
 
 
 ## Retrieve a User
@@ -458,8 +543,8 @@ sort | `string` | Field used for sorting results. _default is `created`_
 from_date | `number` | Start date, `timestamp` format. _default is current date minus 15 days_
 to_date | `number` | End date, `timestamp` format. _default current date plus 15 days_
 date_filter | `string` | Date field used to filter results. _default is `created`_
-order_status | `string` | Orders with a specific status are also listed. Values can be separated by a comma, e.g., 'success, processing'.
-delivery_status | `string` | Orders with a specific delivery status are also listed. Values can be separated by a comma, e.g.,  'assigning, done, created.'
+order_status | `string` | Orders with a specific status are also listed. Values can be separated by a comma, e.g., "success, processing".
+delivery_status | `string` | Orders with a specific delivery status are also listed. Values can be separated by a comma, e.g.,  "assigning, done, created."
 
 ### order_status
 
