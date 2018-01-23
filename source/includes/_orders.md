@@ -10,7 +10,7 @@ The `total_amount` is set by the `items` and the `resources`. See section below.
 
 Attributes | Type | Description
 ---------- | ---- | -------
-**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+currency | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 billing_address | `object` | [`Address`](#address) used for billing purposes
 deliveries | `array` | Used to store the delivery history for an order
 delivery_address | `object` | [`Address`](#address) used for delivery
@@ -24,7 +24,6 @@ payments | `array` | List of [`Payment`](#payments) objects associated with orde
 payment_method | `object` | [`Payment Methods`](#payment_methods)
 provider | `string` | Provider assigned to an order used to pay the order
 units | `number` | Number of unique products in an order
-user | `object` | [`User`](#users) associated with the order
 resources | `array` | An array of [`resources`](#resources) associated with the order.
 top_up_amount | `number` | Extra amount of currency needed to fulfill the company's minimum order value 
 total_amount | `number` | Amount as a number with two decimals. e.g., 12.34. The attribute is automatically calculate when you create an order.
@@ -168,7 +167,6 @@ Creates a new order.
 
 Argument | Type | Description
 -------- | ---- | -------
-**user** | `object` | Id of the [`user`](#users) who's creating the order
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 billing_address | `object` | [`Address`](#address) used for billing purposes
 delivery_time | `number` | Expected time of delivery, `timestamp` format
