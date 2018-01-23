@@ -10,24 +10,24 @@ The `total_amount` is set by the `items` and the `resources`. See section below.
 
 Attributes | Type | Description
 ---------- | ---- | -------
-**user** | `object` | [`User`](#users) associated with the order
-**total_amount** | `number` | Amount as a number with two decimals. e.g., 12.34
-**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
-**order_status** | `string` | Status of the Order _default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED_
-**delivery_status** | `string` | Status of the delivery _default is PENDING, additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE and READY_FOR_DELIVERY_
-human_id | `string` | Human readable ID that identifies the order easily. e.g. `3AG7UA`
-provider | `string` | Provider assigned to an order
-items | `array` | List of items associated with an order
-resources | `array` | An array of [`resources`](#resources) associated with the order.
-units | `number` | Number of unique products in an order
-total_quantity | `number` | Total number of products in an order
-top_up_amount | `number` | Extra amount of currency needed to fulfill the company's minimum order value 
-delivery_time | `object` | Expected arrival time for delivery, `timestamp` format
-delivery_address | `object` | [`Address`](#address) used for delivery
-deliveries | `array` | Used to store the delivery history for an order
+currency | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 billing_address | `object` | [`Address`](#address) used for billing purposes
-payments | `array` | List of [`Payment`](#payments) objects associated with order
+deliveries | `array` | Used to store the delivery history for an order
+delivery_address | `object` | [`Address`](#address) used for delivery
+delivery_status | `string` | Status of the delivery _default is PENDING, additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE and READY_FOR_DELIVERY_
+delivery_time | `object` | Expected arrival time for delivery, `timestamp` format
+items | `array` | List of items associated with an order
+human_id | `string` | Human readable ID that identifies the order easily. e.g. `3AG7UA`
 note | `string` | Field used to send notes between an user and a provider
+order_status | `string` | Status of the Order _default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED_
+payments | `array` | List of [`Payment`](#payments) objects associated with order
+payment_method | `object` | [`Payment Methods`](#payment_methods)
+provider | `object` | Provider assigned to an order
+units | `number` | Number of unique products in an order
+resources | `array` | An array of [`resources`](#resources) associated with the order.
+top_up_amount | `number` | Extra amount of currency needed to fulfill the company's minimum order value 
+total_amount | `number` | Amount as a number with two decimals. e.g., 12.34. The attribute is automatically calculate when you create an order.
+total_quantity | `number` | Total number of products in an order
 
 
 ### Order items
@@ -167,12 +167,11 @@ Creates a new order.
 
 Argument | Type | Description
 -------- | ---- | -------
-**user** | `object` | Id of the [`user`](#users) who's creating the order
-**items** | `array` | List of [`order`](#orders)'s items
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+billing_address | `object` | [`Address`](#address) used for billing purposes
 delivery_time | `number` | Expected time of delivery, `timestamp` format
 delivery_address | `object`  | [`Address`](#address) used for delivery
-billing_address | `object` | [`Address`](#address) used for billing purposes
+items | `array` | List of [`order`](#orders)'s items
 note | `string` | Field used to provide extra information to a provider
 
 ## Retrieve an Order
