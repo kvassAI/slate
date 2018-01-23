@@ -22,7 +22,7 @@ note | `string` | Field used to send notes between an user and a provider
 order_status | `string` | Status of the Order _default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED_
 payments | `array` | List of [`Payment`](#payments) objects associated with order
 payment_method | `object` | [`Payment Methods`](#payment_methods)
-provider | `string` | Provider assigned to an order used to pay the order
+provider | `object` | Provider assigned to an order
 units | `number` | Number of unique products in an order
 resources | `array` | An array of [`resources`](#resources) associated with the order.
 top_up_amount | `number` | Extra amount of currency needed to fulfill the company's minimum order value 
