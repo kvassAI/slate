@@ -2,14 +2,17 @@
 
 Invoices allow you to store invoice information for later payment.
 
+The Invoice integrates a system of **Invoice Line**. An invoice line is defined by an `amount`, a `currency` and a `description`.
+Our invoice line allows you to have multiple services and/or products on one Invoice.
+
 ## Invoice object
 
 Attributes | Type | Description
 ---------- | ---- | ------
-**user** | `object` | [`User`](#users) associated with invoice
-**amount** | `number` | The invoice amount. Two decimals.
-**currency** | `string` | ISO 4217 code of currency, for example: "EUR"
-**account_number** | `string` | Account number of the issuer that will receive the payment.
+user | `object` | [`User`](#users) associated with invoice
+amount | `number` | The invoice amount. Two decimals.
+currency | `string` | ISO 4217 code of currency, for example: "EUR"
+account_number | `string` | Account number of the issuer that will receive the payment.
 due_date | `object` | The due date of the invoice, `timestamp` format
 issued_date | `object` | The date the invoice was generated, `timestamp` format
 message | `string` | Message (KID) used for paying the invoice as it will appear in the issuer's bank
@@ -17,7 +20,21 @@ issuer | `object`| [`Issuer`](#issuers) of the invoice
 issuer_alias | `string` | The user may want to use an alias for the [`issuer`](#issuers)
 image_url | `string` | The url for the image of the invoice that is returned from the ocr
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there are: "SCHEDULED", "DONE", "FAILED" and "CANCELLED"
+payments | `array` | List of [`Payment`](#payments) objects associated with invoice
+invoice_lines | `array` | List of `Invoice Line` associate with an invoice
+accounting_reference | `string` | Is the ID reference from an Accounting system. If your company is using an Account system supported by ShareActor this field will be automatically setup.
+external_reference | `string` | You can set this field to put your own invoice reference or if you are using a third party.
 
+### Invoice Line
+
+Attributes | Type | Description
+---------- | ---- | ------
+**amount** | `number` | Amount as a number with two decimals. eg., 12.34.
+**currency** | `string` | ISO 4217 code of currency, for example: "EUR"
+**description** | `string` | The description of what the invoice line is. e.g, a shipping line.
+external_reference | `string` | If you are using a 3rd party the `external_reference` could be the ID returns by it.
+product | `object` | [`Product`](#products) ID to be associated withe the invoice line
+quantity | `number` | Usually it's use to set the quantity of [`Product`](#products) _default is 1_
 
 ## Create an Invoice
 
@@ -63,7 +80,8 @@ Content-Type: application/json
    "company":{"$oid":"57ee9c71d76d431f8511142f"},
    "amount":123.45,
    "_id":{"$oid":"57ee9c72d76d431f85111434"},
-   "image_url": "<image-id>/<image-name>.jpg"
+   "image_url": "<image-id>/<image-name>.jpg",
+   "invoice_lines": []
 }
 ```
 
@@ -79,7 +97,70 @@ image_url | `string` | The url for the invoice image
 issued_date| `number` | The date the Invoice was issued, `timestamp` format. _Not a required field_
 issuer_alias| `string` | Issuer alias that User could set. _Not a required field_
 message | `string` | Message included on the invoice, e.g. KID number to be included with payment
+invoice_lines | `array` | List of `Invoice Line` associate with an invoice
 
+
+##Create an Invoice with Invoice Line
+ 
+> Definition
+
+```
+POST https://api.shareactor.io/invoices
+```
+
+> Example request:
+
+``` http
+POST /invoices HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+
+{
+    "message": "some transaction or KID number",
+    "amount": 123.45,
+    "currency": "NOK",
+    "account_number": "12345678903",
+    "due_date": "2016-02-10T18:25:43.511Z",
+    "image_url": "<image-id>/<image-name>.jpg",
+    "issuer": "Big Important Firm AS",
+    "issuer_alias": "issuer alias for Issuer",
+    "invoice_lines": [
+        {
+            "amount": 20.00,
+            "currency": "NOK",
+            "description": "Standard Shipping"
+        }
+   ]
+}
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+   "currency":"NOK",
+   "issuer":{"$oid":"57ee9c72d76d431f85111433"},
+   "deleted":false,
+   "due_date":{"$date":1476551410009},
+   "message":"Some message to the Issuer",
+   "account_number":"12345678903",
+   "user":{"$oid":"57ee9c72d76d431f85111432"},
+   "company":{"$oid":"57ee9c71d76d431f8511142f"},
+   "amount":123.45,
+   "_id":{"$oid":"57ee9c72d76d431f85111434"},
+   "image_url": "<image-id>/<image-name>.jpg",
+   "invoice_lines": [
+        {
+            "amount": 20.00,
+            "currency": "NOK",
+            "description": "Standard Shipping"
+        }
+   ]
+}
+```
 
 ## Retrieve an Invoice
 
@@ -114,7 +195,8 @@ Content-Type: application/json
    "company":{"$oid":"57ee9c71d76d431f8511142f"},
    "amount":123.45,
    "_id":{"$oid":"57ee9c72d76d431f85111434"},
-   "image_url": "<image-id>/<image-name>.jpg"
+   "image_url": "<image-id>/<image-name>.jpg",
+   "invoice_lines": []
 }
 ```
 
@@ -159,7 +241,8 @@ Content-Type: application/json
        "company":{"$oid":"57ee9c71d76d431f8511142f"},
        "amount":123.45,
        "_id":{"$oid":"57ee9c72d76d431f85111434"},
-       "image_url": "<image-id>/<image-name>.jpg"
+       "image_url": "<image-id>/<image-name>.jpg",
+       "invoice_lines": []
     }
 ]
 ```
@@ -213,7 +296,8 @@ Content-Type: application/json
        "company":{"$oid":"57ee9c71d76d431f8511142f"},
        "amount":123.45,
        "_id":{"$oid":"57ee9c72d76d431f85111434"},
-       "image_url": "<image-id>/<image-name>.jpg"
+       "image_url": "<image-id>/<image-name>.jpg",
+       "invoice_lines": []
     }
 ]
 ```
@@ -247,6 +331,31 @@ Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
+
+{
+    "message": "Message test updated"
+}
+
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+   "currency":"NOK",
+   "issuer":{"$oid":"57ee9c72d76d431f85111433"},
+   "deleted":false,
+   "due_date":{"$date":1476551410009},
+   "message":"Message test updated",
+   "account_number":"12345678903",
+   "user":{"$oid":"57ee9c72d76d431f85111432"},
+   "company":{"$oid":"57ee9c71d76d431f8511142f"},
+   "amount":123.45,
+   "_id":{"$oid":"57ee9c72d76d431f85111434"},
+   "image_url": "<image-id>/<image-name>.jpg",
+   "invoice_lines": []
+}
 ```
 
 
