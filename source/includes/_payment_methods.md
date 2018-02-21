@@ -229,6 +229,7 @@ Attribute | Type | Description
 
 ## Stripe
 
+
 > Definition
 
 ```
@@ -301,8 +302,6 @@ Content-Type: application/json
   }
 }
 ```
-
-This feature is only available for the mobile SDK.  To use it, the app sends the API an authorization code. The API is then exchanged for a Refresh Token, which is also stored in the object. When paying for an invoice, you should also add the `PayPal-Client-Metadata-Id` header to the API `/payments` in [Payments](#payments).
 
 Attribute | Type | Description
 --------- | ---- | ------
