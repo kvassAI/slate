@@ -1978,6 +1978,8 @@ and the delivery system (pickup and drop off).</p>
 A key function of this feature os that you can associate a particular
 product to a particular provider.</p>
 
+<p>The <code class="prettyprint">total_amount</code> is set by the <code class="prettyprint">items</code> and the <code class="prettyprint">resources</code>. See section below.</p>
+
 <h2 id="order-object">Order object</h2>
 
 <table><thead>
@@ -1988,74 +1990,9 @@ product to a particular provider.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>user</strong></td>
-<td><code class="prettyprint">object</code></td>
-<td><a href="#users"><code class="prettyprint">User</code></a> associated with the order</td>
-</tr>
-<tr>
-<td><strong>total_amount</strong></td>
-<td><code class="prettyprint">number</code></td>
-<td>Amount as a number with two decimals. e.g., 12.34</td>
-</tr>
-<tr>
-<td><strong>currency</strong></td>
+<td>currency</td>
 <td><code class="prettyprint">string</code></td>
 <td>3 letter ISO currency code as defined by <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a></td>
-</tr>
-<tr>
-<td><strong>order_status</strong></td>
-<td><code class="prettyprint">string</code></td>
-<td>Status of the Order <em>default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED</em></td>
-</tr>
-<tr>
-<td><strong>delivery_status</strong></td>
-<td><code class="prettyprint">string</code></td>
-<td>Status of the delivery <em>default is PENDING, additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE and READY_FOR_DELIVERY</em></td>
-</tr>
-<tr>
-<td>human_id</td>
-<td><code class="prettyprint">string</code></td>
-<td>Human readable ID that identifies the order easily. e.g. <code class="prettyprint">3AG7UA</code></td>
-</tr>
-<tr>
-<td>provider</td>
-<td><code class="prettyprint">string</code></td>
-<td>Provider assigned to an order</td>
-</tr>
-<tr>
-<td>items</td>
-<td><code class="prettyprint">array</code></td>
-<td>List of items associated with an order</td>
-</tr>
-<tr>
-<td>units</td>
-<td><code class="prettyprint">number</code></td>
-<td>Number of unique products in an order</td>
-</tr>
-<tr>
-<td>total_quantity</td>
-<td><code class="prettyprint">number</code></td>
-<td>Total number of products in an order</td>
-</tr>
-<tr>
-<td>top_up_amount</td>
-<td><code class="prettyprint">number</code></td>
-<td>Extra amount of currency needed to fulfill the company&rsquo;s minimum order value</td>
-</tr>
-<tr>
-<td>delivery_time</td>
-<td><code class="prettyprint">object</code></td>
-<td>Expected arrival time for delivery, <code class="prettyprint">timestamp</code> format</td>
-</tr>
-<tr>
-<td>delivery_address</td>
-<td><code class="prettyprint">object</code></td>
-<td><a href="#address"><code class="prettyprint">Address</code></a> used for delivery</td>
-</tr>
-<tr>
-<td>deliveries</td>
-<td><code class="prettyprint">array</code></td>
-<td>Used to store the delivery history for an order</td>
 </tr>
 <tr>
 <td>billing_address</td>
@@ -2063,16 +2000,132 @@ product to a particular provider.</p>
 <td><a href="#address"><code class="prettyprint">Address</code></a> used for billing purposes</td>
 </tr>
 <tr>
-<td>payments</td>
+<td>deliveries</td>
 <td><code class="prettyprint">array</code></td>
-<td>List of <a href="#payments"><code class="prettyprint">Payment</code></a> objects associated with order</td>
+<td>Used to store the delivery history for an order</td>
+</tr>
+<tr>
+<td>delivery_address</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#address"><code class="prettyprint">Address</code></a> used for delivery</td>
+</tr>
+<tr>
+<td>delivery_status</td>
+<td><code class="prettyprint">string</code></td>
+<td>Status of the delivery <em>default is PENDING, additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE and READY_FOR_DELIVERY</em></td>
+</tr>
+<tr>
+<td>delivery_time</td>
+<td><code class="prettyprint">object</code></td>
+<td>Expected arrival time for delivery, <code class="prettyprint">timestamp</code> format</td>
+</tr>
+<tr>
+<td>items</td>
+<td><code class="prettyprint">array</code></td>
+<td>List of items associated with an order</td>
+</tr>
+<tr>
+<td>human_id</td>
+<td><code class="prettyprint">string</code></td>
+<td>Human readable ID that identifies the order easily. e.g. <code class="prettyprint">3AG7UA</code></td>
 </tr>
 <tr>
 <td>note</td>
 <td><code class="prettyprint">string</code></td>
 <td>Field used to send notes between an user and a provider</td>
 </tr>
+<tr>
+<td>order_status</td>
+<td><code class="prettyprint">string</code></td>
+<td>Status of the Order <em>default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED</em></td>
+</tr>
+<tr>
+<td>payments</td>
+<td><code class="prettyprint">array</code></td>
+<td>List of <a href="#payments"><code class="prettyprint">Payment</code></a> objects associated with order</td>
+</tr>
+<tr>
+<td>payment_method</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#payment_methods"><code class="prettyprint">Payment Methods</code></a></td>
+</tr>
+<tr>
+<td>provider</td>
+<td><code class="prettyprint">object</code></td>
+<td>Provider assigned to an order</td>
+</tr>
+<tr>
+<td>units</td>
+<td><code class="prettyprint">number</code></td>
+<td>Number of unique products in an order</td>
+</tr>
+<tr>
+<td>resources</td>
+<td><code class="prettyprint">array</code></td>
+<td>An array of <a href="#resources"><code class="prettyprint">resources</code></a> associated with the order.</td>
+</tr>
+<tr>
+<td>top_up_amount</td>
+<td><code class="prettyprint">number</code></td>
+<td>Extra amount of currency needed to fulfill the company&rsquo;s minimum order value</td>
+</tr>
+<tr>
+<td>total_amount</td>
+<td><code class="prettyprint">number</code></td>
+<td>Amount as a number with two decimals. e.g., 12.34. The attribute is automatically calculate when you create an order.</td>
+</tr>
+<tr>
+<td>total_quantity</td>
+<td><code class="prettyprint">number</code></td>
+<td>Total number of products in an order</td>
+</tr>
 </tbody></table>
+
+<h3 id="order-items">Order items</h3>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>product</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>A <a href="#products"><code class="prettyprint">Product</code></a>  ID</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td><code class="prettyprint">number</code></td>
+<td>The quantity of product</td>
+</tr>
+<tr>
+<td>discount</td>
+<td><code class="prettyprint">number</code></td>
+<td>The discount of the product.price in the order</td>
+</tr>
+<tr>
+<td>sub_products</td>
+<td><code class="prettyprint">array</code></td>
+<td>An array of sub-product ID&rsquo;s associated in order</td>
+</tr>
+</tbody></table>
+
+<p>The order could have items in it. These items is in an array.
+The items contains information to specify the <code class="prettyprint">total_amount</code> in the order.
+Items specify which products that is associated to the order.</p>
+
+<p>The sub_products in the <code class="prettyprint">array</code> could either have a price or a <code class="prettyprint">price_change_percentage</code>.
+If the <code class="prettyprint">price_change_percentage</code> is not 0,
+this percentage will multiplied with the <code class="prettyprint">product.price</code> in that item, affecting the <code class="prettyprint">total_amount</code>.
+If the <code class="prettyprint">price_change_percentage</code> is 0, the price in the sub-product adds that price to the <code class="prettyprint">total_amount</code>.</p>
+
+<h3 id="resources-in-the-order">Resources in the order</h3>
+
+<p>The order could have <a href="#resources"><code class="prettyprint">resources</code></a> associated to it.
+The <code class="prettyprint">total_amount</code> is affected by every <code class="prettyprint">retail</code> resource in the array, by the
+field <code class="prettyprint">retail_price</code>.</p>
 
 <h2 id="create-an-order">Create an Order</h2>
 
@@ -2187,19 +2240,14 @@ product to a particular provider.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>user</strong></td>
-<td><code class="prettyprint">object</code></td>
-<td>Id of the <a href="#users"><code class="prettyprint">user</code></a> who&rsquo;s creating the order</td>
-</tr>
-<tr>
-<td><strong>items</strong></td>
-<td><code class="prettyprint">array</code></td>
-<td>List of <a href="#orders"><code class="prettyprint">order</code></a>&lsquo;s items</td>
-</tr>
-<tr>
 <td><strong>currency</strong></td>
 <td><code class="prettyprint">string</code></td>
 <td>3 letter ISO currency code as defined by <a href="https://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a></td>
+</tr>
+<tr>
+<td>billing_address</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#address"><code class="prettyprint">Address</code></a> used for billing purposes</td>
 </tr>
 <tr>
 <td>delivery_time</td>
@@ -2212,9 +2260,9 @@ product to a particular provider.</p>
 <td><a href="#address"><code class="prettyprint">Address</code></a> used for delivery</td>
 </tr>
 <tr>
-<td>billing_address</td>
-<td><code class="prettyprint">object</code></td>
-<td><a href="#address"><code class="prettyprint">Address</code></a> used for billing purposes</td>
+<td>items</td>
+<td><code class="prettyprint">array</code></td>
+<td>List of <a href="#orders"><code class="prettyprint">order</code></a>&lsquo;s items</td>
 </tr>
 <tr>
 <td>note</td>
@@ -3195,19 +3243,19 @@ however there are some fields which will always be present.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>user</strong></td>
-<td><code class="prettyprint">object</code></td>
-<td><a href="#users"><code class="prettyprint">User</code></a> associated with Payment Method.</td>
-</tr>
-<tr>
 <td><strong>method</strong></td>
 <td><code class="prettyprint">string</code></td>
 <td>Type of Payment Method. Currently acceptable methods: <code class="prettyprint">stripe</code>, <code class="prettyprint">dibs</code>, <code class="prettyprint">paypal</code>, <code class="prettyprint">single_paypal</code>, <code class="prettyprint">future_paypal</code>.</td>
 </tr>
 <tr>
-<td><strong>name</strong></td>
+<td>name</td>
 <td><code class="prettyprint">string</code></td>
 <td>Name of the Payment Method - to be shown to final customer, if desired.</td>
+</tr>
+<tr>
+<td>user</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#users"><code class="prettyprint">User</code></a> associated with Payment Method.</td>
 </tr>
 </tbody></table>
 
@@ -3482,6 +3530,90 @@ however there are some fields which will always be present.</p>
 </tr>
 </tbody></table>
 
+<h2 id="stripe">Stripe</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/payment_methods
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stripe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tok_1Bv5yfEeeXxFpLJtpWYeGYuy"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-method-id&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1476118043580</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stripe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stripe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cus_CJjTlT4Wci2P0u"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tok_1Bv5yfEeeXxFpLJtpWYeGYuy"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">'object'</span><span class="p">:</span><span class="w"> </span><span class="err">'card'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'address_state'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="err">'fingerprint'</span><span class="p">:</span><span class="w"> </span><span class="err">'npPw</span><span class="mi">68</span><span class="err">vQg</span><span class="mi">1</span><span class="err">usKUWb'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'metadata'</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="err">'exp_year'</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span><span class="w">
+    </span><span class="err">'country'</span><span class="p">:</span><span class="w"> </span><span class="err">'US'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'last</span><span class="mi">4</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">4242</span><span class="err">'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'address_zip_check'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="err">'address_zip'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="err">'funding'</span><span class="p">:</span><span class="w"> </span><span class="err">'credit'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'cvc_check'</span><span class="p">:</span><span class="w"> </span><span class="err">'unchecked'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'id'</span><span class="p">:</span><span class="w"> </span><span class="err">'card_</span><span class="mi">1</span><span class="err">Bv</span><span class="mi">5</span><span class="err">yfEeeXxFpLJtPBVfQ</span><span class="mi">1</span><span class="err">wZ'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'tokenization_method'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="err">'address_line</span><span class="mi">1</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="err">'exp_month'</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="err">'brand'</span><span class="p">:</span><span class="w"> </span><span class="err">'Visa'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'dynamic_last</span><span class="mi">4</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="err">'address_country'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="err">'address_line</span><span class="mi">2</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="err">'address_line</span><span class="mi">1</span><span class="err">_check'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="err">'name'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+    </span><span class="err">'address_city'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>token</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>Token created with the card details (number, expiration month, expiration year, cvc)</td>
+</tr>
+</tbody></table>
+
 <h2 id="retrieve-a-payment-method">Retrieve a Payment Method</h2>
 
 <p>Retrieves the payment method with a given ID.</p>
@@ -3690,7 +3822,7 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, the 
 <tr>
 <td><strong>current_state</strong></td>
 <td><code class="prettyprint">string</code></td>
-<td>Current state of operation. Can be one of: <code class="prettyprint">created</code>, <code class="prettyprint">processing</code>, <code class="prettyprint">succeeded</code>, <code class="prettyprint">failed</code> and <code class="prettyprint">cancelled</code></td>
+<td>Current state of operation. Can be one of: <code class="prettyprint">created</code>, <code class="prettyprint">processing</code>, <code class="prettyprint">captured</code>, <code class="prettyprint">succeeded</code>, <code class="prettyprint">failed</code> and `cancelled</td>
 </tr>
 <tr>
 <td>payment_date</td>
@@ -3715,7 +3847,7 @@ for later. If no <code class="prettyprint">payment_date</code> is provided, the 
 <tr>
 <td>metadata</td>
 <td><code class="prettyprint">array</code></td>
-<td>Some additional information to Payment</td>
+<td>Additional information on the payment</td>
 </tr>
 <tr>
 <td>status_code</td>
@@ -3808,9 +3940,9 @@ All payments should have the following attributes:</p>
 <td>Selected payment method id to use for paying <strong>invoices</strong> or <strong>orders</strong>.</td>
 </tr>
 <tr>
-<td><strong>payment_date</strong></td>
+<td>payment_date</td>
 <td><code class="prettyprint">number</code></td>
-<td>Date (<code class="prettyprint">timestamp</code> format) for scheduling payment of <strong>invoices</strong>. Defaults to the <code class="prettyprint">due_date</code> of each invoice.</td>
+<td>Date (<code class="prettyprint">timestamp</code> format) for scheduling payment of <strong>invoices</strong>. Defaults to the <code class="prettyprint">due_date</code> of each invoice or now.</td>
 </tr>
 </tbody></table>
 
@@ -3953,7 +4085,12 @@ All payments should have the following attributes:</p>
 <td>Field used for sorting results. <em>default is -modified</em></td>
 </tr>
 <tr>
-<td>status</td>
+<td>date_filter</td>
+<td><code class="prettyprint">string</code></td>
+<td>Date field used for filter results.</td>
+</tr>
+<tr>
+<td>current_state</td>
 <td><code class="prettyprint">string</code></td>
 <td>Status of Payments to filter by</td>
 </tr>
@@ -4125,14 +4262,19 @@ Content-Type: application/json
 <td>The name of the product</td>
 </tr>
 <tr>
-<td><strong>price</strong></td>
+<td><strong>currency</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>Three letter currency code in standard ISO 4217 format.</td>
+</tr>
+<tr>
+<td>price</td>
 <td><code class="prettyprint">number</code></td>
 <td>The price of the product</td>
 </tr>
 <tr>
-<td><strong>currency</strong></td>
-<td><code class="prettyprint">string</code></td>
-<td>Three letter currency code in standard ISO 4217 format.</td>
+<td>price_change_percentage</td>
+<td><code class="prettyprint">number</code></td>
+<td>How much percentage the products changes the price</td>
 </tr>
 <tr>
 <td>description</td>
@@ -4190,6 +4332,11 @@ Content-Type: application/json
 <td></td>
 </tr>
 </tbody></table>
+
+<h3 id="price-and-price_change_percentage">Price and price_change_percentage</h3>
+
+<p>When creating a product, you need one of the fields <code class="prettyprint">price</code> or <code class="prettyprint">price_change_percentage</code>.
+The <code class="prettyprint">price_change_percentage</code> could be used in the order.items when creating an order.</p>
 
 <h2 id="create-a-new-product">Create a New Product</h2>
 
@@ -4627,6 +4774,44 @@ Content-Type: application/json
 </tr>
 </tbody></table>
 
+<h2 id="add-sub-products-to-product">Add sub-products to product</h2>
+
+<p>The product could have multiple sub-products associated with the product.
+These are found in the field <code class="prettyprint">_sub_products</code>.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>product_id</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The product&rsquo;s ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/products/&lt;product_id&gt;/sub_products
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/products/&lt;product_id&gt;/sub_products</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;product_id&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">&lt;product_id&gt;</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
           <h1 id="providers">Providers</h1>
 
 <p>Provider is a child class of <a href="#users"><code class="prettyprint">User</code></a>. They are users that provide
@@ -5087,10 +5272,14 @@ services to other users.</p>
 
           <h1 id="resources">Resources</h1>
 
-<p>The resource model is <a href="#Users"><code class="prettyprint">User</code></a> specific attributes;
-attributes they possess or resources under their control. The resource
+<p>The resource model is <a href="#Users"><code class="prettyprint">User</code></a> specific attributes, assets or retail resources;
+resources they possess or that under their ownership. The resource
 could have name, description and a chosen reference id. Additionally, it can have
 an image and product associated with it.</p>
+
+<p>There is two types of resources, <code class="prettyprint">asset</code> or <code class="prettyprint">retail</code>. If not specified, an <code class="prettyprint">asset</code> resource
+ is created. The <code class="prettyprint">asset</code> resource is an asset that belongs to the user. The <code class="prettyprint">retail</code> resource is
+  a sellable object that the user possess, but is able to sell. Thus, it has a price, currency and VAT.</p>
 
 <h2 id="resources-object">Resources Object</h2>
 
@@ -5105,6 +5294,11 @@ an image and product associated with it.</p>
 <td>_id</td>
 <td><code class="prettyprint">object</code></td>
 <td>The resource ID</td>
+</tr>
+<tr>
+<td>method</td>
+<td><code class="prettyprint">string</code></td>
+<td>The resource type. <code class="prettyprint">asset</code> or <code class="prettyprint">retail</code>.</td>
 </tr>
 <tr>
 <td>user</td>
@@ -5137,9 +5331,57 @@ an image and product associated with it.</p>
 <td><a href="#Products"><code class="prettyprint">Product</code></a> associated with the resource</td>
 </tr>
 <tr>
+<td>tags</td>
+<td><code class="prettyprint">array</code></td>
+<td>An array of tags</td>
+</tr>
+<tr>
+<td>human_id</td>
+<td><code class="prettyprint">string</code></td>
+<td>6 character ID.</td>
+</tr>
+<tr>
 <td>status</td>
 <td><code class="prettyprint">string</code></td>
 <td>Status of the resource <em>default is <code class="prettyprint">CREATED</code>, other options are <code class="prettyprint">PROCESSING</code>, <code class="prettyprint">UTILIZED</code> or <code class="prettyprint">IDLE</code></em></td>
+</tr>
+</tbody></table>
+
+<h2 id="retail-resource-object">Retail Resource Object</h2>
+
+<p>In addition to the attributes in the <code class="prettyprint">asset</code> resource, the <code class="prettyprint">retail</code> resource has the following attributes.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_sub_products</td>
+<td><code class="prettyprint">array</code></td>
+<td>An array with sub-products associated with the resource</td>
+</tr>
+<tr>
+<td>base_price</td>
+<td><code class="prettyprint">number</code></td>
+<td>The sum of the <code class="prettyprint">product.price</code> and price in all the <code class="prettyprint">_sub_products</code></td>
+</tr>
+<tr>
+<td>retail_price</td>
+<td><code class="prettyprint">number</code></td>
+<td>The amount that this resource is sold for</td>
+</tr>
+<tr>
+<td>currency</td>
+<td><code class="prettyprint">string</code></td>
+<td>The currency in the main product in the resource</td>
+</tr>
+<tr>
+<td>vat</td>
+<td><code class="prettyprint">number</code></td>
+<td>The VAT from the main product in the resource</td>
 </tr>
 </tbody></table>
 
@@ -5173,6 +5415,7 @@ an image and product associated with it.</p>
 <span class="p">{</span><span class="w">
     </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"method"</span><span class="w"> </span><span class="s2">"asset"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of the resource"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc1234567890abc"</span><span class="p">,</span><span class="w">
@@ -5180,6 +5423,7 @@ an image and product associated with it.</p>
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of resource"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58f9f856b70e2a56c4a0db3d"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"human_id"</span><span class="w"> </span><span class="s2">"1EBY8A"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
     </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">}</span><span class="w">
@@ -5247,6 +5491,7 @@ for a user, but in an <code class="prettyprint">array</code>.</p>
 
 <span class="p">[</span><span class="w">
    </span><span class="p">{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58f9f856b70e2a56c4a0db3d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"method"</span><span class="w"> </span><span class="s2">"asset"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of the first resource"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of first resource"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc1234567890abc"</span><span class="p">,</span><span class="w">
@@ -5262,6 +5507,7 @@ for a user, but in an <code class="prettyprint">array</code>.</p>
 
 <span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1502100873778</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"method"</span><span class="w"> </span><span class="s2">"asset"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of the resource"</span><span class="p">,</span><span class="w">
@@ -5274,6 +5520,7 @@ for a user, but in an <code class="prettyprint">array</code>.</p>
     </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1502100873778</span><span class="p">},</span><span class="w">
     </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">}},</span><span class="w">
     </span><span class="p">{</span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1502100873778</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"method"</span><span class="w"> </span><span class="s2">"asset"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of the resource"</span><span class="p">,</span><span class="w">
@@ -5311,6 +5558,7 @@ for a user, but in an <code class="prettyprint">array</code>.</p>
 <span class="p">{</span><span class="w">
     </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"method"</span><span class="w"> </span><span class="s2">"asset"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of the resource"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://docs.shareactor.io/images/logo.png"</span><span class="p">,</span><span class="w">
@@ -5391,6 +5639,7 @@ for a user, but in an <code class="prettyprint">array</code>.</p>
 
 <span class="p">{</span><span class="w">
     </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500276434527</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"method"</span><span class="w"> </span><span class="s2">"asset"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An updated Resource"</span><span class="p">,</span><span class="w">
@@ -5490,6 +5739,7 @@ It is possible to add filters and sorting to the query.</p>
 
 <span class="p">{</span><span class="w">
     </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"method"</span><span class="w"> </span><span class="s2">"asset"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An updated Resource"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://docs.shareactor.io/images/logo.png"</span><span class="p">,</span><span class="w">
@@ -5571,6 +5821,7 @@ an <code class="prettyprint">array</code> that matches the query. Filter the que
 <span class="p">[</span><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500275774067</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"method"</span><span class="w"> </span><span class="s2">"asset"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An updated Resource"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://docs.shareactor.io/images/logo.png"</span><span class="p">,</span><span class="w">
@@ -5611,6 +5862,18 @@ by updating the resource.</p>
 <tr>
 <td>IDLE</td>
 <td>&ldquo;IDLE&rdquo;</td>
+</tr>
+<tr>
+<td>ON_THE_WAY_FROM</td>
+<td>&ldquo;ON_THE_WAY_FROM&rdquo;</td>
+</tr>
+<tr>
+<td>ON_THE_WAY_TO</td>
+<td>&ldquo;ON_THE_WAY_TO&rdquo;</td>
+</tr>
+<tr>
+<td>DONE</td>
+<td>&ldquo;DONE&rdquo;</td>
 </tr>
 </tbody></table>
 
@@ -6434,12 +6697,12 @@ It is possible to add pagination to this request.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>first_name</td>
+<td><strong>first_name</strong></td>
 <td><code class="prettyprint">string</code></td>
 <td>First name of the user</td>
 </tr>
 <tr>
-<td>last_name</td>
+<td><strong>last_name</strong></td>
 <td><code class="prettyprint">string</code></td>
 <td>Last name of the user</td>
 </tr>
@@ -6470,6 +6733,84 @@ It is possible to add pagination to this request.</p>
 </tr>
 </tbody></table>
 
+<h2 id="create-a-user-with-a-jwt-token">Create a User with a JWT token</h2>
+
+<p>See <a href="#authorization"><code class="prettyprint">Authorization</code></a> for how to get a JWT token.
+With the route POST <code class="prettyprint">/v2/users</code>, you could both create a new user with a JWT token, and
+log in a user with their JWT token.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/v2/users
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v2/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mobile_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Danielsen"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"country"</span><span class="p">:</span><span class="s2">"Paraguay"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"zip_code"</span><span class="p">:</span><span class="s2">"0556"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"state"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"street_name"</span><span class="p">:</span><span class="s2">"Streetname 7"</span><span class="w">
+             </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"auth0_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-id"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mobile_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"voucher"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b498e02b-2031-4d84-b55b-b460d22f44b4"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"consumed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"initial_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1512383756277</span><span class="p">},</span><span class="w">
+                </span><span class="s2">"expires"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1543919756277</span><span class="p">}},</span><span class="w">
+    </span><span class="s2">"_cls"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1512383756277</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w">
+        </span><span class="p">[{</span><span class="s2">"zip_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0556"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danielsen"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"street_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Streetname 7"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paraguay"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"google"</span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"national_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"modified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1512383756279</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bio"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a25250cd57ba213edcba515"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"new_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1512383756278</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 <h2 id="retrieve-a-user">Retrieve a User</h2>
 
 <blockquote>
@@ -6963,12 +7304,12 @@ Host: api.shareactor.io
 <tr>
 <td>order_status</td>
 <td><code class="prettyprint">string</code></td>
-<td>Orders with a specific status are also listed. Values can be separated by a comma, e.g., &lsquo;success, processing&rsquo;.</td>
+<td>Orders with a specific status are also listed. Values can be separated by a comma, e.g., &ldquo;success, processing&rdquo;.</td>
 </tr>
 <tr>
 <td>delivery_status</td>
 <td><code class="prettyprint">string</code></td>
-<td>Orders with a specific delivery status are also listed. Values can be separated by a comma, e.g.,  &lsquo;assigning, done, created.&rsquo;</td>
+<td>Orders with a specific delivery status are also listed. Values can be separated by a comma, e.g.,  &ldquo;assigning, done, created.&rdquo;</td>
 </tr>
 </tbody></table>
 
