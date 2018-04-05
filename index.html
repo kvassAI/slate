@@ -7405,6 +7405,239 @@ Host: api.shareactor.io
 </tr>
 </tbody></table>
 
+          <h1 id="data-science-labs">Data Science Labs</h1>
+
+<p>The lab is where the magic happens. This is the integration endpoints to the Kvass data science platform.</p>
+
+<h2 id="check-server-health">Check Server Health</h2>
+
+<p>Checks whether or not the Kvass Data Science platform is running.</p>
+
+<p>Returns <code class="prettyprint">{&#39;status&#39;: &#39;UP&#39;}</code> if server is running and <code class="prettyprint">{&#39;status&#39;: &#39;DOWN&#39;}</code> if not.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/labs/health
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/labs/health</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UP"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="train-recommendation-model">Train Recommendation Model</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/labs/recommendations/train
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/labs/recommendations/train</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="s2">"model_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"content_recommender-user-product"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<p>This endpoint trains a specific recommendation engine model based on the <a href="#list-of-model-types"><code class="prettyprint">model type</code></a> in the request. </p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>model_type</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The model type which you want trained <em>Required field</em></td>
+</tr>
+</tbody></table>
+
+<p></n> </n><br>
+<aside class="notice">This is necessary to do before getting recommendations and similarities.</aside></p>
+
+<h2 id="recommendation-labs">Recommendation Labs</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/labs/recommendations/recommend
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/labs/recommendations/recommend</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="s2">"model_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"content_recommender-user-product"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product 1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id from request&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product 2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id from request&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product 3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;id from request&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Get recommendations based on model type in the request. The recommendations are ranked in the array
+by the field <code class="prettyprint">rank</code>. The higher the rank, the higher the subjects recommendation. </p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>model_type</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The <a href="#list-of-model-types"><code class="prettyprint">model type</code></a> <em>Required field</em></td>
+</tr>
+<tr>
+<td><strong>query</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The ID of the queried subject, to which you want recommendations for <em>Required field</em></td>
+</tr>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>The number of recommendations in the results <em>Default is 3</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="similarity-labs">Similarity Labs</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/labs/recommendations/similar
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/labs/recommendations/similar</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="s2">"model_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"content_similarity_graph-product-product"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"number_of_recommendations"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"features"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"tags"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product 1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.98</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product 2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product 3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.91</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Get similarities and the degree of similarity for a given subject, like a <a href="#products"><code class="prettyprint">product</code></a>. 
+The results in the array are ranked after the field <code class="prettyprint">rank</code>. 
+The <code class="prettyprint">distance</code> is the degree of similarity to the initial subject. </p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>model_type</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The <a href="#list-of-model-types"><code class="prettyprint">model type</code></a> <em>Required field</em></td>
+</tr>
+<tr>
+<td><strong>features</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>An array of features <em>Required field</em></td>
+</tr>
+<tr>
+<td><strong>query</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The ID of the queried subject, to which you want similarity to <em>Required field</em></td>
+</tr>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>The number of recommendations in the results <em>Default is 3</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="list-of-model-types">List of Model Types</h2>
+
+<table><thead>
+<tr>
+<th>Model name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">content_recommender-user-product</code></td>
+<td>Product recommendations for a user</td>
+</tr>
+<tr>
+<td><code class="prettyprint">content_similarity_graph-product-product</code></td>
+<td>Similar products for a product</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
