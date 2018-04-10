@@ -1,4 +1,4 @@
-# Statistics
+# Metrics
 
 This section describes the collection, aggregating and receiving of metrics automatically 
 generated on the KVASS platform while processing different tasks.
@@ -279,7 +279,7 @@ Content-Type: application/json
 
 Argument | Type | Description
 -------- | ---- | -------
-name| `string` | The metric key on which your metrics are grouped on. _Required field_
+**name** | `string` | The metric key on which your metrics are grouped on. 
 value | `number` | The value of the metric instance. _Default is 1_
 time | `number` | The timestamp of the event the metric happened. _Default is now_
 

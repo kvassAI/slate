@@ -24,7 +24,7 @@ includes:
   - resources
   - subscriptions
   - users
-  - stats
+  - metrics
   - labs
 
 
