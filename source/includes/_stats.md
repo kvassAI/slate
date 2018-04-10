@@ -26,6 +26,7 @@ This key have multiple of secondary keys, like `type` and `status_code`. The met
 `requests.type.POST` returns statistics for all `POST` requests. 
 `requests.status_code.200` returns statistics for all requests with an HTTP status code 200.
 
+
 ## Get Metrics by Name
 
 This endpoint returns the count, sum of values and an array of metrics for a given name between two dates
@@ -127,10 +128,10 @@ Content-Type: application/json
 
 ```
 
+
 ## Get Metric Count
 
 This endpoint returns the count of instances of a specific metric key between two dates.
-
 
 
 > Definition
@@ -278,7 +279,7 @@ Content-Type: application/json
 
 Argument | Type | Description
 -------- | ---- | -------
-**name** | `string` | The metric key on which your metrics are grouped on. _Required field_
+name| `string` | The metric key on which your metrics are grouped on. _Required field_
 value | `number` | The value of the metric instance. _Default is 1_
 time | `number` | The timestamp of the event the metric happened. _Default is now_
 
@@ -324,7 +325,6 @@ Content-Type: application/json
 
 </n> </n>   
 <aside class="notice">This endpoint could return an array of _considerable_ length. Only use this in dev process for checking available metric keys.</aside>
-
 
 
 ## Metric Resolutions
