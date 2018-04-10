@@ -271,7 +271,7 @@ Content-Type: application/json
     "values": {}, 
     "external": false, 
     "sum_values": 1000.0, 
-    "_id": "d721daa2-46be-4685-8fea-b6a17b05fe88:foo.bar:1523297656", 
+    "_id": "d721daa2-46be-4685-8fea-b6a17b05fe88:foo.bar:1523297656:ext", 
     "time_stamp": {"$date": 1523297656}, 
     "name": "foo.bar"
 }
