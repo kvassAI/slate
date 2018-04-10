@@ -269,7 +269,7 @@ Content-Type: application/json
     "company": {"$oid": "5acbad570190d9573d512d11"}, 
     "count": 1.0,  
     "values": {}, 
-    "external": false, 
+    "external": true, 
     "sum_values": 1000.0, 
     "_id": "d721daa2-46be-4685-8fea-b6a17b05fe88:foo.bar:1523297656:ext", 
     "time_stamp": {"$date": 1523297656}, 
