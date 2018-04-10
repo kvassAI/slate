@@ -13,7 +13,7 @@ name | `string` | The index key of the metric
 time_stamp | `object` | The date of the metric as a time stamp
 count | `float` | The number of instances of name per time unit
 sum_values | `float` | The sum of count per time unit
-internal | `boolean` | Defines where the metric is created. _Default is `true`_
+external | `boolean` | Defines where the metric is created. _Default is `false`_
 key | `string` | ID field. Composed by the company's uuid, the metric name and the time stamp
 
 </br></br>
@@ -237,7 +237,7 @@ to_date | `number` | The date as a time stamp the metrics will be aggregated to.
 This endpoint lets you create custom metrics and store them in the database. 
 
 You can receive these custom metrics with either of the `GET /stats` methods listed over.
-Metrics created over this endpoint will have the flag `internal=false`.
+Metrics created over this endpoint will have the flag `external=true`.
 
 > Definition
 
@@ -269,7 +269,7 @@ Content-Type: application/json
     "company": {"$oid": "5acbad570190d9573d512d11"}, 
     "count": 1.0,  
     "values": {}, 
-    "internal": False, 
+    "external": false, 
     "sum_values": 1000.0, 
     "_id": "d721daa2-46be-4685-8fea-b6a17b05fe88:foo.bar:1523297656", 
     "time_stamp": {"$date": 1523297656}, 
