@@ -8,8 +8,8 @@ and keeping a history of transactions on your data.
 Attribute | Type | Description
 --------- | ---- | -------
 _id | `object` | The event ID.
-**type** | `string` | The type of event. Can be any from the [`event type list`](#list-of-event-types)
-data | `object` | An object containing the event type, timestamp and any additional data necessary
+**kind** | `string` | The kind of event. Can be any from the [`event type list`](#list-of-event-types)
+data | `object` | An object containing the event kind, timestamp and any additional data necessary
 
 
 ## Get All Events
@@ -37,10 +37,10 @@ Content-Type: application/json
 [
     {
         "_id": {"$oid": "5964a0ead57ba2036750a3b4"},
-        "type": "order.created",
+        "kind": "order.created",
         "created": {"$date": 1499767018360},
         "company": {"$oid": "57ee9c71d76d431f8511142f"},
-        "data" {"type": "order.created"}
+        "data" {"kind": "order.created"}
     }
 ]
 ```
@@ -76,10 +76,10 @@ Content-Type: application/json
 
 {
     "_id": {"$oid": "5964a0ead57ba2036750a3b4"},
-    "type": "order.created",
+    "kind": "order.created",
     "created": {"$date": 1499767018360},
     "company": {"$oid": "57ee9c71d76d431f8511142f"},
-    "data" {"type": "order.created"}
+    "data" {"kind": "order.created"}
 }
 ```
 
@@ -110,17 +110,17 @@ Content-Type: application/json
 [
     {
         "_id": {"$oid": "5964a0ead57ba2036750a3b4"},
-        "type": "order.created",
+        "kind": "order.created",
         "created": {"$date": 1499767018360},
         "company": {"$oid": "57ee9c71d76d431f8511142f"},
-        "data" {"type": "order.created"}
+        "data" {"kind": "order.created"}
     },
     {
         "_id": {"$oid": "5964a0ead57ba2036750a3b4"},
-        "type": "order.updated",
+        "kind": "order.updated",
         "created": {"$date": 1499767018360},
         "company": {"$oid": "57ee9c71d76d431f8511142f"},
-        "data" {"type": "order.updated"}
+        "data" {"kind": "order.updated"}
     }
 ]
 ```
