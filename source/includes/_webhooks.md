@@ -7,7 +7,7 @@ Webhooks allow you to keep track of your data without having to constantly poll 
 Attribute | Type | Description
 --------- | ---- | -------
 _id | `object` | The subscription ID.
-event_type | `string` | The type of event. Can be any from the [`event type list`](#list-of-event-types)
+event_type | `string` | The type of [`Event`](#events). Can be any from the [`event type list`](#list-of-event-types)
 endpoint | `string` | The URL to call when the webhook is triggered
 secret | `string` | A SHA-256 secret used to secure the webhook communication
 
@@ -52,7 +52,7 @@ Content-Type: application/json
 
 Attribute | Type | Description
 --------- | ---- | -------
-**event_type** | `string` | The type of event. Can be any from the [`event type list`](#list-of-event-types)
+**event_type** | `string` | The type of [`Event`](#events). Can be any from the [`event type list`](#list-of-event-types)
 **endpoint** | `string` | The URL to call when the webhook is triggered
 
 
@@ -93,7 +93,7 @@ Content-Type: application/json
 
 Attribute | Type | Description
 --------- | ---- | -------
-event_type | `string` | The type of event. Can be any from the [`event type list`](#list-of-event-types)
+event_type | `string` | The type of [`Event`](#events). Can be any from the [`event type list`](#list-of-event-types)
 endpoint | `string` | The URL to call when the webhook is triggered
 
 

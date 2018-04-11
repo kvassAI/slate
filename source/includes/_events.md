@@ -127,7 +127,7 @@ Content-Type: application/json
 
 Arguments | Type | Description
 --------- | ---- | -------
-**query** | `string` | What you want to search, like **id** or **type**
+**query** | `string` | What you want to search, like **id** or **kind**
 size | `number` | number of items to retrieve
 page | `number` | which page to retrieve. _default page size is 10_
 sort | `string` | field used for sorting results. If missing default is "-created"
