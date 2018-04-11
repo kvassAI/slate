@@ -926,6 +926,209 @@ and the delivery system (pickup and drop off).</p>
 </tr>
 </tbody></table>
 
+          <h1 id="events">Events</h1>
+
+<p>The events are a way of tracking any important activity on the API
+and keeping a history of transactions on your data.</p>
+
+<h2 id="event-object">Event Object</h2>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_id</td>
+<td><code class="prettyprint">object</code></td>
+<td>The event ID.</td>
+</tr>
+<tr>
+<td><strong>kind</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The kind of event. Can be any from the <a href="#list-of-event-types"><code class="prettyprint">event type list</code></a></td>
+</tr>
+<tr>
+<td>data</td>
+<td><code class="prettyprint">object</code></td>
+<td>An object containing the event kind, timestamp and any additional data necessary</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-all-events">Get All Events</h2>
+
+<p>Receives a list of all events.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/events
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/events</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5964a0ead57ba2036750a3b4"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"data"</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>Number of subscriptions per page <em>default is 10</em></td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">number</code></td>
+<td>Which page to retrieve <em>default is 0</em></td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code class="prettyprint">string</code></td>
+<td>Field used to sort results <em>default is <code class="prettyprint">-created</code></em></td>
+</tr>
+</tbody></table>
+
+<h2 id="receive-event-by-id">Receive Event by ID</h2>
+
+<p>Receive an event, based on its ID.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/events/&lt;event_id&gt;
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/events/5964a0ead57ba2036750a3b4</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5964a0ead57ba2036750a3b4"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"data"</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="events-search">Events Search</h2>
+
+<p>Retrieves a list of Events associated with search.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/events/search
+</code></pre>
+<blockquote>
+<p>Example request by account_number:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/events/search/query=order</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5964a0ead57ba2036750a3b4"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"data"</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5964a0ead57ba2036750a3b4"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.updated"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"data"</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.updated"</span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>query</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>What you want to search, like <strong>id</strong> or <strong>kind</strong></td>
+</tr>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>number of items to retrieve</td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">number</code></td>
+<td>which page to retrieve. <em>default page size is 10</em></td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code class="prettyprint">string</code></td>
+<td>field used for sorting results. If missing default is &ldquo;-created&rdquo;</td>
+</tr>
+<tr>
+<td>from_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>Start date, <code class="prettyprint">timestamp</code> format. <em>default is None</em></td>
+</tr>
+<tr>
+<td>to_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>End date, <code class="prettyprint">timestamp</code> format. <em>default is None</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="list-of-event-types">List of Event Types</h2>
+
+<table><thead>
+<tr>
+<th>Model name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">order.created</code></td>
+<td>Order created</td>
+</tr>
+</tbody></table>
+
           <h1 id="invoices">Invoices</h1>
 
 <p>Invoices allow you to store invoice information for later payment.</p>
@@ -7402,6 +7605,275 @@ Host: api.shareactor.io
 <tr>
 <td>QUEUED</td>
 <td>Delivery is in queue</td>
+</tr>
+</tbody></table>
+
+          <h1 id="webhooks">Webhooks</h1>
+
+<p>Webhooks allow you to keep track of your data without having to constantly poll our APIs for updates.</p>
+
+<h2 id="webhook-object">Webhook Object</h2>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_id</td>
+<td><code class="prettyprint">object</code></td>
+<td>The subscription ID.</td>
+</tr>
+<tr>
+<td>event_type</td>
+<td><code class="prettyprint">string</code></td>
+<td>The type of <a href="#events"><code class="prettyprint">Event</code></a>. Can be any from the <a href="#list-of-event-types"><code class="prettyprint">event type list</code></a></td>
+</tr>
+<tr>
+<td>endpoint</td>
+<td><code class="prettyprint">string</code></td>
+<td>The URL to call when the webhook is triggered</td>
+</tr>
+<tr>
+<td>secret</td>
+<td><code class="prettyprint">string</code></td>
+<td>A SHA-256 secret used to secure the webhook communication</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-webhook">Create a Webhook</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/webhooks
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/webhooks</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://requestbin.fullcontact.com/asdfasdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">    "_id": {"$oid": "5964a0ead57ba2036750a3b4"},</span>
+<span class="s">    "company": {"$oid": "57ee9c71d76d431f8511142f"},</span>
+<span class="s">    "created": {"$date": 1499767018360},</span>
+<span class="s">    "updated": {"$date": 1499767018360},</span>
+<span class="s">    "event_type": "order.created",</span>
+<span class="s">    "deleted": false,</span>
+<span class="s">    "secret": "ed06e2f4e7bdb5ee6050695aba5ed3f2725fd3394df22f3a8a0c2856123a",</span>
+<span class="s">    "endpoint": "http://requestbin.fullcontact.com/1o2mfpb1"</span>
+<span class="s">}</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>event_type</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The type of <a href="#events"><code class="prettyprint">Event</code></a>. Can be any from the <a href="#list-of-event-types"><code class="prettyprint">event type list</code></a></td>
+</tr>
+<tr>
+<td><strong>endpoint</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The URL to call when the webhook is triggered</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-webhook">Update Webhook</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/webhooks/&lt;webhook_id&gt;
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/webhooks/5964a0ead57ba2036750a3b4</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">    "_id": {"$oid": "5964a0ead57ba2036750a3b4"},</span>
+<span class="s">    "company": {"$oid": "57ee9c71d76d431f8511142f"},</span>
+<span class="s">    "created": {"$date": 1499767018360},</span>
+<span class="s">    "updated": {"$date": 1499767018360},</span>
+<span class="s">    "event_type": "order.created",</span>
+<span class="s">    "deleted": false,</span>
+<span class="s">    "secret": "ed06e2f4e7bdb5ee6050695aba5ed3f2725fd3394df22f3a8a0c2856123a",</span>
+<span class="s">    "endpoint": "https://www.google.com"</span>
+<span class="s">}</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>event_type</td>
+<td><code class="prettyprint">string</code></td>
+<td>The type of <a href="#events"><code class="prettyprint">Event</code></a>. Can be any from the <a href="#list-of-event-types"><code class="prettyprint">event type list</code></a></td>
+</tr>
+<tr>
+<td>endpoint</td>
+<td><code class="prettyprint">string</code></td>
+<td>The URL to call when the webhook is triggered</td>
+</tr>
+</tbody></table>
+
+<h2 id="receive-webhook-by-id">Receive Webhook by ID</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/webhooks/&lt;webhook_id&gt;
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/webhooks/5964a0ead57ba2036750a3b4</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5964a0ead57ba2036750a3b4"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ed06e2f4e7bdb5ee6050695aba5ed3f2725fd3394df22f3a8a0c2856123a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="get-all-webhooks">Get All Webhooks</h2>
+
+<p>Receives a list of all webhooks associated with a company.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/webhooks
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/webhooks</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5964a0ead57ba2036750a3b4"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ed06e2f4e7bdb5ee6050695aba5ed3f2725fd3394df22f3a8a0c2856123a"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>Number of subscriptions per page <em>default is 10</em></td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">number</code></td>
+<td>Which page to retrieve <em>default is 0</em></td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code class="prettyprint">string</code></td>
+<td>Field used to sort results <em>default is <code class="prettyprint">-modified</code></em></td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-webhook">Delete webhook</h2>
+
+<p>Deletes a webhook with a given ID.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>DELETE https://api.shareactor.io/webhooks/&lt;webhook_id&gt;
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/webhooks/&lt;webhook_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5964a0ead57ba2036750a3b4"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"event_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ed06e2f4e7bdb5ee6050695aba5ed3f2725fd3394df22f3a8a0c2856123a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>webhook_id</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>ID of the Webhook</td>
 </tr>
 </tbody></table>
 
