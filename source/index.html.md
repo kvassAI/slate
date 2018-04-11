@@ -14,6 +14,7 @@ includes:
   - addresses
   - invoices
   - issuers
+  - metrics
   - orders
   - plans
   - payment_methods  
@@ -24,7 +25,6 @@ includes:
   - resources
   - subscriptions
   - users
-  - metrics
   - labs
 
 
