@@ -15,6 +15,7 @@ includes:
   - events
   - invoices
   - issuers
+  - metrics
   - orders
   - plans
   - payment_methods
