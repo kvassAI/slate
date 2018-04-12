@@ -37,13 +37,13 @@ It returns the metrics for both `foo.zoo` and `foo.bar`.
 > Definition
 
 ```
-GET https://api.shareactor.io/stats/<name>?resolution=day
+GET https://api.shareactor.io/metrics/<name>?resolution=day
 ```
 
 > Example request:
 
 ``` http
-GET /stats/foo HTTP/1.1
+GET /metrics/foo HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -87,7 +87,7 @@ query parameter `metrics`.
  
 Getting stats on API usage (requests) is a good example on this. 
 The main API request types are `POST`, `GET`, `PUT`, `DELETE` and `OPTIONS`.
-If you use `GET /stats/request` in [`get metrics by name`](#get-metrics-by-name), you will get all
+If you use `GET /metrics/request` in [`get metrics by name`](#get-metrics-by-name), you will get all
 requests, regardless of type. 
 
 If you want to filter by `POST` and `GET` request you could use this method.
@@ -95,13 +95,13 @@ If you want to filter by `POST` and `GET` request you could use this method.
 > Definition
 
 ```
-GET https://api.shareactor.io/stats/<name>?metrics=key,key
+GET https://api.shareactor.io/metrics/<name>?metrics=key,key
 ```
 
 > Example request:
 
 ``` http
-GET /stats/requests.type?metrics=post,get&resolution=day HTTP/1.1
+GET /metrics/requests.type?metrics=post,get&resolution=day HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -137,13 +137,13 @@ This endpoint returns the count of instances of a specific metric key between tw
 > Definition
 
 ```
-GET https://api.shareactor.io/stats/<name>/count
+GET https://api.shareactor.io/metrics/<name>/count
 ```
 
 > Example request:
 
 ``` http
-GET /stats/foo.bar/count HTTP/1.1
+GET /metrics/foo.bar/count HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -171,13 +171,13 @@ This endpoint returns the frequency of a specific metric key between two dates.
 > Definition
 
 ```
-GET https://api.shareactor.io/stats/<name>/freq
+GET https://api.shareactor.io/metrics/<name>/freq
 ```
 
 > Example request:
 
 ``` http
-GET /stats/foo.bar/freq HTTP/1.1
+GET /metrics/foo.bar/freq HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -205,13 +205,13 @@ This endpoint returns the total sum of a specific metric key between two dates.
 > Definition
 
 ```
-GET https://api.shareactor.io/stats/<name>/sum
+GET https://api.shareactor.io/metrics/<name>/sum
 ```
 
 > Example request:
 
 ``` http
-GET /stats/foo.bar/sum HTTP/1.1
+GET /metrics/foo.bar/sum HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -236,19 +236,19 @@ to_date | `number` | The date as a time stamp the metrics will be aggregated to.
 
 This endpoint lets you create custom metrics and store them in the database. 
 
-You can receive these custom metrics with either of the `GET /stats` methods listed over.
+You can receive these custom metrics with either of the `GET /metrics` methods listed over.
 Metrics created over this endpoint will have the flag `external=true`.
 
 > Definition
 
 ```
-POST https://api.shareactor.io/stats
+POST https://api.shareactor.io/metrics
 ```
 
 > Example request:
 
 ``` http
-POST /stats HTTP/1.1
+POST /metrics HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -292,13 +292,13 @@ This endpoint returns an array with all saved instances of the metric keys.
 > Definition
 
 ```
-GET https://api.shareactor.io/stats
+GET https://api.shareactor.io/metrics
 ```
 
 > Example request:
 
 ``` http
-GET /stats HTTP/1.1
+GET /metrics HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <shareactor-api-key>
@@ -316,8 +316,8 @@ Content-Type: application/json
     "foo.woo", 
     "requests", 
     "requests.type.GET", 
-    "requests.route./stats", 
-    "requests.path./stats",
+    "requests.route./metrics", 
+    "requests.path./metrics",
     "..."
 ]
 
