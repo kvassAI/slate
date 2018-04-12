@@ -2175,6 +2175,429 @@ and keeping a history of transactions on your data.</p>
 </tr>
 </tbody></table>
 
+          <h1 id="metrics">Metrics</h1>
+
+<p>This section describes the collection, aggregating and receiving of metrics automatically 
+generated on the KVASS platform while processing different tasks.</p>
+
+<p>It is also possible to create custom metrics over the API and receiving these over the API.</p>
+
+<h2 id="the-metric-object">The Metric Object</h2>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><code class="prettyprint">string</code></td>
+<td>The index key of the metric</td>
+</tr>
+<tr>
+<td>time_stamp</td>
+<td><code class="prettyprint">object</code></td>
+<td>The date of the metric as a time stamp</td>
+</tr>
+<tr>
+<td>count</td>
+<td><code class="prettyprint">float</code></td>
+<td>The number of instances of name per time unit</td>
+</tr>
+<tr>
+<td>sum_values</td>
+<td><code class="prettyprint">float</code></td>
+<td>The sum of count per time unit</td>
+</tr>
+<tr>
+<td>external</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Defines where the metric is created. <em>Default is <code class="prettyprint">false</code></em></td>
+</tr>
+<tr>
+<td>key</td>
+<td><code class="prettyprint">string</code></td>
+<td>ID field. Composed by the company&rsquo;s uuid, the metric name and the time stamp</td>
+</tr>
+</tbody></table>
+
+<p></br></br>
+The <code class="prettyprint">name</code> of the metric usually has a primary key and multiple secondary keys. 
+These are separated with a dot, <code class="prettyprint">.</code>. For example <code class="prettyprint">foo.bar</code>.
+</br>
+This is for grouping the metrics based on some commonalities.
+An example of this is the metrics aggregated for every API request. The primary key is <code class="prettyprint">requests</code>,
+This key have multiple of secondary keys, like <code class="prettyprint">type</code> and <code class="prettyprint">status_code</code>. The metrics for
+<code class="prettyprint">requests.type.POST</code> returns statistics for all <code class="prettyprint">POST</code> requests. 
+<code class="prettyprint">requests.status_code.200</code> returns statistics for all requests with an HTTP status code 200.</p>
+
+<h2 id="get-metrics-by-name">Get Metrics by Name</h2>
+
+<p>This endpoint returns the count, sum of values and an array of metrics for a given name between two dates
+and <a href="#metric-resolutions"><code class="prettyprint">resolution</code></a>. The example returns the stats for the metric name <code class="prettyprint">foo</code> for 2 days
+with a daily resolution.
+It returns the metrics for both <code class="prettyprint">foo.zoo</code> and <code class="prettyprint">foo.bar</code>.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats/&lt;name&gt;?resolution=day
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats/foo</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="s2">"foo.bar"</span><span class="p">:</span><span class="w"> 
+    </span><span class="p">{</span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">],</span><span class="w"> 
+    </span><span class="s2">"total_sum"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span><span class="w"> 
+ </span><span class="s2">"foo.zoo"</span><span class="p">:</span><span class="w"> 
+    </span><span class="p">{</span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">],</span><span class="w"> 
+    </span><span class="s2">"total_sum"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">}</span><span class="w">
+ </span><span class="s2">"_meta"</span><span class="p">:</span><span class="w"> 
+    </span><span class="p">{</span><span class="s2">"resolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"day"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"from_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-07T00:00:00+00:00"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"to_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-08T23:59:59.99999+00:00"</span><span class="p">},</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>The date as a time stamp the metrics will be aggregated from. <em>Default is the day before today</em></td>
+</tr>
+<tr>
+<td>to_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>The date as a time stamp the metrics will be aggregated to. <em>Default is today</em></td>
+</tr>
+<tr>
+<td>resolution</td>
+<td><code class="prettyprint">string</code></td>
+<td>One of <a href="#metric-resolutions"><code class="prettyprint">metric resolutions</code></a></td>
+</tr>
+<tr>
+<td>metrics</td>
+<td><code class="prettyprint">stirng</code></td>
+<td>Filter results by sub-keys under the metric name in the request. See <a href="#get-metrics-by-multiple-keys"><code class="prettyprint">under</code></a></td>
+</tr>
+</tbody></table>
+
+<h2 id="get-metrics-filter-by-multiple-keys">Get Metrics Filter by Multiple Keys</h2>
+
+<p>It is also possible to filter metrics on multiple sub-keys on a given <code class="prettyprint">name</code>. 
+This is the same endpoint as <a href="#get-metrics-by-name"><code class="prettyprint">get metrics by name</code></a>, but with the 
+query parameter <code class="prettyprint">metrics</code>.</p>
+
+<p>Getting stats on API usage (requests) is a good example on this. 
+The main API request types are <code class="prettyprint">POST</code>, <code class="prettyprint">GET</code>, <code class="prettyprint">PUT</code>, <code class="prettyprint">DELETE</code> and <code class="prettyprint">OPTIONS</code>.
+If you use <code class="prettyprint">GET /stats/request</code> in <a href="#get-metrics-by-name"><code class="prettyprint">get metrics by name</code></a>, you will get all
+requests, regardless of type. </p>
+
+<p>If you want to filter by <code class="prettyprint">POST</code> and <code class="prettyprint">GET</code> request you could use this method.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats/&lt;name&gt;?metrics=key,key
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats/requests.type?metrics=post,get&amp;resolution=day</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="s2">"requests.type.POST"</span><span class="p">:</span><span class="w"> 
+    </span><span class="p">{</span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mf">14532.0</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">7366.0</span><span class="p">,</span><span class="w"> </span><span class="mf">7166.0</span><span class="p">],</span><span class="w"> 
+    </span><span class="s2">"total_sum"</span><span class="p">:</span><span class="w"> </span><span class="mf">14532.0</span><span class="p">},</span><span class="w"> 
+ </span><span class="s2">"requests.type.GET"</span><span class="p">:</span><span class="w"> 
+    </span><span class="p">{</span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mf">120000.0</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">50000.0</span><span class="p">,</span><span class="w"> </span><span class="mf">70000.0</span><span class="p">],</span><span class="w"> 
+    </span><span class="s2">"total_sum"</span><span class="p">:</span><span class="w"> </span><span class="mf">120000.0</span><span class="p">}</span><span class="w">
+ </span><span class="s2">"_meta"</span><span class="p">:</span><span class="w"> 
+    </span><span class="p">{</span><span class="s2">"resolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"day"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"from_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-07T00:00:00+00:00"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"to_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-08T23:59:59.99999+00:00"</span><span class="p">},</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h2 id="get-metric-count">Get Metric Count</h2>
+
+<p>This endpoint returns the count of instances of a specific metric key between two dates.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats/&lt;name&gt;/count
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats/foo.bar/count</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>The date as a time stamp the metrics will be aggregated from. <em>Default is the day before today</em></td>
+</tr>
+<tr>
+<td>to_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>The date as a time stamp the metrics will be aggregated to. <em>Default is today</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="get-metrics-frequency">Get Metrics Frequency</h2>
+
+<p>This endpoint returns the frequency of a specific metric key between two dates.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats/&lt;name&gt;/freq
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats/foo.bar/freq</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="s2">"freq"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">}}</span><span class="w">
+
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>The date as a time stamp the metrics will be aggregated from. <em>Default is the day before today</em></td>
+</tr>
+<tr>
+<td>to_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>The date as a time stamp the metrics will be aggregated to. <em>Default is today</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="get-metrics-total-sum">Get Metrics Total Sum</h2>
+
+<p>This endpoint returns the total sum of a specific metric key between two dates.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats/&lt;name&gt;/sum
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats/foo.bar/sum</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="s2">"sum"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>The date as a time stamp the metrics will be aggregated from. <em>Default is the day before today</em></td>
+</tr>
+<tr>
+<td>to_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>The date as a time stamp the metrics will be aggregated to. <em>Default is today</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="create-external-metrics">Create External Metrics</h2>
+
+<p>This endpoint lets you create custom metrics and store them in the database. </p>
+
+<p>You can receive these custom metrics with either of the <code class="prettyprint">GET /stats</code> methods listed over.
+Metrics created over this endpoint will have the flag <code class="prettyprint">external=true</code>.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/stats
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/stats</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo.bar"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="w"> </span><span class="mi">1523297656</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5acbad570190d9573d512d11"</span><span class="p">},</span><span class="w"> 
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">  
+    </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w"> 
+    </span><span class="s2">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"sum_values"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d721daa2-46be-4685-8fea-b6a17b05fe88:foo.bar:1523297656:ext"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"time_stamp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1523297656</span><span class="p">},</span><span class="w"> 
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo.bar"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The metric key on which your metrics are grouped on.</td>
+</tr>
+<tr>
+<td>value</td>
+<td><code class="prettyprint">number</code></td>
+<td>The value of the metric instance. <em>Default is 1</em></td>
+</tr>
+<tr>
+<td>time</td>
+<td><code class="prettyprint">number</code></td>
+<td>The timestamp of the event the metric happened. <em>Default is now</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="get-list-of-all-metric-keys">Get List of all Metric Keys</h2>
+
+<p>This endpoint returns an array with all saved instances of the metric keys.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="s2">"foo.bar"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"foo.zoo"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"foo.woo"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"requests"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"requests.type.GET"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"requests.route./stats"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"requests.path./stats"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<p></n> </n><br>
+<aside class="notice">This endpoint could return an array of <em>considerable</em> length. Only use this in dev process for checking available metric keys.</aside></p>
+
+<h2 id="metric-resolutions">Metric Resolutions</h2>
+
+<p>The metrics could be given in these resolutions for a given metric name.</p>
+
+<table><thead>
+<tr>
+<th>Resolution</th>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Daily</td>
+<td><code class="prettyprint">day</code></td>
+<td>Daily metrics <em>Default</em></td>
+</tr>
+<tr>
+<td>Hourly</td>
+<td><code class="prettyprint">hour</code></td>
+<td>Hourly metrics</td>
+</tr>
+<tr>
+<td>Minutely</td>
+<td><code class="prettyprint">minute</code></td>
+<td>Minutely metrics</td>
+</tr>
+</tbody></table>
+
           <h1 id="orders">Orders</h1>
 
 <p>Orders are the result of a User purchasing a given set of Products.
