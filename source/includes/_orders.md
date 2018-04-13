@@ -23,15 +23,17 @@ order_status | `string` | Status of the Order _default is CREATED, additionally 
 payments | `array` | List of [`Payment`](#payments) objects associated with order
 payment_method | `object` | [`Payment Methods`](#payment_methods)
 provider | `object` | Provider assigned to an order
-units | `number` | Number of unique products in an order
 resources | `array` | An array of [`resources`](#resources) associated with the order. See [`description`](#resources-in-the-order)
 top_up_amount | `number` | Extra amount added to `total_amount` to fulfill the company's minimum order value 
 top_up_vat | `float` | The VAT on the `top_up_amount. _From 0.0 to 1.0_
-total_amount | `number` | Amount as a number with two decimals. e.g., 12.34. The attribute is automatically calculate when you create an order.
+total_amount | `float` | Amount as a float with two decimals. e.g., 12.34. The amount is automatically calculate when you create an order.
 total_quantity | `number` | Total number of products in an order
-stripe_charge_id | `string` | The payment charge ID in <a href="http://www.stripe.com" target="_blank">Stripe</a>
+units | `number` | Number of unique products in an order
+stripe_charge_id | `string` | The payment charge ID in <a href="http://www.stripe.com" target="_blank">Stripe</a> 
 stripe_refund_id | `string` | The payment refund ID in <a href="http://www.stripe.com" target="_blank">Stripe</a>
 accounting_reference | `string`| A accounting reference ID
+order_status | `string` | See [`order statuses`](#order_status)
+delivery_status | `string` | See [`delivery statuses`](#delivery_status)
 
 
 ## Create an Order
@@ -150,8 +152,11 @@ Argument | Type | Description
 billing_address | `object` | [`Address`](#address) used for billing purposes
 delivery_time | `number` | Expected time of delivery, `timestamp` format
 delivery_address | `object`  | [`Address`](#address) used for delivery
-items | `array` | List of [`order`](#orders)'s items
+items | `array` | List of [`order items`](#order-items)
 note | `string` | Field used to provide extra information to a provider
+resources | `array` | List of [`resource`](#resources) ID's. See [`description`](#resources-in-the-order)
+payment_method | `string` | [`Payment method`](#payment-methods) for this order
+
 
 ## Retrieve an Order
 
@@ -197,6 +202,7 @@ Content-type: application/json
       "street_name":"Iversenstien 7"
    },
    "deliveries":[],
+   "resources": [],
    "items":[
       {
          "quantity":60,
@@ -251,7 +257,7 @@ Retrieves an Order with a given ID.
 
 Argument | Type | Description
 -------- | ---- | ------
-**orderid** | `string` | ID of the queried order
+**order id** | `string` | ID of the queried order
 
 
 ## List all Orders
@@ -361,8 +367,8 @@ to_date | `number` | End date, `timestamp` format _default is None_
 date_filter | `string` | Date field used to filter results. _default is created_
 size | `number` | Number of items to retrieve _default is 10_
 page | `number` | Which page to retrieve _default is 0_
-order_status | `string` | Return orders with a specific status
-delivery_status | `string` | Return orders with a specific delivery status
+order_status | `string` | Return orders with a specific [`status`](#order_status)
+delivery_status | `string` | Return orders with a specific delivery [`status`](#delivery_status)
 sort | `string` | Field used for sorting results
 
 
@@ -513,12 +519,12 @@ delivery | Shows orders by delivery time
 
 Arguments | Description
 --------- | ------
-created | Order is created
-processing | Order is being processed
-declined | Order is declined for some reason
-failed | Order has failed for some reason
-success | Order has succeeded
-cancelled | Order is cancelled
+CREATED | Order is created
+PROCESSING | Order is being processed
+DECLINED | Order is declined for some reason
+FAILED | Order has failed for some reason
+SUCCESS | Order has succeeded
+CANCELLED | Order is cancelled
 
 ### delivery_status
 
