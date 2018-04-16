@@ -1,6 +1,6 @@
 # Invoices
 
-Invoices allow you to store accounting information sent by a provider of a product or service to the [`User`](#users)]. 
+Invoices allow you to store invoice information for later payment or accounting information sent by a provider of a product or service to the [`User`](#users)]. 
 
 ## Invoice object
 
