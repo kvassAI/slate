@@ -1,6 +1,6 @@
 # Invoices
 
-Invoices allow you to store invoice information for later payment.
+Invoices allow you to store accounting information sent by a provider of a product or service to the [`User`](#users)]. 
 
 ## Invoice object
 
@@ -17,6 +17,26 @@ issuer | `object`| [`Issuer`](#issuers) of the invoice
 issuer_alias | `string` | The user may want to use an alias for the [`issuer`](#issuers)
 image_url | `string` | The url for the image of the invoice that is returned from the ocr
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there are: "SCHEDULED", "DONE", "FAILED" and "CANCELLED"
+invoice_lines | `array` | An array of [`invoice lines`](#invoice-lines)
+fee | `float` | Additional fee that will be added to the `amount`
+kind | `string` | The type or kind of invoice.
+deleted | `boolean` | Whether the invoice is deleted or not. _Default is `false`_
+
+
+## Invoice Lines
+
+Invoice lines are additional information it is possible to append to an invoice. 
+Each line has the format presented bellow.
+
+Attributes | Type | Description
+---------- | ---- | ------
+quantity | `number` | Quantity of unit `product` or `resource`. _Default is 1_
+amount | `float`| Unit price. _Required field_
+currency | `string` | Currency of the unit. _Required field_
+product | `object` | [`Product`](#products) in unit
+resource | `object` | [`Resource`](#resources) in unit
+description | `string` | Description of unit. _Required field_
+vat | `float` | VAT of unit. _From 0.0 to 1.0. Default is 0_
 
 
 ## Create an Invoice
@@ -44,7 +64,8 @@ Host: api.shareactor.io
     "due_date": "2016-02-10T18:25:43.511Z",
     "image_url": "<image-id>/<image-name>.jpg",
     "issuer": "Big Important Firm AS",
-    "issuer_alias": "issuer alias for Issuer"
+    "issuer_alias": "issuer alias for Issuer",
+    "kind": "test"
 }
 ```
 
@@ -63,7 +84,9 @@ Content-Type: application/json
    "company":{"$oid":"57ee9c71d76d431f8511142f"},
    "amount":123.45,
    "_id":{"$oid":"57ee9c72d76d431f85111434"},
-   "image_url": "<image-id>/<image-name>.jpg"
+   "image_url": "<image-id>/<image-name>.jpg",
+   "invoice_lines": [],
+   "kind": "test"
 }
 ```
 
@@ -79,6 +102,9 @@ image_url | `string` | The url for the invoice image
 issued_date| `number` | The date the Invoice was issued, `timestamp` format. _Not a required field_
 issuer_alias| `string` | Issuer alias that User could set. _Not a required field_
 message | `string` | Message included on the invoice, e.g. KID number to be included with payment
+invoice_lines | `array` | An array of [`invoice lines`](#invoice-lines)
+fee | `float` | Fee added to the amount
+kind | `string` | The type or kind of invoice created
 
 
 ## Retrieve an Invoice
@@ -114,7 +140,8 @@ Content-Type: application/json
    "company":{"$oid":"57ee9c71d76d431f8511142f"},
    "amount":123.45,
    "_id":{"$oid":"57ee9c72d76d431f85111434"},
-   "image_url": "<image-id>/<image-name>.jpg"
+   "image_url": "<image-id>/<image-name>.jpg",
+   "invoice_lines": []
 }
 ```
 
@@ -159,7 +186,8 @@ Content-Type: application/json
        "company":{"$oid":"57ee9c71d76d431f8511142f"},
        "amount":123.45,
        "_id":{"$oid":"57ee9c72d76d431f85111434"},
-       "image_url": "<image-id>/<image-name>.jpg"
+       "image_url": "<image-id>/<image-name>.jpg",
+       "invoice_lines": []
     }
 ]
 ```
@@ -213,7 +241,8 @@ Content-Type: application/json
        "company":{"$oid":"57ee9c71d76d431f8511142f"},
        "amount":123.45,
        "_id":{"$oid":"57ee9c72d76d431f85111434"},
-       "image_url": "<image-id>/<image-name>.jpg"
+       "image_url": "<image-id>/<image-name>.jpg",
+       "invoice_lines": []
     }
 ]
 ```
