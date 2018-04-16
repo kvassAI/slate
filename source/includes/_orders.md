@@ -14,14 +14,14 @@ currency | `string` | 3 letter ISO currency code as defined by [ISO 4217](https:
 billing_address | `object` | [`Address`](#address) used for billing purposes
 deliveries | `array` | Used to store the delivery history for an order
 delivery_address | `object` | [`Address`](#address) used for delivery
-delivery_status | `string` | Status of the delivery _default is PENDING, additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE and READY_FOR_DELIVERY_
+delivery_status | `string` | See [`delivery statuses`](#delivery_status) _default is PENDING_
 delivery_time | `object` | Expected arrival time for delivery, `timestamp` format
+order_status | `string` | See [`order statuses`](#order_status) _default is CREATED_
 items | `array` | List of [`items`](#order-items) associated with an order
 human_id | `string` | Human readable ID that identifies the order easily. e.g. `3AG7UA`
 note | `string` | Field used to send notes between an user and a provider
-order_status | `string` | Status of the Order _default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED_
 payments | `array` | List of [`Payment`](#payments) objects associated with order
-payment_method | `object` | [`Payment Methods`](#payment_methods)
+payment_method | `object` | [`Payment Methods`](#payment-methods)
 provider | `object` | Provider assigned to an order
 resources | `array` | An array of [`resources`](#resources) associated with the order. See [`description`](#resources-in-the-order)
 top_up_amount | `number` | Extra amount added to `total_amount` to fulfill the company's minimum order value 
@@ -29,11 +29,7 @@ top_up_vat | `float` | The VAT on the `top_up_amount. _From 0.0 to 1.0_
 total_amount | `float` | Amount as a float with two decimals. e.g., 12.34. The amount is automatically calculate when you create an order.
 total_quantity | `number` | Total number of products in an order
 units | `number` | Number of unique products in an order
-stripe_charge_id | `string` | The payment charge ID in <a href="http://www.stripe.com" target="_blank">Stripe</a> 
-stripe_refund_id | `string` | The payment refund ID in <a href="http://www.stripe.com" target="_blank">Stripe</a>
 accounting_reference | `string`| A accounting reference ID
-order_status | `string` | See [`order statuses`](#order_status)
-delivery_status | `string` | See [`delivery statuses`](#delivery_status)
 
 
 ## Create an Order
