@@ -41,8 +41,8 @@ discount of that product, from 0.0 to 1.0, where 0.0 is no discount and 1.0 is a
 The `total_amount` of the plan will be calculated from the total sum of the products.
 
 ### Recurring Day
-A Recurring Order Plan must contain recurring days as a list. These recurring days describe when the
-plan should be run. ## NEED TO FIND A BEST PHRASE
+A Recurring Order Plan must contain recurring days as a list. 
+These recurring days describe when new order should be schedule.
 The recurring days consist of `day`, `hour` and `minute`.
 The `day` depend of the [`Plan`](#plans)'s `interval unit`.
 If the `interva_unit` is WEEK, the value of `day` can be 0 to 6.
@@ -346,7 +346,7 @@ Attribute | Type | Description
 --------- | ---- | -------
 **user** | `object` | [`User`](#Users) associated with the plan
 **interval_unit** | `string` | The frequency that the subscription acts upon. <br>Choices: `DAY`, `WEEK`, `MONTH`<br>
-**recurring_days** | `array` | List of `RecurringDay` associated with the plan. Defines schedule order frequency.
+**recurring_days** | `array` | List of [`RecurringDay`](#recurring-day) associated with the plan. Defines schedule order frequency.
 **billing_interval** | `string` | Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`, `PER_ORDER`
 method | `string` |  The plan type: `recurring_order`.
 name | `string` | The name of the plan. _default is `RECURRING_ORDER_PLAN`_
@@ -433,3 +433,101 @@ Content-Type: application/json
                        {"day": 0, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}}]
 }
 ```
+
+### Update Recurring Order Plan
+
+Update a Plan. This is only possible if `static_plan` is `false`.
+Not all fields are possible to update. See fields in Argument below.
+
+
+> Definition
+
+```
+PUT https://api.shareactor.io/plans/<plan_id>
+```
+
+> Example request:
+
+``` http
+PUT /plans/<plan_id> HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+
+{
+    "method": 'recurring_order',
+    "interval_unit": "WEEK",
+    "name": "Recurring Order Plan Deluxe",
+    "currency": "NOK",
+    "billing_interval": "MONTH",
+    "items": [{"product": "<product1_id>", "quantity": 1},
+              {"product": "<product2_id>", "quantity": 2, "discount": 0.5}],
+    "initial_fail_amount_action": "CONTINUE",
+    "max_fail_attempts": 1,
+    "note": "This is a note regarding the Plan",
+    "interval_count": false,
+    "total_amount": false,
+    "discount": 0,
+    "prorate": false,
+    "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
+                       {"day": 4, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}},
+                       {"day": 2, "hour": 10, "minute": 15}]
+}
+
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "_id": {
+        "$oid": "5931697ed57ba271c0c7de66"},
+    "created": {
+        "$date": 1496410494652},
+    "updated": {
+        "$date": 1496410494652},
+    "method": "recurring_order",
+    "auto_bill_amount": false,
+    "billing_interval": "MONTH",
+    "initial_fail_amount_action": "CONTINUE",
+    "max_fail_attempts": 1,
+    "discount": 0.0,
+    "name": "Recurring Order Plan Deluxe",
+    "total_amount": 300.0,
+    "interval_unit": "WEEK",
+    "items": [
+        {"discount": 0.0,
+         "product": {"$oid": "5931697ed57ba271c0c7de64"},
+         "quantity": 1},
+        {"discount": 0.5,
+         "product": {"$oid": "5931697ed57ba271c0c7de65"},
+         "quantity": 2}],
+    "status": "CREATED",
+    "currency": "NOK",
+    "note": "This is a note regarding the Plan",
+    "deleted": false,
+    "company": {
+        "$oid": "57ee9c71d76d431f8511142f"},
+    "static": true,
+    "prorate": false,
+    "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
+                       {"day": 4, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}},
+                       {"day": 2, "starting_day": {"$date": 1496410495952}, "next_day": {"$date": 1496410495952}}]
+}
+```
+
+Argument | Type | Description
+-------- | ---- | -----
+**plan_id** | `string` | ID of the queried plan.
+active |`boolean`| Indicates if the plan is currently active. _default is `true`_
+name |`string`| Name of the plan.
+note |`string`| Note regarding the plan.
+initial_fail_amount_action |`string`| Indicates what happens when payment for the plan fails.  Choices: `CONTINUE`, `CANCEL`
+max_fail_attempts |`number`| How many times a payment can fail in the subscription, but still continue.
+discount |`number`| Between 0.0 an 1.0, where 1.0 is 100% discount on the total_price.
+total_amount |`number`| The total cost of the subscription payment. If set, the total_amount is not based on the sum of products.
+recurring_days | `array` | When updating the recurring days you can return both of following format:
+ - `{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}}` - it means this recurring day already exists
+ - `{"day": 2, "hour": 10, "minute": 15}`

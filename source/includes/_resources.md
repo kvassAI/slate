@@ -168,8 +168,8 @@ Content-Type: application/json
 
 
 
-## Retreive a Resource by ID
-Retreive a resource based on its ID.
+## Retrieve a Resource by ID
+Retrieve a resource based on its ID.
 
 > Definition
 
