@@ -20,8 +20,8 @@ status | `string` | Status for the subscription. _default is `CREATED`, also ava
 plan | `object` | ID of the [`Plan`](#Plans) associated with the subscription.
 payment_method | `object` | ID of already created payment method.
 payments | `array` | Array of [`Payment`](#payments) objects associated with the subscription.
-starting_date | `string`| Start date, `timestamp` format. _default is current date if missing_ 
-ending_date | `string`| End date of subscription, `timestamp` format .
+starting_date | `string`| Start date, `timestamp` format. _default is current date if missing_
+ending_date | `string`| End date of subscription, `timestamp` format.
 interval_total | `number` | Number of intervals set in the [`Plan`](#Plans) the subscription will run.
 infinite | `boolean` | If `true`, the subscription will run until the user stops it.
 current_billing_date_period_start | `string`| The date on which the customer was billed last.
@@ -443,15 +443,18 @@ status | `string` | The subscription status _default is `ACTIVE`_
 
 ## Recurring Order Subscriptions Object
 
+Create this type of plan when you need to schedule some [`Orders`](#Orders) daily, weekly, or monthly.
+To plan a schedule follow the next instruction on [`Recurring Order Plan](#recurring-order-plan).
+
 Attribute | Type | Description
 --------- | ---- | -------
 _id | `object` | The subscription ID.
-method | `string` | Name of subscription method. `license`
-name | `string` | The name of the subscription type.
+method | `string` | Name of subscription method. `recurring_order`
+name | `string` | The name of the subscription type. _default is `RECURRING_ORDER`_
 note | `string` | A short description of the description.
 user | `object`  | [`User`](#Users) ID associated with the subscription.
 status | `string` | Status for the subscription. _default is `CREATED`, also available are `ACTIVE`, `FUTURE`, `NON_RENEWING`and `CANCELLED`_
-plan | `object` | ID of the [`Plan`](#Plans) associated with the subscription.
+plan | `object` | ID of the [`Recurring Order Plan`](#recurring-order-plan) associated with the subscription.
 payment_method | `object` | ID of already created payment method.
 payments | `array` | Array of [`Payment`](#payments) objects associated with the subscription.
 starting_date | `string`| Start date, `timestamp` format. _default is current date if missing_ 
@@ -465,6 +468,7 @@ prorate_date | `number`| The date of the last time an amount was prorated
 last_billing_amount | `number`| The amount that was subtracted at the last payment. `plan.total_amount`+`prorate_amount`
 total_fail_attempts | `number` | The number of failed payment attempts in the subscription. See [`Plan`](#Plans)`.max_fail_attempts
 initial_order | `object` | [`Order`](#Orders) ID associated with the subscription and used to create a [`Recurring Order Plan`](#recurring-order-plan)
+orders | `object` | List of [`Orders`](#Orders) 
 
 ## Create a New Subscription
 To create a new subscription, the user needs to have a plan associated with the
@@ -489,7 +493,7 @@ Host: api.shareactor.io
 
 {
     "plan": "5931697ed57ba271c0c7de66",
-    "subscription_method": "license"
+    "subscription_method": "recurring_order"
 }
 ```
 ``` http
@@ -499,8 +503,8 @@ Content-Type: application/json
     "company": {"$oid": "57ee9c71d76d431f8511142f"},
     "active": true,
     "status": "CREATED",
-    "name": "LICENSE",
-    "method": "license",
+    "name": "RECURRING_ORDER",
+    "method": "recurring_order",
     "_id": {"$oid": "5964a0ead57ba2036750a3b4"},
     "deleted": false,
     "prorate_amount": 0.0,
