@@ -17,10 +17,14 @@ issuer | `object`| [`Issuer`](#issuers) of the invoice
 issuer_alias | `string` | The user may want to use an alias for the [`issuer`](#issuers)
 image_url | `string` | The url for the image of the invoice that is returned from the ocr
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there are: "SCHEDULED", "DONE", "FAILED" and "CANCELLED"
+payments | `array` | List of [`Payment`](#payments) objects associated with invoice.
 invoice_lines | `array` | An array of [`invoice lines`](#invoice-lines)
 fee | `float` | Additional fee that will be added to the `amount`
 kind | `string` | The type or kind of invoice.
 deleted | `boolean` | Whether the invoice is deleted or not. _Default is `false`_
+accounting_reference | `string` | A reference ID from your Accounting system.
+external_reference | `string` | Field to set your own reference or if you are using a third party.
+If your company is using an Account system supported by ShareActor this field will be automatically setup.
 
 
 ## Invoice Lines
@@ -30,12 +34,12 @@ Each line has the format presented bellow.
 
 Attributes | Type | Description
 ---------- | ---- | ------
-quantity | `number` | Quantity of unit `product` or `resource`. _Default is 1_
-amount | `float`| Unit price. _Required field_
-currency | `string` | Currency of the unit. _Required field_
+*description* | `string` | Description of unit. _Required field_
+*quantity* | `number` | Quantity of unit `product` or `resource`. _Default is 1_
+*amount* | `float`| Unit price. _Required field_
+*currency* | `string` | Currency of the unit. ISO 4217 currency code. For example "EUR" _Required field_
 product | `object` | [`Product`](#products) in unit
 resource | `object` | [`Resource`](#resources) in unit
-description | `string` | Description of unit. _Required field_
 vat | `float` | VAT of unit. _From 0.0 to 1.0. Default is 0_
 
 
