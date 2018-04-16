@@ -109,7 +109,6 @@ kind | `string` | The type or kind of invoice created
 
 ## Create an Invoice with Invoice Line
 
-Creates a new Invoice including invoice lines.
  
 > Definition
 
@@ -186,7 +185,9 @@ Content-Type: application/json
    ]
 }
 ```
-
+Creates a new Invoice including invoice lines.
+The following example show you how to create different invoice lines in an Invoice.
+The first invoice line contains a [`Resource`](#Resources) but it works the same way with a [`Product`](#Products).
 
 ## Retrieve an Invoice
 
