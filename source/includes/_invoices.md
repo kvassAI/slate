@@ -107,6 +107,87 @@ fee | `float` | Fee added to the amount
 kind | `string` | The type or kind of invoice created
 
 
+## Create an Invoice with Invoice Line
+
+Creates a new Invoice including invoice lines.
+ 
+> Definition
+
+```
+POST https://api.shareactor.io/invoices
+```
+
+> Example request:
+
+``` http
+POST /invoices HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+
+{
+    "message": "some transaction or KID number",
+    "amount": 123.45,
+    "currency": "NOK",
+    "account_number": "12345678903",
+    "due_date": "2016-02-10T18:25:43.511Z",
+    "image_url": "<image-id>/<image-name>.jpg",
+    "issuer": "Big Important Firm AS",
+    "issuer_alias": "issuer alias for Issuer",
+    "invoice_lines": [
+        {
+            "resource": "596c643ed57ba203be2cf1c9",
+            "amount": 200.00,
+            "currency": "NOK",
+            "description": "A resource",
+            "vat": 0.25,
+            "discount": 0.1
+        },
+        {
+            "amount": 20.00,
+            "currency": "NOK",
+            "description": "Standard Shipping"
+        }
+   ]
+}
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+   "currency":"NOK",
+   "issuer":{"$oid":"57ee9c72d76d431f85111433"},
+   "deleted":false,
+   "due_date":{"$date":1476551410009},
+   "message":"Some message to the Issuer",
+   "account_number":"12345678903",
+   "user":{"$oid":"57ee9c72d76d431f85111432"},
+   "company":{"$oid":"57ee9c71d76d431f8511142f"},
+   "amount":123.45,
+   "_id":{"$oid":"57ee9c72d76d431f85111434"},
+   "image_url": "<image-id>/<image-name>.jpg",
+   "invoice_lines": [
+        {
+            "amount": 200.00,
+            "currency": "NOK",
+            "description": "Standard Shipping",
+            "description": "A resource",
+            "vat": 0.25,
+            "discount": 0.1
+        },
+        {
+            "amount": 20.00,
+            "currency": "NOK",
+            "description": "Standard Shipping"
+        }
+   ]
+}
+```
+
+
 ## Retrieve an Invoice
 
 > Definition
