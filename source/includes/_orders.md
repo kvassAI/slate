@@ -14,45 +14,22 @@ currency | `string` | 3 letter ISO currency code as defined by [ISO 4217](https:
 billing_address | `object` | [`Address`](#address) used for billing purposes
 deliveries | `array` | Used to store the delivery history for an order
 delivery_address | `object` | [`Address`](#address) used for delivery
-delivery_status | `string` | Status of the delivery _default is PENDING, additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE and READY_FOR_DELIVERY_
+delivery_status | `string` | See [`delivery statuses`](#delivery_status) _default is PENDING_
 delivery_time | `object` | Expected arrival time for delivery, `timestamp` format
-items | `array` | List of items associated with an order
+order_status | `string` | See [`order statuses`](#order_status) _default is CREATED_
+items | `array` | List of [`items`](#order-items) associated with an order
 human_id | `string` | Human readable ID that identifies the order easily. e.g. `3AG7UA`
 note | `string` | Field used to send notes between an user and a provider
-order_status | `string` | Status of the Order _default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED_
 payments | `array` | List of [`Payment`](#payments) objects associated with order
-payment_method | `object` | [`Payment Methods`](#payment_methods)
+payment_method | `object` | [`Payment Methods`](#payment-methods)
 provider | `object` | Provider assigned to an order
-units | `number` | Number of unique products in an order
-resources | `array` | An array of [`resources`](#resources) associated with the order.
-top_up_amount | `number` | Extra amount of currency needed to fulfill the company's minimum order value 
-total_amount | `number` | Amount as a number with two decimals. e.g., 12.34. The attribute is automatically calculate when you create an order.
+resources | `array` | An array of [`resources`](#resources) associated with the order. See [`description`](#resources-in-the-order)
+top_up_amount | `number` | Extra amount added to `total_amount` to fulfill the company's minimum order value 
+top_up_vat | `float` | The VAT on the `top_up_amount. _From 0.0 to 1.0_
+total_amount | `float` | Amount as a float with two decimals. e.g., 12.34. The amount is automatically calculate when you create an order.
 total_quantity | `number` | Total number of products in an order
-
-
-### Order items
-Attributes | Type | Description
----------- | ---- | -------
-**product** | `string` | A [`Product`](#products)  ID
-quantity | `number` | The quantity of product
-discount | `number` | The discount of the product.price in the order
-sub_products | `array` | An array of sub-product ID's associated in order
-
-The order could have items in it. These items is in an array.
-The items contains information to specify the `total_amount` in the order.
-Items specify which products that is associated to the order.
-
-The sub_products in the `array` could either have a price or a `price_change_percentage`.
-If the `price_change_percentage` is not 0,
-this percentage will multiplied with the `product.price` in that item, affecting the `total_amount`.
-If the `price_change_percentage` is 0, the price in the sub-product adds that price to the `total_amount`.
-
-
-
-### Resources in the order
-The order could have [`resources`](#resources) associated to it.
-The `total_amount` is affected by every `retail` resource in the array, by the
-field `retail_price`.
+units | `number` | Number of unique products in an order
+accounting_reference | `string`| A accounting reference ID
 
 
 ## Create an Order
@@ -171,8 +148,11 @@ Argument | Type | Description
 billing_address | `object` | [`Address`](#address) used for billing purposes
 delivery_time | `number` | Expected time of delivery, `timestamp` format
 delivery_address | `object`  | [`Address`](#address) used for delivery
-items | `array` | List of [`order`](#orders)'s items
+items | `array` | List of [`order items`](#order-items)
 note | `string` | Field used to provide extra information to a provider
+resources | `array` | List of [`resource`](#resources) ID's. See [`description`](#resources-in-the-order)
+payment_method | `string` | [`Payment method`](#payment-methods) for this order
+
 
 ## Retrieve an Order
 
@@ -218,6 +198,7 @@ Content-type: application/json
       "street_name":"Iversenstien 7"
    },
    "deliveries":[],
+   "resources": [],
    "items":[
       {
          "quantity":60,
@@ -272,7 +253,7 @@ Retrieves an Order with a given ID.
 
 Argument | Type | Description
 -------- | ---- | ------
-**orderid** | `string` | ID of the queried order
+**order id** | `string` | ID of the queried order
 
 
 ## List all Orders
@@ -382,44 +363,9 @@ to_date | `number` | End date, `timestamp` format _default is None_
 date_filter | `string` | Date field used to filter results. _default is created_
 size | `number` | Number of items to retrieve _default is 10_
 page | `number` | Which page to retrieve _default is 0_
-order_status | `string` | Return orders with a specific status
-delivery_status | `string` | Return orders with a specific delivery status
+order_status | `string` | Return orders with a specific [`status`](#order_status)
+delivery_status | `string` | Return orders with a specific delivery [`status`](#delivery_status)
 sort | `string` | Field used for sorting results
-
-### date_filter
-
-Arguments | Description
---------- | ------
-created | Shows orders by date of creation 
-delivery | Shows orders by delivery time
-
-### order_status
-
-Arguments | Description
---------- | ------
-created | Order is created
-processing | Order is being processed
-declined | Order is declined for some reason
-failed | Order has failed for some reason
-success | Order has succeeded
-cancelled | Order is cancelled
-
-### delivery_status
-
-Arguments | Description
---------- | -----
-CREATED | Delivery is created
-PENDING | Delivery is pending
-PROCESSING | Delivery is being processed
-ASSIGNING | Delivery has been assigned to a provider
-PICKUP_STARTED | Pickup from customer has been sent
-PICKUP_ARRIVED | Pickup from customer is complete
-DROPOFF_STARTED | Dropoff to customer has been sent
-DROPOFF_ARRIVED | Dropoff to customer is complete
-CANCELLED | Delivery is cancelled
-DONE | Delivery task is done
-UNKNOWN | Delivery is unknown
-QUEUED | Delivery is in queue
 
 
 ## Search Orders
@@ -533,3 +479,62 @@ page | `number` | Which page to retrieve. _default is 0_
 order_status | `string` | Return orders with specific status
 delivery_status | `string` | Return orders with specific delivery status
 sort | `string` | Field used for sorting results
+
+## Order Items
+Attributes | Type | Description
+---------- | ---- | -------
+**product** | `string` | A [`Product`](#products)  ID
+quantity | `number` | The quantity of product
+discount | `number` | The discount of the product.price in the order
+sub_products | `array` | An array of sub-product ID's associated in order
+
+The order could have items in it. These items is in an array.
+The items contains information to specify the `total_amount` in the order.
+Items specify which products that is associated to the order.
+
+The sub_products in the `array` could either have a price or a `price_change_percentage`.
+If the `price_change_percentage` is not 0,
+this percentage will multiplied with the `product.price` in that item, affecting the `total_amount`.
+If the `price_change_percentage` is 0, the price in the sub-product adds that price to the `total_amount`.
+
+## Resources in the Order
+The order could have [`resources`](#resources) associated to it.
+The `total_amount` is affected by every `retail` resource in the array, by the
+field `retail_price`.
+
+## Order Arguments and Statuses
+
+### date_filter
+
+Arguments | Description
+--------- | ------
+created | Shows orders by date of creation 
+delivery | Shows orders by delivery time
+
+### order_status
+
+Arguments | Description
+--------- | ------
+CREATED | Order is created
+PROCESSING | Order is being processed
+DECLINED | Order is declined for some reason
+FAILED | Order has failed for some reason
+SUCCESS | Order has succeeded
+CANCELLED | Order is cancelled
+
+### delivery_status
+
+Arguments | Description
+--------- | -----
+CREATED | Delivery is created
+PENDING | Delivery is pending
+PROCESSING | Delivery is being processed
+ASSIGNING | Delivery has been assigned to a provider
+PICKUP_STARTED | Pickup from customer has been sent
+PICKUP_ARRIVED | Pickup from customer is complete
+DROPOFF_STARTED | Dropoff to customer has been sent
+DROPOFF_ARRIVED | Dropoff to customer is complete
+CANCELLED | Delivery is cancelled
+DONE | Delivery task is done
+UNKNOWN | Delivery is unknown
+QUEUED | Delivery is in queue
