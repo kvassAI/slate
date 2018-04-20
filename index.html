@@ -2638,7 +2638,7 @@ product to a particular provider.</p>
 <tr>
 <td>delivery_status</td>
 <td><code class="prettyprint">string</code></td>
-<td>Status of the delivery <em>default is PENDING, additionally there are: ACCEPTED, REJECTED, ON_THE_WAY, ARRIVED, DONE and READY_FOR_DELIVERY</em></td>
+<td>See <a href="#delivery_status"><code class="prettyprint">delivery statuses</code></a> <em>default is PENDING</em></td>
 </tr>
 <tr>
 <td>delivery_time</td>
@@ -2646,9 +2646,14 @@ product to a particular provider.</p>
 <td>Expected arrival time for delivery, <code class="prettyprint">timestamp</code> format</td>
 </tr>
 <tr>
+<td>order_status</td>
+<td><code class="prettyprint">string</code></td>
+<td>See <a href="#order_status"><code class="prettyprint">order statuses</code></a> <em>default is CREATED</em></td>
+</tr>
+<tr>
 <td>items</td>
 <td><code class="prettyprint">array</code></td>
-<td>List of items associated with an order</td>
+<td>List of <a href="#order-items"><code class="prettyprint">items</code></a> associated with an order</td>
 </tr>
 <tr>
 <td>human_id</td>
@@ -2661,11 +2666,6 @@ product to a particular provider.</p>
 <td>Field used to send notes between an user and a provider</td>
 </tr>
 <tr>
-<td>order_status</td>
-<td><code class="prettyprint">string</code></td>
-<td>Status of the Order <em>default is CREATED, additionally there are: PROCESSING, SUCCESS, CANCELLED and FAILED</em></td>
-</tr>
-<tr>
 <td>payments</td>
 <td><code class="prettyprint">array</code></td>
 <td>List of <a href="#payments"><code class="prettyprint">Payment</code></a> objects associated with order</td>
@@ -2673,7 +2673,7 @@ product to a particular provider.</p>
 <tr>
 <td>payment_method</td>
 <td><code class="prettyprint">object</code></td>
-<td><a href="#payment_methods"><code class="prettyprint">Payment Methods</code></a></td>
+<td><a href="#payment-methods"><code class="prettyprint">Payment Methods</code></a></td>
 </tr>
 <tr>
 <td>provider</td>
@@ -2681,77 +2681,41 @@ product to a particular provider.</p>
 <td>Provider assigned to an order</td>
 </tr>
 <tr>
-<td>units</td>
-<td><code class="prettyprint">number</code></td>
-<td>Number of unique products in an order</td>
-</tr>
-<tr>
 <td>resources</td>
 <td><code class="prettyprint">array</code></td>
-<td>An array of <a href="#resources"><code class="prettyprint">resources</code></a> associated with the order.</td>
+<td>An array of <a href="#resources"><code class="prettyprint">resources</code></a> associated with the order. See <a href="#resources-in-the-order"><code class="prettyprint">description</code></a></td>
 </tr>
 <tr>
 <td>top_up_amount</td>
 <td><code class="prettyprint">number</code></td>
-<td>Extra amount of currency needed to fulfill the company&rsquo;s minimum order value</td>
+<td>Extra amount added to <code class="prettyprint">total_amount</code> to fulfill the company&rsquo;s minimum order value</td>
+</tr>
+<tr>
+<td>top_up_vat</td>
+<td><code class="prettyprint">float</code></td>
+<td>The VAT on the `top_up_amount. <em>From 0.0 to 1.0</em></td>
 </tr>
 <tr>
 <td>total_amount</td>
-<td><code class="prettyprint">number</code></td>
-<td>Amount as a number with two decimals. e.g., 12.34. The attribute is automatically calculate when you create an order.</td>
+<td><code class="prettyprint">float</code></td>
+<td>Amount as a float with two decimals. e.g., 12.34. The amount is automatically calculate when you create an order.</td>
 </tr>
 <tr>
 <td>total_quantity</td>
 <td><code class="prettyprint">number</code></td>
 <td>Total number of products in an order</td>
 </tr>
-</tbody></table>
-
-<h3 id="order-items">Order items</h3>
-
-<table><thead>
 <tr>
-<th>Attributes</th>
-<th>Type</th>
-<th>Description</th>
+<td>units</td>
+<td><code class="prettyprint">number</code></td>
+<td>Number of unique products in an order</td>
 </tr>
-</thead><tbody>
 <tr>
-<td><strong>product</strong></td>
+<td>accounting_reference</td>
 <td><code class="prettyprint">string</code></td>
-<td>A <a href="#products"><code class="prettyprint">Product</code></a>  ID</td>
-</tr>
-<tr>
-<td>quantity</td>
-<td><code class="prettyprint">number</code></td>
-<td>The quantity of product</td>
-</tr>
-<tr>
-<td>discount</td>
-<td><code class="prettyprint">number</code></td>
-<td>The discount of the product.price in the order</td>
-</tr>
-<tr>
-<td>sub_products</td>
-<td><code class="prettyprint">array</code></td>
-<td>An array of sub-product ID&rsquo;s associated in order</td>
+<td>A accounting reference ID</td>
 </tr>
 </tbody></table>
-
-<p>The order could have items in it. These items is in an array.
-The items contains information to specify the <code class="prettyprint">total_amount</code> in the order.
-Items specify which products that is associated to the order.</p>
-
-<p>The sub_products in the <code class="prettyprint">array</code> could either have a price or a <code class="prettyprint">price_change_percentage</code>.
-If the <code class="prettyprint">price_change_percentage</code> is not 0,
-this percentage will multiplied with the <code class="prettyprint">product.price</code> in that item, affecting the <code class="prettyprint">total_amount</code>.
-If the <code class="prettyprint">price_change_percentage</code> is 0, the price in the sub-product adds that price to the <code class="prettyprint">total_amount</code>.</p>
-
-<h3 id="resources-in-the-order">Resources in the order</h3>
-
-<p>The order could have <a href="#resources"><code class="prettyprint">resources</code></a> associated to it.
-The <code class="prettyprint">total_amount</code> is affected by every <code class="prettyprint">retail</code> resource in the array, by the
-field <code class="prettyprint">retail_price</code>.</p>
 
 <h2 id="create-an-order">Create an Order</h2>
 
@@ -2888,12 +2852,22 @@ field <code class="prettyprint">retail_price</code>.</p>
 <tr>
 <td>items</td>
 <td><code class="prettyprint">array</code></td>
-<td>List of <a href="#orders"><code class="prettyprint">order</code></a>&lsquo;s items</td>
+<td>List of <a href="#order-items"><code class="prettyprint">order items</code></a></td>
 </tr>
 <tr>
 <td>note</td>
 <td><code class="prettyprint">string</code></td>
 <td>Field used to provide extra information to a provider</td>
+</tr>
+<tr>
+<td>resources</td>
+<td><code class="prettyprint">array</code></td>
+<td>List of <a href="#resources"><code class="prettyprint">resource</code></a> ID&rsquo;s. See <a href="#resources-in-the-order"><code class="prettyprint">description</code></a></td>
+</tr>
+<tr>
+<td>payment_method</td>
+<td><code class="prettyprint">string</code></td>
+<td><a href="#payment-methods"><code class="prettyprint">Payment method</code></a> for this order</td>
 </tr>
 </tbody></table>
 
@@ -2937,6 +2911,7 @@ field <code class="prettyprint">retail_price</code>.</p>
       </span><span class="s2">"street_name"</span><span class="p">:</span><span class="s2">"Iversenstien 7"</span><span class="w">
    </span><span class="p">},</span><span class="w">
    </span><span class="s2">"deliveries"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
    </span><span class="s2">"items"</span><span class="p">:[</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span><span class="w">
@@ -2996,7 +2971,7 @@ field <code class="prettyprint">retail_price</code>.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>orderid</strong></td>
+<td><strong>order id</strong></td>
 <td><code class="prettyprint">string</code></td>
 <td>ID of the queried order</td>
 </tr>
@@ -3131,127 +3106,17 @@ It is also possible to filter the search using pagination.</p>
 <tr>
 <td>order_status</td>
 <td><code class="prettyprint">string</code></td>
-<td>Return orders with a specific status</td>
+<td>Return orders with a specific <a href="#order_status"><code class="prettyprint">status</code></a></td>
 </tr>
 <tr>
 <td>delivery_status</td>
 <td><code class="prettyprint">string</code></td>
-<td>Return orders with a specific delivery status</td>
+<td>Return orders with a specific delivery <a href="#delivery_status"><code class="prettyprint">status</code></a></td>
 </tr>
 <tr>
 <td>sort</td>
 <td><code class="prettyprint">string</code></td>
 <td>Field used for sorting results</td>
-</tr>
-</tbody></table>
-
-<h3 id="date_filter">date_filter</h3>
-
-<table><thead>
-<tr>
-<th>Arguments</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>created</td>
-<td>Shows orders by date of creation</td>
-</tr>
-<tr>
-<td>delivery</td>
-<td>Shows orders by delivery time</td>
-</tr>
-</tbody></table>
-
-<h3 id="order_status">order_status</h3>
-
-<table><thead>
-<tr>
-<th>Arguments</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>created</td>
-<td>Order is created</td>
-</tr>
-<tr>
-<td>processing</td>
-<td>Order is being processed</td>
-</tr>
-<tr>
-<td>declined</td>
-<td>Order is declined for some reason</td>
-</tr>
-<tr>
-<td>failed</td>
-<td>Order has failed for some reason</td>
-</tr>
-<tr>
-<td>success</td>
-<td>Order has succeeded</td>
-</tr>
-<tr>
-<td>cancelled</td>
-<td>Order is cancelled</td>
-</tr>
-</tbody></table>
-
-<h3 id="delivery_status">delivery_status</h3>
-
-<table><thead>
-<tr>
-<th>Arguments</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>CREATED</td>
-<td>Delivery is created</td>
-</tr>
-<tr>
-<td>PENDING</td>
-<td>Delivery is pending</td>
-</tr>
-<tr>
-<td>PROCESSING</td>
-<td>Delivery is being processed</td>
-</tr>
-<tr>
-<td>ASSIGNING</td>
-<td>Delivery has been assigned to a provider</td>
-</tr>
-<tr>
-<td>PICKUP_STARTED</td>
-<td>Pickup from customer has been sent</td>
-</tr>
-<tr>
-<td>PICKUP_ARRIVED</td>
-<td>Pickup from customer is complete</td>
-</tr>
-<tr>
-<td>DROPOFF_STARTED</td>
-<td>Dropoff to customer has been sent</td>
-</tr>
-<tr>
-<td>DROPOFF_ARRIVED</td>
-<td>Dropoff to customer is complete</td>
-</tr>
-<tr>
-<td>CANCELLED</td>
-<td>Delivery is cancelled</td>
-</tr>
-<tr>
-<td>DONE</td>
-<td>Delivery task is done</td>
-</tr>
-<tr>
-<td>UNKNOWN</td>
-<td>Delivery is unknown</td>
-</tr>
-<tr>
-<td>QUEUED</td>
-<td>Delivery is in queue</td>
 </tr>
 </tbody></table>
 
@@ -3401,6 +3266,164 @@ Users and Providers associated with orders.</p>
 <td>sort</td>
 <td><code class="prettyprint">string</code></td>
 <td>Field used for sorting results</td>
+</tr>
+</tbody></table>
+
+<h2 id="order-items">Order Items</h2>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>product</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>A <a href="#products"><code class="prettyprint">Product</code></a>  ID</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td><code class="prettyprint">number</code></td>
+<td>The quantity of product</td>
+</tr>
+<tr>
+<td>discount</td>
+<td><code class="prettyprint">number</code></td>
+<td>The discount of the product.price in the order</td>
+</tr>
+<tr>
+<td>sub_products</td>
+<td><code class="prettyprint">array</code></td>
+<td>An array of sub-product ID&rsquo;s associated in order</td>
+</tr>
+</tbody></table>
+
+<p>The order could have items in it. These items is in an array.
+The items contains information to specify the <code class="prettyprint">total_amount</code> in the order.
+Items specify which products that is associated to the order.</p>
+
+<p>The sub_products in the <code class="prettyprint">array</code> could either have a price or a <code class="prettyprint">price_change_percentage</code>.
+If the <code class="prettyprint">price_change_percentage</code> is not 0,
+this percentage will multiplied with the <code class="prettyprint">product.price</code> in that item, affecting the <code class="prettyprint">total_amount</code>.
+If the <code class="prettyprint">price_change_percentage</code> is 0, the price in the sub-product adds that price to the <code class="prettyprint">total_amount</code>.</p>
+
+<h2 id="resources-in-the-order">Resources in the Order</h2>
+
+<p>The order could have <a href="#resources"><code class="prettyprint">resources</code></a> associated to it.
+The <code class="prettyprint">total_amount</code> is affected by every <code class="prettyprint">retail</code> resource in the array, by the
+field <code class="prettyprint">retail_price</code>.</p>
+
+<h2 id="order-arguments-and-statuses">Order Arguments and Statuses</h2>
+
+<h3 id="date_filter">date_filter</h3>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created</td>
+<td>Shows orders by date of creation</td>
+</tr>
+<tr>
+<td>delivery</td>
+<td>Shows orders by delivery time</td>
+</tr>
+</tbody></table>
+
+<h3 id="order_status">order_status</h3>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CREATED</td>
+<td>Order is created</td>
+</tr>
+<tr>
+<td>PROCESSING</td>
+<td>Order is being processed</td>
+</tr>
+<tr>
+<td>DECLINED</td>
+<td>Order is declined for some reason</td>
+</tr>
+<tr>
+<td>FAILED</td>
+<td>Order has failed for some reason</td>
+</tr>
+<tr>
+<td>SUCCESS</td>
+<td>Order has succeeded</td>
+</tr>
+<tr>
+<td>CANCELLED</td>
+<td>Order is cancelled</td>
+</tr>
+</tbody></table>
+
+<h3 id="delivery_status">delivery_status</h3>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CREATED</td>
+<td>Delivery is created</td>
+</tr>
+<tr>
+<td>PENDING</td>
+<td>Delivery is pending</td>
+</tr>
+<tr>
+<td>PROCESSING</td>
+<td>Delivery is being processed</td>
+</tr>
+<tr>
+<td>ASSIGNING</td>
+<td>Delivery has been assigned to a provider</td>
+</tr>
+<tr>
+<td>PICKUP_STARTED</td>
+<td>Pickup from customer has been sent</td>
+</tr>
+<tr>
+<td>PICKUP_ARRIVED</td>
+<td>Pickup from customer is complete</td>
+</tr>
+<tr>
+<td>DROPOFF_STARTED</td>
+<td>Dropoff to customer has been sent</td>
+</tr>
+<tr>
+<td>DROPOFF_ARRIVED</td>
+<td>Dropoff to customer is complete</td>
+</tr>
+<tr>
+<td>CANCELLED</td>
+<td>Delivery is cancelled</td>
+</tr>
+<tr>
+<td>DONE</td>
+<td>Delivery task is done</td>
+</tr>
+<tr>
+<td>UNKNOWN</td>
+<td>Delivery is unknown</td>
+</tr>
+<tr>
+<td>QUEUED</td>
+<td>Delivery is in queue</td>
 </tr>
 </tbody></table>
 
