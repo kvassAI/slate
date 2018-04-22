@@ -24,7 +24,7 @@ kind | `string` | The type or kind of invoice.
 deleted | `boolean` | Whether the invoice is deleted or not. _Default is `false`_
 accounting_reference | `string` | A reference ID from your Accounting system.
 external_reference | `string` | Field to set your own reference or if you are using a third party.
-If your company is using an Account system supported by ShareActor this field will be automatically setup.
+If your company is using an Account system supported by KVASS this field will be automatically setup.
 
 
 ## Invoice Lines

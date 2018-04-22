@@ -23,18 +23,18 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939 !default;
-$examples-bg: #393939 !default;
-$code-bg: #292929 !default;
+$nav-bg: #ffffff !default;
+$examples-bg: #000 !default;
+$code-bg: #1c0f08 !default;
 $code-annotation-bg: #1c1c1c !default;
-$nav-subitem-bg: #262626 !default;
-$nav-active-bg: #2467af !default;
+$nav-subitem-bg: #f9eae2 !default;
+$nav-active-bg: #f5d7c3 !default;
 $lang-select-border: #000 !default;
-$lang-select-bg: #222 !default;
+$lang-select-bg: #1c0f08 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6 !default;
-$aside-notice-bg: #8fbcd4 !default;
+$lang-select-pressed-bg: #26c6da !default; // color of language tab bg when mouse is pressed
+$main-bg: #fae8da !default;
+$aside-notice-bg: #70a2bd !default;
 $aside-warning-bg: #c97a7e !default;
 $aside-success-bg: #6ac174 !default;
 $search-notice-bg: #c97a7e !default;
@@ -42,9 +42,9 @@ $search-notice-bg: #c97a7e !default;
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333 !default; // main content text color
-$nav-text: #fff !default;
-$nav-active-text: #fff !default;
+$main-text: #000 !default; // main content text color
+$nav-text: #000000 !default;
+$nav-active-text: #000000 !default;
 $lang-select-text: #fff !default; // color of unselected language tab text
 $lang-select-active-text: #fff !default; // color of selected language tab text
 $lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
@@ -68,8 +68,8 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Roboto-Regular", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 14px;
+  font-family: "Avenir";
+  font-size: 15px;
 }
 
 %header-font {
@@ -86,10 +86,10 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 // OTHER
 ////////////////////
-$nav-active-shadow: #000 !default;
-$nav-footer-border-color: #666 !default;
-$nav-embossed-border-top: #000 !default;
-$nav-embossed-border-bottom: #939393 !default;
+$nav-active-shadow: #f5d7c3 !default;
+$nav-footer-border-color: #f5d7c3 !default;
+$nav-embossed-border-top: #f5d7c3 !default;
+$nav-embossed-border-bottom: #f5d7c3 !default;
 $main-embossed-text-shadow: 0px 1px 0px #fff !default;
 $search-box-border-color: #666 !default;
 
@@ -109,6 +109,6 @@ $search-box-border-color: #666 !default;
 // STATUSPAGE
 ////////////////////////////////////////////////////////////////////////////////
 $red:#e74c3c;
-$orange:#e67e22;
+$orange:#e57200;
 $yellow:#f4d247;
 $green:#2ecc71;

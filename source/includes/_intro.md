@@ -28,7 +28,7 @@ Host: api.shareactor.io
 
 > Make sure to replace `<shareactor-api-key>` with your API key.
 
-ShareActor uses API keys to allow access to the API. If you want access to our APIs, please get in touch through our [website](https://www.shareactor.io/contact).
+KVASS uses API keys to allow access to the API. If you want access to our APIs, please get in touch through our [website](https://www.kvass.ai/).
 
 All API requests should include this key in the headers*:
 

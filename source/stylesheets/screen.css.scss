@@ -93,7 +93,11 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 100%;
+    max-width: 80%;
+    padding: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    float: center;
   }
 
   &>.search {
@@ -126,7 +130,7 @@ html, body {
   }
 
   .search-results {
-    margin-top: 0;
+    margin-top: 10px;
     box-sizing: border-box;
     height: 0;
     overflow-y: auto;
@@ -369,11 +373,10 @@ html, body {
     font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    background-image: linear-gradient(to bottom, #f1c8ad, #f1c8ad);
   }
 
   h1:first-child, div:first-child + h1 {
@@ -386,10 +389,9 @@ html, body {
     font-size: 20px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+    background-image: linear-gradient(to bottom, #f1c8ad, $main-bg);
   }
 
   // h2s right after h1s should bump right up
@@ -430,7 +432,7 @@ html, body {
 
     th {
       padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      background-color: #fff;
       vertical-align: bottom;
     }
 
@@ -438,16 +440,12 @@ html, body {
       padding: 10px;
     }
 
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
-    }
-
     tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
+      background-color: #fcf4ee;
     }
 
     tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
+      background-image: #f1c8ad;
     }
   }
 
@@ -638,6 +636,14 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+// Link Colors
+a:link {
+    color: #e57200;
+}
+a:visited {
+    color: #e57200;
 }
 
 // StatuPage
