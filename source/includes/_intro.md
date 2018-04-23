@@ -35,7 +35,7 @@ All API requests should include this key in the headers*:
 `X-Share-Api-Key: <kvass-api-key>`
 
 <aside class="notice">
-*Note:  You must replace <code>shareactor-api-key</code> with your personal API key.
+*Note:  You must replace <code>kvass-api-key</code> with your personal API key.
 </aside>
 
 ## Errors
