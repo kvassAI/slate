@@ -38,7 +38,7 @@ GET https://api.shareactor.io/addresses/lookup
 GET /addresses/lookup HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {

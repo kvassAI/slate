@@ -46,7 +46,7 @@ GET https://api.shareactor.io/metrics/<name>?resolution=day
 GET /metrics/foo HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -104,7 +104,7 @@ GET https://api.shareactor.io/metrics/<name>?metrics=key,key
 GET /metrics/requests.type?metrics=post,get&resolution=day HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -146,7 +146,7 @@ GET https://api.shareactor.io/metrics/<name>/count
 GET /metrics/foo.bar/count HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -180,7 +180,7 @@ GET https://api.shareactor.io/metrics/<name>/freq
 GET /metrics/foo.bar/freq HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -214,7 +214,7 @@ GET https://api.shareactor.io/metrics/<name>/sum
 GET /metrics/foo.bar/sum HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -251,7 +251,7 @@ POST https://api.shareactor.io/metrics
 POST /metrics HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -301,7 +301,7 @@ GET https://api.shareactor.io/metrics
 GET /metrics HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 ```

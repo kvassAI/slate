@@ -46,7 +46,7 @@ POST https://api.shareactor.io/orders
 POST /orders HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -168,7 +168,7 @@ GET https://api.shareactor.io/orders/<orderid>
 GET /orders/<orderid> HTTP/1.1
 Content-Type: application/json
 authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -273,7 +273,7 @@ GET https://api.shareactor.io/orders
 GET /orders HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -382,7 +382,7 @@ GET https://api.shareactor.io/orders/search
 GET /orders/search?query=51Q4LN HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 

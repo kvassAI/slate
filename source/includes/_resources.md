@@ -52,7 +52,7 @@ POST https://api.shareactor.io/resources
 POST /resources HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -114,7 +114,7 @@ POST https://api.shareactor.io/resources/bulk
 POST /resources/bulk HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 [
@@ -183,7 +183,7 @@ GET https://api.shareactor.io/resources/<resource_id>
 GET /resources/596c643ed57ba203be2cf1c9 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 ``` http
@@ -233,7 +233,7 @@ PUT https://api.shareactor.io/resources/<resource_id>
 PUT /resources/596c643ed57ba203be2cf1c9 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -282,7 +282,7 @@ GET https://api.shareactor.io/resources
 GET /resources HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -314,7 +314,7 @@ DELETE https://api.shareactor.io/resources/<resource_id>
 DELETE /resources/596c643ed57ba203be2cf1c9 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 ``` http
@@ -366,7 +366,7 @@ GET https://api.shareactor.io/resources/search
 GET /resources/search?query=updated HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 ``` http

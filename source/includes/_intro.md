@@ -26,13 +26,13 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 ```
 
-> Make sure to replace `<shareactor-api-key>` with your API key.
+> Make sure to replace `<kvass-api-key>` with your API key.
 
 KVASS uses API keys to allow access to the API. If you want access to our APIs, please get in touch through our [website](https://www.kvass.ai/).
 
 All API requests should include this key in the headers*:
 
-`X-Share-Api-Key: <shareactor-api-key>`
+`X-Share-Api-Key: <kvass-api-key>`
 
 <aside class="notice">
 *Note:  You must replace <code>shareactor-api-key</code> with your personal API key.
@@ -42,7 +42,7 @@ All API requests should include this key in the headers*:
 
 <aside class="notice">The errors below might change slightly between API calls</aside>
 
-The ShareActor API uses the following error codes:
+The KVASS API uses the following error codes:
 
 
 Error Code | Reason | Description

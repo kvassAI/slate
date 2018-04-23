@@ -49,7 +49,7 @@ POST https://api.shareactor.io/subscriptions
 POST /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -110,7 +110,7 @@ POST https://api.shareactor.io/subscriptions/<subscription_id>/start
 POST /subscriptions/5964a0ead57ba2036750a3b4/start HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -174,7 +174,7 @@ POST https://api.shareactor.io/subscriptions
 POST /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {"plan": {"name": "Plan Name",
@@ -240,7 +240,7 @@ PUT https://api.shareactor.io/subscriptions/<subscription_id>
 PUT /subscriptions/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -302,7 +302,7 @@ POST https://api.shareactor.io/subscriptions/<subscription_id>/stop
 POST /subscriptions/5964a0ead57ba2036750a3b4/stop HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 ```
@@ -354,7 +354,7 @@ GET https://api.shareactor.io/subscriptions/<subscription_id>
 GET /subscriptions/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 ``` http
@@ -401,7 +401,7 @@ GET https://api.shareactor.io/users/<user_id>/subscriptions
 GET /users/57ee9c72d76d431f85111432/subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -428,7 +428,7 @@ GET https://api.shareactor.io/subscriptions
 GET /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
