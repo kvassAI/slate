@@ -44,7 +44,7 @@ POST https://api.shareactor.io/payments
 POST /payments HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -109,7 +109,7 @@ GET https://api.shareactor.io/payments/<payment-id>
 GET /payments/<payment-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -168,7 +168,7 @@ GET https://api.shareactor.io/payments/
 GET /payments HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -233,7 +233,7 @@ PUT https://api.shareactor.io/payments/<payment_id>
 PUT /payments/<payment_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 

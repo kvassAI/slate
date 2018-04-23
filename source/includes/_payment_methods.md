@@ -118,7 +118,7 @@ POST https://api.shareactor.io/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -180,7 +180,7 @@ POST https://api.shareactor.io/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -242,7 +242,7 @@ POST https://api.shareactor.io/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -324,7 +324,7 @@ GET https://api.shareactor.io/payment_methods/<payment-method-id>
 GET /payment_methods/<payment-method-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -377,7 +377,7 @@ GET https://api.shareactor.io/payment_methods
 GET /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -436,7 +436,7 @@ DELETE https://api.shareactor.io/payment_methods/<payment_method_id>
 DELETE /payment_methods/<payment_method_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 

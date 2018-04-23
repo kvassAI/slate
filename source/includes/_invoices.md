@@ -24,7 +24,7 @@ kind | `string` | The type or kind of invoice.
 deleted | `boolean` | Whether the invoice is deleted or not. _Default is `false`_
 accounting_reference | `string` | A reference ID from your Accounting system.
 external_reference | `string` | Field to set your own reference or if you are using a third party.
-If your company is using an Account system supported by ShareActor this field will be automatically setup.
+If your company is using an Account system supported by KVASS this field will be automatically setup.
 
 
 ## Invoice Lines
@@ -57,7 +57,7 @@ POST https://api.shareactor.io/invoices
 POST /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -126,7 +126,7 @@ POST https://api.shareactor.io/invoices
 POST /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -207,7 +207,7 @@ GET https://api.shareactor.io/invoices/<invoice_id>
 GET /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -252,7 +252,7 @@ GET https://api.shareactor.io/invoices
 GET /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -307,7 +307,7 @@ GET https://api.shareactor.io/invoices/search
 GET /invoices/search/query=12345678903 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -360,7 +360,7 @@ PUT https://api.shareactor.io/invoices/<invoice_id>
 PUT /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -385,7 +385,7 @@ DELETE https://api.shareactor.io/invoices/<invoice_id>
 DELETE /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 

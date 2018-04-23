@@ -32,7 +32,7 @@ POST https://api.shareactor.io/issuers
 POST /issuers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -104,7 +104,7 @@ GET https://api.shareactor.io/issuers/<issuer-id>
 GET /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -165,7 +165,7 @@ GET https://api.shareactor.io/issuers
 GET /issuers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -244,7 +244,7 @@ PUT https://api.shareactor.io/issuers/<issuer-id>
 PUT /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -305,7 +305,7 @@ GET https://api.shareactor.io/issuers/search
 GET /issuers/search?query=Big HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -386,7 +386,7 @@ DELETE https://api.shareactor.io/issuers/<issuer-id>
 DELETE /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 

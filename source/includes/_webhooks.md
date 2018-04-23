@@ -26,7 +26,7 @@ POST https://api.shareactor.io/webhooks
 POST /webhooks HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -69,7 +69,7 @@ PUT https://api.shareactor.io/webhooks/<webhook_id>
 PUT /webhooks/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -110,7 +110,7 @@ GET https://api.shareactor.io/webhooks/<webhook_id>
 GET /webhooks/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 ``` http
@@ -143,7 +143,7 @@ GET https://api.shareactor.io/webhooks
 GET /webhooks HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 ``` http
@@ -186,7 +186,7 @@ DELETE https://api.shareactor.io/webhooks/<webhook_id>
 DELETE /webhooks/<webhook_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 ``` http

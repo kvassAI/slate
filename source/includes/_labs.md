@@ -22,7 +22,7 @@ GET https://api.shareactor.io/labs/health
 GET /labs/health HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 ```
 
@@ -50,7 +50,7 @@ POST https://api.shareactor.io/labs/recommendations/train
 POST /labs/recommendations/train HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -88,7 +88,7 @@ POST https://api.shareactor.io/labs/recommendations/recommend
 POST /labs/recommendations/recommend HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
@@ -148,7 +148,7 @@ POST https://api.shareactor.io/labs/recommendations/similar
 POST /labs/recommendations/similar HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key>
 Host: api.shareactor.io
 
 {
