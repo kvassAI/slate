@@ -262,28 +262,28 @@
 <h2 id="authentication">Authentication</h2>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">&lt;shareactor-api-key&gt;</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">&lt;kvass-api-key&gt;</code> with your API key.</p>
 </blockquote>
 
-<p>ShareActor uses API keys to allow access to the API. If you want access to our APIs, please get in touch through our <a href="https://www.shareactor.io/contact">website</a>.</p>
+<p>KVASS uses API keys to allow access to the API. If you want access to our APIs, please get in touch through our <a href="https://www.kvass.ai/">website</a>.</p>
 
 <p>All API requests should include this key in the headers*:</p>
 
-<p><code class="prettyprint">X-Share-Api-Key: &lt;shareactor-api-key&gt;</code></p>
+<p><code class="prettyprint">X-Share-Api-Key: &lt;kvass-api-key&gt;</code></p>
 
 <aside class="notice">
-*Note:  You must replace <code>shareactor-api-key</code> with your personal API key.
+*Note:  You must replace <code>kvass-api-key</code> with your personal API key.
 </aside>
 
 <h2 id="errors">Errors</h2>
 
 <aside class="notice">The errors below might change slightly between API calls</aside>
 
-<p>The ShareActor API uses the following error codes:</p>
+<p>The KVASS API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -336,7 +336,7 @@
 </blockquote>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment-method-id&gt;/?expand=user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <blockquote>
@@ -407,7 +407,7 @@ in the expand array, separated with commas.</p>
 </blockquote>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/orders?size=10&amp;page=1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <blockquote>
@@ -415,7 +415,7 @@ in the expand array, separated with commas.</p>
 </blockquote>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/orders?size=100</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 <span class="na">X-Pagination-Total</span><span class="p">:</span> <span class="s">212</span>
 </code></pre>
@@ -446,7 +446,7 @@ but all the models have search by <code class="prettyprint">ID</code> in common.
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/model</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -470,7 +470,7 @@ but all the models have search by <code class="prettyprint">ID</code> in common.
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/model/search?query=a0b1c2d3e4d5c6b7a8b94242</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -788,7 +788,7 @@ and the delivery system (pickup and drop off).</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/addresses/lookup</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -972,7 +972,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/events</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -1026,7 +1026,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/events/5964a0ead57ba2036750a3b4</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -1054,7 +1054,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/events/search/query=order</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -1131,7 +1131,7 @@ and keeping a history of transactions on your data.</p>
 
           <h1 id="invoices">Invoices</h1>
 
-<p>Invoices allow you to store invoice information for later payment.</p>
+<p>Invoices allow you to store invoice information for later payment or accounting information sent by a provider of a product or service to the <a href="#users"><code class="prettyprint">User</code></a>]. </p>
 
 <h2 id="invoice-object">Invoice object</h2>
 
@@ -1197,6 +1197,92 @@ and keeping a history of transactions on your data.</p>
 <td><code class="prettyprint">string</code></td>
 <td>The status of the Invoice. Default is CREATED. Additionally there are: &ldquo;SCHEDULED&rdquo;, &ldquo;DONE&rdquo;, &ldquo;FAILED&rdquo; and &ldquo;CANCELLED&rdquo;</td>
 </tr>
+<tr>
+<td>payments</td>
+<td><code class="prettyprint">array</code></td>
+<td>List of <a href="#payments"><code class="prettyprint">Payment</code></a> objects associated with invoice.</td>
+</tr>
+<tr>
+<td>invoice_lines</td>
+<td><code class="prettyprint">array</code></td>
+<td>An array of <a href="#invoice-lines"><code class="prettyprint">invoice lines</code></a></td>
+</tr>
+<tr>
+<td>fee</td>
+<td><code class="prettyprint">float</code></td>
+<td>Additional fee that will be added to the <code class="prettyprint">amount</code></td>
+</tr>
+<tr>
+<td>kind</td>
+<td><code class="prettyprint">string</code></td>
+<td>The type or kind of invoice.</td>
+</tr>
+<tr>
+<td>deleted</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Whether the invoice is deleted or not. <em>Default is <code class="prettyprint">false</code></em></td>
+</tr>
+<tr>
+<td>accounting_reference</td>
+<td><code class="prettyprint">string</code></td>
+<td>A reference ID from your Accounting system.</td>
+</tr>
+<tr>
+<td>external_reference</td>
+<td><code class="prettyprint">string</code></td>
+<td>Field to set your own reference or if you are using a third party.</td>
+</tr>
+</tbody></table>
+
+<p>If your company is using an Account system supported by KVASS this field will be automatically setup.</p>
+
+<h2 id="invoice-lines">Invoice Lines</h2>
+
+<p>Invoice lines are additional information it is possible to append to an invoice. 
+Each line has the format presented bellow.</p>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><em>description</em></td>
+<td><code class="prettyprint">string</code></td>
+<td>Description of unit. <em>Required field</em></td>
+</tr>
+<tr>
+<td><em>quantity</em></td>
+<td><code class="prettyprint">number</code></td>
+<td>Quantity of unit <code class="prettyprint">product</code> or <code class="prettyprint">resource</code>. <em>Default is 1</em></td>
+</tr>
+<tr>
+<td><em>amount</em></td>
+<td><code class="prettyprint">float</code></td>
+<td>Unit price. <em>Required field</em></td>
+</tr>
+<tr>
+<td><em>currency</em></td>
+<td><code class="prettyprint">string</code></td>
+<td>Currency of the unit. ISO 4217 currency code. For example &ldquo;EUR&rdquo; <em>Required field</em></td>
+</tr>
+<tr>
+<td>product</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#products"><code class="prettyprint">Product</code></a> in unit</td>
+</tr>
+<tr>
+<td>resource</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#resources"><code class="prettyprint">Resource</code></a> in unit</td>
+</tr>
+<tr>
+<td>vat</td>
+<td><code class="prettyprint">float</code></td>
+<td>VAT of unit. <em>From 0.0 to 1.0. Default is 0</em></td>
+</tr>
 </tbody></table>
 
 <h2 id="create-an-invoice">Create an Invoice</h2>
@@ -1212,7 +1298,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/invoices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -1223,7 +1309,8 @@ and keeping a history of transactions on your data.</p>
     </span><span class="s2">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-10T18:25:43.511Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Important Firm AS"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"issuer_alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"issuer alias for Issuer"</span><span class="w">
+    </span><span class="s2">"issuer_alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"issuer alias for Issuer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -1239,7 +1326,9 @@ and keeping a history of transactions on your data.</p>
    </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
    </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
    </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="p">},</span><span class="w">
-   </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="w">
+   </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"invoice_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+   </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Creates a new Invoice.</p>
@@ -1291,7 +1380,99 @@ and keeping a history of transactions on your data.</p>
 <td><code class="prettyprint">string</code></td>
 <td>Message included on the invoice, e.g. KID number to be included with payment</td>
 </tr>
+<tr>
+<td>invoice_lines</td>
+<td><code class="prettyprint">array</code></td>
+<td>An array of <a href="#invoice-lines"><code class="prettyprint">invoice lines</code></a></td>
+</tr>
+<tr>
+<td>fee</td>
+<td><code class="prettyprint">float</code></td>
+<td>Fee added to the amount</td>
+</tr>
+<tr>
+<td>kind</td>
+<td><code class="prettyprint">string</code></td>
+<td>The type or kind of invoice created</td>
+</tr>
 </tbody></table>
+
+<h2 id="create-an-invoice-with-invoice-line">Create an Invoice with Invoice Line</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/invoices
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/invoices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some transaction or KID number"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"due_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-10T18:25:43.511Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"issuer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Important Firm AS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"issuer_alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"issuer alias for Issuer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"invoice_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"596c643ed57ba203be2cf1c9"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">200.00</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A resource"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vat"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.00</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard Shipping"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"issuer"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111433"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"due_date"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1476551410009</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Some message to the Issuer"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"account_number"</span><span class="p">:</span><span class="s2">"12345678903"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"user"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"invoice_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">200.00</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard Shipping"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A resource"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vat"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.00</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard Shipping"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Creates a new Invoice including invoice lines.
+The following example show you how to create different invoice lines in an Invoice.
+The first invoice line contains a <a href="#Resources"><code class="prettyprint">Resource</code></a> but it works the same way with a <a href="#Products"><code class="prettyprint">Product</code></a>.</p>
 
 <h2 id="retrieve-an-invoice">Retrieve an Invoice</h2>
 
@@ -1306,7 +1487,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/invoices/&lt;invoice_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -1322,7 +1503,8 @@ and keeping a history of transactions on your data.</p>
    </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
    </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
    </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="p">},</span><span class="w">
-   </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="w">
+   </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"invoice_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Retrieves an Invoice with a given ID.</p>
@@ -1354,7 +1536,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/invoices</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -1371,7 +1553,8 @@ and keeping a history of transactions on your data.</p>
        </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
        </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="p">},</span><span class="w">
-       </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="w">
+       </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"invoice_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -1436,7 +1619,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/invoices/search/query=12345678903</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -1453,7 +1636,8 @@ and keeping a history of transactions on your data.</p>
        </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">123.45</span><span class="p">,</span><span class="w">
        </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111434"</span><span class="p">},</span><span class="w">
-       </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="w">
+       </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;image-id&gt;/&lt;image-name&gt;.jpg"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"invoice_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -1521,7 +1705,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/invoices/&lt;invoice_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <table><thead>
@@ -1553,7 +1737,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/invoices/&lt;invoice_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <table><thead>
@@ -1640,7 +1824,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/issuers</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -1744,7 +1928,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/issuers/&lt;issuer-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -1809,7 +1993,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/issuers</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -1939,7 +2123,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/issuers/&lt;issuer-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -2004,7 +2188,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/issuers/search?query=Big</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -2125,7 +2309,7 @@ and keeping a history of transactions on your data.</p>
 <pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/issuers/&lt;issuer-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -2243,15 +2427,15 @@ It returns the metrics for both <code class="prettyprint">foo.zoo</code> and <co
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats/&lt;name&gt;?resolution=day
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/metrics/&lt;name&gt;?resolution=day
 </code></pre>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats/foo</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/metrics/foo</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -2308,7 +2492,7 @@ query parameter <code class="prettyprint">metrics</code>.</p>
 
 <p>Getting stats on API usage (requests) is a good example on this. 
 The main API request types are <code class="prettyprint">POST</code>, <code class="prettyprint">GET</code>, <code class="prettyprint">PUT</code>, <code class="prettyprint">DELETE</code> and <code class="prettyprint">OPTIONS</code>.
-If you use <code class="prettyprint">GET /stats/request</code> in <a href="#get-metrics-by-name"><code class="prettyprint">get metrics by name</code></a>, you will get all
+If you use <code class="prettyprint">GET /metrics/request</code> in <a href="#get-metrics-by-name"><code class="prettyprint">get metrics by name</code></a>, you will get all
 requests, regardless of type. </p>
 
 <p>If you want to filter by <code class="prettyprint">POST</code> and <code class="prettyprint">GET</code> request you could use this method.</p>
@@ -2316,15 +2500,15 @@ requests, regardless of type. </p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats/&lt;name&gt;?metrics=key,key
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/metrics/&lt;name&gt;?metrics=key,key
 </code></pre>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats/requests.type?metrics=post,get&amp;resolution=day</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/metrics/requests.type?metrics=post,get&amp;resolution=day</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -2351,15 +2535,15 @@ requests, regardless of type. </p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats/&lt;name&gt;/count
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/metrics/&lt;name&gt;/count
 </code></pre>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats/foo.bar/count</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/metrics/foo.bar/count</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -2393,15 +2577,15 @@ requests, regardless of type. </p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats/&lt;name&gt;/freq
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/metrics/&lt;name&gt;/freq
 </code></pre>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats/foo.bar/freq</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/metrics/foo.bar/freq</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -2435,15 +2619,15 @@ requests, regardless of type. </p>
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats/&lt;name&gt;/sum
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/metrics/&lt;name&gt;/sum
 </code></pre>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats/foo.bar/sum</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/metrics/foo.bar/sum</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -2474,21 +2658,21 @@ requests, regardless of type. </p>
 
 <p>This endpoint lets you create custom metrics and store them in the database. </p>
 
-<p>You can receive these custom metrics with either of the <code class="prettyprint">GET /stats</code> methods listed over.
+<p>You can receive these custom metrics with either of the <code class="prettyprint">GET /metrics</code> methods listed over.
 Metrics created over this endpoint will have the flag <code class="prettyprint">external=true</code>.</p>
 
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>POST https://api.shareactor.io/stats
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/metrics
 </code></pre>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/stats</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/metrics</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -2541,15 +2725,15 @@ Metrics created over this endpoint will have the flag <code class="prettyprint">
 <blockquote>
 <p>Definition</p>
 </blockquote>
-<pre class="highlight plaintext"><code>GET https://api.shareactor.io/stats
+<pre class="highlight plaintext"><code>GET https://api.shareactor.io/metrics
 </code></pre>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/stats</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/metrics</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -2561,8 +2745,8 @@ Metrics created over this endpoint will have the flag <code class="prettyprint">
     </span><span class="s2">"foo.woo"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"requests"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"requests.type.GET"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"requests.route./stats"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"requests.path./stats"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"requests.route./metrics"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"requests.path./metrics"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"..."</span><span class="w">
 </span><span class="p">]</span><span class="w">
 
@@ -2730,7 +2914,7 @@ product to a particular provider.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -2884,7 +3068,7 @@ product to a particular provider.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/orders/&lt;orderid&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -2993,7 +3177,7 @@ It is also possible to filter the search using pagination.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/orders</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -3133,7 +3317,7 @@ It is also possible to filter the search using pagination.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/orders/search?query=51Q4LN</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -3547,7 +3731,7 @@ when creating a new plan.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/plans</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -3641,7 +3825,7 @@ when creating a new plan.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/plans/&lt;plan_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -3700,7 +3884,7 @@ when creating a new plan.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/plans</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -3798,7 +3982,7 @@ Not all fields are possible to update. See fields in Argument below.</p>
 <pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/plans</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <table><thead>
@@ -3863,7 +4047,7 @@ Not all fields are possible to update. See fields in Argument below.</p>
 <pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/plans/&lt;plans_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <p>Deletes a plan with a given ID.</p>
@@ -4049,7 +4233,7 @@ however there are some fields which will always be present.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -4123,7 +4307,7 @@ however there are some fields which will always be present.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -4192,7 +4376,7 @@ however there are some fields which will always be present.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -4278,7 +4462,7 @@ however there are some fields which will always be present.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment-method-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -4334,7 +4518,7 @@ however there are some fields which will always be present.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/payment_methods</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -4406,7 +4590,7 @@ however there are some fields which will always be present.</p>
 <pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/payment_methods/&lt;payment_method_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <table><thead>
@@ -4526,7 +4710,7 @@ All payments should have the following attributes:</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -4608,7 +4792,7 @@ All payments should have the following attributes:</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/payments/&lt;payment-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -4672,7 +4856,7 @@ All payments should have the following attributes:</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/payments</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -4758,7 +4942,7 @@ All payments should have the following attributes:</p>
 <pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/payments/&lt;payment_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight plaintext"><code>HTTP/1.1 200 OK
 Content-Type: application/json
@@ -4820,7 +5004,7 @@ Content-Type: application/json
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/sms/verify</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -4862,7 +5046,7 @@ Content-Type: application/json
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/sms/verify</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -5000,7 +5184,7 @@ The <code class="prettyprint">price_change_percentage</code> could be used in th
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/products</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -5165,7 +5349,7 @@ The <code class="prettyprint">price_change_percentage</code> could be used in th
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/products/&lt;product_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -5224,7 +5408,7 @@ The <code class="prettyprint">price_change_percentage</code> could be used in th
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/products</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -5332,7 +5516,7 @@ The <code class="prettyprint">price_change_percentage</code> could be used in th
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/products/search?query=description</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -5453,7 +5637,7 @@ These are found in the field <code class="prettyprint">_sub_products</code>.</p>
 <pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/products/&lt;product_id&gt;/sub_products</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -5540,7 +5724,7 @@ services to other users.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/providers</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -5686,7 +5870,7 @@ services to other users.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/providers/&lt;provider_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -5798,7 +5982,7 @@ services to other users.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/providers</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -6049,7 +6233,7 @@ an image and product associated with it.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/resources</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -6135,7 +6319,7 @@ for a user, but in an <code class="prettyprint">array</code>.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/resources/bulk</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">[</span><span class="w">
@@ -6199,7 +6383,7 @@ for a user, but in an <code class="prettyprint">array</code>.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/resources/596c643ed57ba203be2cf1c9</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -6275,7 +6459,7 @@ for a user, but in an <code class="prettyprint">array</code>.</p>
 <pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/resources/596c643ed57ba203be2cf1c9</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -6319,7 +6503,7 @@ It is possible to add filters and sorting to the query.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/resources</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <table><thead>
@@ -6381,7 +6565,7 @@ It is possible to add filters and sorting to the query.</p>
 <pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/resources/596c643ed57ba203be2cf1c9</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -6462,7 +6646,7 @@ an <code class="prettyprint">array</code> that matches the query. Filter the que
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/resources/search?query=updated</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -6658,7 +6842,7 @@ This will not start the subscription, only create it.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/subscriptions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -6739,7 +6923,7 @@ parameters by: infinite &gt; ending_date &gt; interval_total.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/subscriptions/5964a0ead57ba2036750a3b4/start</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -6828,7 +7012,7 @@ company specifics.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/subscriptions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="s2">"plan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan Name"</span><span class="p">,</span><span class="w">
@@ -6928,7 +7112,7 @@ the subscription, the user could only update one of the fields infinite, ending_
 <pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/subscriptions/5964a0ead57ba2036750a3b4</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -7013,7 +7197,7 @@ is <code class="prettyprint">true</code>.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/subscriptions/5964a0ead57ba2036750a3b4/stop</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -7072,7 +7256,7 @@ is <code class="prettyprint">true</code>.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/subscriptions/5964a0ead57ba2036750a3b4</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -7117,7 +7301,7 @@ It is possible to add pagination to this request.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/users/57ee9c72d76d431f85111432/subscriptions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <table><thead>
@@ -7174,7 +7358,7 @@ It is possible to add pagination to this request.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/subscriptions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre>
 <table><thead>
@@ -7286,7 +7470,7 @@ It is possible to add pagination to this request.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -7399,7 +7583,7 @@ log in a user with their JWT token.</p>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v2/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -7473,7 +7657,7 @@ log in a user with their JWT token.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/users/&lt;user-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -7538,7 +7722,7 @@ log in a user with their JWT token.</p>
 <pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/users/&lt;user-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -7640,7 +7824,7 @@ log in a user with their JWT token.</p>
 <pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/users/&lt;user-id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -7701,7 +7885,7 @@ log in a user with their JWT token.</p>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -7895,7 +8079,7 @@ log in a user with their JWT token.</p>
 GET /users/&lt;user-id&gt;/orders HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer &lt;jwt&gt;
-X-Share-Api-Key: &lt;shareactor-api-key&gt;
+X-Share-Api-Key: &lt;kvass-api-key&gt;
 Host: api.shareactor.io
 </code></p>
 </blockquote>
@@ -8102,7 +8286,7 @@ Host: api.shareactor.io
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/webhooks</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -8154,7 +8338,7 @@ Host: api.shareactor.io
 <pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/webhooks/5964a0ead57ba2036750a3b4</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -8205,7 +8389,7 @@ Host: api.shareactor.io
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/webhooks/5964a0ead57ba2036750a3b4</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -8236,7 +8420,7 @@ Host: api.shareactor.io
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/webhooks</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -8293,7 +8477,7 @@ Host: api.shareactor.io
 <pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/webhooks/&lt;webhook_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -8344,7 +8528,7 @@ Host: api.shareactor.io
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/labs/health</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -8366,7 +8550,7 @@ Host: api.shareactor.io
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/labs/recommendations/train</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -8407,7 +8591,7 @@ Host: api.shareactor.io
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/labs/recommendations/recommend</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
@@ -8476,7 +8660,7 @@ by the field <code class="prettyprint">rank</code>. The higher the rank, the hig
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/labs/recommendations/similar</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
 
 <span class="p">{</span><span class="w">
