@@ -22,7 +22,7 @@ All the example API calls are using the PROD endpoint.
 ``` http
 GET / HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key> 
 Host: api.shareactor.io
 ```
 
@@ -62,7 +62,7 @@ Error Code | Reason | Description
 ```http
 GET /payment_methods/<payment-method-id>/?expand=user HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key> 
 Host: api.shareactor.io
 ```
 
@@ -113,7 +113,7 @@ user     | User associated with object
 ``` http
 GET /orders?size=10&page=1 HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key> 
 Host: api.shareactor.io
 ```
 
@@ -122,7 +122,7 @@ Host: api.shareactor.io
 ``` http
 GET /orders?size=100 HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key> 
 Host: api.shareactor.io
 X-Pagination-Total: 212
 ```
@@ -156,7 +156,7 @@ GET https://api.shareactor.io/model
 GET /model HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key> 
 Host: api.shareactor.io
 ```
 
@@ -186,7 +186,7 @@ GET https://api.shareactor.io/model/search
 GET /model/search?query=a0b1c2d3e4d5c6b7a8b94242 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
+X-Share-Api-Key: <kvass-api-key> 
 Host: api.shareactor.io
 ```
 
