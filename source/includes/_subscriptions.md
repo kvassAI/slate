@@ -19,7 +19,7 @@ user | `object`  | [`User`](#Users) ID associated with the subscription.
 status | `string` | Status for the subscription. _default is `CREATED`, also available are `ACTIVE`, `FUTURE`, `NON_RENEWING`and `CANCELLED`_
 plan | `object` | ID of the [`Plan`](#Plans) associated with the subscription.
 payment_method | `object` | ID of already created payment method.
-payments | `array` | Array of [`Payment`](#payments) objects associated with the subscription.
+payments | `array` | Array of [`Payment`](#payments) associated with the subscription.
 starting_date | `string`| Start date, `timestamp` format. _default is current date if missing_
 ending_date | `string`| End date of subscription, `timestamp` format.
 interval_total | `number` | Number of intervals set in the [`Plan`](#Plans) the subscription will run.
@@ -443,23 +443,23 @@ status | `string` | The subscription status _default is `ACTIVE`_
 
 ## Recurring Order Subscriptions Object
 
-Create this type of plan when you need to schedule some [`Orders`](#Orders) daily, weekly, or monthly.
-To plan a schedule follow the next instruction on [`Recurring Order Plan](#recurring-order-plan).
+This type of subscription is used when you need to schedule some orders on a daily, weekly, or monthly basis.
+See the [`Recurring Order Plan](#recurring-order-plan) on how to create a plan for this subscription type.
 
 Attribute | Type | Description
 --------- | ---- | -------
 _id | `object` | The subscription ID.
 method | `string` | Name of subscription method. `recurring_order`
 name | `string` | The name of the subscription type. _default is `RECURRING_ORDER`_
-note | `string` | A short description of the description.
-user | `object`  | [`User`](#Users) ID associated with the subscription.
-status | `string` | Status for the subscription. _default is `CREATED`, also available are `ACTIVE`, `FUTURE`, `NON_RENEWING`and `CANCELLED`_
-plan | `object` | ID of the [`Recurring Order Plan`](#recurring-order-plan) associated with the subscription.
-payment_method | `object` | ID of already created payment method.
+note | `string` | A short note regarding the subscription.
+user | `object`  | [`User`](#Users) associated with the subscription.
+status | `string` | Status for the subscription. This will change according to the subscription's state. _default is `CREATED`, also available are `ACTIVE`, `FUTURE`, `NON_RENEWING`and `CANCELLED`_
+plan | `object` | The [`Recurring Order Plan`](#recurring-order-plan) associated with the subscription.
+payment_method | `object` | The [`Payment Method`](#payment-method) associated with the subscription.
 payments | `array` | Array of [`Payment`](#payments) objects associated with the subscription.
-starting_date | `string`| Start date, `timestamp` format. _default is current date if missing_ 
-ending_date | `string`| End date of subscription, `timestamp` format .
-interval_total | `number` | Number of intervals set in the [`Plan`](#Plans) the subscription will run.
+starting_date | `string`| Start date, `timestamp` format.
+ending_date | `string`| End date of subscription, `timestamp` format.
+interval_total | `number` | The total number of [`Plan`](#Plans) intervals the subscription will run.
 infinite | `boolean` | If `true`, the subscription will run until the user stops it.
 current_billing_date_period_start | `string`| The date on which the customer was billed last.
 current_billing_date_period_end | `string`| The date on which the customer will be billed next. This will also be the date on which the next current_billing_date_period_start of the subscription starts.
@@ -467,7 +467,7 @@ prorate_amount | `number` | The amount prorated. Currency set in [`Plan`](#Plans
 prorate_date | `number`| The date of the last time an amount was prorated
 last_billing_amount | `number`| The amount that was subtracted at the last payment. `plan.total_amount`+`prorate_amount`
 total_fail_attempts | `number` | The number of failed payment attempts in the subscription. See [`Plan`](#Plans)`.max_fail_attempts
-initial_order | `object` | [`Order`](#Orders) ID associated with the subscription and used to create a [`Recurring Order Plan`](#recurring-order-plan)
+initial_order | `object` | The initial [`Order`](#Orders) in the subscription. It is used to create a [`Recurring Order Plan`](#recurring-order-plan)
 orders | `object` | List of [`Orders`](#Orders) 
 
 ## Create a New Subscription
@@ -525,11 +525,8 @@ note | `string` | A short description.
 start_now | `boolean`| If `true`, the subscription will start now.
 
 ## Start Subscription
-To start a subscription, the user needs to first create a subscription.
-The user could create and start the subscription in one API call. Then you
-will have to add `{"start_now": true}` when creating a new subscription.
-When starting the subscription, we need an associated payment_method in the request data.
-
+The user could create and start the subscription in one API call. Add `{"start_now": true}` to the JSON data when creating a new subscription. 
+A payment method needs to be set before starting a subscription.
 A subscription could either have a set ending_date, where infinite = `false`,
 or not have an ending_date, where infinite = `true`.
 The ending date could be set by the user, either as an ending_date

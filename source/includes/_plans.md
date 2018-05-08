@@ -15,7 +15,7 @@ see `Create Subscription with a pre-set company specific Plan` in the [`Subscrip
 
 Attribute | Type | Description
 --------- | ---- | -------
-method | `string` |  The plan type: `basic`.
+method | `string` |  The plan type. _Default is `basic`_.
 name | `string` | The name of the plan.
 note | `string` | A short description of the plan.
 interval_unit | `string` | The frequency that the subscription acts upon. <br> Choices: `DAY`, `WEEK`, `MONTH`, <br> `MONTH_END`, `ANNUAL`
@@ -40,29 +40,6 @@ The `quantity` describes the number of that product. The `discount` sets the per
 discount of that product, from 0.0 to 1.0, where 0.0 is no discount and 1.0 is a 100% discount.
 The `total_amount` of the plan will be calculated from the total sum of the products.
 
-### Recurring Day
-A Recurring Order Plan must contain recurring days as a list. 
-These recurring days describe when new order should be schedule.
-The recurring days consist of `day`, `hour` and `minute`.
-The `day` depend of the [`Plan`](#plans)'s `interval unit`.
-If the `interva_unit` is WEEK, the value of `day` can be 0 to 6.
-
-Number | Day
------ | ----
-0 | Monday
-1 | Tuesday
-2 | Wednesday
-3 | Thursday
-4 | Friday
-5 | Saturday
-6 | Sunday
-
-Else if it MONTH that means the day of the month. e.q: if you want the 2sd of month you just need to set
-`day` to `2` and the `interval_unit` to `MONTH`.
-In case of you want the last day in the month, 31th or 30th or 28th (because of February), don't be worry,
-take it easy and set `day` to 31 Kvass is taking care of it for you.
-
-Plus, you can set the time through those following variable: `hour` and `minute`.
 
 ## Create a new Plan
 
@@ -335,27 +312,49 @@ Host: api.shareactor.io
 
 Deletes a plan with a given ID.
 
-## Recurring Order Plan Object
-The `RecurringOrderPlan` is the only one Plan can be create by a non `admin` user.
+## The Recurring Order Plan
+Unlike the basic plan, the `Recurring Order Plan` could be created by a non-admin user.
 
-This type of Plan can be periodically billing on each order instead weekly or monthly, it means the customer
-will pay on each order is created or delivered.
-In addition to the attributes in the `basic` plan, the `recurring order` plan has the following attributes.
+The `Recurring Order Plan` could either be paid per order or periodically every week or month.
+The `Recurring Order Plan` has these attributes, in addition to the attributes inherited by the basic plan.
 
 Attribute | Type | Description
 --------- | ---- | -------
 **user** | `object` | [`User`](#Users) associated with the plan
-**interval_unit** | `string` | The frequency that the subscription acts upon. <br>Choices: `DAY`, `WEEK`, `MONTH`<br>
-**recurring_days** | `array` | List of [`RecurringDay`](#recurring-day) associated with the plan. Defines schedule order frequency.
-**billing_interval** | `string` | Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`, `PER_ORDER`
-method | `string` |  The plan type: `recurring_order`.
+**interval_unit** | `string` | The frequency of the subscription. <br>Choices: `DAY`, `WEEK`, `MONTH`<br>
+**recurring_days** | `array` | An array of [`RecurringDay`](#recurring-day). Defines schedule.
+**billing_interval** | `string` | Defines the billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`, `PER_ORDER`
+method | `string` |  The plan type: `recurring_order`. 
 name | `string` | The name of the plan. _default is `RECURRING_ORDER_PLAN`_
+
+
+### Recurring Day
+A Recurring Order Plan must contain recurring days as a list.
+The recurring_days contains the parameters that decide when the orders are set to be scheduled.
+The parameters to select the schedule are day, hour and minute.
+This is relative to the [`Plan`](#plans)'s interval unit.
+For example, if the `interval_unit` is set to WEEK, the value of `day` could be between 0 and 6.
+
+Number | Day
+----- | ----
+0 | Monday
+1 | Tuesday
+2 | Wednesday
+3 | Thursday
+4 | Friday
+5 | Saturday
+6 | Sunday
+
+If the `interval_unit` in the [`Plan`](#plans) is `MONTH`, the `day` is the day of the month. For example, if you want to set a monthly schedule for the 2nd day of every month, set `day` to `2` and the `interval_unit` in the [`Plan`](#plans) to `MONTH`.
+
+If you want the schedule to be the last day of every month, set the `day` parameter to `31`. If the `day` parameter is greater than the number of days for that month, the order is scheduled for the last day of that month.
+
+You could also choose the time of day by using the parameters `hour` and `minute`. If not set, the time of day will be set by the initial order.
+
 
 ### Create Recurring Order Plan
 
-This creates a new recurring order plan. The plan is [`user`](#users) specific.
-How can you see, we are returning the recurring days like `{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}}`.
-Both of `hour` and `minute` attributes are include in the date of `starting_day` field.
+This us how to create a new recurring order plan. The plan is [`user`](#users) specific.
 
 
 > Definition
@@ -436,8 +435,8 @@ Content-Type: application/json
 
 ### Update Recurring Order Plan
 
-Update a Plan. This is only possible if `static_plan` is `false`.
-Not all fields are possible to update. See fields in Argument below.
+It is only possible to update a plan if `static_plan` is `false`.
+Not all fields are possible to update.
 
 
 > Definition
@@ -521,12 +520,12 @@ Content-Type: application/json
 Argument | Type | Description
 -------- | ---- | -----
 **plan_id** | `string` | ID of the queried plan.
-active |`boolean`| Indicates if the plan is currently active. _default is `true`_
+active |`boolean`| If the plan is active. _default is `true`_
 name |`string`| Name of the plan.
 note |`string`| Note regarding the plan.
-initial_fail_amount_action |`string`| Indicates what happens when payment for the plan fails.  Choices: `CONTINUE`, `CANCEL`
+initial_fail_amount_action |`string`| Indicates what happens when a  in the subscription fails. Choices: `CONTINUE`, `CANCEL`
 max_fail_attempts |`number`| How many times a payment can fail in the subscription, but still continue.
-discount |`number`| Between 0.0 an 1.0, where 1.0 is 100% discount on the total_price.
+discount |`number`| Between 0.0 an 1.0, where 1.0 is 100% discount on the `total_amount`.
 total_amount |`number`| The total cost of the subscription payment. If set, the total_amount is not based on the sum of products.
 recurring_days | `array` | When updating the recurring days you can return both of following format:
  - `{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}}` - it means this recurring day already exists
