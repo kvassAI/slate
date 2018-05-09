@@ -1,5 +1,11 @@
 # Products
 
+If your company is selling some or lot of products our API would be happy to help you to create yours show them
+on your app.
+The Products are using in a [`Product`](#products) as a **sub-product**, in an [`Order`](#orders) and in a [`Resource`](#ressources).
+
+
+
 ## Product Object
 
 Attribute | Type | Description
@@ -27,6 +33,9 @@ The `price_change_percentage` could be used in the order.items when creating an 
 
 
 ## Create a New Product
+
+If you want your favorite API to create your fancy Products you need to follow the notice below.
+Products required at least three important things to be created: the best **name**, an attractive **price** and of course a **currency**.
 
 > Definition
 
@@ -167,7 +176,8 @@ Content-Type: application/json
 }
 ```
 
-Get a Product based on the product's unique ID.
+Create a product is pretty good but how can you retrieve one of them?
+Easy, you only need the product ID then you will receive all details about it.
 
 Argument | Type | Description
 -------- | ---- | --------
@@ -175,6 +185,7 @@ Argument | Type | Description
 
 
 ## Get List of All Products Associated with a Company
+
 
 > Definition
 
@@ -224,7 +235,9 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all Products.
+Retrieve one is nice but if you want more products?
+To retrieve more than one Product you could use the following route `GET https://api.shareactor.io/products`.
+By the way, like other get list you can use different arguments to optimise your retrieving.
 
 Arguments | Type | Description
 --------- | ---- | -----------
@@ -241,8 +254,6 @@ include_deleted| `boolean` | If `true`, deleted products are also listed.
 
 
 ## Search Products
-
-Retrieves a list of all Products associated with the search.
 
 > Definition
 
@@ -291,6 +302,13 @@ Content-Type: application/json
     }
 ]
 ```
+
+Retrieve a simple list is ok but if you want to search a specific product... it means more difficult, right?
+
+Actually, no because our API allows you to do it and simply! 
+
+It's pretty similar as the previous method but you should use `GET https://api.shareactor.io/products/search` and it's more accurate.
+For that, you must use the **query** to be more specific.
 
 Arguments | Type | Description
 --------- | ---- | -----------
