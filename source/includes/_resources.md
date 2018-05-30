@@ -59,7 +59,7 @@ Host: api.shareactor.io
     "product": "58f9f856b70e2a56c4a0db3d",
     "description": "description of the resource",
     "name": "name of resource",
-    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "image_url": "http://reference.kvass.ai/images/logo.png",
     "reference_id": "abc1234567890abc"}
 ```
 ``` http
@@ -73,7 +73,7 @@ Content-Type: application/json
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "description of the resource",
     "reference_id": "abc1234567890abc",
-    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "image_url": "http://reference.kvass.ai/images/logo.png",
     "name": "name of resource",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
     "status": "CREATED",
@@ -123,12 +123,12 @@ Host: api.shareactor.io
     "description": "description of the first resource",
     "name": "name of first resource",
     "reference_id": "abc1234567890abc",
-    "image_url": "http://docs.shareactor.io/images/logo.png"},
+    "image_url": "http://reference.kvass.ai/images/logo.png"},
    {"product": "58f9f856b70e2a56c4a0db3d",
     "description": "description of the second resource",
     "name": "name of second resource",
     "reference_id": "abcdefghijklm",
-    "image_url": "http://docs.shareactor.io/images/logo.png"}
+    "image_url": "http://reference.kvass.ai/images/logo.png"}
 ]
 ```
 ``` http
@@ -141,7 +141,7 @@ Content-Type: application/json
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "description of the resource",
-    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "image_url": "http://reference.kvass.ai/images/logo.png",
     "name": "name of resource",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
     "reference_id": "abc1234567890abc",
@@ -154,7 +154,7 @@ Content-Type: application/json
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "description of the resource",
-    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "image_url": "http://reference.kvass.ai/images/logo.png",
     "name": "name of resource",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
     "reference_id": "abcdefghijklm",
@@ -196,7 +196,7 @@ Content-Type: application/json
     "method" "asset",
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "description of the resource",
-    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "image_url": "http://reference.kvass.ai/images/logo.png",
     "reference_id": "abc1234567890abc",
     "name": "name of resource",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
@@ -252,7 +252,7 @@ Content-Type: application/json
     "_id": {"$oid": "596c643ed57ba203be2cf1c9"},
     "user": {"$oid": "57ee9c72d76d431f85111432"},
     "description": "An updated Resource",
-    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "image_url": "http://reference.kvass.ai/images/logo.png",
     "reference_id": "abc1234567890abc",
     "name": "Resource 2",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
@@ -326,7 +326,7 @@ Content-Type: application/json
     "method" "asset",
     "deleted": true,
     "description": "An updated Resource",
-    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "image_url": "http://reference.kvass.ai/images/logo.png",
     "name": "Resource 2",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
     "reference_id": "abc1234567890abc",
@@ -379,7 +379,7 @@ Content-Type: application/json
     "method" "asset",
     "deleted": true,
     "description": "An updated Resource",
-    "image_url": "http://docs.shareactor.io/images/logo.png",
+    "image_url": "http://reference.kvass.ai/images/logo.png",
     "reference_id": "abc1234567890abc",
     "name": "Resource 2",
     "product": {"$oid": "58f9f856b70e2a56c4a0db3d"},
