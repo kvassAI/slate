@@ -13,7 +13,7 @@ This process is divided into two stages:
 > Definition
 
 ```
-POST https://api.shareactor.io/sms/verify
+POST https://api.kvass.ai/sms/verify
 ```
 
 > Example request:
@@ -50,7 +50,7 @@ Argument | Type | Description
 > Definition
 
 ```
-POST https://api.shareactor.io/sms/verify
+POST https://api.kvass.ai/sms/verify
 ```
 
 > Example request:

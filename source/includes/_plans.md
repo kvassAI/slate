@@ -49,7 +49,7 @@ when creating a new plan.
 > Definition
 
 ```
-POST https://api.shareactor.io/plans
+POST https://api.kvass.ai/plans
 ```
 
 > Example request:
@@ -131,7 +131,7 @@ Retrieve a particular Plan, based on its id.
 > Definition
 
 ```
-GET https://api.shareactor.io/plans/<plan_id>
+GET https://api.kvass.ai/plans/<plan_id>
 ```
 
 > Example request:
@@ -185,7 +185,7 @@ Argument | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/plans
+GET https://api.kvass.ai/plans
 ```
 
 > Example request:
@@ -266,7 +266,7 @@ Not all fields are possible to update. See fields in Argument below.
 > Definition
 
 ```
-PUT https://api.shareactor.io/plans/<plan_id>
+PUT https://api.kvass.ai/plans/<plan_id>
 ```
 
 > Example request:
@@ -295,7 +295,7 @@ total_amount |`number`| The total cost of the subscription payment. If set, the 
 > Definition
 
 ```
-DELETE https://api.shareactor.io/plans/<plan_id>
+DELETE https://api.kvass.ai/plans/<plan_id>
 ```
 
 > Example request:

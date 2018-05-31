@@ -37,7 +37,7 @@ accounting_reference | `string`| A accounting reference ID
 > Definition
 
 ```
-POST https://api.shareactor.io/orders
+POST https://api.kvass.ai/orders
 ```
 
 > Example request:
@@ -159,7 +159,7 @@ payment_method | `string` | [`Payment method`](#payment-methods) for this order
 > Definition
 
 ```
-GET https://api.shareactor.io/orders/<orderid>
+GET https://api.kvass.ai/orders/<orderid>
 ```
 
 > Example request:
@@ -264,7 +264,7 @@ It is also possible to filter the search using pagination.
 > Definition
 
 ```
-GET https://api.shareactor.io/orders
+GET https://api.kvass.ai/orders
 ```
 
 > Example request:
@@ -373,7 +373,7 @@ sort | `string` | Field used for sorting results
 > Definition
 
 ```
-GET https://api.shareactor.io/orders/search
+GET https://api.kvass.ai/orders/search
 ```
 
 > Example request:

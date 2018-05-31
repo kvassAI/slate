@@ -39,7 +39,7 @@ This will not start the subscription, only create it.
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions
+POST https://api.kvass.ai/subscriptions
 ```
 
 
@@ -102,7 +102,7 @@ parameters by: infinite > ending_date > interval_total.
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions/<subscription_id>/start
+POST https://api.kvass.ai/subscriptions/<subscription_id>/start
 ```
 > Example request:
 
@@ -164,7 +164,7 @@ company specifics.
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions
+POST https://api.kvass.ai/subscriptions
 ```
 
 
@@ -232,7 +232,7 @@ the subscription, the user could only update one of the fields infinite, ending_
 > Definition
 
 ```
-PUT https://api.shareactor.io/subscriptions/<subscription_id>
+PUT https://api.kvass.ai/subscriptions/<subscription_id>
 ```
 > Example request:
 
@@ -294,7 +294,7 @@ is `true`.
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions/<subscription_id>/stop
+POST https://api.kvass.ai/subscriptions/<subscription_id>/stop
 ```
 > Example request:
 
@@ -346,7 +346,7 @@ Receive a subscription, based on its ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/subscriptions/<subscription_id>
+GET https://api.kvass.ai/subscriptions/<subscription_id>
 ```
 > Example request:
 
@@ -393,7 +393,7 @@ It is possible to add pagination to this request.
 > Definition
 
 ```
-GET https://api.shareactor.io/users/<user_id>/subscriptions
+GET https://api.kvass.ai/users/<user_id>/subscriptions
 ```
 > Example request:
 
@@ -420,7 +420,7 @@ Receives a list of all subscriptions associated with a company.
 > Definition
 
 ```
-GET https://api.shareactor.io/subscriptions
+GET https://api.kvass.ai/subscriptions
 ```
 > Example request:
 

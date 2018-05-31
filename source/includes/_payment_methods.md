@@ -28,7 +28,7 @@ DIBS is a Norwegian payments gateway. It works based on callbacks made via their
 > Definition
 
 ```
-POST https://api.shareactor.io/dibs/payment_method
+POST https://api.kvass.ai/dibs/payment_method
 ```
 
 > Example request:
@@ -109,7 +109,7 @@ Paypal allows for 2 types of payments: Single Payments or Future Payments. A Sin
 > Definition
 
 ```
-POST https://api.shareactor.io/payment_methods
+POST https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -171,7 +171,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-POST https://api.shareactor.io/payment_methods
+POST https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -233,7 +233,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-POST https://api.shareactor.io/payment_methods
+POST https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -315,7 +315,7 @@ Retrieves the payment method with a given ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/payment_methods/<payment-method-id>
+GET https://api.kvass.ai/payment_methods/<payment-method-id>
 ```
 
 > Example request:
@@ -368,7 +368,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/payment_methods
+GET https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -427,7 +427,7 @@ Delete the payment method associated with the user.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/payment_methods/<payment_method_id>
+DELETE https://api.kvass.ai/payment_methods/<payment_method_id>
 ```
 
 > Example request:

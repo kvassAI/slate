@@ -147,7 +147,7 @@ but all the models have search by `ID` in common.
 > Definition GET
 
 ```
-GET https://api.shareactor.io/model
+GET https://api.kvass.ai/model
 ```
 
 > Example GET request:
@@ -177,7 +177,7 @@ Content-Type: application/json
 > Definition SEARCH
 
 ```
-GET https://api.shareactor.io/model/search
+GET https://api.kvass.ai/model/search
 ```
 
 > Example SEARCH request:

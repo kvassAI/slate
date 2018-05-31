@@ -23,7 +23,7 @@ roles | `array` | Define the roles that a provider can have. _Default is provide
 > Definition
 
 ```
-POST https://api.shareactor.io/providers
+POST https://api.kvass.ai/providers
 ```
 
 > Example request:
@@ -145,7 +145,7 @@ bio | `string` | Biographic note about the provider
 > Definition
 
 ```
-GET https://api.shareactor.io/providers/<provider_id>
+GET https://api.kvass.ai/providers/<provider_id>
 ```
 
 > Example request:
@@ -252,7 +252,7 @@ Arguments | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/providers
+GET https://api.kvass.ai/providers
 ```
 
 > Example request:

@@ -31,7 +31,7 @@ The `price_change_percentage` could be used in the order.items when creating an 
 > Definition
 
 ```
-POST https://api.shareactor.io/products
+POST https://api.kvass.ai/products
 ```
 
 > Example request:
@@ -124,7 +124,7 @@ slug | `array` |
 > Definition
 
 ```
-GET https://api.shareactor.io/products/<product_id>
+GET https://api.kvass.ai/products/<product_id>
 ```
 
 > Example request:
@@ -179,7 +179,7 @@ Argument | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/products
+GET https://api.kvass.ai/products
 ```
 
 > Example request:
@@ -247,7 +247,7 @@ Retrieves a list of all Products associated with the search.
 > Definition
 
 ```
-GET https://api.shareactor.io/products/search
+GET https://api.kvass.ai/products/search
 ```
 
 > Example request:
@@ -317,7 +317,7 @@ Argument | Type | Description
 > Definition
 
 ```
-PUT https://api.shareactor.io/products/<product_id>/sub_products
+PUT https://api.kvass.ai/products/<product_id>/sub_products
 ```
 
 > Example request:

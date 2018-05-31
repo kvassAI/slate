@@ -13,7 +13,7 @@ Returns `{'status': 'UP'}` if server is running and `{'status': 'DOWN'}` if not.
 > Definition
 
 ```
-GET https://api.shareactor.io/labs/health
+GET https://api.kvass.ai/labs/health
 ```
 
 > Example request:
@@ -41,7 +41,7 @@ Content-Type: application/json
 > Definition
 
 ```
-POST https://api.shareactor.io/labs/recommendations/train
+POST https://api.kvass.ai/labs/recommendations/train
 ```
 
 > Example request:
@@ -79,7 +79,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-POST https://api.shareactor.io/labs/recommendations/recommend
+POST https://api.kvass.ai/labs/recommendations/recommend
 ```
 
 > Example request:
@@ -139,7 +139,7 @@ size | `number` | The number of recommendations in the results _Default is 3_
 > Definition
 
 ```
-POST https://api.shareactor.io/labs/recommendations/similar
+POST https://api.kvass.ai/labs/recommendations/similar
 ```
 
 > Example request:

@@ -18,7 +18,7 @@ Receives a list of all events.
 > Definition
 
 ```
-GET https://api.shareactor.io/events
+GET https://api.kvass.ai/events
 ```
 > Example request:
 
@@ -58,7 +58,7 @@ Receive an event, based on its ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/events/<event_id>
+GET https://api.kvass.ai/events/<event_id>
 ```
 > Example request:
 
@@ -90,7 +90,7 @@ Retrieves a list of Events associated with search.
 > Definition
 
 ```
-GET https://api.shareactor.io/events/search
+GET https://api.kvass.ai/events/search
 ```
 
 > Example request by account_number:

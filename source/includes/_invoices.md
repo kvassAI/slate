@@ -48,7 +48,7 @@ vat | `float` | VAT of unit. _From 0.0 to 1.0. Default is 0_
 > Definition
 
 ```
-POST https://api.shareactor.io/invoices
+POST https://api.kvass.ai/invoices
 ```
 
 > Example request:
@@ -117,7 +117,7 @@ kind | `string` | The type or kind of invoice created
 > Definition
 
 ```
-POST https://api.shareactor.io/invoices
+POST https://api.kvass.ai/invoices
 ```
 
 > Example request:
@@ -198,7 +198,7 @@ The first invoice line contains a [`Resource`](#Resources) but it works the same
 > Definition
 
 ```
-GET https://api.shareactor.io/invoices/<invoice_id>
+GET https://api.kvass.ai/invoices/<invoice_id>
 ```
 
 > Example request:
@@ -243,7 +243,7 @@ Argument | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/invoices
+GET https://api.kvass.ai/invoices
 ```
 
 > Example request:
@@ -298,7 +298,7 @@ Retrieves a list of Invoices associate with search.
 > Definition
 
 ```
-GET https://api.shareactor.io/invoices/search
+GET https://api.kvass.ai/invoices/search
 ```
 
 > Example request by account_number:
@@ -351,7 +351,7 @@ Updates an Invoice with a given ID.
 > Definition
 
 ```
-PUT https://api.shareactor.io/invoices/<invoice_id>
+PUT https://api.kvass.ai/invoices/<invoice_id>
 ```
 
 > Example request:
@@ -376,7 +376,7 @@ Deletes an invoice with a give ID.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/invoices/<invoice_id>
+DELETE https://api.kvass.ai/invoices/<invoice_id>
 ```
 
 > Example request:

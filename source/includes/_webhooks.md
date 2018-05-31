@@ -16,7 +16,7 @@ secret | `string` | A SHA-256 secret used to secure the webhook communication
 > Definition
 
 ```
-POST https://api.shareactor.io/webhooks
+POST https://api.kvass.ai/webhooks
 ```
 
 
@@ -61,7 +61,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-PUT https://api.shareactor.io/webhooks/<webhook_id>
+PUT https://api.kvass.ai/webhooks/<webhook_id>
 ```
 > Example request:
 
@@ -102,7 +102,7 @@ endpoint | `string` | The URL to call when the webhook is triggered
 > Definition
 
 ```
-GET https://api.shareactor.io/webhooks/<webhook_id>
+GET https://api.kvass.ai/webhooks/<webhook_id>
 ```
 > Example request:
 
@@ -135,7 +135,7 @@ Receives a list of all webhooks associated with a company.
 > Definition
 
 ```
-GET https://api.shareactor.io/webhooks
+GET https://api.kvass.ai/webhooks
 ```
 > Example request:
 
@@ -177,7 +177,7 @@ Deletes a webhook with a given ID.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/webhooks/<webhook_id>
+DELETE https://api.kvass.ai/webhooks/<webhook_id>
 ```
 
 > Example request:

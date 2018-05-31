@@ -23,7 +23,7 @@ Creates a new user.
 > Definition
 
 ```
-POST https://api.shareactor.io/users
+POST https://api.kvass.ai/users
 ```
 
 > Example request:
@@ -107,7 +107,7 @@ log in a user with their JWT token.
 > Definition
 
 ```
-POST https://api.shareactor.io/v2/users
+POST https://api.kvass.ai/v2/users
 ```
 
 > Example request:
@@ -189,7 +189,7 @@ Content-Type: application/json
 > Definition
 
 ```
-GET https://api.shareactor.io/users/<user-id>
+GET https://api.kvass.ai/users/<user-id>
 ```
 
 > Example request:
@@ -250,7 +250,7 @@ Updates an existing user.
 > Definition
 
 ```
-PUT https://api.shareactor.io/users/<user-id>
+PUT https://api.kvass.ai/users/<user-id>
 ```
 
 > Example request:
@@ -321,7 +321,7 @@ Deletes a User.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/users/<user-id>
+DELETE https://api.kvass.ai/users/<user-id>
 ```
 
 > Example request:
@@ -378,7 +378,7 @@ Argument | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/users
+GET https://api.kvass.ai/users
 ```
 
 > Example request:
@@ -445,7 +445,7 @@ include_deleted | `boolean` | If `true`, deleted users are also listed _default 
 > Definition
 
 ```
-GET https://api.shareactor.io/users/search
+GET https://api.kvass.ai/users/search
 ```
 
 > Example request:
@@ -511,7 +511,7 @@ include_deleted | `boolean` | If `true`, deleted users are also listed _default 
 > Definition
 
 ```
-GET https://api.shareactor.io/users/<user-id>/orders
+GET https://api.kvass.ai/users/<user-id>/orders
 ```
 
 > Example request:

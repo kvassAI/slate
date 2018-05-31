@@ -23,7 +23,7 @@ Create a new issuer.
 > Definition
 
 ````
-POST https://api.shareactor.io/issuers
+POST https://api.kvass.ai/issuers
 ````
 
 > Example request:
@@ -95,7 +95,7 @@ Retrieves issuer with a particular ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/issuers/<issuer-id>
+GET https://api.kvass.ai/issuers/<issuer-id>
 ```
 
 > Example request:
@@ -156,7 +156,7 @@ Retrieves a list of all issuers.
 > Definition
 
 ```
-GET https://api.shareactor.io/issuers
+GET https://api.kvass.ai/issuers
 ```
 
 > Example request:
@@ -235,7 +235,7 @@ Updates an issuer.
 > Definition
 
 ```
-PUT https://api.shareactor.io/issuers/<issuer-id>
+PUT https://api.kvass.ai/issuers/<issuer-id>
 ```
 
 > Example request:
@@ -296,7 +296,7 @@ Retrieves a list of Issuers associate with search.
 > Definition
 
 ```
-GET https://api.shareactor.io/issuers/search
+GET https://api.kvass.ai/issuers/search
 ```
 
 > Example request:
@@ -377,7 +377,7 @@ Deletes an issuer.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/issuers/<issuer-id>
+DELETE https://api.kvass.ai/issuers/<issuer-id>
 ```
 
 > Example request:

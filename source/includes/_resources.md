@@ -42,7 +42,7 @@ Create a new resource associated with the  [`User`](#Users).
 > Definition
 
 ```
-POST https://api.shareactor.io/resources
+POST https://api.kvass.ai/resources
 ```
 
 
@@ -104,7 +104,7 @@ for a user, but in an `array`.
 > Definition
 
 ```
-POST https://api.shareactor.io/resources/bulk
+POST https://api.kvass.ai/resources/bulk
 ```
 
 
@@ -174,7 +174,7 @@ Retreive a resource based on its ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/resources/<resource_id>
+GET https://api.kvass.ai/resources/<resource_id>
 ```
 
 > Example request:
@@ -224,7 +224,7 @@ reference_id | `string` | Customizable ID for the resource
 > Definition
 
 ```
-PUT https://api.shareactor.io/resources/<resource_id>
+PUT https://api.kvass.ai/resources/<resource_id>
 ```
 
 > Example request:
@@ -273,7 +273,7 @@ It is possible to add filters and sorting to the query.
 > Definition
 
 ```
-GET https://api.shareactor.io/resources
+GET https://api.kvass.ai/resources
 ```
 
 > Example request:
@@ -304,7 +304,7 @@ Delete the resource associated with the resource ID.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/resources/<resource_id>
+DELETE https://api.kvass.ai/resources/<resource_id>
 ```
 
 
@@ -356,7 +356,7 @@ sort | `string` | Field used to sort results _default is `-created`_
 > Definition
 
 ```
-GET https://api.shareactor.io/resources/search
+GET https://api.kvass.ai/resources/search
 ```
 
 

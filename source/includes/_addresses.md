@@ -29,7 +29,7 @@ pca |
 > Definition
 
 ```
-GET https://api.shareactor.io/addresses/lookup
+GET https://api.kvass.ai/addresses/lookup
 ```
 
 > Example request:

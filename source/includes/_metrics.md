@@ -37,7 +37,7 @@ It returns the metrics for both `foo.zoo` and `foo.bar`.
 > Definition
 
 ```
-GET https://api.shareactor.io/metrics/<name>?resolution=day
+GET https://api.kvass.ai/metrics/<name>?resolution=day
 ```
 
 > Example request:
@@ -95,7 +95,7 @@ If you want to filter by `POST` and `GET` request you could use this method.
 > Definition
 
 ```
-GET https://api.shareactor.io/metrics/<name>?metrics=key,key
+GET https://api.kvass.ai/metrics/<name>?metrics=key,key
 ```
 
 > Example request:
@@ -137,7 +137,7 @@ This endpoint returns the count of instances of a specific metric key between tw
 > Definition
 
 ```
-GET https://api.shareactor.io/metrics/<name>/count
+GET https://api.kvass.ai/metrics/<name>/count
 ```
 
 > Example request:
@@ -171,7 +171,7 @@ This endpoint returns the frequency of a specific metric key between two dates.
 > Definition
 
 ```
-GET https://api.shareactor.io/metrics/<name>/freq
+GET https://api.kvass.ai/metrics/<name>/freq
 ```
 
 > Example request:
@@ -205,7 +205,7 @@ This endpoint returns the total sum of a specific metric key between two dates.
 > Definition
 
 ```
-GET https://api.shareactor.io/metrics/<name>/sum
+GET https://api.kvass.ai/metrics/<name>/sum
 ```
 
 > Example request:
@@ -242,7 +242,7 @@ Metrics created over this endpoint will have the flag `external=true`.
 > Definition
 
 ```
-POST https://api.shareactor.io/metrics
+POST https://api.kvass.ai/metrics
 ```
 
 > Example request:
@@ -292,7 +292,7 @@ This endpoint returns an array with all saved instances of the metric keys.
 > Definition
 
 ```
-GET https://api.shareactor.io/metrics
+GET https://api.kvass.ai/metrics
 ```
 
 > Example request:
