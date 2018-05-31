@@ -41,7 +41,7 @@ POST /products HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "product": 
@@ -134,7 +134,7 @@ GET /products/<product_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -189,7 +189,7 @@ GET /products HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ```http
@@ -257,7 +257,7 @@ GET /products/search?query=description HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ```http
@@ -327,7 +327,7 @@ PUT /products/<product_id>/sub_products HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "add": [<product_id>, <product_id>]

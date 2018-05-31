@@ -33,7 +33,7 @@ POST /providers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "first_name": "Jane",
@@ -155,7 +155,7 @@ GET /providers/<provider_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -262,7 +262,7 @@ GET /providers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http

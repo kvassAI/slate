@@ -50,7 +50,7 @@ POST /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "plan": "5931697ed57ba271c0c7de66",
@@ -111,7 +111,7 @@ POST /subscriptions/5964a0ead57ba2036750a3b4/start HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "payment_method": "<payment-method-id>"
@@ -175,7 +175,7 @@ POST /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {"plan": {"name": "Plan Name",
           "items": [{"product": "<product_id>", "quantity": 2}],
@@ -241,7 +241,7 @@ PUT /subscriptions/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "note": "A note regarding the subscription",
@@ -303,7 +303,7 @@ POST /subscriptions/5964a0ead57ba2036750a3b4/stop HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 ```
 ``` http
@@ -355,7 +355,7 @@ GET /subscriptions/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -402,7 +402,7 @@ GET /users/57ee9c72d76d431f85111432/subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 Attribute | Type | Description
@@ -429,7 +429,7 @@ GET /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 Attribute | Type | Description

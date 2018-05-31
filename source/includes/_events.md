@@ -27,7 +27,7 @@ GET /events HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -67,7 +67,7 @@ GET /events/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -100,7 +100,7 @@ GET /events/search/query=order HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http

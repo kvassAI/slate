@@ -33,7 +33,7 @@ POST /users HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "user": {
@@ -117,7 +117,7 @@ POST /v2/users HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "user": {
@@ -199,7 +199,7 @@ GET /users/<user-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -260,7 +260,7 @@ PUT /users/<user-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "first_name": "Oliver"
@@ -331,7 +331,7 @@ DELETE /users/<user-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -388,7 +388,7 @@ GET /users HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -454,7 +454,7 @@ GET https://api.kvass.ai/users/search
 GET /users/search?query=doe HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -520,7 +520,7 @@ GET /users/<user-id>/orders HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http

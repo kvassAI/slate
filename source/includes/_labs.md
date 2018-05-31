@@ -23,7 +23,7 @@ GET /labs/health HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -51,7 +51,7 @@ POST /labs/recommendations/train HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
    "model_type": "content_recommender-user-product"
@@ -89,7 +89,7 @@ POST /labs/recommendations/recommend HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
    "model_type": "content_recommender-user-product",
@@ -149,7 +149,7 @@ POST /labs/recommendations/similar HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
    "model_type": "content_similarity_graph-product-product",

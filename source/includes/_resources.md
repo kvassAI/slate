@@ -53,7 +53,7 @@ POST /resources HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "product": "58f9f856b70e2a56c4a0db3d",
@@ -115,7 +115,7 @@ POST /resources/bulk HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 [
    {"product": "58f9f856b70e2a56c4a0db3d",
@@ -184,7 +184,7 @@ GET /resources/596c643ed57ba203be2cf1c9 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -234,7 +234,7 @@ PUT /resources/596c643ed57ba203be2cf1c9 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "name": "Resource 2",
@@ -283,7 +283,7 @@ GET /resources HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 Arguments | Type | Description
@@ -315,7 +315,7 @@ DELETE /resources/596c643ed57ba203be2cf1c9 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -367,7 +367,7 @@ GET /resources/search?query=updated HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK

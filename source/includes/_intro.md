@@ -9,8 +9,8 @@ The API is separated into 2 different environments:
 
 Environment | Endpoint
 --------- | -------
-**QA** | qa.shareactor.io
-**PROD** | api.shareactor.io
+**QA** | qa.kvass.ai
+**PROD** | api.kvass.ai
 
 Each environment has its separate API keys which you can manage through our Admin dashboard.
 
@@ -23,7 +23,7 @@ All the example API calls are using the PROD endpoint.
 GET / HTTP/1.1
 Content-Type: application/json
 X-Share-Api-Key: <kvass-api-key> 
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 > Make sure to replace `<kvass-api-key>` with your API key.
@@ -63,7 +63,7 @@ Error Code | Reason | Description
 GET /payment_methods/<payment-method-id>/?expand=user HTTP/1.1
 Content-Type: application/json
 X-Share-Api-Key: <kvass-api-key> 
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 > Example response:
@@ -114,7 +114,7 @@ user     | User associated with object
 GET /orders?size=10&page=1 HTTP/1.1
 Content-Type: application/json
 X-Share-Api-Key: <kvass-api-key> 
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 > Example request using only `size`:
@@ -123,7 +123,7 @@ Host: api.shareactor.io
 GET /orders?size=100 HTTP/1.1
 Content-Type: application/json
 X-Share-Api-Key: <kvass-api-key> 
-Host: api.shareactor.io
+Host: api.kvass.ai
 X-Pagination-Total: 212
 ```
 
@@ -157,7 +157,7 @@ GET /model HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key> 
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -187,7 +187,7 @@ GET /model/search?query=a0b1c2d3e4d5c6b7a8b94242 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key> 
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http

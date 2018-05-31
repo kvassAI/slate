@@ -23,7 +23,7 @@ POST /sms/verify HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "phone_number": "004712345678"
@@ -60,7 +60,7 @@ POST /sms/verify HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "request_id": "2d426b2552e1446bb3d234e7298c21f9",

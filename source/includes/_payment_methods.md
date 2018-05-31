@@ -36,7 +36,7 @@ POST https://api.kvass.ai/dibs/payment_method
 ``` http
 POST /dibs/payment_method HTTP/1.1
 Content-Type: application/json
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "payment_method": "dibs",
@@ -119,7 +119,7 @@ POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "method": "single_paypal",
@@ -181,7 +181,7 @@ POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "method": "future_paypal",
@@ -243,7 +243,7 @@ POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "method": "stripe",
@@ -325,7 +325,7 @@ GET /payment_methods/<payment-method-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -378,7 +378,7 @@ GET /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -437,7 +437,7 @@ DELETE /payment_methods/<payment_method_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 

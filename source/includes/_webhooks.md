@@ -27,7 +27,7 @@ POST /webhooks HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "endpoint": "http://requestbin.fullcontact.com/asdfasdf",
@@ -70,7 +70,7 @@ PUT /webhooks/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "endpoint": "https://www.google.com"
@@ -111,7 +111,7 @@ GET /webhooks/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -144,7 +144,7 @@ GET /webhooks HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -187,7 +187,7 @@ DELETE /webhooks/<webhook_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
