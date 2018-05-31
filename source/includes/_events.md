@@ -18,7 +18,7 @@ Receives a list of all events.
 > Definition
 
 ```
-GET https://api.shareactor.io/events
+GET https://api.kvass.ai/events
 ```
 > Example request:
 
@@ -27,7 +27,7 @@ GET /events HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -58,7 +58,7 @@ Receive an event, based on its ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/events/<event_id>
+GET https://api.kvass.ai/events/<event_id>
 ```
 > Example request:
 
@@ -67,7 +67,7 @@ GET /events/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -90,7 +90,7 @@ Retrieves a list of Events associated with search.
 > Definition
 
 ```
-GET https://api.shareactor.io/events/search
+GET https://api.kvass.ai/events/search
 ```
 
 > Example request by account_number:
@@ -100,7 +100,7 @@ GET /events/search/query=order HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http

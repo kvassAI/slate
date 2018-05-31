@@ -13,7 +13,7 @@ Returns `{'status': 'UP'}` if server is running and `{'status': 'DOWN'}` if not.
 > Definition
 
 ```
-GET https://api.shareactor.io/labs/health
+GET https://api.kvass.ai/labs/health
 ```
 
 > Example request:
@@ -23,7 +23,7 @@ GET /labs/health HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -41,7 +41,7 @@ Content-Type: application/json
 > Definition
 
 ```
-POST https://api.shareactor.io/labs/recommendations/train
+POST https://api.kvass.ai/labs/recommendations/train
 ```
 
 > Example request:
@@ -51,7 +51,7 @@ POST /labs/recommendations/train HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
    "model_type": "content_recommender-user-product"
@@ -79,7 +79,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-POST https://api.shareactor.io/labs/recommendations/recommend
+POST https://api.kvass.ai/labs/recommendations/recommend
 ```
 
 > Example request:
@@ -89,7 +89,7 @@ POST /labs/recommendations/recommend HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
    "model_type": "content_recommender-user-product",
@@ -139,7 +139,7 @@ size | `number` | The number of recommendations in the results _Default is 3_
 > Definition
 
 ```
-POST https://api.shareactor.io/labs/recommendations/similar
+POST https://api.kvass.ai/labs/recommendations/similar
 ```
 
 > Example request:
@@ -149,7 +149,7 @@ POST /labs/recommendations/similar HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
    "model_type": "content_similarity_graph-product-product",

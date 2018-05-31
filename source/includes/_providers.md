@@ -23,7 +23,7 @@ roles | `array` | Define the roles that a provider can have. _Default is provide
 > Definition
 
 ```
-POST https://api.shareactor.io/providers
+POST https://api.kvass.ai/providers
 ```
 
 > Example request:
@@ -33,7 +33,7 @@ POST /providers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "first_name": "Jane",
@@ -145,7 +145,7 @@ bio | `string` | Biographic note about the provider
 > Definition
 
 ```
-GET https://api.shareactor.io/providers/<provider_id>
+GET https://api.kvass.ai/providers/<provider_id>
 ```
 
 > Example request:
@@ -155,7 +155,7 @@ GET /providers/<provider_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -252,7 +252,7 @@ Arguments | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/providers
+GET https://api.kvass.ai/providers
 ```
 
 > Example request:
@@ -262,7 +262,7 @@ GET /providers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http

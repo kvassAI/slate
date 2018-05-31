@@ -48,7 +48,7 @@ vat | `float` | VAT of unit. _From 0.0 to 1.0. Default is 0_
 > Definition
 
 ```
-POST https://api.shareactor.io/invoices
+POST https://api.kvass.ai/invoices
 ```
 
 > Example request:
@@ -58,7 +58,7 @@ POST /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "message": "some transaction or KID number",
@@ -117,7 +117,7 @@ kind | `string` | The type or kind of invoice created
 > Definition
 
 ```
-POST https://api.shareactor.io/invoices
+POST https://api.kvass.ai/invoices
 ```
 
 > Example request:
@@ -127,7 +127,7 @@ POST /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "message": "some transaction or KID number",
@@ -198,7 +198,7 @@ The first invoice line contains a [`Resource`](#Resources) but it works the same
 > Definition
 
 ```
-GET https://api.shareactor.io/invoices/<invoice_id>
+GET https://api.kvass.ai/invoices/<invoice_id>
 ```
 
 > Example request:
@@ -208,7 +208,7 @@ GET /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -243,7 +243,7 @@ Argument | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/invoices
+GET https://api.kvass.ai/invoices
 ```
 
 > Example request:
@@ -253,7 +253,7 @@ GET /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -298,7 +298,7 @@ Retrieves a list of Invoices associate with search.
 > Definition
 
 ```
-GET https://api.shareactor.io/invoices/search
+GET https://api.kvass.ai/invoices/search
 ```
 
 > Example request by account_number:
@@ -308,7 +308,7 @@ GET /invoices/search/query=12345678903 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -351,7 +351,7 @@ Updates an Invoice with a given ID.
 > Definition
 
 ```
-PUT https://api.shareactor.io/invoices/<invoice_id>
+PUT https://api.kvass.ai/invoices/<invoice_id>
 ```
 
 > Example request:
@@ -361,7 +361,7 @@ PUT /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 
@@ -376,7 +376,7 @@ Deletes an invoice with a give ID.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/invoices/<invoice_id>
+DELETE https://api.kvass.ai/invoices/<invoice_id>
 ```
 
 > Example request:
@@ -386,7 +386,7 @@ DELETE /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 Argument | Type | Description

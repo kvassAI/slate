@@ -29,7 +29,7 @@ pca |
 > Definition
 
 ```
-GET https://api.shareactor.io/addresses/lookup
+GET https://api.kvass.ai/addresses/lookup
 ```
 
 > Example request:
@@ -39,7 +39,7 @@ GET /addresses/lookup HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
    "service_address_id":"ChIJR0HKYoduQUYRkho1K1zkZpA",

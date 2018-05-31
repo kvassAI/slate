@@ -35,7 +35,7 @@ All payments should have the following attributes:
 > Definition
 
 ```
-POST https://api.shareactor.io/payments
+POST https://api.kvass.ai/payments
 ```
 
 > Example request:
@@ -45,7 +45,7 @@ POST /payments HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "invoices": ["<invoice-id>"],
@@ -100,7 +100,7 @@ payment_date | `number` | Date (`timestamp` format) for scheduling payment of **
 > Definition
 
 ```
-GET https://api.shareactor.io/payments/<payment-id>
+GET https://api.kvass.ai/payments/<payment-id>
 ```
 
 > Example request:
@@ -110,7 +110,7 @@ GET /payments/<payment-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -159,7 +159,7 @@ Argument | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/payments/
+GET https://api.kvass.ai/payments/
 ```
 
 > Example request:
@@ -169,7 +169,7 @@ GET /payments HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -224,7 +224,7 @@ current_state | `string` | Status of Payments to filter by
 > Definition
 
 ```
-PUT https://api.shareactor.io/payments/<payment_id>
+PUT https://api.kvass.ai/payments/<payment_id>
 ```
 
 > Example request:
@@ -234,7 +234,7 @@ PUT /payments/<payment_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ```

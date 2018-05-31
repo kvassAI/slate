@@ -23,7 +23,7 @@ Creates a new user.
 > Definition
 
 ```
-POST https://api.shareactor.io/users
+POST https://api.kvass.ai/users
 ```
 
 > Example request:
@@ -33,7 +33,7 @@ POST /users HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "user": {
@@ -107,7 +107,7 @@ log in a user with their JWT token.
 > Definition
 
 ```
-POST https://api.shareactor.io/v2/users
+POST https://api.kvass.ai/v2/users
 ```
 
 > Example request:
@@ -117,7 +117,7 @@ POST /v2/users HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "user": {
@@ -189,7 +189,7 @@ Content-Type: application/json
 > Definition
 
 ```
-GET https://api.shareactor.io/users/<user-id>
+GET https://api.kvass.ai/users/<user-id>
 ```
 
 > Example request:
@@ -199,7 +199,7 @@ GET /users/<user-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -250,7 +250,7 @@ Updates an existing user.
 > Definition
 
 ```
-PUT https://api.shareactor.io/users/<user-id>
+PUT https://api.kvass.ai/users/<user-id>
 ```
 
 > Example request:
@@ -260,7 +260,7 @@ PUT /users/<user-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "first_name": "Oliver"
@@ -321,7 +321,7 @@ Deletes a User.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/users/<user-id>
+DELETE https://api.kvass.ai/users/<user-id>
 ```
 
 > Example request:
@@ -331,7 +331,7 @@ DELETE /users/<user-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -378,7 +378,7 @@ Argument | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/users
+GET https://api.kvass.ai/users
 ```
 
 > Example request:
@@ -388,7 +388,7 @@ GET /users HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -445,7 +445,7 @@ include_deleted | `boolean` | If `true`, deleted users are also listed _default 
 > Definition
 
 ```
-GET https://api.shareactor.io/users/search
+GET https://api.kvass.ai/users/search
 ```
 
 > Example request:
@@ -454,7 +454,7 @@ GET https://api.shareactor.io/users/search
 GET /users/search?query=doe HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -511,7 +511,7 @@ include_deleted | `boolean` | If `true`, deleted users are also listed _default 
 > Definition
 
 ```
-GET https://api.shareactor.io/users/<user-id>/orders
+GET https://api.kvass.ai/users/<user-id>/orders
 ```
 
 > Example request:
@@ -520,7 +520,7 @@ GET /users/<user-id>/orders HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http

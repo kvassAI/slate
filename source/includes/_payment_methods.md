@@ -28,7 +28,7 @@ DIBS is a Norwegian payments gateway. It works based on callbacks made via their
 > Definition
 
 ```
-POST https://api.shareactor.io/dibs/payment_method
+POST https://api.kvass.ai/dibs/payment_method
 ```
 
 > Example request:
@@ -36,7 +36,7 @@ POST https://api.shareactor.io/dibs/payment_method
 ``` http
 POST /dibs/payment_method HTTP/1.1
 Content-Type: application/json
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "payment_method": "dibs",
@@ -109,7 +109,7 @@ Paypal allows for 2 types of payments: Single Payments or Future Payments. A Sin
 > Definition
 
 ```
-POST https://api.shareactor.io/payment_methods
+POST https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -119,7 +119,7 @@ POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "method": "single_paypal",
@@ -171,7 +171,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-POST https://api.shareactor.io/payment_methods
+POST https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -181,7 +181,7 @@ POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "method": "future_paypal",
@@ -233,7 +233,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-POST https://api.shareactor.io/payment_methods
+POST https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -243,7 +243,7 @@ POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "method": "stripe",
@@ -315,7 +315,7 @@ Retrieves the payment method with a given ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/payment_methods/<payment-method-id>
+GET https://api.kvass.ai/payment_methods/<payment-method-id>
 ```
 
 > Example request:
@@ -325,7 +325,7 @@ GET /payment_methods/<payment-method-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -368,7 +368,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/payment_methods
+GET https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -378,7 +378,7 @@ GET /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -427,7 +427,7 @@ Delete the payment method associated with the user.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/payment_methods/<payment_method_id>
+DELETE https://api.kvass.ai/payment_methods/<payment_method_id>
 ```
 
 > Example request:
@@ -437,7 +437,7 @@ DELETE /payment_methods/<payment_method_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 

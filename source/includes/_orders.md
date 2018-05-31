@@ -37,7 +37,7 @@ accounting_reference | `string`| A accounting reference ID
 > Definition
 
 ```
-POST https://api.shareactor.io/orders
+POST https://api.kvass.ai/orders
 ```
 
 > Example request:
@@ -47,7 +47,7 @@ POST /orders HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "user": "57ee9c72d76d431f85111432",
@@ -159,7 +159,7 @@ payment_method | `string` | [`Payment method`](#payment-methods) for this order
 > Definition
 
 ```
-GET https://api.shareactor.io/orders/<orderid>
+GET https://api.kvass.ai/orders/<orderid>
 ```
 
 > Example request:
@@ -169,7 +169,7 @@ GET /orders/<orderid> HTTP/1.1
 Content-Type: application/json
 authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -264,7 +264,7 @@ It is also possible to filter the search using pagination.
 > Definition
 
 ```
-GET https://api.shareactor.io/orders
+GET https://api.kvass.ai/orders
 ```
 
 > Example request:
@@ -274,7 +274,7 @@ GET /orders HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -373,7 +373,7 @@ sort | `string` | Field used for sorting results
 > Definition
 
 ```
-GET https://api.shareactor.io/orders/search
+GET https://api.kvass.ai/orders/search
 ```
 
 > Example request:
@@ -383,7 +383,7 @@ GET /orders/search?query=51Q4LN HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http

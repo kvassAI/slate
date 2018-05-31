@@ -42,7 +42,7 @@ Create a new resource associated with the  [`User`](#Users).
 > Definition
 
 ```
-POST https://api.shareactor.io/resources
+POST https://api.kvass.ai/resources
 ```
 
 
@@ -53,7 +53,7 @@ POST /resources HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "product": "58f9f856b70e2a56c4a0db3d",
@@ -104,7 +104,7 @@ for a user, but in an `array`.
 > Definition
 
 ```
-POST https://api.shareactor.io/resources/bulk
+POST https://api.kvass.ai/resources/bulk
 ```
 
 
@@ -115,7 +115,7 @@ POST /resources/bulk HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 [
    {"product": "58f9f856b70e2a56c4a0db3d",
@@ -174,7 +174,7 @@ Retreive a resource based on its ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/resources/<resource_id>
+GET https://api.kvass.ai/resources/<resource_id>
 ```
 
 > Example request:
@@ -184,7 +184,7 @@ GET /resources/596c643ed57ba203be2cf1c9 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -224,7 +224,7 @@ reference_id | `string` | Customizable ID for the resource
 > Definition
 
 ```
-PUT https://api.shareactor.io/resources/<resource_id>
+PUT https://api.kvass.ai/resources/<resource_id>
 ```
 
 > Example request:
@@ -234,7 +234,7 @@ PUT /resources/596c643ed57ba203be2cf1c9 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "name": "Resource 2",
@@ -273,7 +273,7 @@ It is possible to add filters and sorting to the query.
 > Definition
 
 ```
-GET https://api.shareactor.io/resources
+GET https://api.kvass.ai/resources
 ```
 
 > Example request:
@@ -283,7 +283,7 @@ GET /resources HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 Arguments | Type | Description
@@ -304,7 +304,7 @@ Delete the resource associated with the resource ID.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/resources/<resource_id>
+DELETE https://api.kvass.ai/resources/<resource_id>
 ```
 
 
@@ -315,7 +315,7 @@ DELETE /resources/596c643ed57ba203be2cf1c9 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -356,7 +356,7 @@ sort | `string` | Field used to sort results _default is `-created`_
 > Definition
 
 ```
-GET https://api.shareactor.io/resources/search
+GET https://api.kvass.ai/resources/search
 ```
 
 
@@ -367,7 +367,7 @@ GET /resources/search?query=updated HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK

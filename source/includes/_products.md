@@ -31,7 +31,7 @@ The `price_change_percentage` could be used in the order.items when creating an 
 > Definition
 
 ```
-POST https://api.shareactor.io/products
+POST https://api.kvass.ai/products
 ```
 
 > Example request:
@@ -41,7 +41,7 @@ POST /products HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "product": 
@@ -124,7 +124,7 @@ slug | `array` |
 > Definition
 
 ```
-GET https://api.shareactor.io/products/<product_id>
+GET https://api.kvass.ai/products/<product_id>
 ```
 
 > Example request:
@@ -134,7 +134,7 @@ GET /products/<product_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -179,7 +179,7 @@ Argument | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/products
+GET https://api.kvass.ai/products
 ```
 
 > Example request:
@@ -189,7 +189,7 @@ GET /products HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ```http
@@ -247,7 +247,7 @@ Retrieves a list of all Products associated with the search.
 > Definition
 
 ```
-GET https://api.shareactor.io/products/search
+GET https://api.kvass.ai/products/search
 ```
 
 > Example request:
@@ -257,7 +257,7 @@ GET /products/search?query=description HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ```http
@@ -317,7 +317,7 @@ Argument | Type | Description
 > Definition
 
 ```
-PUT https://api.shareactor.io/products/<product_id>/sub_products
+PUT https://api.kvass.ai/products/<product_id>/sub_products
 ```
 
 > Example request:
@@ -327,7 +327,7 @@ PUT /products/<product_id>/sub_products HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "add": [<product_id>, <product_id>]

@@ -16,7 +16,7 @@ secret | `string` | A SHA-256 secret used to secure the webhook communication
 > Definition
 
 ```
-POST https://api.shareactor.io/webhooks
+POST https://api.kvass.ai/webhooks
 ```
 
 
@@ -27,7 +27,7 @@ POST /webhooks HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "endpoint": "http://requestbin.fullcontact.com/asdfasdf",
@@ -61,7 +61,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-PUT https://api.shareactor.io/webhooks/<webhook_id>
+PUT https://api.kvass.ai/webhooks/<webhook_id>
 ```
 > Example request:
 
@@ -70,7 +70,7 @@ PUT /webhooks/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "endpoint": "https://www.google.com"
@@ -102,7 +102,7 @@ endpoint | `string` | The URL to call when the webhook is triggered
 > Definition
 
 ```
-GET https://api.shareactor.io/webhooks/<webhook_id>
+GET https://api.kvass.ai/webhooks/<webhook_id>
 ```
 > Example request:
 
@@ -111,7 +111,7 @@ GET /webhooks/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -135,7 +135,7 @@ Receives a list of all webhooks associated with a company.
 > Definition
 
 ```
-GET https://api.shareactor.io/webhooks
+GET https://api.kvass.ai/webhooks
 ```
 > Example request:
 
@@ -144,7 +144,7 @@ GET /webhooks HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -177,7 +177,7 @@ Deletes a webhook with a given ID.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/webhooks/<webhook_id>
+DELETE https://api.kvass.ai/webhooks/<webhook_id>
 ```
 
 > Example request:
@@ -187,7 +187,7 @@ DELETE /webhooks/<webhook_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK

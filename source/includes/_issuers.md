@@ -23,7 +23,7 @@ Create a new issuer.
 > Definition
 
 ````
-POST https://api.shareactor.io/issuers
+POST https://api.kvass.ai/issuers
 ````
 
 > Example request:
@@ -33,7 +33,7 @@ POST /issuers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
     "account_number": "12345678903",
@@ -95,7 +95,7 @@ Retrieves issuer with a particular ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/issuers/<issuer-id>
+GET https://api.kvass.ai/issuers/<issuer-id>
 ```
 
 > Example request:
@@ -105,7 +105,7 @@ GET /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -156,7 +156,7 @@ Retrieves a list of all issuers.
 > Definition
 
 ```
-GET https://api.shareactor.io/issuers
+GET https://api.kvass.ai/issuers
 ```
 
 > Example request:
@@ -166,7 +166,7 @@ GET /issuers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -235,7 +235,7 @@ Updates an issuer.
 > Definition
 
 ```
-PUT https://api.shareactor.io/issuers/<issuer-id>
+PUT https://api.kvass.ai/issuers/<issuer-id>
 ```
 
 > Example request:
@@ -245,7 +245,7 @@ PUT /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -296,7 +296,7 @@ Retrieves a list of Issuers associate with search.
 > Definition
 
 ```
-GET https://api.shareactor.io/issuers/search
+GET https://api.kvass.ai/issuers/search
 ```
 
 > Example request:
@@ -306,7 +306,7 @@ GET /issuers/search?query=Big HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -377,7 +377,7 @@ Deletes an issuer.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/issuers/<issuer-id>
+DELETE https://api.kvass.ai/issuers/<issuer-id>
 ```
 
 > Example request:
@@ -387,7 +387,7 @@ DELETE /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Share-Api-Key: <kvass-api-key>
-Host: api.shareactor.io
+Host: api.kvass.ai
 ```
 
 ``` http
