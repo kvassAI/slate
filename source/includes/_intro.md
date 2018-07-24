@@ -9,8 +9,8 @@ The API is separated into 2 different environments:
 
 Environment | Endpoint
 --------- | -------
-**QA** | qa.shareactor.io
-**PROD** | api.shareactor.io
+**QA** | qa.kvass.ai
+**PROD** | api.kvass.ai
 
 Each environment has its separate API keys which you can manage through our Admin dashboard.
 
@@ -22,27 +22,27 @@ All the example API calls are using the PROD endpoint.
 ``` http
 GET / HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key> 
+Host: api.kvass.ai
 ```
 
-> Make sure to replace `<shareactor-api-key>` with your API key.
+> Make sure to replace `<kvass-api-key>` with your API key.
 
-ShareActor uses API keys to allow access to the API. If you want access to our APIs, please get in touch through our [website](https://www.shareactor.io/contact).
+KVASS uses API keys to allow access to the API. If you want access to our APIs, please get in touch through our [website](https://www.kvass.ai/).
 
 All API requests should include this key in the headers*:
 
-`X-Share-Api-Key: <shareactor-api-key>`
+`X-Share-Api-Key: <kvass-api-key>`
 
 <aside class="notice">
-*Note:  You must replace <code>shareactor-api-key</code> with your personal API key.
+*Note:  You must replace <code>kvass-api-key</code> with your personal API key.
 </aside>
 
 ## Errors
 
 <aside class="notice">The errors below might change slightly between API calls</aside>
 
-The ShareActor API uses the following error codes:
+The KVASS API uses the following error codes:
 
 
 Error Code | Reason | Description
@@ -62,8 +62,8 @@ Error Code | Reason | Description
 ```http
 GET /payment_methods/<payment-method-id>/?expand=user HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key> 
+Host: api.kvass.ai
 ```
 
 > Example response:
@@ -113,8 +113,8 @@ user     | User associated with object
 ``` http
 GET /orders?size=10&page=1 HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key> 
+Host: api.kvass.ai
 ```
 
 > Example request using only `size`:
@@ -122,8 +122,8 @@ Host: api.shareactor.io
 ``` http
 GET /orders?size=100 HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key> 
+Host: api.kvass.ai
 X-Pagination-Total: 212
 ```
 
@@ -147,7 +147,7 @@ but all the models have search by `ID` in common.
 > Definition GET
 
 ```
-GET https://api.shareactor.io/model
+GET https://api.kvass.ai/model
 ```
 
 > Example GET request:
@@ -156,8 +156,8 @@ GET https://api.shareactor.io/model
 GET /model HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key> 
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -177,7 +177,7 @@ Content-Type: application/json
 > Definition SEARCH
 
 ```
-GET https://api.shareactor.io/model/search
+GET https://api.kvass.ai/model/search
 ```
 
 > Example SEARCH request:
@@ -186,8 +186,8 @@ GET https://api.shareactor.io/model/search
 GET /model/search?query=a0b1c2d3e4d5c6b7a8b94242 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key> 
+Host: api.kvass.ai
 ```
 
 ``` http

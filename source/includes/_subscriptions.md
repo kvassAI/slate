@@ -39,7 +39,7 @@ This will not start the subscription, only create it.
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions
+POST https://api.kvass.ai/subscriptions
 ```
 
 
@@ -49,8 +49,8 @@ POST https://api.shareactor.io/subscriptions
 POST /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "plan": "5931697ed57ba271c0c7de66",
@@ -102,7 +102,7 @@ parameters by: infinite > ending_date > interval_total.
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions/<subscription_id>/start
+POST https://api.kvass.ai/subscriptions/<subscription_id>/start
 ```
 > Example request:
 
@@ -110,8 +110,8 @@ POST https://api.shareactor.io/subscriptions/<subscription_id>/start
 POST /subscriptions/5964a0ead57ba2036750a3b4/start HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "payment_method": "<payment-method-id>"
@@ -164,7 +164,7 @@ company specifics.
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions
+POST https://api.kvass.ai/subscriptions
 ```
 
 
@@ -174,8 +174,8 @@ POST https://api.shareactor.io/subscriptions
 POST /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {"plan": {"name": "Plan Name",
           "items": [{"product": "<product_id>", "quantity": 2}],
@@ -232,7 +232,7 @@ the subscription, the user could only update one of the fields infinite, ending_
 > Definition
 
 ```
-PUT https://api.shareactor.io/subscriptions/<subscription_id>
+PUT https://api.kvass.ai/subscriptions/<subscription_id>
 ```
 > Example request:
 
@@ -240,8 +240,8 @@ PUT https://api.shareactor.io/subscriptions/<subscription_id>
 PUT /subscriptions/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "note": "A note regarding the subscription",
@@ -294,7 +294,7 @@ is `true`.
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions/<subscription_id>/stop
+POST https://api.kvass.ai/subscriptions/<subscription_id>/stop
 ```
 > Example request:
 
@@ -302,8 +302,8 @@ POST https://api.shareactor.io/subscriptions/<subscription_id>/stop
 POST /subscriptions/5964a0ead57ba2036750a3b4/stop HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 ```
 ``` http
@@ -346,7 +346,7 @@ Receive a subscription, based on its ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/subscriptions/<subscription_id>
+GET https://api.kvass.ai/subscriptions/<subscription_id>
 ```
 > Example request:
 
@@ -354,8 +354,8 @@ GET https://api.shareactor.io/subscriptions/<subscription_id>
 GET /subscriptions/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -393,7 +393,7 @@ It is possible to add pagination to this request.
 > Definition
 
 ```
-GET https://api.shareactor.io/users/<user_id>/subscriptions
+GET https://api.kvass.ai/users/<user_id>/subscriptions
 ```
 > Example request:
 
@@ -401,8 +401,8 @@ GET https://api.shareactor.io/users/<user_id>/subscriptions
 GET /users/57ee9c72d76d431f85111432/subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 Attribute | Type | Description
@@ -420,7 +420,7 @@ Receives a list of all subscriptions associated with a company.
 > Definition
 
 ```
-GET https://api.shareactor.io/subscriptions
+GET https://api.kvass.ai/subscriptions
 ```
 > Example request:
 
@@ -428,8 +428,8 @@ GET https://api.shareactor.io/subscriptions
 GET /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 Attribute | Type | Description

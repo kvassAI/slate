@@ -16,9 +16,9 @@ however there are some fields which will always be present.
 
 Attributes | Type | Description
 ---------- | ---- | ------
-**user** | `object` | [`User`](#users) associated with Payment Method.
-**method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`.
-**name** | `string` | Name of the Payment Method - to be shown to final customer, if desired.
+**payment_method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`.
+name | `string` | Name of the Payment Method - to be shown to final customer, if desired.
+user | `object` | [`User`](#users) associated with Payment Method.
 
 
 ## DIBS
@@ -28,7 +28,7 @@ DIBS is a Norwegian payments gateway. It works based on callbacks made via their
 > Definition
 
 ```
-POST https://api.shareactor.io/dibs/payment_method
+POST https://api.kvass.ai/dibs/payment_method
 ```
 
 > Example request:
@@ -36,7 +36,7 @@ POST https://api.shareactor.io/dibs/payment_method
 ``` http
 POST /dibs/payment_method HTTP/1.1
 Content-Type: application/json
-Host: api.shareactor.io
+Host: api.kvass.ai
 
 {
   "payment_method": "dibs",
@@ -109,7 +109,7 @@ Paypal allows for 2 types of payments: Single Payments or Future Payments. A Sin
 > Definition
 
 ```
-POST https://api.shareactor.io/payment_methods
+POST https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -118,8 +118,8 @@ POST https://api.shareactor.io/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
   "method": "single_paypal",
@@ -163,7 +163,7 @@ Attribute | Type | Description
 --------- | ---- | ------
 **payment_id** | `string` | This is the ID of the payment. The payment recieves a verification to see if its state is "approved", otherwise an exception is raised, `403`.
 **payer_id** | `string` | The payment ID created by PayPal.
-**method**| `string` | This must be `single_paypal`.
+**payment_method**| `string` | This must be `single_paypal`.
 
 
 ## Future Payments (PayPal)
@@ -171,7 +171,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-POST https://api.shareactor.io/payment_methods
+POST https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -180,8 +180,8 @@ POST https://api.shareactor.io/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
   "method": "future_paypal",
@@ -224,7 +224,89 @@ This feature is only available for the mobile SDK.  To use it, the app sends the
 Attribute | Type | Description
 --------- | ---- | ------
 **code** | `string` | This is an authorization code sent by the mobile app to be exchanged for a Refresh Token.
-**method**| `string` | This must be `future_paypal`.
+**payment_method**| `string` | This must be `future_paypal`.
+
+
+## Stripe
+
+
+> Definition
+
+```
+POST https://api.kvass.ai/payment_methods
+```
+
+> Example request:
+
+``` http
+POST /payment_methods HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
+
+{
+  "method": "stripe",
+  "token": "tok_1Bv5yfEeeXxFpLJtpWYeGYuy"
+}
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "company": {
+    "$oid": "57ee9c71d76d431f8511142f"
+  },
+  "created": {
+    "$date": 1476118043580
+  },
+  "_id": {
+    "$oid": "<payment-method-id>"
+  },
+  "modified": {
+    "$date": 1476118043580
+  },
+  "deleted": false,
+  "user": {
+    "$oid": "57ee9c72d76d431f85111432"
+  },
+  "method": "stripe",
+  "name": "Stripe",
+  "customer_id": "cus_CJjTlT4Wci2P0u",
+  "token": "tok_1Bv5yfEeeXxFpLJtpWYeGYuy",
+  "card": {
+    'object': 'card',
+    'address_state': None,
+    'fingerprint': 'npPw68vQg1usKUWb',
+    'metadata': {},
+    'exp_year': 2019,
+    'country': 'US',
+    'last4': '4242',
+    'address_zip_check': None,
+    'address_zip': None,
+    'funding': 'credit',
+    'cvc_check': 'unchecked',
+    'id': 'card_1Bv5yfEeeXxFpLJtPBVfQ1wZ',
+    'tokenization_method': None,
+    'address_line1': None,
+    'exp_month': 12,
+    'brand': 'Visa',
+    'dynamic_last4': None,
+    'address_country': None,
+    'address_line2': None,
+    'address_line1_check': None,
+    'name': None,
+    'address_city': None
+  }
+}
+```
+
+Attribute | Type | Description
+--------- | ---- | ------
+**payment_method** | `string` | Must be "stripe" for triggering a STRIPE payment method
+**token** | `string` | Token created with the card details (number, expiration month, expiration year, cvc)
 
 
 ## Retrieve a Payment Method
@@ -234,7 +316,7 @@ Retrieves the payment method with a given ID.
 > Definition
 
 ```
-GET https://api.shareactor.io/payment_methods/<payment-method-id>
+GET https://api.kvass.ai/payment_methods/<payment-method-id>
 ```
 
 > Example request:
@@ -243,8 +325,8 @@ GET https://api.shareactor.io/payment_methods/<payment-method-id>
 GET /payment_methods/<payment-method-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -287,7 +369,7 @@ Attribute | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/payment_methods
+GET https://api.kvass.ai/payment_methods
 ```
 
 > Example request:
@@ -296,8 +378,8 @@ GET https://api.shareactor.io/payment_methods
 GET /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -346,7 +428,7 @@ Delete the payment method associated with the user.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/payment_methods/<payment_method_id>
+DELETE https://api.kvass.ai/payment_methods/<payment_method_id>
 ```
 
 > Example request:
@@ -355,8 +437,8 @@ DELETE https://api.shareactor.io/payment_methods/<payment_method_id>
 DELETE /payment_methods/<payment_method_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 

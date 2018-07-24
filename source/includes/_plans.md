@@ -51,7 +51,7 @@ when creating a new plan.
 > Definition
 
 ```
-POST https://api.shareactor.io/plans
+POST https://api.kvass.ai/plans
 ```
 
 > Example request:
@@ -60,8 +60,8 @@ POST https://api.shareactor.io/plans
 POST /plans HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "interval_unit": "WEEK",
@@ -133,7 +133,7 @@ Retrieve a particular Plan, based on its id.
 > Definition
 
 ```
-GET https://api.shareactor.io/plans/<plan_id>
+GET https://api.kvass.ai/plans/<plan_id>
 ```
 
 > Example request:
@@ -142,8 +142,8 @@ GET https://api.shareactor.io/plans/<plan_id>
 GET /plans/<plan_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -187,7 +187,7 @@ Argument | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/plans
+GET https://api.kvass.ai/plans
 ```
 
 > Example request:
@@ -196,8 +196,8 @@ GET https://api.shareactor.io/plans
 GET /plans HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 ```http
@@ -268,7 +268,7 @@ Not all fields are possible to update. See fields in Argument below.
 > Definition
 
 ```
-PUT https://api.shareactor.io/plans/<plan_id>
+PUT https://api.kvass.ai/plans/<plan_id>
 ```
 
 > Example request:
@@ -277,8 +277,8 @@ PUT https://api.shareactor.io/plans/<plan_id>
 PUT /plans HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 Argument | Type | Description
@@ -297,7 +297,7 @@ total_amount |`number`| The total cost of the subscription payment. If set, the 
 > Definition
 
 ```
-DELETE https://api.shareactor.io/plans/<plan_id>
+DELETE https://api.kvass.ai/plans/<plan_id>
 ```
 
 > Example request:
@@ -306,8 +306,8 @@ DELETE https://api.shareactor.io/plans/<plan_id>
 DELETE /plans/<plans_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 Deletes a plan with a given ID.

@@ -1,6 +1,6 @@
 # Invoices
 
-Invoices allow you to store invoice information for later payment.
+Invoices allow you to store invoice information for later payment or accounting information sent by a provider of a product or service to the [`User`](#users)]. 
 
 ## Invoice object
 
@@ -17,6 +17,30 @@ issuer | `object`| [`Issuer`](#issuers) of the invoice
 issuer_alias | `string` | The user may want to use an alias for the [`issuer`](#issuers)
 image_url | `string` | The url for the image of the invoice that is returned from the ocr
 status | `string` | The status of the Invoice. Default is CREATED. Additionally there are: "SCHEDULED", "DONE", "FAILED" and "CANCELLED"
+payments | `array` | List of [`Payment`](#payments) objects associated with invoice.
+invoice_lines | `array` | An array of [`invoice lines`](#invoice-lines)
+fee | `float` | Additional fee that will be added to the `amount`
+kind | `string` | The type or kind of invoice.
+deleted | `boolean` | Whether the invoice is deleted or not. _Default is `false`_
+accounting_reference | `string` | A reference ID from your Accounting system.
+external_reference | `string` | Field to set your own reference or if you are using a third party.
+If your company is using an Account system supported by KVASS this field will be automatically setup.
+
+
+## Invoice Lines
+
+Invoice lines are additional information it is possible to append to an invoice. 
+Each line has the format presented bellow.
+
+Attributes | Type | Description
+---------- | ---- | ------
+*description* | `string` | Description of unit. _Required field_
+*quantity* | `number` | Quantity of unit `product` or `resource`. _Default is 1_
+*amount* | `float`| Unit price. _Required field_
+*currency* | `string` | Currency of the unit. ISO 4217 currency code. For example "EUR" _Required field_
+product | `object` | [`Product`](#products) in unit
+resource | `object` | [`Resource`](#resources) in unit
+vat | `float` | VAT of unit. _From 0.0 to 1.0. Default is 0_
 
 
 ## Create an Invoice
@@ -24,7 +48,7 @@ status | `string` | The status of the Invoice. Default is CREATED. Additionally 
 > Definition
 
 ```
-POST https://api.shareactor.io/invoices
+POST https://api.kvass.ai/invoices
 ```
 
 > Example request:
@@ -33,8 +57,8 @@ POST https://api.shareactor.io/invoices
 POST /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "message": "some transaction or KID number",
@@ -44,7 +68,8 @@ Host: api.shareactor.io
     "due_date": "2016-02-10T18:25:43.511Z",
     "image_url": "<image-id>/<image-name>.jpg",
     "issuer": "Big Important Firm AS",
-    "issuer_alias": "issuer alias for Issuer"
+    "issuer_alias": "issuer alias for Issuer",
+    "kind": "test"
 }
 ```
 
@@ -63,7 +88,9 @@ Content-Type: application/json
    "company":{"$oid":"57ee9c71d76d431f8511142f"},
    "amount":123.45,
    "_id":{"$oid":"57ee9c72d76d431f85111434"},
-   "image_url": "<image-id>/<image-name>.jpg"
+   "image_url": "<image-id>/<image-name>.jpg",
+   "invoice_lines": [],
+   "kind": "test"
 }
 ```
 
@@ -79,14 +106,99 @@ image_url | `string` | The url for the invoice image
 issued_date| `number` | The date the Invoice was issued, `timestamp` format. _Not a required field_
 issuer_alias| `string` | Issuer alias that User could set. _Not a required field_
 message | `string` | Message included on the invoice, e.g. KID number to be included with payment
+invoice_lines | `array` | An array of [`invoice lines`](#invoice-lines)
+fee | `float` | Fee added to the amount
+kind | `string` | The type or kind of invoice created
 
+
+## Create an Invoice with Invoice Line
+
+ 
+> Definition
+
+```
+POST https://api.kvass.ai/invoices
+```
+
+> Example request:
+
+``` http
+POST /invoices HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
+
+{
+    "message": "some transaction or KID number",
+    "amount": 123.45,
+    "currency": "NOK",
+    "account_number": "12345678903",
+    "due_date": "2016-02-10T18:25:43.511Z",
+    "image_url": "<image-id>/<image-name>.jpg",
+    "issuer": "Big Important Firm AS",
+    "issuer_alias": "issuer alias for Issuer",
+    "invoice_lines": [
+        {
+            "resource": "596c643ed57ba203be2cf1c9",
+            "amount": 200.00,
+            "currency": "NOK",
+            "description": "A resource",
+            "vat": 0.25,
+            "discount": 0.1
+        },
+        {
+            "amount": 20.00,
+            "currency": "NOK",
+            "description": "Standard Shipping"
+        }
+   ]
+}
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+   "currency":"NOK",
+   "issuer":{"$oid":"57ee9c72d76d431f85111433"},
+   "deleted":false,
+   "due_date":{"$date":1476551410009},
+   "message":"Some message to the Issuer",
+   "account_number":"12345678903",
+   "user":{"$oid":"57ee9c72d76d431f85111432"},
+   "company":{"$oid":"57ee9c71d76d431f8511142f"},
+   "amount":123.45,
+   "_id":{"$oid":"57ee9c72d76d431f85111434"},
+   "image_url": "<image-id>/<image-name>.jpg",
+   "invoice_lines": [
+        {
+            "amount": 200.00,
+            "currency": "NOK",
+            "description": "Standard Shipping",
+            "description": "A resource",
+            "vat": 0.25,
+            "discount": 0.1
+        },
+        {
+            "amount": 20.00,
+            "currency": "NOK",
+            "description": "Standard Shipping"
+        }
+   ]
+}
+```
+Creates a new Invoice including invoice lines.
+The following example show you how to create different invoice lines in an Invoice.
+The first invoice line contains a [`Resource`](#Resources) but it works the same way with a [`Product`](#Products).
 
 ## Retrieve an Invoice
 
 > Definition
 
 ```
-GET https://api.shareactor.io/invoices/<invoice_id>
+GET https://api.kvass.ai/invoices/<invoice_id>
 ```
 
 > Example request:
@@ -95,8 +207,8 @@ GET https://api.shareactor.io/invoices/<invoice_id>
 GET /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -114,7 +226,8 @@ Content-Type: application/json
    "company":{"$oid":"57ee9c71d76d431f8511142f"},
    "amount":123.45,
    "_id":{"$oid":"57ee9c72d76d431f85111434"},
-   "image_url": "<image-id>/<image-name>.jpg"
+   "image_url": "<image-id>/<image-name>.jpg",
+   "invoice_lines": []
 }
 ```
 
@@ -130,7 +243,7 @@ Argument | Type | Description
 > Definition
 
 ```
-GET https://api.shareactor.io/invoices
+GET https://api.kvass.ai/invoices
 ```
 
 > Example request:
@@ -139,8 +252,8 @@ GET https://api.shareactor.io/invoices
 GET /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -159,7 +272,8 @@ Content-Type: application/json
        "company":{"$oid":"57ee9c71d76d431f8511142f"},
        "amount":123.45,
        "_id":{"$oid":"57ee9c72d76d431f85111434"},
-       "image_url": "<image-id>/<image-name>.jpg"
+       "image_url": "<image-id>/<image-name>.jpg",
+       "invoice_lines": []
     }
 ]
 ```
@@ -184,7 +298,7 @@ Retrieves a list of Invoices associate with search.
 > Definition
 
 ```
-GET https://api.shareactor.io/invoices/search
+GET https://api.kvass.ai/invoices/search
 ```
 
 > Example request by account_number:
@@ -193,8 +307,8 @@ GET https://api.shareactor.io/invoices/search
 GET /invoices/search/query=12345678903 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 ``` http
@@ -213,7 +327,8 @@ Content-Type: application/json
        "company":{"$oid":"57ee9c71d76d431f8511142f"},
        "amount":123.45,
        "_id":{"$oid":"57ee9c72d76d431f85111434"},
-       "image_url": "<image-id>/<image-name>.jpg"
+       "image_url": "<image-id>/<image-name>.jpg",
+       "invoice_lines": []
     }
 ]
 ```
@@ -236,7 +351,7 @@ Updates an Invoice with a given ID.
 > Definition
 
 ```
-PUT https://api.shareactor.io/invoices/<invoice_id>
+PUT https://api.kvass.ai/invoices/<invoice_id>
 ```
 
 > Example request:
@@ -245,8 +360,8 @@ PUT https://api.shareactor.io/invoices/<invoice_id>
 PUT /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 
@@ -261,7 +376,7 @@ Deletes an invoice with a give ID.
 > Definition
 
 ```
-DELETE https://api.shareactor.io/invoices/<invoice_id>
+DELETE https://api.kvass.ai/invoices/<invoice_id>
 ```
 
 > Example request:
@@ -270,8 +385,8 @@ DELETE https://api.shareactor.io/invoices/<invoice_id>
 DELETE /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 ```
 
 Argument | Type | Description

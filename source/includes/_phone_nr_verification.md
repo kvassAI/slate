@@ -13,7 +13,7 @@ This process is divided into two stages:
 > Definition
 
 ```
-POST https://api.shareactor.io/sms/verify
+POST https://api.kvass.ai/sms/verify
 ```
 
 > Example request:
@@ -22,8 +22,8 @@ POST https://api.shareactor.io/sms/verify
 POST /sms/verify HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "phone_number": "004712345678"
@@ -50,7 +50,7 @@ Argument | Type | Description
 > Definition
 
 ```
-POST https://api.shareactor.io/sms/verify
+POST https://api.kvass.ai/sms/verify
 ```
 
 > Example request:
@@ -59,8 +59,8 @@ POST https://api.shareactor.io/sms/verify
 POST /sms/verify HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "request_id": "2d426b2552e1446bb3d234e7298c21f9",
