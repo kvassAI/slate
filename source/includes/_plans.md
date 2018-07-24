@@ -26,11 +26,8 @@ items | `array` | List of items associated with Plan. See description below.
 units | `number` | Total number of items in the plan.
 currency | `string` | Three letter ISO currency code as defined by ISO 4217.
 total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`.
-discount | `number` | Set a discount on a plan. Min 0.0, max 1.0. This will be calculated on the total_amount.
 initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices: `CANCEL`, `CONTINUE`
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
-prorate | `boolean` | Flag telling us whether to prorate amount if user stops the subscription in the middle of a billing cycle.
-
 
 ### Plan items
 
@@ -73,11 +70,7 @@ Host: api.kvass.ai
               {"product": "<product2_id>", "quantity": 2, "discount": 0.5}],
     "initial_fail_amount_action": "CONTINUE",
     "max_fail_attempts": 1,
-    "note": "This is a note regarding the Plan",
-    "interval_count": false,
-    "total_amount": false,
-    "discount": 0,
-    "prorate": false
+    "note": "This is a note regarding the Plan"
 }
 
 ```
@@ -97,7 +90,6 @@ Content-Type: application/json
     "billing_interval": "MONTH",
     "initial_fail_amount_action": "CONTINUE",
     "max_fail_attempts": 1,
-    "discount": 0.0,
     "name": "Plan Deluxe",
     "total_amount": 300.0,
     "interval_unit": "WEEK",
@@ -114,8 +106,7 @@ Content-Type: application/json
     "deleted": false,
     "company": {
         "$oid": "57ee9c71d76d431f8511142f"},
-    "static": true,
-    "prorate": false
+    "static": true
 }
 ```
 
@@ -165,7 +156,6 @@ Content-Type: application/json
          "product": {"$oid": "5931697ed57ba271c0c7de65"},
          "quantity": 2}],
      "deleted": false,
-     "discount": 0.0,
      "billing_interval": "MONTH", 
      "currency": "NOK", 
      "name": "Golden Plan",
@@ -173,8 +163,7 @@ Content-Type: application/json
      "static": false,
      "total_amount": 500.0,
      "company": {
-        "$oid": "57ee9c71d76d431f8511142f"},
-    "prorate" false
+        "$oid": "57ee9c71d76d431f8511142f"}
  }
 ```
 
@@ -219,7 +208,6 @@ Content-Type: application/json
         "_id": {
             "$oid": "59317069d57ba2781c739479"
         },
-        "discount": 0.0,
         "total_amount": 500.0,
         "company": {
             "$oid": "57ee9c71d76d431f8511142f"
@@ -240,8 +228,7 @@ Content-Type: application/json
                 }
             }
         ],
-        "status": "CREATED",
-        "prorate" false
+        "status": "CREATED"
     },
     {
         "created": {
