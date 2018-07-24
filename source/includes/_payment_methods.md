@@ -16,7 +16,7 @@ however there are some fields which will always be present.
 
 Attributes | Type | Description
 ---------- | ---- | ------
-**method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`.
+**payment_method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`.
 name | `string` | Name of the Payment Method - to be shown to final customer, if desired.
 user | `object` | [`User`](#users) associated with Payment Method.
 
@@ -163,7 +163,7 @@ Attribute | Type | Description
 --------- | ---- | ------
 **payment_id** | `string` | This is the ID of the payment. The payment recieves a verification to see if its state is "approved", otherwise an exception is raised, `403`.
 **payer_id** | `string` | The payment ID created by PayPal.
-**method**| `string` | This must be `single_paypal`.
+**payment_method**| `string` | This must be `single_paypal`.
 
 
 ## Future Payments (PayPal)
@@ -224,7 +224,7 @@ This feature is only available for the mobile SDK.  To use it, the app sends the
 Attribute | Type | Description
 --------- | ---- | ------
 **code** | `string` | This is an authorization code sent by the mobile app to be exchanged for a Refresh Token.
-**method**| `string` | This must be `future_paypal`.
+**payment_method**| `string` | This must be `future_paypal`.
 
 
 ## Stripe
@@ -305,6 +305,7 @@ Content-Type: application/json
 
 Attribute | Type | Description
 --------- | ---- | ------
+**payment_method** | `string` | Must be "stripe" for triggering a STRIPE payment method
 **token** | `string` | Token created with the card details (number, expiration month, expiration year, cvc)
 
 
