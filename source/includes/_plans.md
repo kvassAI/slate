@@ -385,8 +385,6 @@ Host: api.shareactor.io
     "note": "This is a note regarding the Plan",
     "interval_count": false,
     "total_amount": false,
-    "discount": 0,
-    "prorate": false,
     "recurring_days": [{"day": 0, "hour": 10, "minute": 42},
                        {"day": 4, "hour": 20, "minute": 15}]
 }
@@ -409,7 +407,6 @@ Content-Type: application/json
     "billing_interval": "MONTH",
     "initial_fail_amount_action": "CONTINUE",
     "max_fail_attempts": 1,
-    "discount": 0.0,
     "name": "Recurring Order Plan Deluxe",
     "total_amount": 300.0,
     "interval_unit": "WEEK",
@@ -427,7 +424,6 @@ Content-Type: application/json
     "company": {
         "$oid": "57ee9c71d76d431f8511142f"},
     "static": true,
-    "prorate": false,
     "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
                        {"day": 0, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}}]
 }
@@ -467,8 +463,6 @@ Host: api.shareactor.io
     "note": "This is a note regarding the Plan",
     "interval_count": false,
     "total_amount": false,
-    "discount": 0,
-    "prorate": false,
     "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
                        {"day": 4, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}},
                        {"day": 2, "hour": 10, "minute": 15}]
@@ -492,7 +486,6 @@ Content-Type: application/json
     "billing_interval": "MONTH",
     "initial_fail_amount_action": "CONTINUE",
     "max_fail_attempts": 1,
-    "discount": 0.0,
     "name": "Recurring Order Plan Deluxe",
     "total_amount": 300.0,
     "interval_unit": "WEEK",
@@ -510,7 +503,6 @@ Content-Type: application/json
     "company": {
         "$oid": "57ee9c71d76d431f8511142f"},
     "static": true,
-    "prorate": false,
     "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
                        {"day": 4, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}},
                        {"day": 2, "starting_day": {"$date": 1496410495952}, "next_day": {"$date": 1496410495952}}]
