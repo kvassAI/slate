@@ -68,8 +68,7 @@ Host: api.kvass.ai
               {"product": "<product2_id>", "quantity": 2, "discount": 0.5}],
     "initial_fail_amount_action": "CONTINUE",
     "max_fail_attempts": 1,
-    "note": "This is a note regarding the Plan",
-    "total_amount": 300.0
+    "note": "This is a note regarding the Plan"
 }
 
 ```
