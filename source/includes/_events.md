@@ -10,7 +10,7 @@ Attribute | Type | Description
 _id | `object` | The event ID.
 **kind** | `string` | The kind of event. Can be any from the [`event type list`](#list-of-event-types)
 data | `object` | An object containing the event kind, timestamp and any additional data necessary
-
+author | `object` | [`User`](#users) which triggers the event
 
 ## Get All Events
 Receives a list of all events.
@@ -40,7 +40,27 @@ Content-Type: application/json
         "kind": "order.created",
         "created": {"$date": 1499767018360},
         "company": {"$oid": "57ee9c71d76d431f8511142f"},
-        "data" {"kind": "order.created"}
+        "data": {"kind": "order.created"},
+        "author": {
+                      "_id":{"$oid":"57ee9c72d76d431f85111432"},
+                      "_cls":"User",
+                      "created":{"$date":1475428903950},
+                      "modified":{"$date":1475428903951},
+                      "first_name":"John",
+                      "last_name":"Doe",
+                      "email":"john@email.com",
+                      "mobile_phone_number":"+4712345678",
+                      "addresses":[],
+                      "billing_address":{},
+                      "bio":"",
+                      "note":"",
+                      "avatar":"",
+                      "company":{"$oid":"57ee9c71d76d431f8511142f"},
+                      "tags":[],
+                      "stripe_customer_id":"",
+                      "roles":["user"],
+                      "deleted":true
+                  }
     }
 ]
 ```
@@ -79,7 +99,27 @@ Content-Type: application/json
     "kind": "order.created",
     "created": {"$date": 1499767018360},
     "company": {"$oid": "57ee9c71d76d431f8511142f"},
-    "data" {"kind": "order.created"}
+    "data" {"kind": "order.created"},
+    "author": {
+                  "_id":{"$oid":"57ee9c72d76d431f85111432"},
+                  "_cls":"User",
+                  "created":{"$date":1475428903950},
+                  "modified":{"$date":1475428903951},
+                  "first_name":"John",
+                  "last_name":"Doe",
+                  "email":"john@email.com",
+                  "mobile_phone_number":"+4712345678",
+                  "addresses":[],
+                  "billing_address":{},
+                  "bio":"",
+                  "note":"",
+                  "avatar":"",
+                  "company":{"$oid":"57ee9c71d76d431f8511142f"},
+                  "tags":[],
+                  "stripe_customer_id":"",
+                  "roles":["user"],
+                  "deleted":true
+              }
 }
 ```
 
@@ -113,14 +153,54 @@ Content-Type: application/json
         "kind": "order.created",
         "created": {"$date": 1499767018360},
         "company": {"$oid": "57ee9c71d76d431f8511142f"},
-        "data" {"kind": "order.created"}
+        "data": {"kind": "order.created"},
+        "author": {
+                      "_id":{"$oid":"57ee9c72d76d431f85111432"},
+                      "_cls":"User",
+                      "created":{"$date":1475428903950},
+                      "modified":{"$date":1475428903951},
+                      "first_name":"John",
+                      "last_name":"Doe",
+                      "email":"john@email.com",
+                      "mobile_phone_number":"+4712345678",
+                      "addresses":[],
+                      "billing_address":{},
+                      "bio":"",
+                      "note":"",
+                      "avatar":"",
+                      "company":{"$oid":"57ee9c71d76d431f8511142f"},
+                      "tags":[],
+                      "stripe_customer_id":"",
+                      "roles":["user"],
+                      "deleted":true
+                  }
     },
     {
         "_id": {"$oid": "5964a0ead57ba2036750a3b4"},
         "kind": "order.updated",
         "created": {"$date": 1499767018360},
         "company": {"$oid": "57ee9c71d76d431f8511142f"},
-        "data" {"kind": "order.updated"}
+        "data": {"kind": "order.updated"},
+        "author": {
+                      "_id":{"$oid":"57ee9c72d76d431f85111432"},
+                      "_cls":"User",
+                      "created":{"$date":1475428903950},
+                      "modified":{"$date":1475428903951},
+                      "first_name":"John",
+                      "last_name":"Doe",
+                      "email":"john@email.com",
+                      "mobile_phone_number":"+4712345678",
+                      "addresses":[],
+                      "billing_address":{},
+                      "bio":"",
+                      "note":"",
+                      "avatar":"",
+                      "company":{"$oid":"57ee9c71d76d431f8511142f"},
+                      "tags":[],
+                      "stripe_customer_id":"",
+                      "roles":["user"],
+                      "deleted":true
+                  }
     }
 ]
 ```
@@ -139,3 +219,27 @@ to_date | `number` | End date, `timestamp` format. _default is None_
 Model name | Description
 ---------- | ------
 `order.created` | Order created
+`order.updated` | Order updated
+`order.cancelled` | Order cancelled
+`invoice.created` | Invoice created
+`invoice.updated` | Invoice updated
+`invoice.deleted` | Invoice deleted
+`user.created` | User created
+`user.updated` | User updated
+`user.deleted` | User deleted
+`subscription.created` | Subscription created
+`subscription.updated` | Subscription updated
+`subscription.deleted` | Subscription deleted
+`subscription.activated` | Subscription activated
+`subscription.future` | Subscription postponed
+`subscription.completed` | Subscription completed
+`subscription.non_renewing` | Subscription stopping the next cycle
+`subscription.cancelled` | Subscription cancelled
+`payment.created` | Payment created
+`payment.updated` | Payment updated
+`payment.deleted` | Payment deleted
+`payment.succeeded` | Payment succeeded
+`payment.processing` | Payment processing
+`payment.failed` | Payment failed
+`payment.captured` | Payment captured
+`payment.cancelled` | Payment cancelled
