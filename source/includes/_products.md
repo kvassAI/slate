@@ -44,14 +44,11 @@ X-Share-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-  "product": 
-  {
-        "description": "It is a test product",
-        "currency": "NOK",
-        "price": 3.14,
-        "name": "Product Name",
-        "vat": 15
-    }
+    "description": "It is a test product",
+    "currency": "NOK",
+    "price": 3.14,
+    "name": "Product Name",
+    "vat": 15
 }
 ```
 
@@ -334,5 +331,3 @@ Host: api.kvass.ai
 }
 
 ```
-
-
