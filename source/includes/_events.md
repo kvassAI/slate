@@ -221,7 +221,7 @@ Model name | Description
 `order.created` | Order created
 `order.updated` | Order updated
 `order.cancelled` | Order cancelled
-`invoice.creacted` | Invoice created
+`invoice.created` | Invoice created
 `invoice.updated` | Invoice updated
 `invoice.deleted` | Invoice deleted
 `user.created` | User created
