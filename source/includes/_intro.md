@@ -4,7 +4,7 @@ The ShareActor API is a standard JSON RESTful API. The API follows the HTTP stan
 
 All responses from the API, including errors, are returned as JSON objects.
 
-The API is separated into 2 different environments: 
+The API is separated into 2 different environments:
 
 
 Environment | Endpoint
@@ -22,7 +22,7 @@ All the example API calls are using the PROD endpoint.
 ``` http
 GET / HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key> 
+X-Share-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -62,7 +62,7 @@ Error Code | Reason | Description
 ```http
 GET /payment_methods/<payment-method-id>/?expand=user HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key> 
+X-Share-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -83,7 +83,7 @@ Content-Type: application/json
 
 Many response objects will contain IDs for related objects in the response. For example, an Order might have a User ID associated. If you want to expand the actual user information, you can use the `expand` query parameter.
 
-You can also nest expand requests with the dot property. For example, requesting payments.payment_method on an order will expand the payments property into a list of Payment objects, and will then expand the payment method property into a full Payment Method object. 
+You can also nest expand requests with the dot property. For example, requesting payments.payment_method on an order will expand the payments property into a list of Payment objects, and will then expand the payment method property into a full Payment Method object.
 
 You can expand multiple objects at once by identifying multiple items
 in the expand array, separated with commas.
@@ -108,12 +108,12 @@ user     | User associated with object
 
 ## Pagination
 
-> Example request using `size` and `page`: 
+> Example request using `size` and `page`:
 
 ``` http
 GET /orders?size=10&page=1 HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key> 
+X-Share-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -122,7 +122,7 @@ Host: api.kvass.ai
 ``` http
 GET /orders?size=100 HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key> 
+X-Share-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 X-Pagination-Total: 212
 ```
@@ -156,7 +156,7 @@ GET https://api.kvass.ai/model
 GET /model HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key> 
+X-Share-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -186,7 +186,7 @@ GET https://api.kvass.ai/model/search
 GET /model/search?query=a0b1c2d3e4d5c6b7a8b94242 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key> 
+X-Share-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -239,44 +239,19 @@ like `user name` or `account_number`, without specifying that you are searching 
 
 # Authorization
 
-Our API uses OAuth2 and JWT tokens for authorizing Users, through a service called [Auth0](https://auth0.com/). 
+Our API uses OAuth2 and JWT tokens for authorizing Users.
 
 > OAuth 2.0 is the industry-standard protocol for authorization
 
 > JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties
 
-Our API supports multiple login mechanisms such as the following:
+We have support for a variety of authentication providers, including [Auth0](https://auth0.com/), [Google Firebase](https://firebase.google.com/docs/auth/), [Amazon's Cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html) or even your own authentication mechanism. Each of these provides different Identity Providers such as Facebook, Google, Email and password, etc.
 
-* Facebook
-* Google
-* Email and password
-* SAML, for example: BankID (Norwegian)
-* SMS
-* etc.
-
-[Here](https://auth0.com/docs/identityproviders) is a full list of Auth0 supported integrations and [here](https://auth0.com/docs/quickstart/native)  you can see a guide on how to implement Auth0 with iOS, Android, Ionic, etc. 
-
-To authorize a user on the API side, we use [JWT tokens](https://jwt.io/). These have to be added to all requests using the following header:
+Regardless of the provider you decide to go for, in order to authorize a user on the API side, we use the [JWT tokens](https://jwt.io/) given by those same authentication providers. These have to be added to all requests using the following header:
 
 `Authorization: Bearer <jwt>`
 
-## How-to 
-
-There are just a couple of things you need to do to authorize with our APIs after we provide you with the necessary configuration settings:
-
-1. Install your favourite OAuth2 SDK:
-  * [Android](https://github.com/wuman/android-oauth-client)
-  * [iOS](https://github.com/vsouza/awesome-ios#authentication)
-  * [Ionic 2](https://auth0.com/authenticate/ionic2/oauth2)
-  * [React Native](https://www.npmjs.com/package/react-native-oauth)
-  * Manual - you can also use no SDK and just implement a typical OAuth2 flow
-2. Configure the SDK with the settings given by us
-3. Perform the authentication request, which will return you a JWT and a profile
-4. Create or authenticate your user with our API - `POST /v2/users`
-
-After this flow, you should use the JWT provided for all other API calls.
-
-OAuth2 is a standard for authorization, so if you need more information on how to use/implement it, you can find various resources online. However, here are a few good starting points:
+OAuth2 is an industry-standard protocol for authorization, so if you need more information on how to use/implement it, you can find various resources online. However, here are a few good starting points:
 
 * [OAuth2 Spec - RFC6749](https://tools.ietf.org/html/rfc6749)
 * [OAuth Bible](http://oauthbible.com/)
