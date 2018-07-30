@@ -253,7 +253,7 @@
 
 <p>All responses from the API, including errors, are returned as JSON objects.</p>
 
-<p>The API is separated into 2 different environments: </p>
+<p>The API is separated into 2 different environments:</p>
 
 <table><thead>
 <tr>
@@ -278,7 +278,7 @@
 <h2 id="authentication">Authentication</h2>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 </code></pre>
 <blockquote>
@@ -352,7 +352,7 @@
 </blockquote>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/payment_methods/&lt;payment-method-id&gt;/?expand=user</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 </code></pre>
 <blockquote>
@@ -371,7 +371,7 @@
 </span></code></pre>
 <p>Many response objects will contain IDs for related objects in the response. For example, an Order might have a User ID associated. If you want to expand the actual user information, you can use the <code class="prettyprint">expand</code> query parameter.</p>
 
-<p>You can also nest expand requests with the dot property. For example, requesting payments.payment_method on an order will expand the payments property into a list of Payment objects, and will then expand the payment method property into a full Payment Method object. </p>
+<p>You can also nest expand requests with the dot property. For example, requesting payments.payment_method on an order will expand the payments property into a list of Payment objects, and will then expand the payment method property into a full Payment Method object.</p>
 
 <p>You can expand multiple objects at once by identifying multiple items
 in the expand array, separated with commas.</p>
@@ -419,11 +419,11 @@ in the expand array, separated with commas.</p>
 <h2 id="pagination">Pagination</h2>
 
 <blockquote>
-<p>Example request using <code class="prettyprint">size</code> and <code class="prettyprint">page</code>: </p>
+<p>Example request using <code class="prettyprint">size</code> and <code class="prettyprint">page</code>:</p>
 </blockquote>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/orders?size=10&amp;page=1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 </code></pre>
 <blockquote>
@@ -431,7 +431,7 @@ in the expand array, separated with commas.</p>
 </blockquote>
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/orders?size=100</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 <span class="na">X-Pagination-Total</span><span class="p">:</span> <span class="s">212</span>
 </code></pre>
@@ -462,7 +462,7 @@ but all the models have search by <code class="prettyprint">ID</code> in common.
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/model</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -486,7 +486,7 @@ but all the models have search by <code class="prettyprint">ID</code> in common.
 <pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/model/search?query=a0b1c2d3e4d5c6b7a8b94242</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
-<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt; </span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -661,7 +661,7 @@ like <code class="prettyprint">user name</code> or <code class="prettyprint">acc
 
 <h1 id="authorization">Authorization</h1>
 
-<p>Our API uses OAuth2 and JWT tokens for authorizing Users, through a service called <a href="https://auth0.com/">Auth0</a>. </p>
+<p>Our API uses OAuth2 and JWT tokens for authorizing Users.</p>
 
 <blockquote>
 <p>OAuth 2.0 is the industry-standard protocol for authorization</p>
@@ -669,45 +669,13 @@ like <code class="prettyprint">user name</code> or <code class="prettyprint">acc
 <p>JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties</p>
 </blockquote>
 
-<p>Our API supports multiple login mechanisms such as the following:</p>
+<p>We have support for a variety of authentication providers, including <a href="https://auth0.com/">Auth0</a>, <a href="https://firebase.google.com/docs/auth/">Google Firebase</a>, <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html">Amazon&rsquo;s Cognito</a> or even your own authentication mechanism. Each of these provides different Identity Providers such as Facebook, Google, Email and password, etc.</p>
 
-<ul>
-<li>Facebook</li>
-<li>Google</li>
-<li>Email and password</li>
-<li>SAML, for example: BankID (Norwegian)</li>
-<li>SMS</li>
-<li>etc.</li>
-</ul>
-
-<p><a href="https://auth0.com/docs/identityproviders">Here</a> is a full list of Auth0 supported integrations and <a href="https://auth0.com/docs/quickstart/native">here</a>  you can see a guide on how to implement Auth0 with iOS, Android, Ionic, etc. </p>
-
-<p>To authorize a user on the API side, we use <a href="https://jwt.io/">JWT tokens</a>. These have to be added to all requests using the following header:</p>
+<p>Regardless of the provider you decide to go for, in order to authorize a user on the API side, we use the <a href="https://jwt.io/">JWT tokens</a> given by those same authentication providers. These have to be added to all requests using the following header:</p>
 
 <p><code class="prettyprint">Authorization: Bearer &lt;jwt&gt;</code></p>
 
-<h2 id="how-to">How-to</h2>
-
-<p>There are just a couple of things you need to do to authorize with our APIs after we provide you with the necessary configuration settings:</p>
-
-<ol>
-<li>Install your favourite OAuth2 SDK:
-
-<ul>
-<li><a href="https://github.com/wuman/android-oauth-client">Android</a></li>
-<li><a href="https://github.com/vsouza/awesome-ios#authentication">iOS</a></li>
-<li><a href="https://auth0.com/authenticate/ionic2/oauth2">Ionic 2</a></li>
-<li><a href="https://www.npmjs.com/package/react-native-oauth">React Native</a></li>
-<li>Manual - you can also use no SDK and just implement a typical OAuth2 flow</li>
-</ul></li>
-<li>Configure the SDK with the settings given by us</li>
-<li>Perform the authentication request, which will return you a JWT and a profile</li>
-<li>Create or authenticate your user with our API - <code class="prettyprint">POST /v2/users</code></li>
-</ol>
-
-<p>After this flow, you should use the JWT provided for all other API calls.</p>
-
-<p>OAuth2 is a standard for authorization, so if you need more information on how to use/implement it, you can find various resources online. However, here are a few good starting points:</p>
+<p>OAuth2 is an industry-standard protocol for authorization, so if you need more information on how to use/implement it, you can find various resources online. However, here are a few good starting points:</p>
 
 <ul>
 <li><a href="https://tools.ietf.org/html/rfc6749">OAuth2 Spec - RFC6749</a></li>
@@ -971,6 +939,11 @@ and keeping a history of transactions on your data.</p>
 <td><code class="prettyprint">object</code></td>
 <td>An object containing the event kind, timestamp and any additional data necessary</td>
 </tr>
+<tr>
+<td>author</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#users"><code class="prettyprint">User</code></a> which triggers the event</td>
+</tr>
 </tbody></table>
 
 <h2 id="get-all-events">Get All Events</h2>
@@ -999,7 +972,27 @@ and keeping a history of transactions on your data.</p>
         </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
         </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
-        </span><span class="s2">"data"</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">}</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                      </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"addresses"</span><span class="p">:[],</span><span class="w">
+                      </span><span class="s2">"billing_address"</span><span class="p">:{},</span><span class="w">
+                      </span><span class="s2">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
+                      </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
+                      </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -1052,7 +1045,27 @@ and keeping a history of transactions on your data.</p>
     </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
     </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
-    </span><span class="s2">"data"</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">}</span><span class="w">
+    </span><span class="s2">"data"</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"addresses"</span><span class="p">:[],</span><span class="w">
+                  </span><span class="s2">"billing_address"</span><span class="p">:{},</span><span class="w">
+                  </span><span class="s2">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
+                  </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
+                  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+              </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h2 id="events-search">Events Search</h2>
@@ -1081,14 +1094,54 @@ and keeping a history of transactions on your data.</p>
         </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
         </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
-        </span><span class="s2">"data"</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">}</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.created"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                      </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"addresses"</span><span class="p">:[],</span><span class="w">
+                      </span><span class="s2">"billing_address"</span><span class="p">:{},</span><span class="w">
+                      </span><span class="s2">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
+                      </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
+                      </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5964a0ead57ba2036750a3b4"</span><span class="p">},</span><span class="w">
         </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.updated"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499767018360</span><span class="p">},</span><span class="w">
         </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
-        </span><span class="s2">"data"</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.updated"</span><span class="p">}</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.updated"</span><span class="p">},</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                      </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"addresses"</span><span class="p">:[],</span><span class="w">
+                      </span><span class="s2">"billing_address"</span><span class="p">:{},</span><span class="w">
+                      </span><span class="s2">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+                      </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
+                      </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                      </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
+                      </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -1142,6 +1195,102 @@ and keeping a history of transactions on your data.</p>
 <tr>
 <td><code class="prettyprint">order.created</code></td>
 <td>Order created</td>
+</tr>
+<tr>
+<td><code class="prettyprint">order.updated</code></td>
+<td>Order updated</td>
+</tr>
+<tr>
+<td><code class="prettyprint">order.cancelled</code></td>
+<td>Order cancelled</td>
+</tr>
+<tr>
+<td><code class="prettyprint">invoice.created</code></td>
+<td>Invoice created</td>
+</tr>
+<tr>
+<td><code class="prettyprint">invoice.updated</code></td>
+<td>Invoice updated</td>
+</tr>
+<tr>
+<td><code class="prettyprint">invoice.deleted</code></td>
+<td>Invoice deleted</td>
+</tr>
+<tr>
+<td><code class="prettyprint">user.created</code></td>
+<td>User created</td>
+</tr>
+<tr>
+<td><code class="prettyprint">user.updated</code></td>
+<td>User updated</td>
+</tr>
+<tr>
+<td><code class="prettyprint">user.deleted</code></td>
+<td>User deleted</td>
+</tr>
+<tr>
+<td><code class="prettyprint">subscription.created</code></td>
+<td>Subscription created</td>
+</tr>
+<tr>
+<td><code class="prettyprint">subscription.updated</code></td>
+<td>Subscription updated</td>
+</tr>
+<tr>
+<td><code class="prettyprint">subscription.deleted</code></td>
+<td>Subscription deleted</td>
+</tr>
+<tr>
+<td><code class="prettyprint">subscription.activated</code></td>
+<td>Subscription activated</td>
+</tr>
+<tr>
+<td><code class="prettyprint">subscription.future</code></td>
+<td>Subscription postponed</td>
+</tr>
+<tr>
+<td><code class="prettyprint">subscription.completed</code></td>
+<td>Subscription completed</td>
+</tr>
+<tr>
+<td><code class="prettyprint">subscription.non_renewing</code></td>
+<td>Subscription stopping the next cycle</td>
+</tr>
+<tr>
+<td><code class="prettyprint">subscription.cancelled</code></td>
+<td>Subscription cancelled</td>
+</tr>
+<tr>
+<td><code class="prettyprint">payment.created</code></td>
+<td>Payment created</td>
+</tr>
+<tr>
+<td><code class="prettyprint">payment.updated</code></td>
+<td>Payment updated</td>
+</tr>
+<tr>
+<td><code class="prettyprint">payment.deleted</code></td>
+<td>Payment deleted</td>
+</tr>
+<tr>
+<td><code class="prettyprint">payment.succeeded</code></td>
+<td>Payment succeeded</td>
+</tr>
+<tr>
+<td><code class="prettyprint">payment.processing</code></td>
+<td>Payment processing</td>
+</tr>
+<tr>
+<td><code class="prettyprint">payment.failed</code></td>
+<td>Payment failed</td>
+</tr>
+<tr>
+<td><code class="prettyprint">payment.captured</code></td>
+<td>Payment captured</td>
+</tr>
+<tr>
+<td><code class="prettyprint">payment.cancelled</code></td>
+<td>Payment cancelled</td>
 </tr>
 </tbody></table>
 
@@ -3650,6 +3799,11 @@ see <code class="prettyprint">Create Subscription with a pre-set company specifi
 </tr>
 </thead><tbody>
 <tr>
+<td>method</td>
+<td><code class="prettyprint">string</code></td>
+<td>The plan type. <em>Default is <code class="prettyprint">basic</code></em>.</td>
+</tr>
+<tr>
 <td>name</td>
 <td><code class="prettyprint">string</code></td>
 <td>The name of the plan.</td>
@@ -3700,11 +3854,6 @@ see <code class="prettyprint">Create Subscription with a pre-set company specifi
 <td>The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the <code class="prettyprint">items</code>.</td>
 </tr>
 <tr>
-<td>discount</td>
-<td><code class="prettyprint">number</code></td>
-<td>Set a discount on a plan. Min 0.0, max 1.0. This will be calculated on the total_amount.</td>
-</tr>
-<tr>
 <td>initial_fail_amount_action</td>
 <td><code class="prettyprint">string</code></td>
 <td>Decides what happens if a payment fails in the <a href="#subscriptions"><code class="prettyprint">Subscription</code></a>. <br> Choices: <code class="prettyprint">CANCEL</code>, <code class="prettyprint">CONTINUE</code></td>
@@ -3713,11 +3862,6 @@ see <code class="prettyprint">Create Subscription with a pre-set company specifi
 <td>max_fail_attempts</td>
 <td><code class="prettyprint">integer</code></td>
 <td>If <code class="prettyprint">initial_fail_amount_action</code> is <code class="prettyprint">CONTINUE</code>, this is the number of interval_units that is allowed to fail before the <a href="#subscriptions"><code class="prettyprint">Subscription</code></a> stops.</td>
-</tr>
-<tr>
-<td>prorate</td>
-<td><code class="prettyprint">boolean</code></td>
-<td>Flag telling us whether to prorate amount if user stops the subscription in the middle of a billing cycle.</td>
 </tr>
 </tbody></table>
 
@@ -3760,11 +3904,7 @@ when creating a new plan.</p>
               </span><span class="p">{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;product2_id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">}],</span><span class="w">
     </span><span class="s2">"initial_fail_amount_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTINUE"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"max_fail_attempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"interval_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"prorate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -3781,7 +3921,6 @@ when creating a new plan.</p>
     </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"initial_fail_amount_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTINUE"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"max_fail_attempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan Deluxe"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
@@ -3798,8 +3937,7 @@ when creating a new plan.</p>
     </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
-    </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"prorate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -3861,7 +3999,6 @@ when creating a new plan.</p>
          </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de65"</span><span class="p">},</span><span class="w">
          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}],</span><span class="w">
      </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
      </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w"> 
      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w"> 
      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Golden Plan"</span><span class="p">,</span><span class="w">
@@ -3869,8 +4006,7 @@ when creating a new plan.</p>
      </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
      </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span><span class="w">
      </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
-    </span><span class="s2">"prorate"</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">}</span><span class="w">
  </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -3920,7 +4056,6 @@ when creating a new plan.</p>
 <span class="s">        "_id": {</span>
 <span class="s">            "$oid": "59317069d57ba2781c739479"</span>
 <span class="s">        },</span>
-<span class="s">        "discount": 0.0,</span>
 <span class="s">        "total_amount": 500.0,</span>
 <span class="s">        "company": {</span>
 <span class="s">            "$oid": "57ee9c71d76d431f8511142f"</span>
@@ -3941,8 +4076,7 @@ when creating a new plan.</p>
 <span class="s">                }</span>
 <span class="s">            }</span>
 <span class="s">        ],</span>
-<span class="s">        "status": "CREATED",</span>
-<span class="s">        "prorate" false</span>
+<span class="s">        "status": "CREATED"</span>
 <span class="s">    },</span>
 <span class="s">    {</span>
 <span class="s">        "created": {</span>
@@ -4068,6 +4202,306 @@ Not all fields are possible to update. See fields in Argument below.</p>
 </code></pre>
 <p>Deletes a plan with a given ID.</p>
 
+<h2 id="the-recurring-order-plan">The Recurring Order Plan</h2>
+
+<p>Unlike the basic plan, the <code class="prettyprint">Recurring Order Plan</code> could be created by a non-admin user.</p>
+
+<p>The <code class="prettyprint">Recurring Order Plan</code> could either be paid per order or periodically every week or month.
+The <code class="prettyprint">Recurring Order Plan</code> has these attributes, in addition to the attributes inherited by the basic plan.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>user</strong></td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#Users"><code class="prettyprint">User</code></a> associated with the plan</td>
+</tr>
+<tr>
+<td><strong>interval_unit</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The frequency of the subscription. <br>Choices: <code class="prettyprint">DAY</code>, <code class="prettyprint">WEEK</code>, <code class="prettyprint">MONTH</code><br></td>
+</tr>
+<tr>
+<td><strong>recurring_days</strong></td>
+<td><code class="prettyprint">array</code></td>
+<td>An array of <a href="#recurring-day"><code class="prettyprint">RecurringDay</code></a>. Defines schedule.</td>
+</tr>
+<tr>
+<td><strong>billing_interval</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>Defines the billing frequency. <br> Choices: <code class="prettyprint">WEEK</code>, <code class="prettyprint">MONTH</code>, <code class="prettyprint">MONTH_END</code>, <code class="prettyprint">PER_ORDER</code></td>
+</tr>
+<tr>
+<td>method</td>
+<td><code class="prettyprint">string</code></td>
+<td>The plan type: <code class="prettyprint">recurring_order</code>.</td>
+</tr>
+<tr>
+<td>name</td>
+<td><code class="prettyprint">string</code></td>
+<td>The name of the plan. <em>default is <code class="prettyprint">RECURRING_ORDER_PLAN</code></em></td>
+</tr>
+</tbody></table>
+
+<h3 id="recurring-day">Recurring Day</h3>
+
+<p>A Recurring Order Plan must contain recurring days as a list.
+The recurring_days contains the parameters that decide when the orders are set to be scheduled.
+The parameters to select the schedule are day, hour and minute.
+This is relative to the <a href="#plans"><code class="prettyprint">Plan</code></a>&lsquo;s interval unit.
+For example, if the <code class="prettyprint">interval_unit</code> is set to WEEK, the value of <code class="prettyprint">day</code> could be between 0 and 6.</p>
+
+<table><thead>
+<tr>
+<th>Number</th>
+<th>Day</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Monday</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Tuesday</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Wednesday</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Thursday</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Friday</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Saturday</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Sunday</td>
+</tr>
+</tbody></table>
+
+<p>If the <code class="prettyprint">interval_unit</code> in the <a href="#plans"><code class="prettyprint">Plan</code></a> is <code class="prettyprint">MONTH</code>, the <code class="prettyprint">day</code> is the day of the month. For example, if you want to set a monthly schedule for the 2nd day of every month, set <code class="prettyprint">day</code> to <code class="prettyprint">2</code> and the <code class="prettyprint">interval_unit</code> in the <a href="#plans"><code class="prettyprint">Plan</code></a> to <code class="prettyprint">MONTH</code>.</p>
+
+<p>If you want the schedule to be the last day of every month, set the <code class="prettyprint">day</code> parameter to <code class="prettyprint">31</code>. If the <code class="prettyprint">day</code> parameter is greater than the number of days for that month, the order is scheduled for the last day of that month.</p>
+
+<p>You could also choose the time of day by using the parameters <code class="prettyprint">hour</code> and <code class="prettyprint">minute</code>. If not set, the time of day will be set by the initial order.</p>
+
+<h3 id="create-recurring-order-plan">Create Recurring Order Plan</h3>
+
+<p>This us how to create a new recurring order plan. The plan is <a href="#users"><code class="prettyprint">user</code></a> specific.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/plans
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/plans</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="err">'recurring_order'</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recurring Order Plan Deluxe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;product1_id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;product2_id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"initial_fail_amount_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTINUE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"max_fail_attempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recurring_days"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"minute"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">},</span><span class="w">
+                       </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s2">"minute"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de66"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recurring_order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auto_bill_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"initial_fail_amount_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTINUE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"max_fail_attempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recurring Order Plan Deluxe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de64"</span><span class="p">},</span><span class="w">
+         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de65"</span><span class="p">},</span><span class="w">
+         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recurring_days"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">}},</span><span class="w">
+                       </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">}}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="update-recurring-order-plan">Update Recurring Order Plan</h3>
+
+<p>It is only possible to update a plan if <code class="prettyprint">static_plan</code> is <code class="prettyprint">false</code>.
+Not all fields are possible to update.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.shareactor.io/plans/&lt;plan_id&gt;
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/plans/&lt;plan_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="err">'recurring_order'</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recurring Order Plan Deluxe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;product1_id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;product2_id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"initial_fail_amount_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTINUE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"max_fail_attempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recurring_days"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">}},</span><span class="w">
+                       </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">}},</span><span class="w">
+                       </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"minute"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de66"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recurring_order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auto_bill_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"initial_fail_amount_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTINUE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"max_fail_attempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recurring Order Plan Deluxe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de64"</span><span class="p">},</span><span class="w">
+         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de65"</span><span class="p">},</span><span class="w">
+         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recurring_days"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">}},</span><span class="w">
+                       </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">}},</span><span class="w">
+                       </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410495952</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410495952</span><span class="p">}}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>plan_id</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>ID of the queried plan.</td>
+</tr>
+<tr>
+<td>active</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If the plan is active. <em>default is <code class="prettyprint">true</code></em></td>
+</tr>
+<tr>
+<td>name</td>
+<td><code class="prettyprint">string</code></td>
+<td>Name of the plan.</td>
+</tr>
+<tr>
+<td>note</td>
+<td><code class="prettyprint">string</code></td>
+<td>Note regarding the plan.</td>
+</tr>
+<tr>
+<td>initial_fail_amount_action</td>
+<td><code class="prettyprint">string</code></td>
+<td>Indicates what happens when a  in the subscription fails. Choices: <code class="prettyprint">CONTINUE</code>, <code class="prettyprint">CANCEL</code></td>
+</tr>
+<tr>
+<td>max_fail_attempts</td>
+<td><code class="prettyprint">number</code></td>
+<td>How many times a payment can fail in the subscription, but still continue.</td>
+</tr>
+<tr>
+<td>discount</td>
+<td><code class="prettyprint">number</code></td>
+<td>Between 0.0 an 1.0, where 1.0 is 100% discount on the <code class="prettyprint">total_amount</code>.</td>
+</tr>
+<tr>
+<td>total_amount</td>
+<td><code class="prettyprint">number</code></td>
+<td>The total cost of the subscription payment. If set, the total_amount is not based on the sum of products.</td>
+</tr>
+<tr>
+<td>recurring_days</td>
+<td><code class="prettyprint">array</code></td>
+<td>When updating the recurring days you can return both of following format:</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><code class="prettyprint">{&quot;day&quot;: 0, &quot;starting_day&quot;: {&quot;$date&quot;: 1496410494652}, &quot;next_day&quot;: {&quot;$date&quot;: 1496410494652}}</code> - it means this recurring day already exists</li>
+<li><code class="prettyprint">{&quot;day&quot;: 2, &quot;hour&quot;: 10, &quot;minute&quot;: 15}</code></li>
+</ul>
+
           <h1 id="payment-methods">Payment Methods</h1>
 
 <p>Payment Methods allow you to use multiple payment systems:
@@ -4092,7 +4526,7 @@ however there are some fields which will always be present.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>method</strong></td>
+<td><strong>payment_method</strong></td>
 <td><code class="prettyprint">string</code></td>
 <td>Type of Payment Method. Currently acceptable methods: <code class="prettyprint">stripe</code>, <code class="prettyprint">dibs</code>, <code class="prettyprint">paypal</code>, <code class="prettyprint">single_paypal</code>, <code class="prettyprint">future_paypal</code>.</td>
 </tr>
@@ -4304,7 +4738,7 @@ however there are some fields which will always be present.</p>
 <td>The payment ID created by PayPal.</td>
 </tr>
 <tr>
-<td><strong>method</strong></td>
+<td><strong>payment_method</strong></td>
 <td><code class="prettyprint">string</code></td>
 <td>This must be <code class="prettyprint">single_paypal</code>.</td>
 </tr>
@@ -4373,7 +4807,7 @@ however there are some fields which will always be present.</p>
 <td>This is an authorization code sent by the mobile app to be exchanged for a Refresh Token.</td>
 </tr>
 <tr>
-<td><strong>method</strong></td>
+<td><strong>payment_method</strong></td>
 <td><code class="prettyprint">string</code></td>
 <td>This must be <code class="prettyprint">future_paypal</code>.</td>
 </tr>
@@ -4456,6 +4890,11 @@ however there are some fields which will always be present.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td><strong>payment_method</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>Must be &ldquo;stripe&rdquo; for triggering a STRIPE payment method</td>
+</tr>
 <tr>
 <td><strong>token</strong></td>
 <td><code class="prettyprint">string</code></td>
@@ -5204,14 +5643,11 @@ The <code class="prettyprint">price_change_percentage</code> could be used in th
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> 
-  </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"It is a test product"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product Name"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"vat"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"It is a test product"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product Name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vat"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
@@ -6384,9 +6820,9 @@ for a user, but in an <code class="prettyprint">array</code>.</p>
 </span><span class="p">]</span><span class="w">
 
 </span></code></pre>
-<h2 id="retreive-a-resource-by-id">Retreive a Resource by ID</h2>
+<h2 id="retrieve-a-resource-by-id">Retrieve a Resource by ID</h2>
 
-<p>Retreive a resource based on its ID.</p>
+<p>Retrieve a resource based on its ID.</p>
 
 <blockquote>
 <p>Definition</p>
@@ -6787,7 +7223,7 @@ plan.</p>
 <tr>
 <td>payments</td>
 <td><code class="prettyprint">array</code></td>
-<td>Array of <a href="#payments"><code class="prettyprint">Payment</code></a> objects associated with the subscription.</td>
+<td>Array of <a href="#payments"><code class="prettyprint">Payment</code></a> associated with the subscription.</td>
 </tr>
 <tr>
 <td>starting_date</td>
@@ -6797,7 +7233,7 @@ plan.</p>
 <tr>
 <td>ending_date</td>
 <td><code class="prettyprint">string</code></td>
-<td>End date of subscription, <code class="prettyprint">timestamp</code> format .</td>
+<td>End date of subscription, <code class="prettyprint">timestamp</code> format.</td>
 </tr>
 <tr>
 <td>interval_total</td>
@@ -7410,6 +7846,209 @@ It is possible to add pagination to this request.</p>
 <td>The subscription status <em>default is <code class="prettyprint">ACTIVE</code></em></td>
 </tr>
 </tbody></table>
+
+<h2 id="recurring-order-subscriptions-object">Recurring Order Subscriptions Object</h2>
+
+<p>This type of subscription is used when you need to schedule some orders on a daily, weekly, or monthly basis.
+See the <a href="#recurring-order-plan">`Recurring Order Plan</a> on how to create a plan for this subscription type.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>_id</td>
+<td><code class="prettyprint">object</code></td>
+<td>The subscription ID.</td>
+</tr>
+<tr>
+<td>method</td>
+<td><code class="prettyprint">string</code></td>
+<td>Name of subscription method. <code class="prettyprint">recurring_order</code></td>
+</tr>
+<tr>
+<td>name</td>
+<td><code class="prettyprint">string</code></td>
+<td>The name of the subscription type. <em>default is <code class="prettyprint">RECURRING_ORDER</code></em></td>
+</tr>
+<tr>
+<td>note</td>
+<td><code class="prettyprint">string</code></td>
+<td>A short note regarding the subscription.</td>
+</tr>
+<tr>
+<td>user</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#Users"><code class="prettyprint">User</code></a> associated with the subscription.</td>
+</tr>
+<tr>
+<td>status</td>
+<td><code class="prettyprint">string</code></td>
+<td>Status for the subscription. This will change according to the subscription&rsquo;s state. <em>default is <code class="prettyprint">CREATED</code>, also available are <code class="prettyprint">ACTIVE</code>, <code class="prettyprint">FUTURE</code>, <code class="prettyprint">NON_RENEWING</code>and <code class="prettyprint">CANCELLED</code></em></td>
+</tr>
+<tr>
+<td>plan</td>
+<td><code class="prettyprint">object</code></td>
+<td>The <a href="#recurring-order-plan"><code class="prettyprint">Recurring Order Plan</code></a> associated with the subscription.</td>
+</tr>
+<tr>
+<td>payment_method</td>
+<td><code class="prettyprint">object</code></td>
+<td>The <a href="#payment-method"><code class="prettyprint">Payment Method</code></a> associated with the subscription.</td>
+</tr>
+<tr>
+<td>payments</td>
+<td><code class="prettyprint">array</code></td>
+<td>Array of <a href="#payments"><code class="prettyprint">Payment</code></a> objects associated with the subscription.</td>
+</tr>
+<tr>
+<td>starting_date</td>
+<td><code class="prettyprint">string</code></td>
+<td>Start date, <code class="prettyprint">timestamp</code> format.</td>
+</tr>
+<tr>
+<td>ending_date</td>
+<td><code class="prettyprint">string</code></td>
+<td>End date of subscription, <code class="prettyprint">timestamp</code> format.</td>
+</tr>
+<tr>
+<td>interval_total</td>
+<td><code class="prettyprint">number</code></td>
+<td>The total number of <a href="#Plans"><code class="prettyprint">Plan</code></a> intervals the subscription will run.</td>
+</tr>
+<tr>
+<td>infinite</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If <code class="prettyprint">true</code>, the subscription will run until the user stops it.</td>
+</tr>
+<tr>
+<td>current_billing_date_period_start</td>
+<td><code class="prettyprint">string</code></td>
+<td>The date on which the customer was billed last.</td>
+</tr>
+<tr>
+<td>current_billing_date_period_end</td>
+<td><code class="prettyprint">string</code></td>
+<td>The date on which the customer will be billed next. This will also be the date on which the next current_billing_date_period_start of the subscription starts.</td>
+</tr>
+<tr>
+<td>prorate_amount</td>
+<td><code class="prettyprint">number</code></td>
+<td>The amount prorated. Currency set in <a href="#Plans"><code class="prettyprint">Plan</code></a>.</td>
+</tr>
+<tr>
+<td>prorate_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>The date of the last time an amount was prorated</td>
+</tr>
+<tr>
+<td>last_billing_amount</td>
+<td><code class="prettyprint">number</code></td>
+<td>The amount that was subtracted at the last payment. <code class="prettyprint">plan.total_amount</code>+<code class="prettyprint">prorate_amount</code></td>
+</tr>
+<tr>
+<td>total_fail_attempts</td>
+<td><code class="prettyprint">number</code></td>
+<td>The number of failed payment attempts in the subscription. See <a href="#Plans"><code class="prettyprint">Plan</code></a>`.max_fail_attempts</td>
+</tr>
+<tr>
+<td>initial_order</td>
+<td><code class="prettyprint">object</code></td>
+<td>The initial <a href="#Orders"><code class="prettyprint">Order</code></a> in the subscription. It is used to create a <a href="#recurring-order-plan"><code class="prettyprint">Recurring Order Plan</code></a></td>
+</tr>
+<tr>
+<td>orders</td>
+<td><code class="prettyprint">object</code></td>
+<td>List of <a href="#Orders"><code class="prettyprint">Orders</code></a></td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-new-subscription">Create a New Subscription</h2>
+
+<p>To create a new subscription, the user needs to have a plan associated with the
+subscription. Additionally, the user needs to specify a subscription method.
+This will not start the subscription, only create it.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.shareactor.io/subscriptions
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/subscriptions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"plan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de66"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subscription_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recurring_order"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">    "company": {"$oid": "57ee9c71d76d431f8511142f"},</span>
+<span class="s">    "active": true,</span>
+<span class="s">    "status": "CREATED",</span>
+<span class="s">    "name": "RECURRING_ORDER",</span>
+<span class="s">    "method": "recurring_order",</span>
+<span class="s">    "_id": {"$oid": "5964a0ead57ba2036750a3b4"},</span>
+<span class="s">    "deleted": false,</span>
+<span class="s">    "prorate_amount": 0.0,</span>
+<span class="s">    "_cls": "SubscriptionMethod.LicenseSubscription",</span>
+<span class="s">    "plan": {"$oid": "5931697ed57ba271c0c7de66"},</span>
+<span class="s">    "payments": [],</span>
+<span class="s">    "infinite": false,</span>
+<span class="s">    "created": {"$date": 1499767018360},</span>
+<span class="s">    "user": {"$oid": "57ee9c72d76d431f85111432"},</span>
+<span class="s">    "updated": {"$date": 1499767018360}</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>plan</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>ID of the <a href="#Plans"><code class="prettyprint">Plan</code></a> associated with the subscription.</td>
+</tr>
+<tr>
+<td><strong>subscription_method</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>Name of subscription method. <code class="prettyprint">license</code></td>
+</tr>
+<tr>
+<td>note</td>
+<td><code class="prettyprint">string</code></td>
+<td>A short description.</td>
+</tr>
+<tr>
+<td>start_now</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If <code class="prettyprint">true</code>, the subscription will start now.</td>
+</tr>
+</tbody></table>
+
+<h2 id="start-subscription">Start Subscription</h2>
+
+<p>The user could create and start the subscription in one API call. Add <code class="prettyprint">{&quot;start_now&quot;: true}</code> to the JSON data when creating a new subscription. 
+A payment method needs to be set before starting a subscription.
+A subscription could either have a set ending_date, where infinite = <code class="prettyprint">false</code>,
+or not have an ending_date, where infinite = <code class="prettyprint">true</code>.
+The ending date could be set by the user, either as an ending_date
+or as number of interval_units from the starting_date to the ending_date.
+If the user set more than one of the parameters
+infinite, ending_date or interval_total, the API overrides the
+parameters by: infinite &gt; ending_date &gt; interval_total.</p>
 
           <h1 id="users">Users</h1>
 
