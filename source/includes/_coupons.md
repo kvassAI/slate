@@ -1,6 +1,6 @@
 # Coupons
 
-Coupon is usable to offer a discount to your customer on different type of bill: Order, Invoice, Subscription.
+Coupons are a great way to offer discounts or vouchers to your Customers. They can be used together with multiple business models: Orders, Invoices and Subscriptions.
 
 
 ## Coupon Object
@@ -8,25 +8,25 @@ Coupon is usable to offer a discount to your customer on different type of bill:
 Attributes | Types | Description
 ---------- | ----- | -----------
 **name** | `string` | Name of the coupon
-**code** | `string` | The code will be used by a costumer. The code is automatically generated (a string of 6 characters long, e.g: Nz42kL), but you can also create our own code.
-**currency** | `string` | ISO 4217 code of currency, for example: "EUR"
-percent_off | `number` | Is the discount percentage, can be set to `0.` to `1.`, e.q: 0.2 means 20% of the amount.
-amount_off | `number` | Is the discount amount, e.q: 100.50, so the next payment will be decreased by 100.50.
-starting_date | `object` | Define when the coupon is usable, it could now or in the future. If it defined in the future, it means the coupon could not be used before the `starting_date`, `timestamp` format. _Default `now`_
-ending_date | `object` | The date when the coupon will be unusable, it means after that day any customer could use it anymore, `timestamp` format.
-max_redemptions | `integer` | The number of time a coupon can be used, when the `used_count` is equal of `max_redemption` then any customer could use the coupon anymore.
-used_count | `integer` | Automatically increment by each use.
+**code** | `string` | The code to be used by a costumer. By default, the code is automatically generated (a string of 6 characters long, e.g: Nz42kL), but you can also create our own.
+percent_off | `number` | The discount percentage, should be between `0.` and `1.`, for example: 0.2 means 20% of the total amount.
+amount_off | `number` | Discount amount, for example: 100.50, means that the next payment will be decreased by 100.50.
+currency | `string` | ISO 4217 code of currency, for example: "EUR"
+starting_date | `object` | Define when can the coupon start being used. By default, it'll start at the time of creation, but it could be defined for the future. If defined in the future, it means the coupon could not be used before the `starting_date`, `timestamp` format. _Default `now`_
+ending_date | `object` | The date when the coupon will stop being available. `timestamp` format.
+max_redemptions | `integer` | The number of times a coupon can be used. When the `used_count` is equal to the `max_redemption` then the coupon becomes unusable.
+used_count | `integer` | Automatically incremented by each use.
 
 
-As you can see, there is two type of discount: percent_off and amount_off.
-Is important to remember: a coupon can only have one of them in the meantime.
-But if you want to change the type of discount you can do it easily by a `PUT coupons/<coupon_id>` (There is an example [here](#switch-the-discount-type))
+As you can see, there are two type of discount: percent_off and amount_off.
+It's important to remember: a coupon can only have one of them at the same time.
+But if you want to change the type of discount you can do it easily with a `PUT coupons/<coupon_id>` (There is an example [here](#switch-the-discount-type))
 <br/>
 <aside class="notice">
-Regarding how a coupon can be automatically unusable, there are 3 ways:
+There are 3 different ways a Coupon can become unusable:
  <br/>- When the `ending_date` is the current date
  <br/>- When the `max_redemptions` is reached
- <br/>- It's also possible to combine `ending_date` and `max_redemptions`. In that case, the coupon will be unsuable `max_redemptions` is reached or at the `ending_date`.
+ <br/>- It's also possible to combine `ending_date` and `max_redemptions`. In that case, the coupon will become unsuable if `max_redemptions` is reached or at the `ending_date`.
 </aside>
 
 ## Create a Coupon
@@ -84,14 +84,13 @@ Creates a new Coupon.
 Attributes | Types | Description
 ---------- | ----- | -----------
 **name** | `string` | Name of the coupon
-**currency** | `string` | ISO 4217 code of currency, for example: "EUR"
-code | `string` | The code will be used by a costumer. The code is automatically generated (a string of 6 characters long, e.g: Nz42kL), but you can also create our own code.
-percent_off | `number` | Is the discount percentage, can be set to `0.` to `1.`, e.q: 0.2 means 20% of the amount.
-amount_off | `number` | Is the discount amount, e.q: 100.50, so the next payment will be decreased by 100.50.
-starting_date | `integer` | Define when the coupon is usable, it could now or in the future. If it defined in the future, it means the coupon could not be used before the `starting_date`, `timestamp` format. _Default `now`_
-ending_date | `integer` | The date when the coupon will be unusable, it means after that day any customer could use it anymore, `timestamp` format.
-max_redemptions | `integer` | The number of time a coupon can be used, when the `used_count` is equal of `max_redemption` then any customer could use the coupon anymore.
-used_count | `integer` | Automatically increment by each use.
+**code** | `string` | The code to be used by a costumer. By default, the code is automatically generated (a string of 6 characters long, e.g: Nz42kL), but you can also create our own.
+percent_off | `number` | The discount percentage, should be between `0.` and `1.`, for example: 0.2 means 20% of the total amount.
+amount_off | `number` | Discount amount, for example: 100.50, means that the next payment will be decreased by 100.50.
+currency | `string` | ISO 4217 code of currency, for example: "EUR"
+starting_date | `object` | Define when can the coupon start being used. By default, it'll start at the time of creation, but it could be defined for the future. If defined in the future, it means the coupon could not be used before the `starting_date`, `timestamp` format. _Default `now`_
+ending_date | `object` | The date when the coupon will stop being available. `timestamp` format.
+max_redemptions | `integer` | The number of times a coupon can be used. When the `used_count` is equal to the `max_redemption` then the coupon becomes unusable.
 
 
 ## Get a Coupon
@@ -137,7 +136,7 @@ Retrieves a Coupon with a given ID.
 
 Argument | Type | Description
 -------- | ---- | ------
-**coupon_id** | `string` | ID of the queried coupon
+**coupon_id** | `string` | ID of the queried Coupon
 
 ## List all Coupon
 
@@ -203,7 +202,7 @@ Arguments | Type | Description
 size | `number` | Number of items to retrieve
 page | `number` | Which page to retrieve. _default is 10_
 sort | `string` | Field used for sorting results. _default sorting is `-due_date`_.
-status | `string` | Status of Coupons (`active`). By default there is no value, the API returns coupons regardless the status. `coupon_status` can be `true` or `false`.
+status | `string` | Status of Coupons (`active`). By default there is no value, the API returns coupons regardless the status.
 from_date | `integer` | Start date, `timestamp` format. _default is None_
 to_date | `integer` | End date, `timestamp` format. _default is None_
 date_filter | `string` | Date field used for filter results. _default is `created`_
@@ -314,19 +313,19 @@ Argument | Type | Description
 -------- | ---- | -----
 **coupon_id** | `string` | ID of the Coupon
 **name** | `string` | Name of the coupon
-**currency** | `string` | ISO 4217 code of currency, for example: "EUR"
-code | `string` | The code will be used by a costumer. The code is automatically generated (a string of 6 characters long, e.g: Nz42kL), but you can also create our own code.
-percent_off | `number` | Is the discount percentage, can be set to `0.` to `1.`, e.q: 0.2 means 20% of the amount.
-amount_off | `number` | Is the discount amount, e.q: 100.50, so the next payment will be decreased by 100.50.
-starting_date | `integer` | Define when the coupon is usable, it could now or in the future. If it defined in the future, it means the coupon could not be used before the `starting_date`, `timestamp` format. _Default `now`_
-ending_date | `integer` | The date when the coupon will be unusable, it means after that day any customer could use it anymore, `timestamp` format.
-max_redemptions | `integer` | The number of time a coupon can be used, when the `used_count` is equal of `max_redemption` then any customer could use the coupon anymore.
-used_count | `integer` | Automatically increment by each use.
+**code** | `string` | The code to be used by a costumer. By default, the code is automatically generated (a string of 6 characters long, e.g: Nz42kL), but you can also create our own.
+percent_off | `number` | The discount percentage, should be between `0.` and `1.`, for example: 0.2 means 20% of the total amount.
+amount_off | `number` | Discount amount, for example: 100.50, means that the next payment will be decreased by 100.50.
+currency | `string` | ISO 4217 code of currency, for example: "EUR"
+starting_date | `object` | Define when can the coupon start being used. By default, it'll start at the time of creation, but it could be defined for the future. If defined in the future, it means the coupon could not be used before the `starting_date`, `timestamp` format. _Default `now`_
+ending_date | `object` | The date when the coupon will stop being available. `timestamp` format.
+max_redemptions | `integer` | The number of times a coupon can be used. When the `used_count` is equal to the `max_redemption` then the coupon becomes unusable.
+used_count | `integer` | Automatically incremented by each use.
 
 ### Switch The Discount Type
 
-In the example we assume the coupon `57ee9c72d76d431f85222420` has a `percent_off` discount type, and we are going to change his type to `amount_off`.
-<br/>To do it you just have to put `amount_off` and the value in the data, of course you can do the reverse, change the `amount _ off` to the `percent_off` type.
+In the example we assume the coupon `57ee9c72d76d431f85222420` has a `percent_off` discount type, and we are going to change its type to `amount_off`.
+<br/>To do it you just have to put `amount_off` and the value in the data, of course you can do the reverse as well, change the `amount_off` to the `percent_off` type.
 
 > Definition
 
