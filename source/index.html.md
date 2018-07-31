@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - intro
   - addresses
+  - coupons
   - events
   - invoices
   - issuers
