@@ -20,6 +20,7 @@ includes:
   - plans
   - payment_methods
   - payments
+  - coupons
   - phone_nr_verification
   - products
   - providers
