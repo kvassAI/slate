@@ -1,5 +1,7 @@
 # Payments
 
+There are multiple allowed subjects you can pay for, including Orders, Invoices or Subscriptions. Moreover, you're also allowed to make single payments, not associated with the aforementioned subjects.
+
 When you want to pay for an Order or Invoice (single or multiple items) you need to use the Payment object. Together with a
 [Payment Method](#payment-methods), among other fields, you'll be able to create and process payments, as well
 as listing all available payments.
@@ -21,16 +23,148 @@ Attribute | Type | Description
 **current_state** | `string` | Current state of operation. Can be one of: `created`, `processing`, `captured`, `succeeded`, `failed` and `cancelled
 payment_date | `object` | Date (`timestamp` format) for scheduling payment of invoices. Defaults to the due_date of each invoice
 payment_method | `string` | ID of already created Payment Method
-billing_address | `object` | [`Address`](#address) object with billing details
-description | `string` | Some additional description, if wanted
-metadata | `array` |  Additional information on the payment
+billing_address | `object` | [`Address`](#address) object with billing details if supported by payment provider.
+description | `string` | Some additional description, if wanted and if supported by payment provider.
+metadata | `array` |  Additional information on the payment if supported by payment provider.
 status_code | `string` | In case the payment fails, this will have some code from the chosen payment method backend. *(if existing)*
 error_message | `string` | In case the payment fails, this will have the reason in a textual way. *(if existing)*
 
-## Process a Payment
+## Process Single Payment
 
-Creates and process a new Payment. Can't process both invoices and orders at the same time.
-All payments should have the following attributes:
+> Definition
+
+```
+POST https://api.kvass.ai/payments
+```
+
+> Example request:
+
+``` http
+POST /payments HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
+
+{
+    "payment_method": "<payment-method-id>",
+    "amount": 50.00,
+    "currency": "NOK",
+    "description": "Single payment"
+}
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "company": {
+    "$oid": "57ee9c71d76d431f8511142f"
+  },
+  "created": {
+    "$date": 1476118043580
+  },
+  "_id": {
+    "$oid": "<payment-id>"
+  },
+  "modified": {
+    "$date": 1476118043580
+  },
+  "deleted": false,
+  "user": {
+    "$oid": "57ee9c72d76d431f85111432"
+  },
+  "amount": 50.0,
+  "metadata": {},
+  "current_state": "created",
+  "active": true,
+  "human_id": "51Q4LN",
+  "currency": "NOK",
+  "description": "Single payment",
+  "payment_method": "<payment-method-id>",
+  "payment_date": {
+    "$date": 147998016470
+  }
+}
+```
+
+Arguments | Type | Description
+--------- | ---- | ------
+**amount** | `number` | Amount as a Float with decimal points (`.`). _Example: 10.23 NOK_
+**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217). If not present, default will be Company's currency. Otherwise it will raise an error
+**payment_method** | `string` | Selected payment method id to use.
+description | `string` | Some additional description, if wanted and supported by payment provider.
+metadata | `array` |  Additional information on the payment if supported by payment provider.
+billing_address | `object` | [`Address`](#address) object with billing details if supported by payment provider.
+
+
+## Process Orders Payment
+
+> Definition
+
+```
+POST https://api.kvass.ai/payments
+```
+
+> Example request:
+
+``` http
+POST /payments HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
+
+{
+    "orders": ["<order-id>"],
+    "payment_method": "<payment-method-id>"
+}
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "company": {
+    "$oid": "57ee9c71d76d431f8511142f"
+  },
+  "created": {
+    "$date": 1476118043580
+  },
+  "_id": {
+    "$oid": "<payment-id>"
+  },
+  "modified": {
+    "$date": 1476118043580
+  },
+  "deleted": false,
+  "user": {
+    "$oid": "57ee9c72d76d431f85111432"
+  },
+  "amount": 450.2,
+  "metadata": {},
+  "current_state": "created",
+  "active": true,
+  "human_id": "51Q4LN",
+  "currency": "NOK",
+  "subject": "<order-id>",
+  "payment_method": "<payment-method-id>",
+  "payment_date": {
+    "$date": 147998016470
+  }
+}
+```
+
+Arguments | Type | Description
+--------- | ---- | ------
+**orders** | `array` | List with [`Orders`](#orders) to be paid.
+**payment_method** | `string` | Selected payment method id to use.
+
+
+## Process Invoices Payment
+
 
 > Definition
 
@@ -90,9 +224,8 @@ Content-Type: application/json
 
 Arguments | Type | Description
 --------- | ---- | ------
-**invoices** | `array` | List with [`Invoices`](#invoices) to be paid. Either this or **orders** must be set.
-**orders** | `array` | List with [`Orders`](#orders) to be paid. Either this or **invoices** must be set.
-**payment_method** | `string` | Selected payment method id to use for paying **invoices** or **orders**.
+**invoices** | `array` | List with [`Invoices`](#invoices) to be paid.
+**payment_method** | `string` | Selected payment method id to use.
 payment_date | `number` | Date (`timestamp` format) for scheduling payment of **invoices**. Defaults to the `due_date` of each invoice or now.
 
 
