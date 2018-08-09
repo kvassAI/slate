@@ -52,6 +52,7 @@ Error Code | Reason | Description
 403 | Forbidden | Your request is trying to access data it has no credentials for
 404 | Not Found | The specified resource could not be found.
 409 | Conflict | There was a conflict with processing your request. Try later or change the data being submitted
+415 | Unsupported Media Type | Your request's Content-Type isn't conforming.
 500 | Internal Server Error | We had a problem with our server. Please try again later.
 503 | Service Unavailable | We're temporarily offline for maintenance. Please try again later.
 
