@@ -28,6 +28,7 @@ currency | `string` | Three letter ISO currency code as defined by ISO 4217.
 total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`.
 initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices: `CANCEL`, `CONTINUE`
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
+setup_fee | `integer` | If you need to charge a subscription fee to the customer. Can't be less than `0`. _Default `0`_
 
 ### Plan items
 
@@ -100,13 +101,13 @@ Content-Type: application/json
         {"discount": 0.5,
          "product": {"$oid": "5931697ed57ba271c0c7de65"},
          "quantity": 2}],
-    "status": "CREATED",
     "currency": "NOK",
     "note": "This is a note regarding the Plan",
     "deleted": false,
     "company": {
         "$oid": "57ee9c71d76d431f8511142f"},
-    "static": true
+    "static": true,
+    "setup_fee": 0
 }
 ```
 
@@ -115,7 +116,18 @@ Argument | Type | Description
 **interval_unit** | `string` | The frequency that the Subscription acts upon. <br> interval_unit choices: `DAY`, `WEEK`, `MONTH`, `MONTH_END`, `ANNUAL`
 **billing_interval** | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
 **currency** | `string`| Three letter ISO currency code as defined by ISO 4217.7
-
+name | `string` | The name of the plan.
+note | `string` | A short description of the plan.
+interval_unit | `string` | The frequency that the subscription acts upon. <br> Choices: `DAY`, `WEEK`, `MONTH`, <br> `MONTH_END`, `ANNUAL`
+interval_count | `integer`| Total number of interval_units.
+billing_interval | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
+static | `boolean`| Defines if plan is allowed to be changed.
+items | `array` | List of items associated with Plan. See description below.
+currency | `string` | Three letter ISO currency code as defined by ISO 4217.
+total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`.
+initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices: `CANCEL`, `CONTINUE`
+max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
+setup_fee | `integer` | If you need to charge a subscription fee to the customer. Can't be less than `0`. _Default `0`_
 
 ## Retrieve a Plan
 
@@ -155,15 +167,16 @@ Content-Type: application/json
         {"discount": 0.5,
          "product": {"$oid": "5931697ed57ba271c0c7de65"},
          "quantity": 2}],
-     "deleted": false,
-     "billing_interval": "MONTH", 
-     "currency": "NOK", 
-     "name": "Golden Plan",
-     "interval_unit": "WEEK",
-     "static": false,
-     "total_amount": 500.0,
-     "company": {
-        "$oid": "57ee9c71d76d431f8511142f"}
+    "deleted": false,
+    "billing_interval": "MONTH",
+    "currency": "NOK",
+    "name": "Golden Plan",
+    "interval_unit": "WEEK",
+    "static": false,
+    "total_amount": 500.0,
+    "company": {
+    "$oid": "57ee9c71d76d431f8511142f"},
+    "setup_fee": 0
  }
 ```
 
@@ -227,8 +240,7 @@ Content-Type: application/json
                     "$oid": "59317069d57ba2781c739478"
                 }
             }
-        ],
-        "status": "CREATED"
+        ]
     },
     {
         "created": {
@@ -278,7 +290,60 @@ initial_fail_amount_action |`string`| Indicates what happens when payment for th
 max_fail_attempts |`number`| How many times a payment can fail in the subscription, but still continue.
 discount |`number`| Between 0.0 an 1.0, where 1.0 is 100% discount on the total_price.
 total_amount |`number`| The total cost of the subscription payment. If set, the total_amount is not based on the sum of products.
+setup_fee | `integer` | 
 
+## Put items in a Plan
+
+> Definition
+
+```
+PUT https://api.kvass.ai/plans/<plan_id>/items
+```
+
+> Example request:
+
+``` http
+PUT /plans/<plan_id>/items HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Share-Api-Key: <shareactor-api-key>
+Host: api.shareactor.io
+
+{
+    [{"product": "<product1_id>", "quantity": 1},
+     {"product": "<product2_id>", "quantity": 2, "discount": 0.5}]
+}
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "_id": {
+        "$oid": "5931697ed57ba271c0c7de66"},
+    "created": {
+        "$date": 1496410494652},
+    "updated": {
+        "$date": 1496410494652},
+    "method": "recurring_order",
+    "auto_bill_amount": false,
+    "billing_interval": "MONTH",
+    "initial_fail_amount_action": "CONTINUE",
+    "max_fail_attempts": 1,
+    "name": "Recurring Order Plan Deluxe",
+    "total_amount": 300.0,
+    "interval_unit": "WEEK",
+    "items": [{"product": "<product1_id>", "quantity": 1},
+              {"product": "<product2_id>", "quantity": 2, "discount": 0.5}],
+    "currency": "NOK",
+    "note": "This is a note regarding the Plan",
+    "deleted": false,
+    "company": {
+        "$oid": "57ee9c71d76d431f8511142f"},
+    "static": true,
+}
+```
 
 ## Delete Plan
 > Definition
@@ -404,7 +469,6 @@ Content-Type: application/json
         {"discount": 0.5,
          "product": {"$oid": "5931697ed57ba271c0c7de65"},
          "quantity": 2}],
-    "status": "CREATED",
     "currency": "NOK",
     "note": "This is a note regarding the Plan",
     "deleted": false,
@@ -454,7 +518,6 @@ Host: api.shareactor.io
                        {"day": 4, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}},
                        {"day": 2, "hour": 10, "minute": 15}]
 }
-
 ```
 
 ``` http
@@ -483,7 +546,6 @@ Content-Type: application/json
         {"discount": 0.5,
          "product": {"$oid": "5931697ed57ba271c0c7de65"},
          "quantity": 2}],
-    "status": "CREATED",
     "currency": "NOK",
     "note": "This is a note regarding the Plan",
     "deleted": false,
