@@ -5408,7 +5408,7 @@ however there are some fields which will always be present.</p>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stripe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stripe"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tok_1Bv5yfEeeXxFpLJtpWYeGYuy"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -5436,28 +5436,28 @@ however there are some fields which will always be present.</p>
   </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cus_CJjTlT4Wci2P0u"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tok_1Bv5yfEeeXxFpLJtpWYeGYuy"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="err">'object'</span><span class="p">:</span><span class="w"> </span><span class="err">'card'</span><span class="p">,</span><span class="w">
-    </span><span class="err">'address_state'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-    </span><span class="err">'fingerprint'</span><span class="p">:</span><span class="w"> </span><span class="err">'npPw</span><span class="mi">68</span><span class="err">vQg</span><span class="mi">1</span><span class="err">usKUWb'</span><span class="p">,</span><span class="w">
-    </span><span class="err">'metadata'</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="err">'exp_year'</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span><span class="w">
-    </span><span class="err">'country'</span><span class="p">:</span><span class="w"> </span><span class="err">'US'</span><span class="p">,</span><span class="w">
-    </span><span class="err">'last</span><span class="mi">4</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">4242</span><span class="err">'</span><span class="p">,</span><span class="w">
-    </span><span class="err">'address_zip_check'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-    </span><span class="err">'address_zip'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-    </span><span class="err">'funding'</span><span class="p">:</span><span class="w"> </span><span class="err">'credit'</span><span class="p">,</span><span class="w">
-    </span><span class="err">'cvc_check'</span><span class="p">:</span><span class="w"> </span><span class="err">'unchecked'</span><span class="p">,</span><span class="w">
-    </span><span class="err">'id'</span><span class="p">:</span><span class="w"> </span><span class="err">'card_</span><span class="mi">1</span><span class="err">Bv</span><span class="mi">5</span><span class="err">yfEeeXxFpLJtPBVfQ</span><span class="mi">1</span><span class="err">wZ'</span><span class="p">,</span><span class="w">
-    </span><span class="err">'tokenization_method'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-    </span><span class="err">'address_line</span><span class="mi">1</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-    </span><span class="err">'exp_month'</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-    </span><span class="err">'brand'</span><span class="p">:</span><span class="w"> </span><span class="err">'Visa'</span><span class="p">,</span><span class="w">
-    </span><span class="err">'dynamic_last</span><span class="mi">4</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-    </span><span class="err">'address_country'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-    </span><span class="err">'address_line</span><span class="mi">2</span><span class="err">'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-    </span><span class="err">'address_line</span><span class="mi">1</span><span class="err">_check'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-    </span><span class="err">'name'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
-    </span><span class="err">'address_city'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_state"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fingerprint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"npPw68vQg1usKUWb"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_zip_check"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_zip"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"funding"</span><span class="p">:</span><span class="w"> </span><span class="s2">"credit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cvc_check"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unchecked"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card_1Bv5yfEeeXxFpLJtPBVfQ1wZ"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tokenization_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_line1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dynamic_last4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_line2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_line1_check"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address_city"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
