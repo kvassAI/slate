@@ -347,7 +347,7 @@ This us how to create a new recurring order plan. The plan is [`user`](#users) s
 > Definition
 
 ```
-POST https://api.shareactor.io/plans
+POST https://api.kvass.ai/plans
 ```
 
 > Example request:
@@ -356,8 +356,8 @@ POST https://api.shareactor.io/plans
 POST /plans HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "method": 'recurring_order',
@@ -425,7 +425,7 @@ Not all fields are possible to update.
 > Definition
 
 ```
-PUT https://api.shareactor.io/plans/<plan_id>
+PUT https://api.kvass.ai/plans/<plan_id>
 ```
 
 > Example request:
@@ -434,8 +434,8 @@ PUT https://api.shareactor.io/plans/<plan_id>
 PUT /plans/<plan_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "method": 'recurring_order',

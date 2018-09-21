@@ -478,7 +478,7 @@ This will not start the subscription, only create it.
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions
+POST https://api.kvass.ai/subscriptions
 ```
 
 
@@ -488,8 +488,8 @@ POST https://api.shareactor.io/subscriptions
 POST /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Share-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "plan": "5931697ed57ba271c0c7de66",

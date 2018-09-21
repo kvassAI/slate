@@ -1,6 +1,6 @@
 # Introduction
 
-The ShareActor API is a standard JSON RESTful API. The API follows the HTTP standards as often as possible, but there might be some deviations from it in some specific scenarios.
+The KVASS API is a standard JSON RESTful API. The API follows the HTTP standards as often as possible, but there might be some deviations from it in some specific scenarios.
 
 All responses from the API, including errors, are returned as JSON objects.
 
@@ -130,7 +130,7 @@ X-Pagination-Total: 212
 All top-level API resources have support for bulk fetches via "list" API methods. For instance you can list orders, users, providers, etc.
 These "list" API methods share a common structure, taking at least these two parameters: size and page.
 
-ShareActor uses pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
+KVASS uses pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
 The return of a response header contains the total count: `X-Pagination-Total: 212`
 
 
