@@ -246,7 +246,7 @@ X-Share-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-  "method": "stripe",
+  "payment_method": "stripe",
   "token": "tok_1Bv5yfEeeXxFpLJtpWYeGYuy"
 }
 ```
