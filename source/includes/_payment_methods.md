@@ -118,7 +118,7 @@ POST https://api.kvass.ai/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -180,7 +180,7 @@ POST https://api.kvass.ai/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -242,7 +242,7 @@ POST https://api.kvass.ai/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -325,7 +325,7 @@ GET https://api.kvass.ai/payment_methods/<payment-method-id>
 GET /payment_methods/<payment-method-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -378,7 +378,7 @@ GET https://api.kvass.ai/payment_methods
 GET /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -437,7 +437,7 @@ DELETE https://api.kvass.ai/payment_methods/<payment_method_id>
 DELETE /payment_methods/<payment_method_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 

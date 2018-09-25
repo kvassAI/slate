@@ -22,7 +22,7 @@ All the example API calls are using the PROD endpoint.
 ``` http
 GET / HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -32,7 +32,7 @@ KVASS uses API keys to allow access to the API. If you want access to our APIs, 
 
 All API requests should include this key in the headers*:
 
-`X-Share-Api-Key: <kvass-api-key>`
+`X-Kvass-Api-Key: <kvass-api-key>`
 
 <aside class="notice">
 *Note:  You must replace <code>kvass-api-key</code> with your personal API key.
@@ -63,7 +63,7 @@ Error Code | Reason | Description
 ```http
 GET /payment_methods/<payment-method-id>/?expand=user HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -114,7 +114,7 @@ user     | User associated with object
 ``` http
 GET /orders?size=10&page=1 HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -123,7 +123,7 @@ Host: api.kvass.ai
 ``` http
 GET /orders?size=100 HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 X-Pagination-Total: 212
 ```
@@ -157,7 +157,7 @@ GET https://api.kvass.ai/model
 GET /model HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -187,7 +187,7 @@ GET https://api.kvass.ai/model/search
 GET /model/search?query=a0b1c2d3e4d5c6b7a8b94242 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 

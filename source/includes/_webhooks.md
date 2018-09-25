@@ -26,7 +26,7 @@ POST https://api.kvass.ai/webhooks
 POST /webhooks HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -69,7 +69,7 @@ PUT https://api.kvass.ai/webhooks/<webhook_id>
 PUT /webhooks/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -110,7 +110,7 @@ GET https://api.kvass.ai/webhooks/<webhook_id>
 GET /webhooks/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 ``` http
@@ -143,7 +143,7 @@ GET https://api.kvass.ai/webhooks
 GET /webhooks HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 ``` http
@@ -186,7 +186,7 @@ DELETE https://api.kvass.ai/webhooks/<webhook_id>
 DELETE /webhooks/<webhook_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 ``` http

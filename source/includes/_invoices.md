@@ -57,7 +57,7 @@ POST https://api.kvass.ai/invoices
 POST /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -126,7 +126,7 @@ POST https://api.kvass.ai/invoices
 POST /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -207,7 +207,7 @@ GET https://api.kvass.ai/invoices/<invoice_id>
 GET /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -252,7 +252,7 @@ GET https://api.kvass.ai/invoices
 GET /invoices HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -307,7 +307,7 @@ GET https://api.kvass.ai/invoices/search
 GET /invoices/search/query=12345678903 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -360,7 +360,7 @@ PUT https://api.kvass.ai/invoices/<invoice_id>
 PUT /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -385,7 +385,7 @@ DELETE https://api.kvass.ai/invoices/<invoice_id>
 DELETE /invoices/<invoice_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 

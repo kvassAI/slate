@@ -22,7 +22,7 @@ POST https://api.kvass.ai/sms/verify
 POST /sms/verify HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -59,7 +59,7 @@ POST https://api.kvass.ai/sms/verify
 POST /sms/verify HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {

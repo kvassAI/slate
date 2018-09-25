@@ -46,7 +46,7 @@ GET https://api.kvass.ai/metrics/<name>?resolution=day
 GET /metrics/foo HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -104,7 +104,7 @@ GET https://api.kvass.ai/metrics/<name>?metrics=key,key
 GET /metrics/requests.type?metrics=post,get&resolution=day HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -146,7 +146,7 @@ GET https://api.kvass.ai/metrics/<name>/count
 GET /metrics/foo.bar/count HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -180,7 +180,7 @@ GET https://api.kvass.ai/metrics/<name>/freq
 GET /metrics/foo.bar/freq HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -214,7 +214,7 @@ GET https://api.kvass.ai/metrics/<name>/sum
 GET /metrics/foo.bar/sum HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -251,7 +251,7 @@ POST https://api.kvass.ai/metrics
 POST /metrics HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -301,7 +301,7 @@ GET https://api.kvass.ai/metrics
 GET /metrics HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 ```

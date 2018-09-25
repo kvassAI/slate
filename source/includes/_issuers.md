@@ -32,7 +32,7 @@ POST https://api.kvass.ai/issuers
 POST /issuers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -104,7 +104,7 @@ GET https://api.kvass.ai/issuers/<issuer-id>
 GET /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -165,7 +165,7 @@ GET https://api.kvass.ai/issuers
 GET /issuers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -244,7 +244,7 @@ PUT https://api.kvass.ai/issuers/<issuer-id>
 PUT /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -305,7 +305,7 @@ GET https://api.kvass.ai/issuers/search
 GET /issuers/search?query=Big HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -386,7 +386,7 @@ DELETE https://api.kvass.ai/issuers/<issuer-id>
 DELETE /issuers/<issuer-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
