@@ -43,7 +43,7 @@ POST https://api.kvass.ai/coupons
 POST /coupons HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -106,7 +106,7 @@ GET https://api.kvass.ai/coupons/<coupon_id>
 GET /coupons/<coupon_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -152,7 +152,7 @@ GET https://api.kvass.ai/coupons
 GET /coupons HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -224,7 +224,7 @@ GET https://api.kvass.ai/coupons/search
 GET /coupons/search/query=SUMMER HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -279,7 +279,7 @@ PUT https://api.kvass.ai/coupons/<coupon_id>
 PUT /coupons/<coupon_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -339,7 +339,7 @@ PUT https://api.kvass.ai/coupons/<coupon_id>
 PUT /coupons/<coupon_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -386,7 +386,7 @@ DELETE https://api.kvass.ai/coupons/<coupon_id>
 DELETE /coupons/<coupon_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 

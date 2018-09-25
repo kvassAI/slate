@@ -46,7 +46,7 @@ POST https://api.kvass.ai/orders
 POST /orders HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -168,7 +168,7 @@ GET https://api.kvass.ai/orders/<orderid>
 GET /orders/<orderid> HTTP/1.1
 Content-Type: application/json
 authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -273,7 +273,7 @@ GET https://api.kvass.ai/orders
 GET /orders HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -382,7 +382,7 @@ GET https://api.kvass.ai/orders/search
 GET /orders/search?query=51Q4LN HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
