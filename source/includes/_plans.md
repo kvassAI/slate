@@ -509,10 +509,10 @@ recurring_days | `array` | When updating the recurring days you can return both 
  - `{"day": 2, "hour": 10, "minute": 15}`
  
  
- ### Get Subscription used by a Plan
+### Get Subscriptions used by a Plan
 
-You can know if your plan is used in [`Subscription`](#subscriptions) by using the following request which will return you a list of [`Subscription`](#subscriptions).
-Allowing you to get all [`Subscription`](#subscriptions) or some by using filter like `status` or `method` as a parameters.
+This request will return an array of all subscriptions used by a plan.
+We also allow you to use query parameters. Please take a look below for a list of accepted query parameters.
 
 > Definition
 
@@ -534,26 +534,27 @@ Host: api.kvass.ai
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
-   "_id":{"$oid":"5964a0ead57ba2036750a3b4"},
-   "_cls":"SubscriptionMethod.LicenseSubscription",
-   "created":{"$date":1538056530832},
-   "updated":{"$date":1538056530832},
-   "active":true,
-   "deleted":false,
-   "trial":false,
-   "user":{"$oid":"57ee9c72d76d431f85111432"},
-   "company":{"$oid":"57ee9c71d76d431f8511142f"},
-   "status":"CREATED",
-   "payments":[],
-   "infinite":false,
-   "plan":{"$oid":"5bace152cb416c14a3115a6c"},
-   "prorate_amount":0.0,
-   "total_fail_attempts":0,
-   "method":"license",
-   "name":"LICENSE"
-}
-
+[
+    {
+       "_id":{"$oid":"5964a0ead57ba2036750a3b4"},
+       "_cls":"SubscriptionMethod.LicenseSubscription",
+       "created":{"$date":1538056530832},
+       "updated":{"$date":1538056530832},
+       "active":true,
+       "deleted":false,
+       "trial":false,
+       "user":{"$oid":"57ee9c72d76d431f85111432"},
+       "company":{"$oid":"57ee9c71d76d431f8511142f"},
+       "status":"CREATED",
+       "payments":[],
+       "infinite":false,
+       "plan":{"$oid":"5bace152cb416c14a3115a6c"},
+       "prorate_amount":0.0,
+       "total_fail_attempts":0,
+       "method":"license",
+       "name":"LICENSE"
+    }
+]
 ```
 
 Argument | Type | Description
@@ -561,10 +562,10 @@ Argument | Type | Description
 **plan_id** | `string` | ID of the queried plan.
 size | `integer` | Number of items to retrieve.
 page | `integer` | Which page to retrieve. _default page size is 50_
-sorting | `string`| Field used for sorting results. <br> If missing, the default is `-created`.
+sort | `string`| Field used for sorting results. <br> If missing, the default is `-created`.
 include_deleted | `boolean` | If `true`, deleted products are also listed.
 status | `string` | Return subscriptions with a specific [`Subscription`](#subscriptions) `status`.
-method | `string` | Return subscriptions with a specific [`Payment Method`](#payment_methods) `method`.
+method | `string` | Return subscriptions with a specific [`Subscription`](#Subscriptions) `method`.
 from_date | `number` | Start date, `timestamp` format _default is None_
 to_date | `number` | End date, `timestamp` format _default is None_
 date_filter | `string` | Date field used to filter results. _default is created_
