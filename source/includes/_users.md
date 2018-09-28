@@ -575,7 +575,7 @@ UNKNOWN | Delivery status is unknown
 QUEUED | Delivery is in queue
 
 
-## List All Orders for a User
+## List All Payment Methods for a User
 
 > Definition
 
@@ -595,47 +595,46 @@ Host: api.kvass.ai
 ``` http
 HTTP/1.1 200 OK
 Content-Type: application/json
-
-{
-   "_id":{"$oid":<payment-method-id>},
-   "_cls":"PaymentMethod.StripePaymentMethod",
-   "created":{"$date":1538058324877},
-   "modified":{"$date":1538058327405},
-   "deleted":false,
-   "active":true,
-   "user":{"$oid":"57ee9c72d76d431f85111432"},
-   "company":{"$oid":"591ee15db70e2a10acb65362"},
-   "name":"Stripe",
-   "method":"stripe",
-   "token":"tok_1DF0QiEeeXxFpLJtthyCQWVz",
-   "customer_id":"cus_DgNBPtNphW2W7r",
-   "card":{
-      "id":"card_1DF0QiEeeXxFpLJtg4AE1T5z",
-      "object":"card",
-      "address_city":null,
-      "address_country":null,
-      "address_line1":null,
-      "address_line1_check":null,
-      "address_line2":null,
-      "address_state":null,
-      "address_zip":null,
-      "address_zip_check":null,
-      "brand":"Visa",
-      "country":"US",
-      "cvc_check":"unchecked",
-      "dynamic_last4":null,
-      "exp_month":12,
-      "exp_year":2019,
-      "fingerprint":"npPw68vQg1usKUWb",
-      "funding":"credit",
-      "last4":"4242",
-      "metadata":{
-
-      },
-      "name":null,
-      "tokenization_method":null
-   }
-}
+[
+    {
+       "_id":{"$oid":<payment-method-id>},
+       "_cls":"PaymentMethod.StripePaymentMethod",
+       "created":{"$date":1538058324877},
+       "modified":{"$date":1538058327405},
+       "deleted":false,
+       "active":true,
+       "user":{"$oid":"57ee9c72d76d431f85111432"},
+       "company":{"$oid":"591ee15db70e2a10acb65362"},
+       "name":"Stripe",
+       "method":"stripe",
+       "token":"tok_1DF0QiEeeXxFpLJtthyCQWVz",
+       "customer_id":"cus_DgNBPtNphW2W7r",
+       "card":{
+          "id":"card_1DF0QiEeeXxFpLJtg4AE1T5z",
+          "object":"card",
+          "address_city":null,
+          "address_country":null,
+          "address_line1":null,
+          "address_line1_check":null,
+          "address_line2":null,
+          "address_state":null,
+          "address_zip":null,
+          "address_zip_check":null,
+          "brand":"Visa",
+          "country":"US",
+          "cvc_check":"unchecked",
+          "dynamic_last4":null,
+          "exp_month":12,
+          "exp_year":2019,
+          "fingerprint":"npPw68vQg1usKUWb",
+          "funding":"credit",
+          "last4":"4242",
+          "metadata":{},
+          "name":null,
+          "tokenization_method":null
+       }
+    }
+]
 ```
 
 Retrieves a list of all [Payments Method](#payment_methods) associated with a given user id.
