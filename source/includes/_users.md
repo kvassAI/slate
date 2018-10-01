@@ -638,9 +638,6 @@ Content-Type: application/json
 ```
 
 Retrieves a list of all [Payments Method](#payment_methods) associated with a given user id.
-This route will work a bit differently if the authenticated user is an admin or a regular costumer.
-In case of a regular user/costumer, the user could execute this request only with his own `user id`. If he tries with another `user id` then the API will return an `403 error`.
-However, an `admin` user can search by any `user id`.
 
 Arguments | Type | Description
 -------- | ----- | -----
