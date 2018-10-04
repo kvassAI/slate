@@ -4582,7 +4582,7 @@ when creating a new plan.</p>
          </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de65"</span><span class="p">},</span><span class="w">
          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}],</span><span class="w">
      </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w"> 
+     </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w"> 
      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Golden Plan"</span><span class="p">,</span><span class="w">
      </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
@@ -4915,7 +4915,6 @@ For example, if the <code class="prettyprint">interval_unit</code> is set to WEE
     </span><span class="s2">"recurring_days"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"minute"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">},</span><span class="w">
                        </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="s2">"minute"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
@@ -4988,7 +4987,6 @@ Not all fields are possible to update.</p>
                        </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">}},</span><span class="w">
                        </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"minute"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
@@ -5084,6 +5082,108 @@ Not all fields are possible to update.</p>
 <li><code class="prettyprint">{&quot;day&quot;: 0, &quot;starting_day&quot;: {&quot;$date&quot;: 1496410494652}, &quot;next_day&quot;: {&quot;$date&quot;: 1496410494652}}</code> - it means this recurring day already exists</li>
 <li><code class="prettyprint">{&quot;day&quot;: 2, &quot;hour&quot;: 10, &quot;minute&quot;: 15}</code></li>
 </ul>
+
+<h3 id="get-subscriptions-used-by-a-plan">Get Subscriptions used by a Plan</h3>
+
+<p>This request will return an array of all subscriptions used by a plan.
+We also allow you to use query parameters. Please take a look below for a list of accepted query parameters.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.kvass.ai/plans/&lt;plan_id&gt;/subscriptions
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/plans/&lt;plan_id&gt;/subscriptions</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Kvass-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"5964a0ead57ba2036750a3b4"</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"SubscriptionMethod.LicenseSubscription"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1538056530832</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"updated"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1538056530832</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"trial"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"user"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"payments"</span><span class="p">:[],</span><span class="w">
+       </span><span class="s2">"infinite"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"plan"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"5bace152cb416c14a3115a6c"</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"prorate_amount"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"total_fail_attempts"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"method"</span><span class="p">:</span><span class="s2">"license"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"LICENSE"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>plan_id</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>ID of the queried plan.</td>
+</tr>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">integer</code></td>
+<td>Number of items to retrieve.</td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">integer</code></td>
+<td>Which page to retrieve. <em>default page size is 50</em></td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code class="prettyprint">string</code></td>
+<td>Field used for sorting results. <br> If missing, the default is <code class="prettyprint">-created</code>.</td>
+</tr>
+<tr>
+<td>include_deleted</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If <code class="prettyprint">true</code>, deleted products are also listed.</td>
+</tr>
+<tr>
+<td>status</td>
+<td><code class="prettyprint">string</code></td>
+<td>Return subscriptions with a specific <a href="#subscriptions"><code class="prettyprint">Subscription</code></a> <code class="prettyprint">status</code>.</td>
+</tr>
+<tr>
+<td>method</td>
+<td><code class="prettyprint">string</code></td>
+<td>Return subscriptions with a specific <a href="#Subscriptions"><code class="prettyprint">Subscription</code></a> <code class="prettyprint">method</code>.</td>
+</tr>
+<tr>
+<td>from_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>Start date, <code class="prettyprint">timestamp</code> format <em>default is None</em></td>
+</tr>
+<tr>
+<td>to_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>End date, <code class="prettyprint">timestamp</code> format <em>default is None</em></td>
+</tr>
+<tr>
+<td>date_filter</td>
+<td><code class="prettyprint">string</code></td>
+<td>Date field used to filter results. <em>default is created</em></td>
+</tr>
+</tbody></table>
 
           <h1 id="payment-methods">Payment Methods</h1>
 
@@ -9633,6 +9733,117 @@ Host: api.kvass.ai
 <tr>
 <td>QUEUED</td>
 <td>Delivery is in queue</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-all-payment-methods-for-a-user">List All Payment Methods for a User</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.kvass.ai/users/&lt;user-id&gt;/payment_methods
+</code></pre>
+<blockquote>
+<p>Example request:
+<code class="prettyprint">http
+GET /users/&lt;user-id&gt;/payment_methods HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer &lt;jwt&gt;
+X-Kvass-Api-Key: &lt;kvass-api-key&gt;
+Host: api.kvass.ai
+</code></p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">[</span>
+<span class="s">    {</span>
+<span class="s">       "_id":{"$oid":&lt;payment-method-id&gt;},</span>
+<span class="s">       "_cls":"PaymentMethod.StripePaymentMethod",</span>
+<span class="s">       "created":{"$date":1538058324877},</span>
+<span class="s">       "modified":{"$date":1538058327405},</span>
+<span class="s">       "deleted":false,</span>
+<span class="s">       "active":true,</span>
+<span class="s">       "user":{"$oid":"57ee9c72d76d431f85111432"},</span>
+<span class="s">       "company":{"$oid":"591ee15db70e2a10acb65362"},</span>
+<span class="s">       "name":"Stripe",</span>
+<span class="s">       "method":"stripe",</span>
+<span class="s">       "token":"tok_1DF0QiEeeXxFpLJtthyCQWVz",</span>
+<span class="s">       "customer_id":"cus_DgNBPtNphW2W7r",</span>
+<span class="s">       "card":{</span>
+<span class="s">          "id":"card_1DF0QiEeeXxFpLJtg4AE1T5z",</span>
+<span class="s">          "object":"card",</span>
+<span class="s">          "address_city":null,</span>
+<span class="s">          "address_country":null,</span>
+<span class="s">          "address_line1":null,</span>
+<span class="s">          "address_line1_check":null,</span>
+<span class="s">          "address_line2":null,</span>
+<span class="s">          "address_state":null,</span>
+<span class="s">          "address_zip":null,</span>
+<span class="s">          "address_zip_check":null,</span>
+<span class="s">          "brand":"Visa",</span>
+<span class="s">          "country":"US",</span>
+<span class="s">          "cvc_check":"unchecked",</span>
+<span class="s">          "dynamic_last4":null,</span>
+<span class="s">          "exp_month":12,</span>
+<span class="s">          "exp_year":2019,</span>
+<span class="s">          "fingerprint":"npPw68vQg1usKUWb",</span>
+<span class="s">          "funding":"credit",</span>
+<span class="s">          "last4":"4242",</span>
+<span class="s">          "metadata":{},</span>
+<span class="s">          "name":null,</span>
+<span class="s">          "tokenization_method":null</span>
+<span class="s">       }</span>
+<span class="s">    }</span>
+<span class="s">]</span>
+</code></pre>
+<p>Retrieves a list of all <a href="#payment_methods">Payments Method</a> associated with a given user id.</p>
+
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>user_id</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>ID of the user to retrieve Orders for.</td>
+</tr>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>Number of items to retrieve.</td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">number</code></td>
+<td>Which page to retrieve. <em>default is 10</em></td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code class="prettyprint">string</code></td>
+<td>Field used for sorting results. <em>default is <code class="prettyprint">created</code></em></td>
+</tr>
+<tr>
+<td>from_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>Start date, <code class="prettyprint">timestamp</code> format. <em>default is current date minus 15 days</em></td>
+</tr>
+<tr>
+<td>to_date</td>
+<td><code class="prettyprint">number</code></td>
+<td>End date, <code class="prettyprint">timestamp</code> format. <em>default current date plus 15 days</em></td>
+</tr>
+<tr>
+<td>date_filter</td>
+<td><code class="prettyprint">string</code></td>
+<td>Date field used to filter results. <em>default is <code class="prettyprint">created</code></em></td>
+</tr>
+<tr>
+<td>include_deleted</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If <code class="prettyprint">true</code>, deleted users are also listed <em>default is <code class="prettyprint">false</code></em></td>
 </tr>
 </tbody></table>
 
