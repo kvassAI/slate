@@ -238,6 +238,77 @@ like `user name` or `account_number`, without specifying that you are searching 
 *Pagination*      | x | x | x | x | x | x | x | x
 *Sorting*         | x | x | x | x | x | x | x | x
 
+
+### Search model by tags
+
+Some `GET` methods allowing you to search models by *tags*.
+Above you will see how could you use this features.
+
+There are 3 ways of getting models by tags:
+
+- Get all models contain the tag(s) in their list of tags.
+
+*Code: `?tags=tag_1`*
+
+- Get all models contain the combination of multiple tags in their list of tags.
+
+*Code: `?tags=tag_1+tag_2`*
+
+- Get all models contain a specific tag in their list of tags.
+
+*Code: `?tags=tag_1+`*
+
+Let's named a value in the `tags` parameter is an expression like  `tag_1` in `?tags=tag_1`.
+
+Basically the structure if `some-route?tags=some-tag` each expression has to be separated by a `,` and an expression of a combination of tags needs a `+` like `tag_1+tag_2`.
+You can fill `tags` with multiple and different expressions, see on the following examples:
+
+- `GET some-route?tags=tag_1,tag_2`
+
+Here we have two expressions: `tag_1` and `tag_2`, which would you returns all models contain `tag_1` or `tag_2`
+
+- `GET some-route?tags=tag_2+tag_3,tag_1,tag_4+tag_5+tag_3`
+
+Here we have three expressions: `tag_2+tag_3`, `tag_1` and, `tag_4+tag_5`, which would you returns all models contain `tag_1` and `tag_2`, models contain `tag_1` and, models contain `tag_4`, `tag_5` and, `tag_3`.
+
+<aside class="warning">
+The "+" used in the expression must be encode: "%2B" else you will get a space between your tags.
+</aside>
+
+<aside class="Notice">
+You will receive a distinct list of models even if you have some expression including the same tags.
+</aside>
+
+
+Let's see how it works with some examples:
+
+Assuming we have five models with their tags:
+
+*Model_1 has tags `tag_1` and `tag_2`, ect.*
+
+        | tag_1 | tag_2 | tag_3 | tag_4
+------- | ----- | ----- | ----- | -----
+model_1 |   x   |   x   |       |
+model_2 |   x   |       |   x   |
+model_3 |       |   x   |       |
+model_4 |       |       |       |   x
+model_5 |       |   x   |   x   |   x
+
+
+Then couple demonstration of which model(s) should be returned by the search:
+
+                                        | model_1 | model_2 | model_3 | model_4 | model_5
+--------------------------------------- | ------- | ------- | ------- | ------- | -------
+`?tags=tag_1`                           |   x     |   x     |         |         |
+`?tags=tag_1, tag_2`                    |   x     |   x     |   x     |         |   x
+`?tags=tag_1+tag_2`                     |   x     |         |         |         |
+`?tags=tag_2+tag_3+tag_4`               |   x     |         |         |         |   x
+`?tags=tag_1+tag_2, tag_4`              |   x     |         |         |   x     |   x
+`?tags=tag_2+`                          |         |         |   x     |         |
+`?tags=tag_2+, tag_1+tag_3`             |         |    x    |   x     |         |
+
+
+
 # Authorization
 
 Our API uses OAuth2 and JWT tokens for authorizing Users.
