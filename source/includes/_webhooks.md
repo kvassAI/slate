@@ -271,6 +271,8 @@ Content-Type: application/json
 ## Simulate a Webhook
 
 It is possible to simulate the response from a webhook to check the format of the webhook data.
+KVASS will trigger a fake event related to the webhook type and send the data to the endpoint
+specified in the webhook.
 
  > Definition
 
