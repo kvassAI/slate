@@ -58,7 +58,7 @@ POST https://api.kvass.ai/plans
 POST /plans HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -145,7 +145,7 @@ GET https://api.kvass.ai/plans/<plan_id>
 GET /plans/<plan_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -167,16 +167,14 @@ Content-Type: application/json
         {"discount": 0.5,
          "product": {"$oid": "5931697ed57ba271c0c7de65"},
          "quantity": 2}],
-    "deleted": false,
-    "billing_interval": "MONTH",
-    "currency": "NOK",
-    "name": "Golden Plan",
-    "interval_unit": "WEEK",
-    "static": false,
-    "total_amount": 500.0,
-    "company": {
-    "$oid": "57ee9c71d76d431f8511142f"},
-    "setup_fee": 0
+     "deleted": false,
+     "billing_interval": "MONTH",
+     "currency": "NOK", 
+     "name": "Golden Plan",
+     "interval_unit": "WEEK",
+     "static": false,
+     "total_amount": 500.0,
+     "company": {"$oid": "57ee9c71d76d431f8511142f"}
  }
 ```
 
@@ -198,7 +196,7 @@ GET https://api.kvass.ai/plans
 GET /plans HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -257,7 +255,7 @@ Argument | Type | Description
 size | `integer` | Number of items to retrieve.
 page | `integer` | Which page to retrieve. _default page size is 50_
 sorting | `string`| Field used for sorting results. <br> If missing, the default is `-created`.
-include_deleted| `boolean` | If `true`, deleted products are also listed.
+include_deleted | `boolean` | If `true`, deleted products are also listed.
 
 
 ## Update Plan
@@ -276,7 +274,7 @@ PUT https://api.kvass.ai/plans/<plan_id>
 PUT /plans HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -358,7 +356,7 @@ DELETE https://api.kvass.ai/plans/<plan_id>
 DELETE /plans/<plans_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -412,7 +410,7 @@ This us how to create a new recurring order plan. The plan is [`user`](#users) s
 > Definition
 
 ```
-POST https://api.shareactor.io/plans
+POST https://api.kvass.ai/plans
 ```
 
 > Example request:
@@ -421,8 +419,8 @@ POST https://api.shareactor.io/plans
 POST /plans HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Kvass-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "method": 'recurring_order',
@@ -440,7 +438,6 @@ Host: api.shareactor.io
     "recurring_days": [{"day": 0, "hour": 10, "minute": 42},
                        {"day": 4, "hour": 20, "minute": 15}]
 }
-
 ```
 
 ``` http
@@ -489,7 +486,7 @@ Not all fields are possible to update.
 > Definition
 
 ```
-PUT https://api.shareactor.io/plans/<plan_id>
+PUT https://api.kvass.ai/plans/<plan_id>
 ```
 
 > Example request:
@@ -498,8 +495,8 @@ PUT https://api.shareactor.io/plans/<plan_id>
 PUT /plans/<plan_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Kvass-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "method": 'recurring_order',
@@ -571,3 +568,64 @@ total_amount |`number`| The total cost of the subscription payment. If set, the 
 recurring_days | `array` | When updating the recurring days you can return both of following format:
  - `{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}}` - it means this recurring day already exists
  - `{"day": 2, "hour": 10, "minute": 15}`
+ 
+### Get Subscriptions used by a Plan
+
+This request will return an array of all subscriptions used by a plan.
+We also allow you to use query parameters. Please take a look below for a list of accepted query parameters.
+
+> Definition
+
+```
+GET https://api.kvass.ai/plans/<plan_id>/subscriptions
+```
+
+> Example request:
+
+``` http
+GET /plans/<plan_id>/subscriptions HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Kvass-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[
+    {
+       "_id":{"$oid":"5964a0ead57ba2036750a3b4"},
+       "_cls":"SubscriptionMethod.LicenseSubscription",
+       "created":{"$date":1538056530832},
+       "updated":{"$date":1538056530832},
+       "active":true,
+       "deleted":false,
+       "trial":false,
+       "user":{"$oid":"57ee9c72d76d431f85111432"},
+       "company":{"$oid":"57ee9c71d76d431f8511142f"},
+       "status":"CREATED",
+       "payments":[],
+       "infinite":false,
+       "plan":{"$oid":"5bace152cb416c14a3115a6c"},
+       "prorate_amount":0.0,
+       "total_fail_attempts":0,
+       "method":"license",
+       "name":"LICENSE"
+    }
+]
+```
+
+Argument | Type | Description
+-------- | ---- | -----
+**plan_id** | `string` | ID of the queried plan.
+size | `integer` | Number of items to retrieve.
+page | `integer` | Which page to retrieve. _default page size is 50_
+sort | `string`| Field used for sorting results. <br> If missing, the default is `-created`.
+include_deleted | `boolean` | If `true`, deleted products are also listed.
+status | `string` | Return subscriptions with a specific [`Subscription`](#subscriptions) `status`.
+method | `string` | Return subscriptions with a specific [`Subscription`](#Subscriptions) `method`.
+from_date | `number` | Start date, `timestamp` format _default is None_
+to_date | `number` | End date, `timestamp` format _default is None_
+date_filter | `string` | Date field used to filter results. _default is created_

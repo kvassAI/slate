@@ -38,7 +38,7 @@ GET https://api.kvass.ai/addresses/lookup
 GET /addresses/lookup HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {

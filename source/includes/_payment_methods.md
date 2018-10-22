@@ -118,7 +118,7 @@ POST https://api.kvass.ai/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -180,7 +180,7 @@ POST https://api.kvass.ai/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -242,11 +242,11 @@ POST https://api.kvass.ai/payment_methods
 POST /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-  "method": "stripe",
+  "payment_method": "stripe",
   "token": "tok_1Bv5yfEeeXxFpLJtpWYeGYuy"
 }
 ```
@@ -277,28 +277,28 @@ Content-Type: application/json
   "customer_id": "cus_CJjTlT4Wci2P0u",
   "token": "tok_1Bv5yfEeeXxFpLJtpWYeGYuy",
   "card": {
-    'object': 'card',
-    'address_state': None,
-    'fingerprint': 'npPw68vQg1usKUWb',
-    'metadata': {},
-    'exp_year': 2019,
-    'country': 'US',
-    'last4': '4242',
-    'address_zip_check': None,
-    'address_zip': None,
-    'funding': 'credit',
-    'cvc_check': 'unchecked',
-    'id': 'card_1Bv5yfEeeXxFpLJtPBVfQ1wZ',
-    'tokenization_method': None,
-    'address_line1': None,
-    'exp_month': 12,
-    'brand': 'Visa',
-    'dynamic_last4': None,
-    'address_country': None,
-    'address_line2': None,
-    'address_line1_check': None,
-    'name': None,
-    'address_city': None
+    "object": "card",
+    "address_state": null,
+    "fingerprint": "npPw68vQg1usKUWb",
+    "metadata": {},
+    "exp_year": 2019,
+    "country": "US",
+    "last4": "4242",
+    "address_zip_check": null,
+    "address_zip": null,
+    "funding": "credit",
+    "cvc_check": "unchecked",
+    "id": "card_1Bv5yfEeeXxFpLJtPBVfQ1wZ",
+    "tokenization_method": null,
+    "address_line1": null,
+    "exp_month": 12,
+    "brand": "Visa",
+    "dynamic_last4": null,
+    "address_country": null,
+    "address_line2": null,
+    "address_line1_check": null,
+    "name": null,
+    "address_city": null
   }
 }
 ```
@@ -325,7 +325,7 @@ GET https://api.kvass.ai/payment_methods/<payment-method-id>
 GET /payment_methods/<payment-method-id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -378,7 +378,7 @@ GET https://api.kvass.ai/payment_methods
 GET /payment_methods HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -437,7 +437,7 @@ DELETE https://api.kvass.ai/payment_methods/<payment_method_id>
 DELETE /payment_methods/<payment_method_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 

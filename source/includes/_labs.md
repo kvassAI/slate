@@ -22,7 +22,7 @@ GET https://api.kvass.ai/labs/health
 GET /labs/health HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -50,7 +50,7 @@ POST https://api.kvass.ai/labs/recommendations/train
 POST /labs/recommendations/train HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -88,7 +88,7 @@ POST https://api.kvass.ai/labs/recommendations/recommend
 POST /labs/recommendations/recommend HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -148,7 +148,7 @@ POST https://api.kvass.ai/labs/recommendations/similar
 POST /labs/recommendations/similar HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {

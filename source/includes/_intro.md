@@ -1,6 +1,6 @@
 # Introduction
 
-The ShareActor API is a standard JSON RESTful API. The API follows the HTTP standards as often as possible, but there might be some deviations from it in some specific scenarios.
+The KVASS API is a standard JSON RESTful API. The API follows the HTTP standards as often as possible, but there might be some deviations from it in some specific scenarios.
 
 All responses from the API, including errors, are returned as JSON objects.
 
@@ -22,7 +22,7 @@ All the example API calls are using the PROD endpoint.
 ``` http
 GET / HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -32,7 +32,7 @@ KVASS uses API keys to allow access to the API. If you want access to our APIs, 
 
 All API requests should include this key in the headers*:
 
-`X-Share-Api-Key: <kvass-api-key>`
+`X-Kvass-Api-Key: <kvass-api-key>`
 
 <aside class="notice">
 *Note:  You must replace <code>kvass-api-key</code> with your personal API key.
@@ -52,6 +52,7 @@ Error Code | Reason | Description
 403 | Forbidden | Your request is trying to access data it has no credentials for
 404 | Not Found | The specified resource could not be found.
 409 | Conflict | There was a conflict with processing your request. Try later or change the data being submitted
+415 | Unsupported Media Type | The requests' payload is in a format that is not supported by this method on the target resource.
 500 | Internal Server Error | We had a problem with our server. Please try again later.
 503 | Service Unavailable | We're temporarily offline for maintenance. Please try again later.
 
@@ -62,7 +63,7 @@ Error Code | Reason | Description
 ```http
 GET /payment_methods/<payment-method-id>/?expand=user HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -113,7 +114,7 @@ user     | User associated with object
 ``` http
 GET /orders?size=10&page=1 HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -122,7 +123,7 @@ Host: api.kvass.ai
 ``` http
 GET /orders?size=100 HTTP/1.1
 Content-Type: application/json
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 X-Pagination-Total: 212
 ```
@@ -130,7 +131,7 @@ X-Pagination-Total: 212
 All top-level API resources have support for bulk fetches via "list" API methods. For instance you can list orders, users, providers, etc.
 These "list" API methods share a common structure, taking at least these two parameters: size and page.
 
-ShareActor uses pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
+KVASS uses pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
 The return of a response header contains the total count: `X-Pagination-Total: 212`
 
 
@@ -156,7 +157,7 @@ GET https://api.kvass.ai/model
 GET /model HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -186,7 +187,7 @@ GET https://api.kvass.ai/model/search
 GET /model/search?query=a0b1c2d3e4d5c6b7a8b94242 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 

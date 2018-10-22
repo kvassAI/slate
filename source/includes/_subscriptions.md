@@ -49,7 +49,7 @@ POST https://api.kvass.ai/subscriptions
 POST /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -110,7 +110,7 @@ POST https://api.kvass.ai/subscriptions/<subscription_id>/start
 POST /subscriptions/5964a0ead57ba2036750a3b4/start HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -174,7 +174,7 @@ POST https://api.kvass.ai/subscriptions
 POST /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {"plan": {"name": "Plan Name",
@@ -240,7 +240,7 @@ PUT https://api.kvass.ai/subscriptions/<subscription_id>
 PUT /subscriptions/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
@@ -302,7 +302,7 @@ POST https://api.kvass.ai/subscriptions/<subscription_id>/stop
 POST /subscriptions/5964a0ead57ba2036750a3b4/stop HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 ```
@@ -354,7 +354,7 @@ GET https://api.kvass.ai/subscriptions/<subscription_id>
 GET /subscriptions/5964a0ead57ba2036750a3b4 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 ``` http
@@ -401,7 +401,7 @@ GET https://api.kvass.ai/users/<user_id>/subscriptions
 GET /users/57ee9c72d76d431f85111432/subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -428,7 +428,7 @@ GET https://api.kvass.ai/subscriptions
 GET /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <kvass-api-key>
+X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 ```
 
@@ -478,7 +478,7 @@ This will not start the subscription, only create it.
 > Definition
 
 ```
-POST https://api.shareactor.io/subscriptions
+POST https://api.kvass.ai/subscriptions
 ```
 
 
@@ -488,8 +488,8 @@ POST https://api.shareactor.io/subscriptions
 POST /subscriptions HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
-X-Share-Api-Key: <shareactor-api-key>
-Host: api.shareactor.io
+X-Kvass-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
 
 {
     "plan": "5931697ed57ba271c0c7de66",
