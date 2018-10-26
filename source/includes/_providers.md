@@ -12,7 +12,6 @@ max_travel_meters | `number` | The maximum travel distance, in meters. _default 
 default_position | `array` | The provider's default position.
 default_address | `object` | The provider's default [`Address`](#address).
 schedule | `object` | The provider's schedule.
-orders | `array` | List of [`Orders`](#orders).
 products | `array` | List of [`Products`](#products) the provider provides.
 available_on_bank_holidays | `boolean` | Indicates if the provider wishes to be available on bank holidays.  _default `false`_
 country | `string` | The provider's country. _default `NOR`_
@@ -112,7 +111,6 @@ Content-Type: application/json
       "alias":""
    },
    "mobile_phone_number":"+4712345678",
-   "orders":[],
    "modified":{
       "$date":1495195975643
    },
@@ -185,7 +183,6 @@ Content-Type: application/json
       "uuid":"e9878af0-c607-486c-872f-6e23e7a15821",
       "consumed":0
    },
-   "orders":[],
    "note":"",
    "stripe_customer_id":"",
    "max_travel_time":1.0,
@@ -293,7 +290,6 @@ Content-Type: application/json
           "uuid":"e9878af0-c607-486c-872f-6e23e7a15821",
           "consumed":0
        },
-       "orders":[],
        "note":"",
        "stripe_customer_id":"",
        "max_travel_time":1.0,
