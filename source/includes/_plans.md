@@ -107,7 +107,8 @@ Content-Type: application/json
     "company": {
         "$oid": "57ee9c71d76d431f8511142f"},
     "static": true,
-    "setup_fee": 0
+    "setup_fee": 0,
+    "setup_fee": true
 }
 ```
 
@@ -119,15 +120,16 @@ Argument | Type | Description
 name | `string` | The name of the plan.
 note | `string` | A short description of the plan.
 interval_unit | `string` | The frequency that the subscription acts upon. <br> Choices: `DAY`, `WEEK`, `MONTH`, <br> `MONTH_END`, `ANNUAL`
-interval_count | `integer`| Total number of interval_units.
-billing_interval | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
-static | `boolean`| Defines if plan is allowed to be changed.
+interval_count | `integer`| The total number of interval_units the subscription runs before it stops.
+billing_interval | `string`| Defines the payment frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
+static | `boolean`| Sets if the params in the params in the plan are changeable after its creation
 items | `array` | List of items associated with Plan. See description below.
-currency | `string` | Three letter ISO currency code as defined by ISO 4217.
-total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`.
+currency | `string` | The currency of the payment. ISO 4217-standard.
+total_amount | `integer` | The amount in the `currency` that will be charged at the end of the billing interval. If missing, the `total_amount` will be calculated as the sum of the items.
 initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices: `CANCEL`, `CONTINUE`
-max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
-setup_fee | `integer` | If you need to charge a subscription fee to the customer. Can't be less than `0`. _Default `0`_
+max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the maximum number of failed payments in a row that is allowed before the [`Subscription`](#subscriptions) stops. If `initial_fail_amount_action` is set to `CANCEL`, the [`Subscription`](#subscriptions) stops if one payment fails.
+setup_fee | `integer` | A setup fee that will be paid at the beginning of the first payment cycle. Can't be less than `0`. _Default `0`_
+prepay | `boolean` | It's boolean and defines if the subscription payment is charged at the beginning or end of the billing cycle.
 
 ## Retrieve a Plan
 
@@ -166,7 +168,8 @@ Content-Type: application/json
          "quantity": 1},
         {"discount": 0.5,
          "product": {"$oid": "5931697ed57ba271c0c7de65"},
-         "quantity": 2}],
+         "quantity": 2}
+     ],
      "deleted": false,
      "billing_interval": "MONTH",
      "currency": "NOK", 
@@ -174,7 +177,8 @@ Content-Type: application/json
      "interval_unit": "WEEK",
      "static": false,
      "total_amount": 500.0,
-     "company": {"$oid": "57ee9c71d76d431f8511142f"}
+     "company": {"$oid": "57ee9c71d76d431f8511142f"},
+    "setup_fee": true
  }
 ```
 
@@ -205,45 +209,32 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 [
     {
-        "created": {
-            "$date": 1496412265911
-        },
+        "created": {"$date": 1496412265911},
         "interval_unit": "WEEK",
         "currency": "NOK",
         "name": "Golden Plan",
-        "updated": {
-            "$date": 1496412265911
-        },
+        "updated": {"$date": 1496412265911},
         "static": false,
         "billing_interval": "MONTH",
-        "_id": {
-            "$oid": "59317069d57ba2781c739479"
-        },
+        "_id": {"$oid": "59317069d57ba2781c739479"},
         "total_amount": 500.0,
-        "company": {
-            "$oid": "57ee9c71d76d431f8511142f"
-        },
+        "company": {"$oid": "57ee9c71d76d431f8511142f"},
         "deleted": false,
-        "items": [{
+        "items": [
+            {
                 "discount": 0.0,
                 "quantity": 1,
-                "product": {
-                    "$oid": "59317069d57ba2781c739477"
-                }
+                "product": {"$oid": "59317069d57ba2781c739477"}
             },
             {
                 "discount": 0.0,
                 "quantity": 2,
-                "product": {
-                    "$oid": "59317069d57ba2781c739478"
-                }
+                "product": {"$oid": "59317069d57ba2781c739478"}
             }
         ]
     },
     {
-        "created": {
-            "$date": 1496412265930
-        },
+        "created": {"$date": 1496412265930},
         "interval_unit": "WEEK",
         "...": "..."
     }
@@ -288,7 +279,8 @@ initial_fail_amount_action |`string`| Indicates what happens when payment for th
 max_fail_attempts |`number`| How many times a payment can fail in the subscription, but still continue.
 discount |`number`| Between 0.0 an 1.0, where 1.0 is 100% discount on the total_price.
 total_amount |`number`| The total cost of the subscription payment. If set, the total_amount is not based on the sum of products.
-setup_fee | `integer` | 
+setup_fee | `integer` | If you need to charge a subscription fee to the customer. Can't be less than `0`. _Default `0`_
+prepay | `boolean` | It's boolean and defines if the subscription payment is charged at the beginning or end of the billing cycle.
 
 ## Put items in a Plan
 
@@ -318,12 +310,9 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "_id": {
-        "$oid": "5931697ed57ba271c0c7de66"},
-    "created": {
-        "$date": 1496410494652},
-    "updated": {
-        "$date": 1496410494652},
+    "_id": {"$oid": "5931697ed57ba271c0c7de66"},
+    "created": {"$date": 1496410494652},
+    "updated": {"$date": 1496410494652},
     "method": "recurring_order",
     "auto_bill_amount": false,
     "billing_interval": "MONTH",
@@ -337,8 +326,7 @@ Content-Type: application/json
     "currency": "NOK",
     "note": "This is a note regarding the Plan",
     "deleted": false,
-    "company": {
-        "$oid": "57ee9c71d76d431f8511142f"},
+    "company": {"$oid": "57ee9c71d76d431f8511142f"},
     "static": true,
 }
 ```
@@ -472,8 +460,9 @@ Content-Type: application/json
     "company": {
         "$oid": "57ee9c71d76d431f8511142f"},
     "static": true,
+    "setup_fee": true,
     "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
-                       {"day": 0, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}}]
+                       {"day": 0, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}}],
 }
 ```
 
@@ -511,6 +500,7 @@ Host: api.kvass.ai
     "note": "This is a note regarding the Plan",
     "interval_count": false,
     "total_amount": false,
+    "setup_fee": true,
     "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
                        {"day": 4, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}},
                        {"day": 2, "hour": 10, "minute": 15}]
@@ -524,10 +514,8 @@ Content-Type: application/json
 {
     "_id": {
         "$oid": "5931697ed57ba271c0c7de66"},
-    "created": {
-        "$date": 1496410494652},
-    "updated": {
-        "$date": 1496410494652},
+    "created": {"$date": 1496410494652},
+    "updated": {"$date": 1496410494652},
     "method": "recurring_order",
     "auto_bill_amount": false,
     "billing_interval": "MONTH",
@@ -546,9 +534,9 @@ Content-Type: application/json
     "currency": "NOK",
     "note": "This is a note regarding the Plan",
     "deleted": false,
-    "company": {
-        "$oid": "57ee9c71d76d431f8511142f"},
+    "company": {"$oid": "57ee9c71d76d431f8511142f"},
     "static": true,
+    "setup_fee": true,
     "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
                        {"day": 4, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}},
                        {"day": 2, "starting_day": {"$date": 1496410495952}, "next_day": {"$date": 1496410495952}}]
