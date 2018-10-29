@@ -92,6 +92,7 @@ Content-Type: application/json
     "initial_fail_amount_action": "CONTINUE",
     "max_fail_attempts": 1,
     "name": "Plan Deluxe",
+    "name": "basic"
     "total_amount": 300.0,
     "interval_unit": "WEEK",
     "items": [

@@ -15,6 +15,7 @@ billing_address | [`object`](#address) | Billing Address of the user
 bio | `string` | Biographic note about the user
 tags | `string` | List of tags associated with user
 roles | `string` | List of roles associated with user
+voucher | `object` | [`Voucher`](#credits) of the user.
 
 ## Create a User
 
@@ -84,7 +85,8 @@ Content-Type: application/json
   "tags":[],
   "stripe_customer_id":"",
   "roles":["user"],
-  "deleted":true
+  "deleted":true,
+  "voucher": {}
 }
 ```
 
@@ -178,7 +180,9 @@ Content-Type: application/json
     "new_customer": true,
     "last_name": "Doe",
     "last_login": {"$date": 1512383756278},
-    "deleted": false}
+    "deleted": false,
+    "voucher": {}
+}
 
 ```
 
@@ -232,7 +236,8 @@ Content-Type: application/json
   "tags":[],
   "stripe_customer_id":"",
   "roles":["user"],
-  "deleted":true
+  "deleted":true,
+  "voucher": {}
 }
 ```
 
@@ -297,7 +302,8 @@ Content-Type: application/json
   "tags":[],
   "stripe_customer_id":"",
   "roles":["user"],
-  "deleted":false
+  "deleted":false,
+  "voucher": {}
 }
 ```
 
@@ -364,7 +370,8 @@ Content-Type: application/json
   "tags":[],
   "stripe_customer_id":"",
   "roles":["user"],
-  "deleted":true
+  "deleted":true,
+  "voucher": {}
 }
 ```
 
@@ -422,7 +429,8 @@ Content-Type: application/json
   "tags":[],
   "stripe_customer_id":"",
   "roles":["user"],
-  "deleted":false
+  "deleted":false,
+  "voucher": {}
   }
 ]
 ```
@@ -488,7 +496,8 @@ Content-Type: application/json
   "tags":[],
   "stripe_customer_id":"",
   "roles":["user"],
-  "deleted":false
+  "deleted":false,
+  "voucher": {}
   }
 ]
 ```

@@ -13,6 +13,7 @@ includes:
   - intro
   - addresses
   - coupons
+  - credits
   - events
   - invoices
   - issuers
