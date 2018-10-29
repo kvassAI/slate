@@ -2,17 +2,17 @@
 
 Attribute | Type | Description
 --------- | ---- | -------
-uuid | `string` | It is the unique reference to the object
-**initial_quantity** | `number` | The initial amount of voucher has a [`User`](#users)
-expires |  `number` | Sets how many days this Credit is available.
-consumed | `number` | Sets how many vouchers are used, consumed.
+uuid | `string` | The unique reference ID for the Voucher.
+**initial_quantity** | `number` | The number of vouchers that will be deducted from a [User](#users).
+expires |  `number` | The expiration date of the Credits.
+consumed | `number` | The number of Credits the user has consumed.
 
 The `Voucher` or `Credit` is used to pay for an [`Order`](#orders) containing [`Credit Product`](#credit-product-object).
 
 ## Grant Vouchers to User
 
-Grant voucher to [`User`](#users) as an Admin.
-This request doesn't increment the `initial_quantity` just set a new value.
+Admins are able to update vouchers for the users. 
+Note that the number of vouchers is set to this value, not incremented by the value.
 
 > Definition
 
@@ -78,25 +78,29 @@ Content-Type: application/json
 Argument | Type | Description
 -------- | ---- | -------
 **user_id** | `string` | The [`user`](#users)'s unique ID.
-voucher | `number` | The new value of th `initial_amount`.
+voucher | `number` | The new value of the `initial_amount`.
 
 
 ## Voucher Plan
 
-To give a voucher to a [`user`](#users), he has to have a [`Subscription`](#subscriptions) based on a Voucher plan.
-A **voucher plan** is completely similar to a regular of the plan but it must have [`Credit Product`](#credit-products) instead of regular [`Product`](#products).
-Every each intervals, the [`user`](#users) will get the amount of vouchers corresponding of the `total_amount` in the plan (the sum of the [`Credit Products`](#credit-products) `voucher_required`)
+A [`user`](#users) could also get vouchers by [`subscribing`](#subscriptions) on a `Voucher plan`.
+A voucher plan has a lot of commonalities as a normal [`Plan`](#plans), but uses strictly 
+[`Credit Product`](#credit-products) in the `plan.items` instead of regular [`Products`](#products).
+The [`user`](#users) will be incremented the number of vouchers corresponding to the sum of the
+ `plan.items.product.vouchers_required` at every billing interval. The `total_amount` in the plan,
+ the amount that the user will be charged at every billing interval, will be the sum of all
+ `plan.items.product.price`
 
 
 ### Create a Voucher Plan
 
 Argument | Type | Description
 -------- | ---- | -------
-**plan_method** | `string` | The `plan_method` defined wish type of plan you want, in the case it will be `voucher_plan`.
+**plan_method** | `string` | The type of Plan, in the case a `voucher_plan`.
 **interval_unit** | `string` | The frequency that the Subscription acts upon. <br> interval_unit choices: `DAY`, `WEEK`, `MONTH`, `MONTH_END`, `ANNUAL`
 **billing_interval** | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
 **currency** | `string`| Three letter ISO currency code as defined by ISO 4217.7
-**items** | `array` | The items consist of a [`credict product`](#credit-products) and `quantity`.
+**items** | `array` | An array of [`credict products`](#credit-products) and `quantity`.
 
 > Definition
 
@@ -160,7 +164,9 @@ Content-Type: application/json
 
 ## Redeem Vouchers in an Order
 
-If an [`Order`](#orders) only contains [`Credit Products`](#credit-products), then the user can use his voucher to pay it.
+The User could redeem their voucher to pay for Orders if all the [`Order.item`](#orders)'s 
+only contains [`Credit Products`](#credit-products)
+
 
 > Definition
 
