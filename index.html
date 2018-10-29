@@ -1493,6 +1493,313 @@ There are 3 different ways a Coupon can become unusable:
 </tr>
 </tbody></table>
 
+          <h1 id="credits">Credits</h1>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uuid</td>
+<td><code class="prettyprint">string</code></td>
+<td>The unique reference ID for the Voucher.</td>
+</tr>
+<tr>
+<td><strong>initial_quantity</strong></td>
+<td><code class="prettyprint">number</code></td>
+<td>The number of vouchers that will be deducted from a <a href="#users">User</a>.</td>
+</tr>
+<tr>
+<td>expires</td>
+<td><code class="prettyprint">number</code></td>
+<td>The expiration date of the Credits.</td>
+</tr>
+<tr>
+<td>consumed</td>
+<td><code class="prettyprint">number</code></td>
+<td>The number of Credits the user has consumed.</td>
+</tr>
+</tbody></table>
+
+<p>The <code class="prettyprint">Voucher</code> or <code class="prettyprint">Credit</code> is used to pay for an <a href="#orders"><code class="prettyprint">Order</code></a> containing <a href="#credit-product-object"><code class="prettyprint">Credit Product</code></a>.</p>
+
+<h2 id="grant-vouchers-to-user">Grant Vouchers to User</h2>
+
+<p>Admins are able to update vouchers for the users. 
+Note that the number of vouchers is set to this value, not incremented by the value.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.kvass.ai/users/&lt;user_id&gt;?expand=voucher
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Kvass-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"voucher"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111999"</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1475428903950</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1475428903951</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"john@email.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"addresses"</span><span class="p">:[{</span><span class="w">
+                </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Danielsen"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"country"</span><span class="p">:</span><span class="s2">"Paraguay"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"zip_code"</span><span class="p">:</span><span class="s2">"0556"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"state"</span><span class="p">:</span><span class="s2">"Oslo"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"street_name"</span><span class="p">:</span><span class="s2">"Iversenstien 7"</span><span class="w">
+             </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"billing_address"</span><span class="p">:{},</span><span class="w">
+  </span><span class="s2">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
+  </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"voucher"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">'initial_quantity'</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">'expires'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">'$date'</span><span class="p">:</span><span class="w"> </span><span class="mi">1572339915160</span><span class="p">},</span><span class="w"> 
+        </span><span class="err">'consumed'</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">'created'</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">'$date'</span><span class="p">:</span><span class="w"> </span><span class="mi">1540803915160</span><span class="p">},</span><span class="w"> 
+        </span><span class="err">'uuid'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">60</span><span class="err">a</span><span class="mi">4646</span><span class="err">c-a</span><span class="mi">6</span><span class="err">ec</span><span class="mi">-4</span><span class="err">d</span><span class="mi">2</span><span class="err">b-a</span><span class="mi">031-25</span><span class="err">cff</span><span class="mi">5</span><span class="err">b</span><span class="mi">9</span><span class="err">a</span><span class="mi">8</span><span class="err">ae'</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>user_id</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The <a href="#users"><code class="prettyprint">user</code></a>&lsquo;s unique ID.</td>
+</tr>
+<tr>
+<td>voucher</td>
+<td><code class="prettyprint">number</code></td>
+<td>The new value of the <code class="prettyprint">initial_amount</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="voucher-plan">Voucher Plan</h2>
+
+<p>A <a href="#users"><code class="prettyprint">user</code></a> could also get vouchers by <a href="#subscriptions"><code class="prettyprint">subscribing</code></a> on a <code class="prettyprint">Voucher plan</code>.
+A voucher plan has a lot of commonalities as a normal <a href="#plans"><code class="prettyprint">Plan</code></a>, but uses strictly 
+<a href="#credit-products"><code class="prettyprint">Credit Product</code></a> in the <code class="prettyprint">plan.items</code> instead of regular <a href="#products"><code class="prettyprint">Products</code></a>.
+The <a href="#users"><code class="prettyprint">user</code></a> will be incremented the number of vouchers corresponding to the sum of the
+ <code class="prettyprint">plan.items.product.vouchers_required</code> at every billing interval. The <code class="prettyprint">total_amount</code> in the plan,
+ the amount that the user will be charged at every billing interval, will be the sum of all
+ <code class="prettyprint">plan.items.product.price</code></p>
+
+<h3 id="create-a-voucher-plan">Create a Voucher Plan</h3>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>plan_method</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The type of Plan, in the case a <code class="prettyprint">voucher_plan</code>.</td>
+</tr>
+<tr>
+<td><strong>interval_unit</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The frequency that the Subscription acts upon. <br> interval_unit choices: <code class="prettyprint">DAY</code>, <code class="prettyprint">WEEK</code>, <code class="prettyprint">MONTH</code>, <code class="prettyprint">MONTH_END</code>, <code class="prettyprint">ANNUAL</code></td>
+</tr>
+<tr>
+<td><strong>billing_interval</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>Defines billing frequency. <br> Choices: <code class="prettyprint">WEEK</code>, <code class="prettyprint">MONTH</code>, <code class="prettyprint">MONTH_END</code></td>
+</tr>
+<tr>
+<td><strong>currency</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>Three letter ISO currency code as defined by ISO 4217.7</td>
+</tr>
+<tr>
+<td><strong>items</strong></td>
+<td><code class="prettyprint">array</code></td>
+<td>An array of <a href="#credit-products"><code class="prettyprint">credict products</code></a> and <code class="prettyprint">quantity</code>.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.kvass.ai/plans
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/plans</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Kvass-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Voucher Plan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;credit_product1_id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"initial_fail_amount_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTINUE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"max_fail_attempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de66"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"auto_bill_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"initial_fail_amount_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTINUE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"max_fail_attempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Voucher Plan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"voucher_plan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58f9f856b70e2a56c4a0db35"</span><span class="p">},</span><span class="w">
+            </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+         </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id="redeem-vouchers-in-an-order">Redeem Vouchers in an Order</h2>
+
+<p>The User could redeem their voucher to pay for Orders if all the <a href="#orders"><code class="prettyprint">Order.item</code></a>&rsquo;s 
+only contains <a href="#credit-products"><code class="prettyprint">Credit Products</code></a></p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.kvass.ai/orders/&lt;order_id&gt;/redeem?expand=user.voucher
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/orders/&lt;order_id&gt;/redeem?expand=user.voucher</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Kvass-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
+
+<span class="p">{}</span><span class="w">
+
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+   </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"5bd6de64cb416c6806eb5c4e"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"5bd6de52cb416c6806eb5c41"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"user"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"5bd6de54cb416c6806eb5c42"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"5bd6de54cb416c6806eb5c42"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1540808276567</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1540808292678</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"testy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Squeeze"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"123456789465"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"addresses"</span><span class="p">:[],</span><span class="w">
+      </span><span class="s2">"billing_address"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"service"</span><span class="p">:</span><span class="s2">"google"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"voucher"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"initial_quantity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expires"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1572344289089</span><span class="p">},</span><span class="w">
+         </span><span class="s2">"consumed"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1540808276575</span><span class="p">},</span><span class="w">
+         </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"ed7e9ca2-64c2-49a4-b6c4-f006c07603aa"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_login"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1540808276583</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"5bd6de52cb416c6806eb5c41"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
+      </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">"cus_DsIPnTkTxM3UPf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"auth0_id"</span><span class="p">:</span><span class="s2">"some-id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"national_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"new_customer"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_company"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"default_payment_method"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"5bd6de5acb416c6806eb5c45"</span><span class="p">},</span><span class="w">
+      </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"receive_notifications"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"items"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"product"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"5bd6de55cb416c6806eb5c44"</span><span class="p">},</span><span class="w">
+         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"discount"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"sub_products"</span><span class="p">:[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"units"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"total_quantity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"top_up_amount"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"top_up_vat"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"delivery_time"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1572344292591</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"payments"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"resources"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"human_id"</span><span class="p">:</span><span class="s2">"JQLVRN"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"stripe_charge_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"stripe_refund_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"order_status"</span><span class="p">:</span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"delivery_status"</span><span class="p">:</span><span class="s2">"DONE"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1540808292594</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1540808292682</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"deliveries"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"override_company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
           <h1 id="events">Events</h1>
 
 <p>The events are a way of tracking any important activity on the API
@@ -4446,6 +4753,11 @@ see <code class="prettyprint">Create Subscription with a pre-set company specifi
 <td><code class="prettyprint">integer</code></td>
 <td>If <code class="prettyprint">initial_fail_amount_action</code> is <code class="prettyprint">CONTINUE</code>, this is the number of interval_units that is allowed to fail before the <a href="#subscriptions"><code class="prettyprint">Subscription</code></a> stops.</td>
 </tr>
+<tr>
+<td>setup_fee</td>
+<td><code class="prettyprint">integer</code></td>
+<td>If you need to charge a subscription fee to the customer. Can&rsquo;t be less than <code class="prettyprint">0</code>. <em>Default <code class="prettyprint">0</code></em></td>
+</tr>
 </tbody></table>
 
 <h3 id="plan-items">Plan items</h3>
@@ -4505,6 +4817,7 @@ when creating a new plan.</p>
     </span><span class="s2">"initial_fail_amount_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTINUE"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"max_fail_attempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan Deluxe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"basic"</span><span class="w">
     </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -4514,13 +4827,13 @@ when creating a new plan.</p>
         </span><span class="p">{</span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
          </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de65"</span><span class="p">},</span><span class="w">
          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}],</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
-    </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"setup_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -4544,6 +4857,71 @@ when creating a new plan.</p>
 <td><strong>currency</strong></td>
 <td><code class="prettyprint">string</code></td>
 <td>Three letter ISO currency code as defined by ISO 4217.7</td>
+</tr>
+<tr>
+<td>name</td>
+<td><code class="prettyprint">string</code></td>
+<td>The name of the plan.</td>
+</tr>
+<tr>
+<td>note</td>
+<td><code class="prettyprint">string</code></td>
+<td>A short description of the plan.</td>
+</tr>
+<tr>
+<td>interval_unit</td>
+<td><code class="prettyprint">string</code></td>
+<td>The frequency that the subscription acts upon. <br> Choices: <code class="prettyprint">DAY</code>, <code class="prettyprint">WEEK</code>, <code class="prettyprint">MONTH</code>, <br> <code class="prettyprint">MONTH_END</code>, <code class="prettyprint">ANNUAL</code></td>
+</tr>
+<tr>
+<td>interval_count</td>
+<td><code class="prettyprint">integer</code></td>
+<td>The total number of interval_units the subscription runs before it stops.</td>
+</tr>
+<tr>
+<td>billing_interval</td>
+<td><code class="prettyprint">string</code></td>
+<td>Defines the payment frequency. <br> Choices: <code class="prettyprint">WEEK</code>, <code class="prettyprint">MONTH</code>, <code class="prettyprint">MONTH_END</code></td>
+</tr>
+<tr>
+<td>static</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Sets if the params in the params in the plan are changeable after its creation</td>
+</tr>
+<tr>
+<td>items</td>
+<td><code class="prettyprint">array</code></td>
+<td>List of items associated with Plan. See description below.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td><code class="prettyprint">string</code></td>
+<td>The currency of the payment. ISO 4217-standard.</td>
+</tr>
+<tr>
+<td>total_amount</td>
+<td><code class="prettyprint">integer</code></td>
+<td>The amount in the <code class="prettyprint">currency</code> that will be charged at the end of the billing interval. If missing, the <code class="prettyprint">total_amount</code> will be calculated as the sum of the items.</td>
+</tr>
+<tr>
+<td>initial_fail_amount_action</td>
+<td><code class="prettyprint">string</code></td>
+<td>Decides what happens if a payment fails in the <a href="#subscriptions"><code class="prettyprint">Subscription</code></a>. <br> Choices: <code class="prettyprint">CANCEL</code>, <code class="prettyprint">CONTINUE</code></td>
+</tr>
+<tr>
+<td>max_fail_attempts</td>
+<td><code class="prettyprint">integer</code></td>
+<td>If <code class="prettyprint">initial_fail_amount_action</code> is <code class="prettyprint">CONTINUE</code>, this is the maximum number of failed payments in a row that is allowed before the <a href="#subscriptions"><code class="prettyprint">Subscription</code></a> stops. If <code class="prettyprint">initial_fail_amount_action</code> is set to <code class="prettyprint">CANCEL</code>, the <a href="#subscriptions"><code class="prettyprint">Subscription</code></a> stops if one payment fails.</td>
+</tr>
+<tr>
+<td>setup_fee</td>
+<td><code class="prettyprint">integer</code></td>
+<td>A setup fee that will be paid at the beginning of the first payment cycle. Can&rsquo;t be less than <code class="prettyprint">0</code>. <em>Default <code class="prettyprint">0</code></em></td>
+</tr>
+<tr>
+<td>prepay</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>It&rsquo;s boolean and defines if the subscription payment is charged at the beginning or end of the billing cycle.</td>
 </tr>
 </tbody></table>
 
@@ -4580,16 +4958,17 @@ when creating a new plan.</p>
          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
          </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de65"</span><span class="p">},</span><span class="w">
-         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}],</span><span class="w">
-     </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w"> 
-     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Golden Plan"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">}</span><span class="w">
+         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}</span><span class="w">
+     </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Golden Plan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"setup_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
  </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -4625,46 +5004,32 @@ when creating a new plan.</p>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="s">[</span>
 <span class="s">    {</span>
-<span class="s">        "created": {</span>
-<span class="s">            "$date": 1496412265911</span>
-<span class="s">        },</span>
+<span class="s">        "created": {"$date": 1496412265911},</span>
 <span class="s">        "interval_unit": "WEEK",</span>
 <span class="s">        "currency": "NOK",</span>
 <span class="s">        "name": "Golden Plan",</span>
-<span class="s">        "updated": {</span>
-<span class="s">            "$date": 1496412265911</span>
-<span class="s">        },</span>
+<span class="s">        "updated": {"$date": 1496412265911},</span>
 <span class="s">        "static": false,</span>
 <span class="s">        "billing_interval": "MONTH",</span>
-<span class="s">        "_id": {</span>
-<span class="s">            "$oid": "59317069d57ba2781c739479"</span>
-<span class="s">        },</span>
+<span class="s">        "_id": {"$oid": "59317069d57ba2781c739479"},</span>
 <span class="s">        "total_amount": 500.0,</span>
-<span class="s">        "company": {</span>
-<span class="s">            "$oid": "57ee9c71d76d431f8511142f"</span>
-<span class="s">        },</span>
+<span class="s">        "company": {"$oid": "57ee9c71d76d431f8511142f"},</span>
 <span class="s">        "deleted": false,</span>
-<span class="s">        "items": [{</span>
+<span class="s">        "items": [</span>
+<span class="s">            {</span>
 <span class="s">                "discount": 0.0,</span>
 <span class="s">                "quantity": 1,</span>
-<span class="s">                "product": {</span>
-<span class="s">                    "$oid": "59317069d57ba2781c739477"</span>
-<span class="s">                }</span>
+<span class="s">                "product": {"$oid": "59317069d57ba2781c739477"}</span>
 <span class="s">            },</span>
 <span class="s">            {</span>
 <span class="s">                "discount": 0.0,</span>
 <span class="s">                "quantity": 2,</span>
-<span class="s">                "product": {</span>
-<span class="s">                    "$oid": "59317069d57ba2781c739478"</span>
-<span class="s">                }</span>
+<span class="s">                "product": {"$oid": "59317069d57ba2781c739478"}</span>
 <span class="s">            }</span>
-<span class="s">        ],</span>
-<span class="s">        "status": "CREATED"</span>
+<span class="s">        ]</span>
 <span class="s">    },</span>
 <span class="s">    {</span>
-<span class="s">        "created": {</span>
-<span class="s">            "$date": 1496412265930</span>
-<span class="s">        },</span>
+<span class="s">        "created": {"$date": 1496412265930},</span>
 <span class="s">        "interval_unit": "WEEK",</span>
 <span class="s">        "...": "..."</span>
 <span class="s">    }</span>
@@ -4765,8 +5130,62 @@ Not all fields are possible to update. See fields in Argument below.</p>
 <td><code class="prettyprint">number</code></td>
 <td>The total cost of the subscription payment. If set, the total_amount is not based on the sum of products.</td>
 </tr>
+<tr>
+<td>setup_fee</td>
+<td><code class="prettyprint">integer</code></td>
+<td>If you need to charge a subscription fee to the customer. Can&rsquo;t be less than <code class="prettyprint">0</code>. <em>Default <code class="prettyprint">0</code></em></td>
+</tr>
+<tr>
+<td>prepay</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>It&rsquo;s boolean and defines if the subscription payment is charged at the beginning or end of the billing cycle.</td>
+</tr>
 </tbody></table>
 
+<h2 id="put-items-in-a-plan">Put items in a Plan</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.kvass.ai/plans/&lt;plan_id&gt;/items
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/plans/&lt;plan_id&gt;/items</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Share-Api-Key</span><span class="p">:</span> <span class="s">&lt;shareactor-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.shareactor.io</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="p">[{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;product1_id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;product2_id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de66"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recurring_order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auto_bill_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"initial_fail_amount_action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTINUE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"max_fail_attempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recurring Order Plan Deluxe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interval_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEEK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;product1_id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;product2_id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h2 id="delete-plan">Delete Plan</h2>
 
 <blockquote>
@@ -4940,15 +5359,15 @@ For example, if the <code class="prettyprint">interval_unit</code> is set to WEE
         </span><span class="p">{</span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
          </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de65"</span><span class="p">},</span><span class="w">
          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}],</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"setup_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"recurring_days"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">}},</span><span class="w">
-                       </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">}}]</span><span class="w">
+                       </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">}}],</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="update-recurring-order-plan">Update Recurring Order Plan</h3>
@@ -4983,6 +5402,7 @@ Not all fields are possible to update.</p>
     </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"interval_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"setup_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"recurring_days"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">}},</span><span class="w">
                        </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">}},</span><span class="w">
                        </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"minute"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">}]</span><span class="w">
@@ -4993,10 +5413,8 @@ Not all fields are possible to update.</p>
 <span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de66"</span><span class="p">},</span><span class="w">
-    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
-    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w">
     </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recurring_order"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"auto_bill_amount"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"billing_interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
@@ -5012,13 +5430,12 @@ Not all fields are possible to update.</p>
         </span><span class="p">{</span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
          </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5931697ed57ba271c0c7de65"</span><span class="p">},</span><span class="w">
          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}],</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a note regarding the Plan"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+    </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
     </span><span class="s2">"static"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"setup_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"recurring_days"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494652</span><span class="p">}},</span><span class="w">
                        </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410494998</span><span class="p">}},</span><span class="w">
                        </span><span class="p">{</span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"starting_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410495952</span><span class="p">},</span><span class="w"> </span><span class="s2">"next_day"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1496410495952</span><span class="p">}}]</span><span class="w">
@@ -6497,38 +6914,35 @@ The <code class="prettyprint">price_change_percentage</code> could be used in th
 
 <span class="p">{</span><span class="w">  
    </span><span class="s2">"_id"</span><span class="p">:{</span><span class="w">  
-      </span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"58f9f856b70e2a56c4a0db3d"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"created"</span><span class="p">:{</span><span class="w">  
-      </span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492777046366</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"default_position"</span><span class="p">:[</span><span class="w">  
-      </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-      </span><span class="mi">-1</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"Product"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"modified"</span><span class="p">:{</span><span class="w">  
-      </span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492777046369</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"_sub_products"</span><span class="p">:[],</span><span class="w">
-   </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Product Name"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"properties"</span><span class="p">:{},</span><span class="w">
-   </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">3.14</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
-   </span><span class="s2">"vat"</span><span class="p">:</span><span class="mf">15.0</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"company"</span><span class="p">:{</span><span class="w">  
-      </span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"parents"</span><span class="p">:[],</span><span class="w">
-   </span><span class="s2">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"path"</span><span class="p">:</span><span class="s2">"/"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+    </span><span class="s2">":"</span><span class="mi">58</span><span class="err">f</span><span class="mi">9</span><span class="err">f</span><span class="mi">856</span><span class="err">b</span><span class="mi">70</span><span class="err">e</span><span class="mi">2</span><span class="err">a</span><span class="mi">56</span><span class="err">c</span><span class="mi">4</span><span class="err">a</span><span class="mi">0</span><span class="err">db</span><span class="mi">3</span><span class="err">d</span><span class="s2">"},
+   "</span><span class="err">max_distance</span><span class="s2">":0,
+   "</span><span class="err">created</span><span class="s2">":{  
+      "</span><span class="err">$date</span><span class="s2">":1492777046366
+   },
+   "</span><span class="err">default_position</span><span class="s2">":[  
+      -1,
+      -1
+   ],
+   "</span><span class="err">_cls</span><span class="s2">":"</span><span class="err">Product</span><span class="s2">",
+   "</span><span class="err">description</span><span class="s2">":"",
+   "</span><span class="err">modified</span><span class="s2">":{  
+      "</span><span class="err">$date</span><span class="s2">":1492777046369
+   },
+   "</span><span class="err">_sub_products</span><span class="s2">":[],
+   "</span><span class="err">name</span><span class="s2">":"</span><span class="err">Product</span><span class="w"> </span><span class="err">Name</span><span class="s2">",
+   "</span><span class="err">properties</span><span class="s2">":{},
+   "</span><span class="err">price</span><span class="s2">":3.14,
+   "</span><span class="err">active</span><span class="s2">":false,
+   "</span><span class="err">tags</span><span class="s2">":[],
+   "</span><span class="err">vat</span><span class="s2">":15.0,
+   "</span><span class="err">company</span><span class="s2">":{"</span><span class="err">$oid</span><span class="s2">":"</span><span class="mi">57</span><span class="err">ee</span><span class="mi">9</span><span class="err">c</span><span class="mi">71</span><span class="err">d</span><span class="mi">76</span><span class="err">d</span><span class="mi">431</span><span class="err">f</span><span class="mi">8511142</span><span class="err">f</span><span class="s2">"},
+   "</span><span class="err">deleted</span><span class="s2">":false,
+   "</span><span class="err">company_take</span><span class="s2">":-1.0,
+   "</span><span class="err">parents</span><span class="s2">":[],
+   "</span><span class="err">main_product</span><span class="s2">":true,
+   "</span><span class="err">currency</span><span class="s2">":"</span><span class="err">NOK</span><span class="s2">",
+   "</span><span class="err">path</span><span class="s2">":"</span><span class="err">/</span><span class="s2">"
+}
 </span></code></pre>
 <p>This creates a new Product.</p>
 
@@ -6940,6 +7354,625 @@ These are found in the field <code class="prettyprint">_sub_products</code>.</p>
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
+<h2 id="credit-product-object">Credit Product Object</h2>
+
+<p>The Credit Product is based on the <a href="#products"><code class="prettyprint">Products</code></a>.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>vouchers_required</strong></td>
+<td><code class="prettyprint">number</code></td>
+<td>How many vouchers (<a href="#credits"><code class="prettyprint">Credits</code></a>) <em>default is 60</em></td>
+</tr>
+<tr>
+<td><strong>expire_day</strong></td>
+<td><code class="prettyprint">number</code></td>
+<td><em>default is 365</em></td>
+</tr>
+</tbody></table>
+
+<p>A Credit Product is a special product that allows the user to redeem <a href="#credits"><code class="prettyprint">vouchers</code></a> to pay for an <a href="#orders"><code class="prettyprint">order</code></a> instead of their <a href="#payment-methods"><code class="prettyprint">payment method</code></a>.</p>
+
+<h2 id="create-a-new-credit-product">Create a New Credit Product</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.kvass.ai/credit_products
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/credit_products</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Kvass-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"It is a test product"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vouchers_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Credit Product Name"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">  
+   </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"58f9f856b70e2a56c4a0db35"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492777046366</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"default_position"</span><span class="p">:[</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">],</span><span class="w">
+   </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"CreditProduct"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492777046369</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"_sub_products"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Credit Product Name"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"properties"</span><span class="p">:{},</span><span class="w">
+   </span><span class="s2">"vouchers_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"vat"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"parents"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"path"</span><span class="p">:</span><span class="s2">"/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This creates a new Credit Product.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>Name of the product</td>
+</tr>
+<tr>
+<td>price</td>
+<td><code class="prettyprint">number</code></td>
+<td>Price of the product</td>
+</tr>
+<tr>
+<td>currency</td>
+<td><code class="prettyprint">string</code></td>
+<td>Currency of the product <em>default set to <code class="prettyprint">NOK</code></em></td>
+</tr>
+<tr>
+<td>vat</td>
+<td><code class="prettyprint">number</code></td>
+<td>Percentage of price to be paid for VAT <em>default set to <code class="prettyprint">0.0</code></em></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Full description of the product</td>
+</tr>
+<tr>
+<td>short_description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Short description for the product</td>
+</tr>
+<tr>
+<td>path</td>
+<td><code class="prettyprint">string</code></td>
+<td>URL for the product <em>default set to <code class="prettyprint">&#39;/&#39;</code></em></td>
+</tr>
+<tr>
+<td>main_product</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Flag that marks whether or not it is a main product <em>default set to <code class="prettyprint">True</code></em></td>
+</tr>
+<tr>
+<td>_sub_product</td>
+<td><code class="prettyprint">array</code></td>
+<td>List of sub products under the product. <em>default set to <code class="prettyprint">[]</code></em></td>
+</tr>
+<tr>
+<td>parents</td>
+<td><code class="prettyprint">array</code></td>
+<td>List of the parent products to the sub product. <em>default set to <code class="prettyprint">[]</code></em></td>
+</tr>
+<tr>
+<td>tags</td>
+<td><code class="prettyprint">string</code></td>
+<td>List of tags associated with the product</td>
+</tr>
+<tr>
+<td>default_position</td>
+<td><code class="prettyprint">array</code></td>
+<td>Geo position of the product <em>default set to <code class="prettyprint">[-1, -1]</code></em></td>
+</tr>
+<tr>
+<td>properties</td>
+<td><code class="prettyprint">object</code></td>
+<td>The product&rsquo;s properties</td>
+</tr>
+<tr>
+<td>provider</td>
+<td><code class="prettyprint">string</code></td>
+<td>The <a href="#providers"><code class="prettyprint">provider</code></a> assigned to the product, defined by the provider&rsquo;s ID</td>
+</tr>
+<tr>
+<td>voucher_required</td>
+<td><code class="prettyprint">number</code></td>
+<td>Sets how many <a href="#credits"><code class="prettyprint">vouchers</code></a> this Credit Products costs to acquire.</td>
+</tr>
+<tr>
+<td>expire_days</td>
+<td><code class="prettyprint">number</code></td>
+<td>Sets how many days this Credit Products is available.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-credit-product">Update a Credit Product</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>PUT https://api.kvass.ai/credit_products/&lt;bulk_id&gt;
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/credit_products/&lt;bulk_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Kvass-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"It is a test credit product"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">  
+   </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"58f9f856b70e2a56c4a0db35"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492777046366</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"default_position"</span><span class="p">:[</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">],</span><span class="w">
+   </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"CreditProduct"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"It is a test credit product"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492777046369</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"_sub_products"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Credit Product Name"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"properties"</span><span class="p">:{},</span><span class="w">
+   </span><span class="s2">"vouchers_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"vat"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"parents"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"path"</span><span class="p">:</span><span class="s2">"/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This creates a new Credit Product.</p>
+
+<table><thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><code class="prettyprint">string</code></td>
+<td>Name of the product</td>
+</tr>
+<tr>
+<td>price</td>
+<td><code class="prettyprint">number</code></td>
+<td>Price of the product</td>
+</tr>
+<tr>
+<td>currency</td>
+<td><code class="prettyprint">string</code></td>
+<td>Currency of the product <em>default set to <code class="prettyprint">NOK</code></em></td>
+</tr>
+<tr>
+<td>vat</td>
+<td><code class="prettyprint">number</code></td>
+<td>Percentage of price to be paid for VAT <em>default set to <code class="prettyprint">0.0</code></em></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Full description of the product</td>
+</tr>
+<tr>
+<td>short_description</td>
+<td><code class="prettyprint">string</code></td>
+<td>Short description for the product</td>
+</tr>
+<tr>
+<td>path</td>
+<td><code class="prettyprint">string</code></td>
+<td>URL for the product <em>default set to <code class="prettyprint">&#39;/&#39;</code></em></td>
+</tr>
+<tr>
+<td>main_product</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Flag that marks whether or not it is a main product <em>default set to <code class="prettyprint">True</code></em></td>
+</tr>
+<tr>
+<td>_sub_product</td>
+<td><code class="prettyprint">array</code></td>
+<td>List of sub products under the product. <em>default set to <code class="prettyprint">[]</code></em></td>
+</tr>
+<tr>
+<td>parents</td>
+<td><code class="prettyprint">array</code></td>
+<td>List of the parent products to the sub product. <em>default set to <code class="prettyprint">[]</code></em></td>
+</tr>
+<tr>
+<td>tags</td>
+<td><code class="prettyprint">string</code></td>
+<td>List of tags associated with the product</td>
+</tr>
+<tr>
+<td>default_position</td>
+<td><code class="prettyprint">array</code></td>
+<td>Geo position of the product <em>default set to <code class="prettyprint">[-1, -1]</code></em></td>
+</tr>
+<tr>
+<td>properties</td>
+<td><code class="prettyprint">object</code></td>
+<td>The product&rsquo;s properties</td>
+</tr>
+<tr>
+<td>provider</td>
+<td><code class="prettyprint">string</code></td>
+<td>The <a href="#providers"><code class="prettyprint">provider</code></a> assigned to the product, defined by the provider&rsquo;s ID</td>
+</tr>
+<tr>
+<td>voucher_required</td>
+<td><code class="prettyprint">number</code></td>
+<td>Sets how many <a href="#credits"><code class="prettyprint">vouchers</code></a> this Credit Products costs to acquire.</td>
+</tr>
+<tr>
+<td>expire_days</td>
+<td><code class="prettyprint">number</code></td>
+<td>Sets how many days this Credit Products is available.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-credit-product">Get a Credit Product</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.kvass.ai/credit_products/&lt;bulk_id&gt;
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/credit_products/&lt;bulk_id&gt;</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Kvass-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">  
+   </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"58f9f856b70e2a56c4a0db35"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492777046366</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"default_position"</span><span class="p">:[</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">],</span><span class="w">
+   </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"CreditProduct"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"It is a test credit product"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492777046369</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"_sub_products"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Credit Product Name"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"properties"</span><span class="p">:{},</span><span class="w">
+   </span><span class="s2">"vouchers_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"vat"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+   </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"parents"</span><span class="p">:[],</span><span class="w">
+   </span><span class="s2">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"path"</span><span class="p">:</span><span class="s2">"/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get a Credit Product based on the credit product&rsquo;s unique ID.</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>bulk_id</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>The credit product&rsquo;s ID</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-list-of-all-products-associated-with-a-company">Get List of All Products Associated with a Company</h2>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.kvass.ai/credit_products
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/credit_products</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Kvass-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"CreditProduct"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"parents"</span><span class="p">:[],</span><span class="w">
+       </span><span class="s2">"tags"</span><span class="p">:[</span><span class="s2">"fuzz"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Foo"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Bar"</span><span class="p">],</span><span class="w">
+       </span><span class="s2">"vouchers_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"_sub_products"</span><span class="p">:[],</span><span class="w">
+       </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"description"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492781492460</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"vat"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"properties"</span><span class="p">:{},</span><span class="w">
+       </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Credit Product Name"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492781492461</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"path"</span><span class="p">:</span><span class="s2">"/"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"58f9f856b70e2a56c4a0db35"</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"business_rules"</span><span class="p">:[],</span><span class="w">
+       </span><span class="s2">"default_position"</span><span class="p">:[</span><span class="mi">-1</span><span class="p">,</span><span class="mi">-1</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>Number of items to retrieve. <em>default is 10</em></td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">number</code></td>
+<td>Which page to retrieve. <em>default is 50</em></td>
+</tr>
+<tr>
+<td>lat</td>
+<td><code class="prettyprint">number</code></td>
+<td>Define the latitude.</td>
+</tr>
+<tr>
+<td>lng</td>
+<td><code class="prettyprint">number</code></td>
+<td>Define the longitude.</td>
+</tr>
+<tr>
+<td>all</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If <code class="prettyprint">true</code>, would return both of active and deleted and doesn&rsquo;t care of the attribute <code class="prettyprint">main_product</code> credit products.</td>
+</tr>
+</tbody></table>
+
+<h2 id="search-credit-product">Search Credit Product</h2>
+
+<p>Retrieves a list of all Credit Products associated with the search.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>GET https://api.kvass.ai/credit_products/search
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/credit_products/search?query=description</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Kvass-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"CreditProduct"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"parents"</span><span class="p">:[],</span><span class="w">
+       </span><span class="s2">"tags"</span><span class="p">:[</span><span class="s2">"fuzz"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Foo"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Bar"</span><span class="p">],</span><span class="w">
+       </span><span class="s2">"vouchers_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"_sub_products"</span><span class="p">:[],</span><span class="w">
+       </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"description"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492781492460</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"vat"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"properties"</span><span class="p">:{},</span><span class="w">
+       </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Credit Product Name"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492781492461</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"path"</span><span class="p">:</span><span class="s2">"/"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"58f9f856b70e2a56c4a0db35"</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"business_rules"</span><span class="p">:[],</span><span class="w">
+       </span><span class="s2">"default_position"</span><span class="p">:[</span><span class="mi">-1</span><span class="p">,</span><span class="mi">-1</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>query</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>What you want to search for, e.g., <strong>name</strong>, <strong>description</strong>, or <strong>id</strong>.</td>
+</tr>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>Number of items to retrieve. <em>default is 10</em></td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">number</code></td>
+<td>Which page to retrieve. <em>default is 0</em></td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code class="prettyprint">string</code></td>
+<td>Field used for sorting results. <em>default is <code class="prettyprint">created</code></em></td>
+</tr>
+<tr>
+<td>lat</td>
+<td><code class="prettyprint">number</code></td>
+<td>Define the latitude.</td>
+</tr>
+<tr>
+<td>lng</td>
+<td><code class="prettyprint">number</code></td>
+<td>Define the longitude.</td>
+</tr>
+<tr>
+<td>include_deleted</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If <code class="prettyprint">true</code>, deleted products are also listed.</td>
+</tr>
+</tbody></table>
+
+<h2 id="consume-a-credit-product">Consume a Credit Product</h2>
+
+<p>Consume a Credit Product associated with a credit product&rsquo;s unique ID.</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.kvass.ai/credit_products/&lt;bulk_id&gt;/consume
+</code></pre>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/credit_products/search?query=description</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">X-Kvass-Api-Key</span><span class="p">:</span> <span class="s">&lt;kvass-api-key&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"_cls"</span><span class="p">:</span><span class="s2">"CreditProduct"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"parents"</span><span class="p">:[],</span><span class="w">
+       </span><span class="s2">"tags"</span><span class="p">:[</span><span class="s2">"fuzz"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Foo"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Bar"</span><span class="p">],</span><span class="w">
+       </span><span class="s2">"vouchers_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"_sub_products"</span><span class="p">:[],</span><span class="w">
+       </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"max_distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"description"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"created"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492781492460</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"vat"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"properties"</span><span class="p">:{},</span><span class="w">
+       </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Credit Product Name"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"modified"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1492781492461</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"company"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c71d76d431f8511142f"</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"NOK"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"path"</span><span class="p">:</span><span class="s2">"/"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"main_product"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"58f9f856b70e2a56c4a0db35"</span><span class="p">},</span><span class="w">
+       </span><span class="s2">"business_rules"</span><span class="p">:[],</span><span class="w">
+       </span><span class="s2">"default_position"</span><span class="p">:[</span><span class="mi">-1</span><span class="p">,</span><span class="mi">-1</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Arguments</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>query</strong></td>
+<td><code class="prettyprint">string</code></td>
+<td>What you want to search for, e.g., <strong>name</strong>, <strong>description</strong>, or <strong>id</strong>.</td>
+</tr>
+<tr>
+<td>size</td>
+<td><code class="prettyprint">number</code></td>
+<td>Number of items to retrieve. <em>default is 10</em></td>
+</tr>
+<tr>
+<td>page</td>
+<td><code class="prettyprint">number</code></td>
+<td>Which page to retrieve. <em>default is 0</em></td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code class="prettyprint">string</code></td>
+<td>Field used for sorting results. <em>default is <code class="prettyprint">created</code></em></td>
+</tr>
+<tr>
+<td>lat</td>
+<td><code class="prettyprint">number</code></td>
+<td>Define the latitude.</td>
+</tr>
+<tr>
+<td>lng</td>
+<td><code class="prettyprint">number</code></td>
+<td>Define the longitude.</td>
+</tr>
+<tr>
+<td>include_deleted</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>If <code class="prettyprint">true</code>, deleted products are also listed.</td>
+</tr>
+</tbody></table>
+
           <h1 id="providers">Providers</h1>
 
 <p>Provider is a child class of <a href="#users"><code class="prettyprint">User</code></a>. They are users that provide
@@ -6978,11 +8011,6 @@ services to other users.</p>
 <td>schedule</td>
 <td><code class="prettyprint">object</code></td>
 <td>The provider&rsquo;s schedule.</td>
-</tr>
-<tr>
-<td>orders</td>
-<td><code class="prettyprint">array</code></td>
-<td>List of <a href="#orders"><code class="prettyprint">Orders</code></a>.</td>
 </tr>
 <tr>
 <td>products</td>
@@ -7096,7 +8124,6 @@ services to other users.</p>
       </span><span class="s2">"alias"</span><span class="p">:</span><span class="s2">""</span><span class="w">
    </span><span class="p">},</span><span class="w">
    </span><span class="s2">"mobile_phone_number"</span><span class="p">:</span><span class="s2">"+4712345678"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"orders"</span><span class="p">:[],</span><span class="w">
    </span><span class="s2">"modified"</span><span class="p">:{</span><span class="w">
       </span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1495195975643</span><span class="w">
    </span><span class="p">},</span><span class="w">
@@ -7193,7 +8220,6 @@ services to other users.</p>
       </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"e9878af0-c607-486c-872f-6e23e7a15821"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"consumed"</span><span class="p">:</span><span class="mi">0</span><span class="w">
    </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"orders"</span><span class="p">:[],</span><span class="w">
    </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
    </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
    </span><span class="s2">"max_travel_time"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
@@ -7306,7 +8332,6 @@ services to other users.</p>
           </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"e9878af0-c607-486c-872f-6e23e7a15821"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"consumed"</span><span class="p">:</span><span class="mi">0</span><span class="w">
        </span><span class="p">},</span><span class="w">
-       </span><span class="s2">"orders"</span><span class="p">:[],</span><span class="w">
        </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
        </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
        </span><span class="s2">"max_travel_time"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
@@ -8951,6 +9976,11 @@ parameters by: infinite &gt; ending_date &gt; interval_total.</p>
 <td><code class="prettyprint">string</code></td>
 <td>List of roles associated with user</td>
 </tr>
+<tr>
+<td>voucher</td>
+<td><code class="prettyprint">object</code></td>
+<td><a href="#credits"><code class="prettyprint">Voucher</code></a> of the user.</td>
+</tr>
 </tbody></table>
 
 <h2 id="create-a-user">Create a User</h2>
@@ -9017,7 +10047,8 @@ parameters by: infinite &gt; ending_date &gt; interval_total.</p>
   </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
   </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"voucher"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -9139,7 +10170,9 @@ log in a user with their JWT token.</p>
     </span><span class="s2">"new_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"last_login"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"$date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1512383756278</span><span class="p">},</span><span class="w">
-    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"voucher"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <h2 id="retrieve-a-user">Retrieve a User</h2>
@@ -9186,7 +10219,8 @@ log in a user with their JWT token.</p>
   </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
   </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"voucher"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Retrieves a user with the given ID.</p>
@@ -9255,7 +10289,8 @@ log in a user with their JWT token.</p>
   </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
   </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"voucher"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -9353,7 +10388,8 @@ log in a user with their JWT token.</p>
   </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
   </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"voucher"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <table><thead>
@@ -9415,7 +10451,8 @@ log in a user with their JWT token.</p>
   </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
   </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"voucher"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -9509,7 +10546,8 @@ log in a user with their JWT token.</p>
   </span><span class="s2">"tags"</span><span class="p">:[],</span><span class="w">
   </span><span class="s2">"stripe_customer_id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"roles"</span><span class="p">:[</span><span class="s2">"user"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"voucher"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
