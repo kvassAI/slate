@@ -30,7 +30,8 @@ total_amount | `float` | Amount as a float with two decimals. e.g., 12.34. The a
 total_quantity | `number` | Total number of products in an order
 units | `number` | Number of unique products in an order
 accounting_reference | `string`| A accounting reference ID
-
+stripe_charge_id | `string`| The reference ID from a Stripe charge
+stripe_refund_id | `string`| The reference ID from a Stripe refund
 
 ## Create an Order
 
@@ -483,7 +484,7 @@ sort | `string` | Field used for sorting results
 ## Order Items
 Attributes | Type | Description
 ---------- | ---- | -------
-**product** | `string` | A [`Product`](#products)  ID
+**product** | `string` | A [`Product`](#products) or [`Credit Product`](#credit-products) unique ID
 quantity | `number` | The quantity of product
 discount | `number` | The discount of the product.price in the order
 sub_products | `array` | An array of sub-product ID's associated in order
