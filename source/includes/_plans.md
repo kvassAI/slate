@@ -107,8 +107,7 @@ Content-Type: application/json
     "company": {
         "$oid": "57ee9c71d76d431f8511142f"},
     "static": true,
-    "setup_fee": 0,
-    "setup_fee": true
+    "setup_fee": 0
 }
 ```
 
@@ -170,15 +169,15 @@ Content-Type: application/json
          "product": {"$oid": "5931697ed57ba271c0c7de65"},
          "quantity": 2}
      ],
-     "deleted": false,
-     "billing_interval": "MONTH",
-     "currency": "NOK", 
-     "name": "Golden Plan",
-     "interval_unit": "WEEK",
-     "static": false,
-     "total_amount": 500.0,
-     "company": {"$oid": "57ee9c71d76d431f8511142f"},
-    "setup_fee": true
+    "deleted": false,
+    "billing_interval": "MONTH",
+    "currency": "NOK",
+    "name": "Golden Plan",
+    "interval_unit": "WEEK",
+    "static": false,
+    "total_amount": 500.0,
+    "company": {"$oid": "57ee9c71d76d431f8511142f"},
+    "setup_fee": 0
  }
 ```
 
@@ -460,7 +459,7 @@ Content-Type: application/json
     "company": {
         "$oid": "57ee9c71d76d431f8511142f"},
     "static": true,
-    "setup_fee": true,
+    "setup_fee": 0,
     "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
                        {"day": 0, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}}],
 }
@@ -500,7 +499,7 @@ Host: api.kvass.ai
     "note": "This is a note regarding the Plan",
     "interval_count": false,
     "total_amount": false,
-    "setup_fee": true,
+    "setup_fee": 0,
     "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
                        {"day": 4, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}},
                        {"day": 2, "hour": 10, "minute": 15}]
@@ -536,7 +535,7 @@ Content-Type: application/json
     "deleted": false,
     "company": {"$oid": "57ee9c71d76d431f8511142f"},
     "static": true,
-    "setup_fee": true,
+    "setup_fee": 0,
     "recurring_days": [{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}},
                        {"day": 4, "starting_day": {"$date": 1496410494998}, "next_day": {"$date": 1496410494998}},
                        {"day": 2, "starting_day": {"$date": 1496410495952}, "next_day": {"$date": 1496410495952}}]
