@@ -9,8 +9,18 @@ Attribute | Type | Description
 --------- | ---- | -------
 _id | `object` | The event ID.
 **kind** | `string` | The kind of event. Can be any from the [`event type list`](#list-of-event-types)
-data | `object` | An object containing the event kind, timestamp and any additional data necessary
+data | `object` | It is an `Event` object.
 author | `object` | [`User`](#users) which triggers the event
+previous_data | `array` | In case of an UPDATE, it will be the previous object data before the UPDATE.
+reference_id | `string` | API request or task ID that originated event.
+
+### EventData Object
+
+Attribute | Type | Description
+--------- | ---- | -------
+**object_type** | `string` | It is the object type like `order`, `product`, etc...
+**object** | `string` | The full object details.
+**kind** | `string` | The kind of event. Can be any from the [`event type list`](#list-of-event-types)
 
 ## Get All Events
 Receives a list of all events.
@@ -40,27 +50,56 @@ Content-Type: application/json
         "kind": "order.created",
         "created": {"$date": 1499767018360},
         "company": {"$oid": "57ee9c71d76d431f8511142f"},
-        "data": {"kind": "order.created"},
+        "data": {
+            "object_type": "order",
+            "kind": "order.created",
+            "object": {
+                "units":2,
+                "delivery_status":"ACCEPTED",
+                "currency":"NOK",
+                "human_id":"51Q4LN",
+                "payments":[],
+                "modified":{"$date":1495196003948},
+                "provider":{<provider_details>},
+                "top_up_amount":0.0,
+                "stripe_charge_id":"",
+                "order_status":"CREATED",
+                "company":{"$oid":"591ee15db70e2a10acb65362"},
+                "billing_address":{<billing_address_details>},
+                "deliveries":[],
+                "items":[{"quantity":60, "discount":0.9, "product":{<product_details>}}],
+                "note":"",
+                "created":{"$date":1495264401233},
+                "delivery_address":{<address_details>},
+                "total_quantity":120,
+                "_id":{"$oid":"591ee163b70e2a10acb653a7"},
+                "total_amount":1200.0,
+                "stripe_refund_id":"",
+                "override_company_take":-1.0,
+                "user":{<user_details>},
+                "delivery_time":{"$date":1497009600000}
+            }
+        },
         "author": {
-                      "_id":{"$oid":"57ee9c72d76d431f85111432"},
-                      "_cls":"User",
-                      "created":{"$date":1475428903950},
-                      "modified":{"$date":1475428903951},
-                      "first_name":"John",
-                      "last_name":"Doe",
-                      "email":"john@email.com",
-                      "mobile_phone_number":"+4712345678",
-                      "addresses":[],
-                      "billing_address":{},
-                      "bio":"",
-                      "note":"",
-                      "avatar":"",
-                      "company":{"$oid":"57ee9c71d76d431f8511142f"},
-                      "tags":[],
-                      "stripe_customer_id":"",
-                      "roles":["user"],
-                      "deleted":true
-                  }
+            "_id":{"$oid":"57ee9c72d76d431f85111432"},
+            "_cls":"User",
+            "created":{"$date":1475428903950},
+            "modified":{"$date":1475428903951},
+            "first_name":"John",
+            "last_name":"Doe",
+            "email":"john@email.com",
+            "mobile_phone_number":"+4712345678",
+            "addresses":[],
+            "billing_address":{},
+            "bio":"",
+            "note":"",
+            "avatar":"",
+            "company":{"$oid":"57ee9c71d76d431f8511142f"},
+            "tags":[],
+            "stripe_customer_id":"",
+            "roles":["user"],
+            "deleted":true
+        }
     }
 ]
 ```
@@ -99,7 +138,36 @@ Content-Type: application/json
     "kind": "order.created",
     "created": {"$date": 1499767018360},
     "company": {"$oid": "57ee9c71d76d431f8511142f"},
-    "data" {"kind": "order.created"},
+    "data": {
+        "object_type": "order",
+        "kind": "order.created",
+        "object": {
+            "units":2,
+            "delivery_status":"ACCEPTED",
+            "currency":"NOK",
+            "human_id":"51Q4LN",
+            "payments":[],
+            "modified":{"$date":1495196003948},
+            "provider":{<provider_details>},
+            "top_up_amount":0.0,
+            "stripe_charge_id":"",
+            "order_status":"CREATED",
+            "company":{"$oid":"591ee15db70e2a10acb65362"},
+            "billing_address":{<billing_address_details>},
+            "deliveries":[],
+            "items":[{"quantity":60, "discount":0.9, "product":{<product_details>}}],
+            "note":"",
+            "created":{"$date":1495264401233},
+            "delivery_address":{<address_details>},
+            "total_quantity":120,
+            "_id":{"$oid":"591ee163b70e2a10acb653a7"},
+            "total_amount":1200.0,
+            "stripe_refund_id":"",
+            "override_company_take":-1.0,
+            "user":{<user_details>},
+            "delivery_time":{"$date":1497009600000}
+        }
+    },
     "author": {
                   "_id":{"$oid":"57ee9c72d76d431f85111432"},
                   "_cls":"User",
@@ -153,7 +221,36 @@ Content-Type: application/json
         "kind": "order.created",
         "created": {"$date": 1499767018360},
         "company": {"$oid": "57ee9c71d76d431f8511142f"},
-        "data": {"kind": "order.created"},
+        "data": {
+            "object_type": "order",
+            "kind": "order.created",
+            "object": {
+                "units":2,
+                "delivery_status":"ACCEPTED",
+                "currency":"NOK",
+                "human_id":"51Q4LN",
+                "payments":[],
+                "modified":{"$date":1495196003948},
+                "provider":{<provider_details>},
+                "top_up_amount":0.0,
+                "stripe_charge_id":"",
+                "order_status":"CREATED",
+                "company":{"$oid":"591ee15db70e2a10acb65362"},
+                "billing_address":{<billing_address_details>},
+                "deliveries":[],
+                "items":[{"quantity":60, "discount":0.9, "product":{<product_details>}}],
+                "note":"",
+                "created":{"$date":1495264401233},
+                "delivery_address":{<address_details>},
+                "total_quantity":120,
+                "_id":{"$oid":"591ee163b70e2a10acb653a7"},
+                "total_amount":1200.0,
+                "stripe_refund_id":"",
+                "override_company_take":-1.0,
+                "user":{<user_details>},
+                "delivery_time":{"$date":1497009600000}
+            }
+        },
         "author": {
                       "_id":{"$oid":"57ee9c72d76d431f85111432"},
                       "_cls":"User",
@@ -180,7 +277,41 @@ Content-Type: application/json
         "kind": "order.updated",
         "created": {"$date": 1499767018360},
         "company": {"$oid": "57ee9c71d76d431f8511142f"},
-        "data": {"kind": "order.updated"},
+        "data": {
+            "object_type": "order",
+            "kind": "order.updated",
+            "object": {
+                "units":2,
+                "delivery_status":"ACCEPTED",
+                "currency":"NOK",
+                "human_id":"51Q4LN",
+                "payments":[],
+                "modified":{"$date":1495196003948},
+                "provider":{<provider_details>},
+                "top_up_amount":0.0,
+                "stripe_charge_id":"",
+                "order_status":"CREATED",
+                "company":{"$oid":"591ee15db70e2a10acb65362"},
+                "billing_address":{<billing_address_details>},
+                "deliveries":[],
+                "items":[{"quantity":10, "discount":0.9, "product":{<product_details>}}],
+                "note":"",
+                "created":{"$date":1495264401233},
+                "delivery_address":{<address_details>},
+                "total_quantity":10,
+                "_id":{"$oid":"591ee163b70e2a10acb653a7"},
+                "total_amount":500.0,
+                "stripe_refund_id":"",
+                "override_company_take":-1.0,
+                "user":{<user_details>},
+                "delivery_time":{"$date":1497009600000}
+            }
+        },
+        "previous_data": {
+            "items":[{"quantity":60, "discount":0.9, "product":{<product_details>}}],
+            "total_quantity":120,
+            "total_amount":1200.0
+        },
         "author": {
                       "_id":{"$oid":"57ee9c72d76d431f85111432"},
                       "_cls":"User",
@@ -243,3 +374,9 @@ Model name | Description
 `payment.failed` | Payment failed
 `payment.captured` | Payment captured
 `payment.cancelled` | Payment cancelled
+`product.created` | Product created
+`product.updated` | Product updated
+`product.deleted` | Product deleted
+`plan.created` | Plan created
+`plan.updated` | Plan updated
+`plan.deleted` | Plan deleted
