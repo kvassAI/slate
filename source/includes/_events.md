@@ -9,10 +9,9 @@ Attribute | Type | Description
 --------- | ---- | -------
 _id | `object` | The event ID.
 **kind** | `string` | The kind of event. Can be any from the [`event type list`](#list-of-event-types)
-data | `object` | It is an `Event` object.
+data | `object` | It is an `EventData` object.
 author | `object` | [`User`](#users) which triggers the event
-previous_data | `array` | In case of an UPDATE, it will be the previous object data before the UPDATE.
-reference_id | `string` | API request or task ID that originated event.
+previous_data | `array` | If a document is updated, the previous data is stored here.
 
 ### EventData Object
 
