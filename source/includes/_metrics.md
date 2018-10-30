@@ -15,6 +15,7 @@ count | `float` | The number of instances of name per time unit
 sum_values | `float` | The sum of count per time unit
 external | `boolean` | Defines where the metric is created. _Default is `false`_
 key | `string` | ID field. Composed by the company's uuid, the metric name and the time stamp
+values | `array` | It is an array of values, from a date to a date, which represents the values of all different points/dots for an interval.</br></br>Think about a time series graph. You have time (period) on the x-axis and values on the y-axis</br></br>The `_meta` filed describes the from and to dates on the x-axis and the resolution. While the `values` are the points on the graph, marking the value on the y-axis.</br>So if you are getting daily values for 30 days, there are 30 different `values` in a list, one value for each day.
 
 </br></br>
 The `name` of the metric usually has a primary key and multiple secondary keys. 
@@ -335,4 +336,5 @@ Resolution | Argument | Description
 ------- | -------- | --------
 Daily | `day` | Daily metrics _Default_
 Hourly | `hour` | Hourly metrics 
-Minutely | `minute` |Minutely metrics
+Minutely | `minute` | Minutely metrics
+Monthly | `month` | Monthly metrics
