@@ -246,7 +246,7 @@ Here follows an explanation on how to query by tags.
 
 There are 3 ways of getting models by tags:
 
-- Get all models that contain the tag(s) in their list of tags.
+- Get all models that contain a specific tag.
 
 *Code: `?tags=tag_1`*
 
