@@ -361,7 +361,7 @@
 <p>You can also nest expand requests with the dot property. For example, requesting payments.payment_method on an order will expand the payments property into a list of Payment objects, and will then expand the payment method property into a full Payment Method object.</p>
 
 <p>You can expand multiple objects at once by identifying multiple items
-in the expand array, separated with commas.</p>
+in the URL query string param expand that defines which fields that you want to be expanded, separated with commas.</p>
 
 <p>For example:</p>
 
@@ -379,27 +379,27 @@ in the expand array, separated with commas.</p>
 </thead><tbody>
 <tr>
 <td>created</td>
-<td>Date when object was created</td>
+<td>Date when the object was created</td>
 </tr>
 <tr>
 <td>modified</td>
-<td>Date when object was last modified</td>
+<td>Date when the object was last modified</td>
 </tr>
 <tr>
 <td>deleted</td>
-<td>Flag that shows if object has been deleted</td>
+<td>Flag that shows if the object has been deleted</td>
 </tr>
 <tr>
 <td>active</td>
-<td>Flag that shows if object is active</td>
+<td>Flag that shows if the object is active</td>
 </tr>
 <tr>
 <td>company</td>
-<td>Company associated with object</td>
+<td>Company associated with the object</td>
 </tr>
 <tr>
 <td>user</td>
-<td>User associated with object</td>
+<td>User associated with the object</td>
 </tr>
 </tbody></table>
 
@@ -422,21 +422,21 @@ in the expand array, separated with commas.</p>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 <span class="na">X-Pagination-Total</span><span class="p">:</span> <span class="s">212</span>
 </code></pre>
-<p>All top-level API resources have support for bulk fetches via &ldquo;list&rdquo; API methods. For instance you can list orders, users, providers, etc.
+<p>All top-level API resources have support for bulk fetches via &ldquo;list&rdquo; API methods. For instance, you can list orders, users, providers, etc.
 These &ldquo;list&rdquo; API methods share a common structure, taking at least these two parameters: size and page.</p>
 
-<p>KVASS uses pagination based on a page size (<code class="prettyprint">size</code>) and current page (<code class="prettyprint">page</code>). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
+<p>KVASS uses pagination based on a page size (<code class="prettyprint">size</code>) and current page (<code class="prettyprint">page</code>). With these parameters, you can retrieve the data the way you need and display it using your own pagination scheme.
 The return of a response header contains the total count: <code class="prettyprint">X-Pagination-Total: 212</code></p>
 
 <h2 id="retrieve-items">Retrieve items</h2>
 
 <p>The models (<a href="#users">Users</a>, <a href="#invoices">Invoices</a>, <a href="#issuers">Issuers</a>, etc.)
-describe below can be retrieve by two different ways, <em>searching</em> or an usual GET api call.</p>
+describe below can be retrieved by two different ways, <em>searching</em> or a usual GET API call.</p>
 
 <p>In both ways, you can use pagination, sorting, and filter the results by date to navigate big lists.
 Additionally, the search method is using the argument <code class="prettyprint">query</code>.
-Each model that has the ability to do search will be explained more thoroughly their respective chapters,
-but all the models have search by <code class="prettyprint">ID</code> in common.</p>
+Each model that has the ability to do a search will be explained more thoroughly their respective chapters,
+but all the models have a search by <code class="prettyprint">ID</code> in common.</p>
 
 <blockquote>
 <p>Definition GET</p>
@@ -595,8 +595,8 @@ Some models give you additional arguments for filter the requests (e.g: status f
 <p>The <code class="prettyprint">Search</code> method is an advanced type of the <code class="prettyprint">Get</code> request.
 This is because the results depend on the query.
 This method allows you to retrieve a list of items matching with a search query,
-like <code class="prettyprint">user name</code> or <code class="prettyprint">account_number</code>, without specifying that you are searching for
-<code class="prettyprint">user name</code> or <code class="prettyprint">account_number</code>.</p>
+like <code class="prettyprint">user_name</code> or <code class="prettyprint">account_number</code>, without specifying that you are searching for
+<code class="prettyprint">user_name</code> or <code class="prettyprint">account_number</code>.</p>
 
 <table><thead>
 <tr>
@@ -646,6 +646,187 @@ like <code class="prettyprint">user name</code> or <code class="prettyprint">acc
 </tr>
 </tbody></table>
 
+<h3 id="search-model-by-tags">Search model by tags</h3>
+
+<p>Some <code class="prettyprint">GET</code> methods allowing you to search models by <em>tags</em>.
+Here follows an explanation on how to query by tags.</p>
+
+<p>There are 3 ways of getting models by tags:</p>
+
+<ol>
+<li>Get all models that contain a specific tag.</li>
+</ol>
+
+<p><em>Code: <code class="prettyprint">?tags=tag_1</code></em></p>
+
+<ol>
+<li>Get models that match multiple tags by separating the different tags in the query by <code class="prettyprint">+</code>.</li>
+</ol>
+
+<p><em>Code: <code class="prettyprint">?tags=tag_1+tag_2</code></em></p>
+
+<ol>
+<li>Get models that contain only 1 specific tag.</li>
+</ol>
+
+<p><em>Code: <code class="prettyprint">?tags=tag_1+</code></em></p>
+
+<h3 id="tag-query-examples">Tag Query Examples</h3>
+
+<p>Under follows some examples on how to query the models by tags.</p>
+
+<p>The basic structure when querying a model by tags is <code class="prettyprint">some-route?tags=some-tag</code>. </p>
+
+<p>It is also possible to query by multiple tags, like <code class="prettyprint">some-route?tags=tag_1,tag_2</code>. This will return every document that matches either <code class="prettyprint">tag1_</code> or <code class="prettyprint">tag_2</code>, or both.</p>
+
+<p>If you only want models that match both <code class="prettyprint">tag1_</code> and <code class="prettyprint">tag_2</code>, separate the tags by <code class="prettyprint">+</code>. Like <code class="prettyprint">some-route?tags=tag_1+tag_2</code>.</p>
+
+<h4 id="get-model-by-multiple-tags">Get model by multiple tags</h4>
+
+<ul>
+<li><code class="prettyprint">GET some-route?tags=tag_1,tag_2</code></li>
+</ul>
+
+<p>Here we have two expressions: <code class="prettyprint">tag_1</code> and <code class="prettyprint">tag_2</code>, which would you returns all models contain <code class="prettyprint">tag_1</code> or <code class="prettyprint">tag_2</code></p>
+
+<ul>
+<li><code class="prettyprint">GET some-route?tags=tag_2+tag_3,tag_1,tag_4+tag_5+tag_3</code></li>
+</ul>
+
+<p>Here we have three expressions: <code class="prettyprint">tag_2+tag_3</code>, <code class="prettyprint">tag_1</code> and, <code class="prettyprint">tag_4+tag_5</code>, which would you returns all models contain <code class="prettyprint">tag_1</code> and <code class="prettyprint">tag_2</code>, models contain <code class="prettyprint">tag_1</code> and, models contain <code class="prettyprint">tag_4</code>, <code class="prettyprint">tag_5</code> and, <code class="prettyprint">tag_3</code>.</p>
+
+<ul>
+<li><code class="prettyprint">Get some-route?tags=tag_2+</code></li>
+</ul>
+
+<p>In the query above, the query is &lsquo;tag_2+&rsquo;. This query will return models that match the tag &lsquo;tag_2&rsquo;</p>
+
+<aside class="warning">
+The &ldquo;+&rdquo; used in the expression must be encoded: &ldquo;%2B&rdquo; else you will get a space between your tags.
+</aside>
+
+<p>Let&rsquo;s see how it works with some examples:</p>
+
+<p>Assuming we have five models with their tags:</p>
+
+<p><em>Model_1 has tags <code class="prettyprint">tag_1</code> and <code class="prettyprint">tag_2</code>, etc.</em></p>
+
+<table><thead>
+<tr>
+<th></th>
+<th>tag_1</th>
+<th>tag_2</th>
+<th>tag_3</th>
+<th>tag_4</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model_1</td>
+<td>x</td>
+<td>x</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>model_2</td>
+<td>x</td>
+<td></td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td>model_3</td>
+<td></td>
+<td>x</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>model_4</td>
+<td></td>
+<td></td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>model_5</td>
+<td></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+</tbody></table>
+
+<p>Under follows a table with different queries and their corresponding results:</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th>model_1</th>
+<th>model_2</th>
+<th>model_3</th>
+<th>model_4</th>
+<th>model_5</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">?tags=tag_1</code></td>
+<td>x</td>
+<td>x</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">?tags=tag_1, tag_2</code></td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td><code class="prettyprint">?tags=tag_1+tag_2</code></td>
+<td>x</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">?tags=tag_2+tag_3+tag_4</code></td>
+<td>x</td>
+<td></td>
+<td></td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td><code class="prettyprint">?tags=tag_1+tag_2, tag_4</code></td>
+<td>x</td>
+<td></td>
+<td></td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td><code class="prettyprint">?tags=tag_2+</code></td>
+<td></td>
+<td></td>
+<td>x</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">?tags=tag_2+, tag_1+tag_3</code></td>
+<td></td>
+<td>x</td>
+<td>x</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
 <h1 id="authorization">Authorization</h1>
 
 <p>Our API uses OAuth2 and JWT tokens for authorizing Users.</p>
@@ -658,7 +839,7 @@ like <code class="prettyprint">user name</code> or <code class="prettyprint">acc
 
 <p>We have support for a variety of authentication providers, including <a href="https://auth0.com/">Auth0</a>, <a href="https://firebase.google.com/docs/auth/">Google Firebase</a>, <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html">Amazon&rsquo;s Cognito</a> or even your own authentication mechanism. Each of these provides different Identity Providers such as Facebook, Google, Email and password, etc.</p>
 
-<p>Regardless of the provider you decide to go for, in order to authorize a user on the API side, we use the <a href="https://jwt.io/">JWT tokens</a> given by those same authentication providers. These have to be added to all requests using the following header:</p>
+<p>We use the JWT in the request to authenticate your service, regardless of which authentication provider you use. The <a href="https://jwt.io/">JWT tokens</a> has to be added to all request where user-specific actions or admin tasks are done.</p>
 
 <p><code class="prettyprint">Authorization: Bearer &lt;jwt&gt;</code></p>
 
@@ -1816,11 +1997,6 @@ and keeping a history of transactions on your data.</p>
 <td><code class="prettyprint">object</code></td>
 <td><a href="#users"><code class="prettyprint">User</code></a> which triggers the event</td>
 </tr>
-<tr>
-<td>previous_data</td>
-<td><code class="prettyprint">array</code></td>
-<td>If a document is updated, the previous data is stored here.</td>
-</tr>
 </tbody></table>
 
 <h3 id="eventdata-object">EventData Object</h3>
@@ -1846,6 +2022,11 @@ and keeping a history of transactions on your data.</p>
 <td><strong>kind</strong></td>
 <td><code class="prettyprint">string</code></td>
 <td>The kind of event. Can be any from the <a href="#list-of-event-types"><code class="prettyprint">event type list</code></a></td>
+</tr>
+<tr>
+<td>previous_data</td>
+<td><code class="prettyprint">object</code></td>
+<td>If a document is updated, the previous data is stored here.</td>
 </tr>
 </tbody></table>
 
@@ -2139,12 +2320,12 @@ and keeping a history of transactions on your data.</p>
                 </span><span class="s2">"override_company_take"</span><span class="p">:</span><span class="mf">-1.0</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"user"</span><span class="p">:{</span><span class="err">&lt;user_details&gt;</span><span class="p">},</span><span class="w">
                 </span><span class="s2">"delivery_time"</span><span class="p">:{</span><span class="s2">"$date"</span><span class="p">:</span><span class="mi">1497009600000</span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"previous_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"items"</span><span class="p">:[{</span><span class="s2">"quantity"</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="s2">"discount"</span><span class="p">:</span><span class="mf">0.9</span><span class="p">,</span><span class="w"> </span><span class="s2">"product"</span><span class="p">:{</span><span class="err">&lt;product_details&gt;</span><span class="p">}}],</span><span class="w">
+                </span><span class="s2">"total_quantity"</span><span class="p">:</span><span class="mi">120</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="mf">1200.0</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"previous_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"items"</span><span class="p">:[{</span><span class="s2">"quantity"</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="s2">"discount"</span><span class="p">:</span><span class="mf">0.9</span><span class="p">,</span><span class="w"> </span><span class="s2">"product"</span><span class="p">:{</span><span class="err">&lt;product_details&gt;</span><span class="p">}}],</span><span class="w">
-            </span><span class="s2">"total_quantity"</span><span class="p">:</span><span class="mi">120</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="mf">1200.0</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                       </span><span class="s2">"_id"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"57ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
