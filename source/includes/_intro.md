@@ -6,16 +6,7 @@ All responses from the API, including errors, are returned as JSON objects.
 
 The API is separated into 2 different environments:
 
-
-Environment | Endpoint
---------- | -------
-**QA** | qa.kvass.ai
-**PROD** | api.kvass.ai
-
-Each environment has its separate API keys which you can manage through our Admin dashboard.
-
-All the example API calls are using the PROD endpoint.
-
+The **Endpoint** of the API is: `api.kvass.ai`
 
 ## Authentication
 
