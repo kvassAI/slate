@@ -288,11 +288,6 @@ In the query above, the query is 'tag_2+'. This query will return models that ma
 The "+" used in the expression must be encoded: "%2B" else you will get a space between your tags.
 </aside>
 
-<aside class="Notice">
-You will not get duplicated item even his tags match with multiple tage in an expression.
-</aside>
-
-
 Let's see how it works with some examples:
 
 Assuming we have five models with their tags:
