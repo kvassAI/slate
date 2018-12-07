@@ -19,7 +19,7 @@ Attribute | Type | Description
 **object_type** | `string` | It is the object type like `order`, `product`, etc...
 **object** | `string` | The full object details.
 **kind** | `string` | The kind of event. Can be any from the [`event type list`](#list-of-event-types)
-previous_data | `array` | If a document is updated, the previous data is stored here.
+previous_data | `object` | If a document is updated, the previous data is stored here.
 
 ## Get All Events
 Receives a list of all events.
