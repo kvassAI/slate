@@ -87,7 +87,7 @@ Many response objects will contain IDs for related objects in the response. For 
 You can also nest expand requests with the dot property. For example, requesting payments.payment_method on an order will expand the payments property into a list of Payment objects, and will then expand the payment method property into a full Payment Method object.
 
 You can expand multiple objects at once by identifying multiple items
-in the expanded array, separated with commas.
+in the URL query string param expand that defines which fields that you want to be expanded, separated with commas.
 
 For example:
 
@@ -246,22 +246,20 @@ Here follows an explanation on how to query by tags.
 
 There are 3 ways of getting models by tags:
 
-- Get all models that contain a specific tag.
+1. Get all models that contain a specific tag.
 
 *Code: `?tags=tag_1`*
 
-- Get models that match multiple tags by separating the different tags in the query by `+`.
+2. Get models that match multiple tags by separating the different tags in the query by `+`.
 
 *Code: `?tags=tag_1+tag_2`*
 
-- Get models that contain only 1 specific tag.
+3. Get models that contain only 1 specific tag.
 
 *Code: `?tags=tag_1+`*
 
 
 ###Tag Query Examples
-
-Let's named a value in the `tags` parameter is an expression like  `tag_1` in `?tags=tag_1`.
 
 Under follows some examples on how to query the models by tags.
 
@@ -272,6 +270,7 @@ It is also possible to query by multiple tags, like `some-route?tags=tag_1,tag_2
 If you only want models that match both `tag1_` and `tag_2`, separate the tags by `+`. Like `some-route?tags=tag_1+tag_2`.
 
 
+#### Get model by multiple tags
 
 - `GET some-route?tags=tag_1,tag_2`
 
@@ -283,10 +282,10 @@ Here we have three expressions: `tag_2+tag_3`, `tag_1` and, `tag_4+tag_5`, which
 
 - `Get some-route?tags=tag_2+`
 
-Here we have one expression: `tag_2+`, which would you return models that contain only `tag_2`.
+In the query above, the query is 'tag_2+'. This query will return models that match the tag 'tag_2'
 
 <aside class="warning">
-The "+" used in the expression must be encode: "%2B" else you will get a space between your tags.
+The "+" used in the expression must be encoded: "%2B" else you will get a space between your tags.
 </aside>
 
 <aside class="Notice">
@@ -309,7 +308,7 @@ model_4 |       |       |       |   x
 model_5 |       |   x   |   x   |   x
 
 
-Then couple demonstration of which model(s) should be returned by the search:
+Under follows a table with different queries and their corresponding results:
 
                                         | model_1 | model_2 | model_3 | model_4 | model_5
 --------------------------------------- | ------- | ------- | ------- | ------- | -------
@@ -333,7 +332,7 @@ Our API uses OAuth2 and JWT tokens for authorizing Users.
 
 We have support for a variety of authentication providers, including [Auth0](https://auth0.com/), [Google Firebase](https://firebase.google.com/docs/auth/), [Amazon's Cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html) or even your own authentication mechanism. Each of these provides different Identity Providers such as Facebook, Google, Email and password, etc.
 
-Regardless of the provider, you decide to go for, in order to authorize a user on the API side, we use the [JWT tokens](https://jwt.io/) given by those same authentication providers. These have to be added to all requests using the following header:
+We use the JWT in the request to authenticate your service, regardless of which authentication provider you use. The [JWT tokens](https://jwt.io/) has to be added to all request where user-specific actions or admin tasks are done.
 
 `Authorization: Bearer <jwt>`
 
