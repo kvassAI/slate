@@ -11,7 +11,6 @@ _id | `object` | The event ID.
 **kind** | `string` | The kind of event. Can be any from the [`event type list`](#list-of-event-types)
 data | `object` | It is an `EventData` object.
 author | `object` | [`User`](#users) which triggers the event
-previous_data | `array` | If a document is updated, the previous data is stored here.
 
 ### EventData Object
 
@@ -20,6 +19,7 @@ Attribute | Type | Description
 **object_type** | `string` | It is the object type like `order`, `product`, etc...
 **object** | `string` | The full object details.
 **kind** | `string` | The kind of event. Can be any from the [`event type list`](#list-of-event-types)
+previous_data | `object` | If a document is updated, the previous data is stored here.
 
 ## Get All Events
 Receives a list of all events.
@@ -304,12 +304,12 @@ Content-Type: application/json
                 "override_company_take":-1.0,
                 "user":{<user_details>},
                 "delivery_time":{"$date":1497009600000}
+            },
+            "previous_data": {
+                "items":[{"quantity":60, "discount":0.9, "product":{<product_details>}}],
+                "total_quantity":120,
+                "total_amount":1200.0
             }
-        },
-        "previous_data": {
-            "items":[{"quantity":60, "discount":0.9, "product":{<product_details>}}],
-            "total_quantity":120,
-            "total_amount":1200.0
         },
         "author": {
                       "_id":{"$oid":"57ee9c72d76d431f85111432"},
