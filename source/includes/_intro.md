@@ -289,7 +289,7 @@ The "+" used in the expression must be encoded: "%2B" else you will get a space 
 </aside>
 
 <aside class="Notice">
-You will receive a distinct list of models even if you have some expression including the same tags.
+You will not get duplicated item even his tags match with multiple tage in an expression.
 </aside>
 
 
