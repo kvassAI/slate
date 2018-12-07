@@ -78,7 +78,7 @@ Many response objects will contain IDs for related objects in the response. For 
 You can also nest expand requests with the dot property. For example, requesting payments.payment_method on an order will expand the payments property into a list of Payment objects, and will then expand the payment method property into a full Payment Method object.
 
 You can expand multiple objects at once by identifying multiple items
-in the expand array, separated with commas.
+in the URL query string param expand that defines which fields that you want to be expanded, separated with commas.
 
 For example:
 
@@ -90,12 +90,12 @@ Here's a list of fields which you will see often in the API responses:
 
 Field | Description
 ---------- | -------
-created  | Date when object was created
-modified | Date when object was last modified
-deleted  | Flag that shows if object has been deleted
-active   | Flag that shows if object is active
-company  | Company associated with object
-user     | User associated with object
+created  | Date when the object was created
+modified | Date when the object was last modified
+deleted  | Flag that shows if the object has been deleted
+active   | Flag that shows if the object is active
+company  | Company associated with the object
+user     | User associated with the object
 
 
 ## Pagination
@@ -119,22 +119,22 @@ Host: api.kvass.ai
 X-Pagination-Total: 212
 ```
 
-All top-level API resources have support for bulk fetches via "list" API methods. For instance you can list orders, users, providers, etc.
+All top-level API resources have support for bulk fetches via "list" API methods. For instance, you can list orders, users, providers, etc.
 These "list" API methods share a common structure, taking at least these two parameters: size and page.
 
-KVASS uses pagination based on a page size (`size`) and current page (`page`). With these parameters you can retrieve the data the way you need and display it using your own pagination scheme.
+KVASS uses pagination based on a page size (`size`) and current page (`page`). With these parameters, you can retrieve the data the way you need and display it using your own pagination scheme.
 The return of a response header contains the total count: `X-Pagination-Total: 212`
 
 
 ## Retrieve items
 
 The models ([Users](#users), [Invoices](#invoices), [Issuers](#issuers), etc.)
-describe below can be retrieve by two different ways, *searching* or an usual GET api call.
+describe below can be retrieved by two different ways, *searching* or a usual GET API call.
 
 In both ways, you can use pagination, sorting, and filter the results by date to navigate big lists.
 Additionally, the search method is using the argument `query`.
-Each model that has the ability to do search will be explained more thoroughly their respective chapters,
-but all the models have search by `ID` in common.
+Each model that has the ability to do a search will be explained more thoroughly their respective chapters,
+but all the models have a search by `ID` in common.
 
 > Definition GET
 
@@ -220,14 +220,93 @@ Some models give you additional arguments for filter the requests (e.g: status f
 The `Search` method is an advanced type of the `Get` request.
 This is because the results depend on the query.
 This method allows you to retrieve a list of items matching with a search query,
-like `user name` or `account_number`, without specifying that you are searching for
-`user name` or `account_number`.
+like `user_name` or `account_number`, without specifying that you are searching for
+`user_name` or `account_number`.
 
         | Invoices | Issuers | Orders | Payments | Products | Providers | Users | Resources
 ------- | -------- | ------- | ------ | -------- | -------- | --------- | ----- | -----
 *Filter by date*  | x | x | x | x | x | x | x | x
 *Pagination*      | x | x | x | x | x | x | x | x
 *Sorting*         | x | x | x | x | x | x | x | x
+
+
+### Search model by tags
+
+Some `GET` methods allowing you to search models by *tags*.
+Here follows an explanation on how to query by tags.
+
+There are 3 ways of getting models by tags:
+
+1. Get all models that contain a specific tag.
+
+*Code: `?tags=tag_1`*
+
+2. Get models that match multiple tags by separating the different tags in the query by `+`.
+
+*Code: `?tags=tag_1+tag_2`*
+
+3. Get models that contain only 1 specific tag.
+
+*Code: `?tags=tag_1+`*
+
+
+###Tag Query Examples
+
+Under follows some examples on how to query the models by tags.
+
+The basic structure when querying a model by tags is `some-route?tags=some-tag`. 
+
+It is also possible to query by multiple tags, like `some-route?tags=tag_1,tag_2`. This will return every document that matches either `tag1_` or `tag_2`, or both.
+
+If you only want models that match both `tag1_` and `tag_2`, separate the tags by `+`. Like `some-route?tags=tag_1+tag_2`.
+
+
+#### Get model by multiple tags
+
+- `GET some-route?tags=tag_1,tag_2`
+
+Here we have two expressions: `tag_1` and `tag_2`, which would you returns all models contain `tag_1` or `tag_2`
+
+- `GET some-route?tags=tag_2+tag_3,tag_1,tag_4+tag_5+tag_3`
+
+Here we have three expressions: `tag_2+tag_3`, `tag_1` and, `tag_4+tag_5`, which would you returns all models contain `tag_1` and `tag_2`, models contain `tag_1` and, models contain `tag_4`, `tag_5` and, `tag_3`.
+
+- `Get some-route?tags=tag_2+`
+
+In the query above, the query is 'tag_2+'. This query will return models that match the tag 'tag_2'
+
+<aside class="warning">
+The "+" used in the expression must be encoded: "%2B" else you will get a space between your tags.
+</aside>
+
+Let's see how it works with some examples:
+
+Assuming we have five models with their tags:
+
+*Model_1 has tags `tag_1` and `tag_2`, etc.*
+
+        | tag_1 | tag_2 | tag_3 | tag_4
+------- | ----- | ----- | ----- | -----
+model_1 |   x   |   x   |       |
+model_2 |   x   |       |   x   |
+model_3 |       |   x   |       |
+model_4 |       |       |       |   x
+model_5 |       |   x   |   x   |   x
+
+
+Under follows a table with different queries and their corresponding results:
+
+                                        | model_1 | model_2 | model_3 | model_4 | model_5
+--------------------------------------- | ------- | ------- | ------- | ------- | -------
+`?tags=tag_1`                           |   x     |   x     |         |         |
+`?tags=tag_1, tag_2`                    |   x     |   x     |   x     |         |   x
+`?tags=tag_1+tag_2`                     |   x     |         |         |         |
+`?tags=tag_2+tag_3+tag_4`               |   x     |         |         |         |   x
+`?tags=tag_1+tag_2, tag_4`              |   x     |         |         |   x     |   x
+`?tags=tag_2+`                          |         |         |   x     |         |
+`?tags=tag_2+, tag_1+tag_3`             |         |    x    |   x     |         |
+
+
 
 # Authorization
 
@@ -239,7 +318,7 @@ Our API uses OAuth2 and JWT tokens for authorizing Users.
 
 We have support for a variety of authentication providers, including [Auth0](https://auth0.com/), [Google Firebase](https://firebase.google.com/docs/auth/), [Amazon's Cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html) or even your own authentication mechanism. Each of these provides different Identity Providers such as Facebook, Google, Email and password, etc.
 
-Regardless of the provider you decide to go for, in order to authorize a user on the API side, we use the [JWT tokens](https://jwt.io/) given by those same authentication providers. These have to be added to all requests using the following header:
+We use the JWT in the request to authenticate your service, regardless of which authentication provider you use. The [JWT tokens](https://jwt.io/) has to be added to all request where user-specific actions or admin tasks are done.
 
 `Authorization: Bearer <jwt>`
 
