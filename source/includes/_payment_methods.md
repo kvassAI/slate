@@ -122,7 +122,7 @@ X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-  "method": "single_paypal",
+  "payment_method": "single_paypal",
   "payment_id": "<payment-id>",
   "payer_id": "<payer-id>"
 }
@@ -184,7 +184,7 @@ X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-  "method": "future_paypal",
+  "payment_method": "future_paypal",
   "code": "<some-code>"
 }
 ```
