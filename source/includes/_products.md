@@ -7,7 +7,7 @@ Attribute | Type | Description
 **name** | `string` | The name of the product
 **currency** |  `string` | Three letter currency code in standard ISO 4217 format.
 price | `number` | The price of the product
-price_change_percentage | `number`| How much percentage the products changes the price
+price_change_percentage | `number`| If you have sub_products in an order with `the price_change_percentage` set, then the sub_products will change the **main product's** amount in the order accordingly to the `product.price * sub_product.price_change_percentage`
 description | `string` | A full description of the product
 short_description | `string` | A brief description of the product
 main_product | `boolean` | Flag that marks whether or not it is a main product
