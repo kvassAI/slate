@@ -6146,7 +6146,7 @@ however there are some fields which will always be present.</p>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_paypal"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_paypal"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"payment_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payment-id&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"payer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;payer-id&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6220,7 +6220,7 @@ however there are some fields which will always be present.</p>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.kvass.ai</span>
 
 <span class="p">{</span><span class="w">
-  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"future_paypal"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"future_paypal"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;some-code&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
@@ -7181,7 +7181,7 @@ Content-Type: application/json
 <tr>
 <td>price_change_percentage</td>
 <td><code class="prettyprint">number</code></td>
-<td>How much percentage the products changes the price</td>
+<td>If you have sub_products in an order with the <code class="prettyprint">price_change_percentage</code> set, then the sub_products will change the <strong>main product&rsquo;s</strong> amount in the order accordingly to the <code class="prettyprint">product.price * sub_product.price_change_percentage</code></td>
 </tr>
 <tr>
 <td>description</td>
