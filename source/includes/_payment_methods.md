@@ -236,6 +236,11 @@ Attribute | Type | Description
 POST https://api.kvass.ai/payment_methods
 ```
 
+<aside class="warning">
+Be careful, if you give the possibilty to your customer to add or update their card directly through Stripe (through your app) then you have to do it through KVASS API as well.
+</aside>
+
+
 > Example request:
 
 ``` http
