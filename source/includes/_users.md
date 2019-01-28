@@ -8,14 +8,17 @@ Attributes | Type | Description
 ---------- | ---- | -----
 **first_name** | `string` | First name of the user
 **last_name** | `string` | Last name of the user
+salutation | `string` | Title of the user
 email | `string` | E-mail of the user
 mobile_phone_number | `string` | Phone number of the user
 addresses | `array` |  An `array`of [`Addresses`](#address) associated with the user
 billing_address | [`object`](#address) | Billing Address of the user
+default_payment_method | `string` | Default payment method of the  user
 bio | `string` | Biographic note about the user
 tags | `string` | List of tags associated with user
 roles | `string` | List of roles associated with user
-voucher | `object` | [`Voucher`](#credits) of the user.
+voucher | `object` | [`Voucher`](#credits) of the user
+note | `string` | Additional notes regarding the user
 
 ## Create a User
 
@@ -78,6 +81,7 @@ Content-Type: application/json
                 "street_name":"Iversenstien 7"
              }],
   "billing_address":{},
+  "default_payment_method":"",
   "bio":"",
   "note":"",
   "avatar":"",
@@ -94,11 +98,14 @@ Argument | Type | Description
 -------- | ---- | -----
 **first_name** | `string` | First name of the user
 **last_name** | `string` | Last name of the user
+salutation | `string` | Title of the user
 email | `string` | E-mail of the user
 mobile_phone_number | `string` | Phone number of the user
+addresses | `array` |  An `array`of [`Addresses`](#address) associated with the user
 billing_address | `object` | Billing [`Address`](#address) of the user
 bio | `string` | Biographic note about the user
 tags | `array` | List of tags associated with the user
+note | `string` | Additional notes regarding the user
 
 
 ## Create a User with a JWT token
@@ -313,11 +320,14 @@ Argument | Type | Description
 **user_id** | `string` | ID of the user to update
 first_name | `string` | First name of the user
 last_name | `string` | Last name of the user
+salutation | `string` | Title of the user
 email | `string` | E-mail of the user
 mobile_phone_number | `string` | Phone number of the user
 billing_address | `object`| Billing [`Address`](#address) of the user
+default_payment_method | `string` | Default payment method of the  user
 bio | `string` | Biographic note about the user
 tags | `array` | List of tags associated with the user
+note | `string` | Additional notes regarding the user
 
 
 ## Delete a User
@@ -363,6 +373,7 @@ Content-Type: application/json
                 "street_name":"Iversenstien 7"
              }],
   "billing_address":{},
+  "default_payment_method":{"$oid":"62ee9c72d76d431f85111432"},
   "bio":"",
   "note":"",
   "avatar":"",
