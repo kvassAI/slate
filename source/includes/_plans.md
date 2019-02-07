@@ -29,6 +29,7 @@ total_amount | `integer` | The amount to be charged on the interval specified. I
 initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices: `CANCEL`, `CONTINUE`
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
 setup_fee | `integer` | If you need to charge a subscription fee to the customer. Can't be less than `0`. _Default `0`_
+is_prorated | `boolean` | Sets if a plan is allowed to charge a prorate amount, which value is defined in the [`Subscription`](#subscriptions)). Default is `true`.
 
 ### Plan items
 
