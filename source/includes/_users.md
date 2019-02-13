@@ -15,8 +15,8 @@ addresses | `array` |  An `array`of [`Addresses`](#address) associated with the 
 billing_address | [`object`](#address) | Billing Address of the user
 default_payment_method | `string` | Default payment method of the  user
 bio | `string` | Biographic note about the user
-tags | `string` | List of tags associated with user
-roles | `string` | List of roles associated with user
+tags | `array` | List of tags associated with user
+roles | `array` | List of roles associated with user
 voucher | `object` | [`Voucher`](#credits) of the user
 note | `string` | Additional notes regarding the user
 
