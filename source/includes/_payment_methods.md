@@ -236,6 +236,11 @@ Attribute | Type | Description
 POST https://api.kvass.ai/payment_methods
 ```
 
+<aside class="warning">
+Note: If your customers can add a payment method or update their current payment method, ensure you to update the KVASS.AI API, as well.  When done directly through Stripe, our APIs won’t be notified and the payment will not be processed or tracked on our system.
+</aside>
+
+
 > Example request:
 
 ``` http
