@@ -5117,6 +5117,11 @@ see <code class="prettyprint">Create Subscription with a pre-set company specifi
 <td><code class="prettyprint">integer</code></td>
 <td>If you need to charge a subscription fee to the customer. Can&rsquo;t be less than <code class="prettyprint">0</code>. <em>Default <code class="prettyprint">0</code></em></td>
 </tr>
+<tr>
+<td>is_prorated</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Sets if a plan is allowed to charge a prorate amount, which value is defined in the <a href="#subscriptions"><code class="prettyprint">Subscription</code></a>). <em>Default is <code class="prettyprint">true</code></em>.</td>
+</tr>
 </tbody></table>
 
 <h3 id="plan-items">Plan items</h3>
@@ -5281,6 +5286,11 @@ when creating a new plan.</p>
 <td>prepay</td>
 <td><code class="prettyprint">boolean</code></td>
 <td>It&rsquo;s boolean and defines if the subscription payment is charged at the beginning or end of the billing cycle.</td>
+</tr>
+<tr>
+<td>is_prorated</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Sets if a plan is allowed to charge a prorate amount, which value is defined in the <a href="#subscriptions"><code class="prettyprint">Subscription</code></a>). <em>Default is <code class="prettyprint">true</code></em>.</td>
 </tr>
 </tbody></table>
 
@@ -5498,6 +5508,11 @@ Not all fields are possible to update. See fields in Argument below.</p>
 <td>prepay</td>
 <td><code class="prettyprint">boolean</code></td>
 <td>It&rsquo;s boolean and defines if the subscription payment is charged at the beginning or end of the billing cycle.</td>
+</tr>
+<tr>
+<td>is_prorated</td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Sets if a plan is allowed to charge a prorate amount, which value is defined in the <a href="#subscriptions"><code class="prettyprint">Subscription</code></a>). <em>Default is <code class="prettyprint">true</code></em>.</td>
 </tr>
 </tbody></table>
 
@@ -6279,6 +6294,10 @@ however there are some fields which will always be present.</p>
 </blockquote>
 <pre class="highlight plaintext"><code>POST https://api.kvass.ai/payment_methods
 </code></pre>
+<aside class="warning">
+Note: If your customers can add a payment method or update their current payment method, ensure you to update the KVASS.AI API, as well.  When done directly through Stripe, our APIs won’t be notified and the payment will not be processed or tracked on our system.
+</aside>
+
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -10301,6 +10320,11 @@ parameters by: infinite &gt; ending_date &gt; interval_total.</p>
 <td>Last name of the user</td>
 </tr>
 <tr>
+<td>salutation</td>
+<td><code class="prettyprint">string</code></td>
+<td>Title of the user</td>
+</tr>
+<tr>
 <td>email</td>
 <td><code class="prettyprint">string</code></td>
 <td>E-mail of the user</td>
@@ -10321,24 +10345,34 @@ parameters by: infinite &gt; ending_date &gt; interval_total.</p>
 <td>Billing Address of the user</td>
 </tr>
 <tr>
+<td>default_payment_method</td>
+<td><code class="prettyprint">string</code></td>
+<td>Default payment method of the  user</td>
+</tr>
+<tr>
 <td>bio</td>
 <td><code class="prettyprint">string</code></td>
 <td>Biographic note about the user</td>
 </tr>
 <tr>
 <td>tags</td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">array</code></td>
 <td>List of tags associated with user</td>
 </tr>
 <tr>
 <td>roles</td>
-<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">array</code></td>
 <td>List of roles associated with user</td>
 </tr>
 <tr>
 <td>voucher</td>
 <td><code class="prettyprint">object</code></td>
-<td><a href="#credits"><code class="prettyprint">Voucher</code></a> of the user.</td>
+<td><a href="#credits"><code class="prettyprint">Voucher</code></a> of the user</td>
+</tr>
+<tr>
+<td>note</td>
+<td><code class="prettyprint">string</code></td>
+<td>Additional notes regarding the user</td>
 </tr>
 </tbody></table>
 
@@ -10399,6 +10433,7 @@ parameters by: infinite &gt; ending_date &gt; interval_total.</p>
                 </span><span class="s2">"street_name"</span><span class="p">:</span><span class="s2">"Iversenstien 7"</span><span class="w">
              </span><span class="p">}],</span><span class="w">
   </span><span class="s2">"billing_address"</span><span class="p">:{},</span><span class="w">
+  </span><span class="s2">"default_payment_method"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -10428,6 +10463,11 @@ parameters by: infinite &gt; ending_date &gt; interval_total.</p>
 <td>Last name of the user</td>
 </tr>
 <tr>
+<td>salutation</td>
+<td><code class="prettyprint">string</code></td>
+<td>Title of the user</td>
+</tr>
+<tr>
 <td>email</td>
 <td><code class="prettyprint">string</code></td>
 <td>E-mail of the user</td>
@@ -10436,6 +10476,11 @@ parameters by: infinite &gt; ending_date &gt; interval_total.</p>
 <td>mobile_phone_number</td>
 <td><code class="prettyprint">string</code></td>
 <td>Phone number of the user</td>
+</tr>
+<tr>
+<td>addresses</td>
+<td><code class="prettyprint">array</code></td>
+<td>An <code class="prettyprint">array</code>of <a href="#address"><code class="prettyprint">Addresses</code></a> associated with the user</td>
 </tr>
 <tr>
 <td>billing_address</td>
@@ -10451,6 +10496,11 @@ parameters by: infinite &gt; ending_date &gt; interval_total.</p>
 <td>tags</td>
 <td><code class="prettyprint">array</code></td>
 <td>List of tags associated with the user</td>
+</tr>
+<tr>
+<td>note</td>
+<td><code class="prettyprint">string</code></td>
+<td>Additional notes regarding the user</td>
 </tr>
 </tbody></table>
 
@@ -10675,6 +10725,11 @@ log in a user with their JWT token.</p>
 <td>Last name of the user</td>
 </tr>
 <tr>
+<td>salutation</td>
+<td><code class="prettyprint">string</code></td>
+<td>Title of the user</td>
+</tr>
+<tr>
 <td>email</td>
 <td><code class="prettyprint">string</code></td>
 <td>E-mail of the user</td>
@@ -10690,6 +10745,11 @@ log in a user with their JWT token.</p>
 <td>Billing <a href="#address"><code class="prettyprint">Address</code></a> of the user</td>
 </tr>
 <tr>
+<td>default_payment_method</td>
+<td><code class="prettyprint">string</code></td>
+<td>Default payment method of the  user</td>
+</tr>
+<tr>
 <td>bio</td>
 <td><code class="prettyprint">string</code></td>
 <td>Biographic note about the user</td>
@@ -10698,6 +10758,11 @@ log in a user with their JWT token.</p>
 <td>tags</td>
 <td><code class="prettyprint">array</code></td>
 <td>List of tags associated with the user</td>
+</tr>
+<tr>
+<td>note</td>
+<td><code class="prettyprint">string</code></td>
+<td>Additional notes regarding the user</td>
 </tr>
 </tbody></table>
 
@@ -10740,6 +10805,7 @@ log in a user with their JWT token.</p>
                 </span><span class="s2">"street_name"</span><span class="p">:</span><span class="s2">"Iversenstien 7"</span><span class="w">
              </span><span class="p">}],</span><span class="w">
   </span><span class="s2">"billing_address"</span><span class="p">:{},</span><span class="w">
+  </span><span class="s2">"default_payment_method"</span><span class="p">:{</span><span class="s2">"$oid"</span><span class="p">:</span><span class="s2">"62ee9c72d76d431f85111432"</span><span class="p">},</span><span class="w">
   </span><span class="s2">"bio"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"avatar"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
