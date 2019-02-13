@@ -29,6 +29,7 @@ total_amount | `integer` | The amount to be charged on the interval specified. I
 initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices: `CANCEL`, `CONTINUE`
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
 setup_fee | `integer` | If you need to charge a subscription fee to the customer. Can't be less than `0`. _Default `0`_
+is_prorated | `boolean` | Sets if a plan is allowed to charge a prorate amount, which value is defined in the [`Subscription`](#subscriptions)). _Default is `true`_.
 
 ### Plan items
 
@@ -130,6 +131,8 @@ initial_fail_amount_action | `string` | Decides what happens if a payment fails 
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the maximum number of failed payments in a row that is allowed before the [`Subscription`](#subscriptions) stops. If `initial_fail_amount_action` is set to `CANCEL`, the [`Subscription`](#subscriptions) stops if one payment fails.
 setup_fee | `integer` | A setup fee that will be paid at the beginning of the first payment cycle. Can't be less than `0`. _Default `0`_
 prepay | `boolean` | It's boolean and defines if the subscription payment is charged at the beginning or end of the billing cycle.
+is_prorated | `boolean` | Sets if a plan is allowed to charge a prorate amount, which value is defined in the [`Subscription`](#subscriptions)). _Default is `true`_.
+
 
 ## Retrieve a Plan
 
@@ -281,6 +284,8 @@ discount |`number`| Between 0.0 an 1.0, where 1.0 is 100% discount on the total_
 total_amount |`number`| The total cost of the subscription payment. If set, the total_amount is not based on the sum of products.
 setup_fee | `integer` | If you need to charge a subscription fee to the customer. Can't be less than `0`. _Default `0`_
 prepay | `boolean` | It's boolean and defines if the subscription payment is charged at the beginning or end of the billing cycle.
+is_prorated | `boolean` | Sets if a plan is allowed to charge a prorate amount, which value is defined in the [`Subscription`](#subscriptions)). _Default is `true`_.
+
 
 ## Put items in a Plan
 
