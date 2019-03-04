@@ -3,11 +3,11 @@
 Attribute | Type | Description
 --------- | ---- | -------
 uuid | `string` | The unique reference ID for the Voucher.
-**initial_quantity** | `number` | The number of vouchers that will be deducted from a [User](#users).
+**initial_quantity** | `number` | The number of Credits that will be deducted from a [User](#users).
 expires |  `number` | The expiration date of the Credits.
 consumed | `number` | The number of Credits the user has consumed.
 
-The `Voucher` or `Credit` is used to pay for an [`Order`](#orders) containing [`Credit Product`](#credit-product-object).
+The `Voucher` or `Credit` is used to pay for an [`Order`](#orders) containing a [`Credit Product`](#credit-product-object).
 
 ## Grant Vouchers to User
 
@@ -83,24 +83,24 @@ voucher | `number` | The new value of the `initial_amount`.
 
 ## Voucher Plan
 
-A [`user`](#users) could also get vouchers by [`subscribing`](#subscriptions) on a `Voucher plan`.
-A voucher plan has a lot of commonalities as a normal [`Plan`](#plans), but uses strictly 
+A [`user`](#users) can also get vouchers by [`subscribing`](#subscriptions) to a `Voucher plan`.
+A voucher plan share a lot of commonalities with a normal [`Plan`](#plans), but uses only 
 [`Credit Product`](#credit-products) in the `plan.items` instead of regular [`Products`](#products).
-The [`user`](#users) will be incremented the number of vouchers corresponding to the sum of the
- `plan.items.product.vouchers_required` at every billing interval. The `total_amount` in the plan,
+The number of vouchers corresponding to the sum of the `plan.items.product.vouchers_required` will be charged at every billing interval for each [`user`](#users) . The `total_amount` in the plan,
  the amount that the user will be charged at every billing interval, will be the sum of all
- `plan.items.product.price`
+ `plan.items.product.price`.
 
 
 ### Create a Voucher Plan
 
 Argument | Type | Description
 -------- | ---- | -------
-**plan_method** | `string` | The type of Plan, in the case a `voucher_plan`.
+**method** | `string` | The type of Plan, in this case a `voucher_plan`.
+**name** | `string` | The name of the Plan, in this case a `VOUCHER_PLAN`.
 **interval_unit** | `string` | The frequency that the Subscription acts upon. <br> interval_unit choices: `DAY`, `WEEK`, `MONTH`, `MONTH_END`, `ANNUAL`
 **billing_interval** | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
 **currency** | `string`| Three letter ISO currency code as defined by ISO 4217.7
-**items** | `array` | An array of [`credict products`](#credit-products) and `quantity`.
+**items** | `array` | An array of [`credit products`](#credit-products) and `quantity`.
 
 > Definition
 
@@ -164,8 +164,8 @@ Content-Type: application/json
 
 ## Redeem Vouchers in an Order
 
-The User could redeem their voucher to pay for Orders if all the [`Order.item`](#orders)'s 
-only contains [`Credit Products`](#credit-products)
+The User can redeem their voucher to pay for Orders only if all the [`Order.items`](#orders) 
+are of type [`Credit Products`](#credit-products)
 
 
 > Definition
@@ -174,7 +174,7 @@ only contains [`Credit Products`](#credit-products)
 POST https://api.kvass.ai/orders/<order_id>/redeem?expand=user.voucher
 ```
 
-> Example request:
+> Example request & response:
 
 ``` http
 POST /orders/<order_id>/redeem?expand=user.voucher HTTP/1.1
@@ -183,7 +183,6 @@ Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
-{}
 
 ```
 

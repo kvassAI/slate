@@ -110,8 +110,8 @@ page | `number` | Which page to retrieve _default is 0_
 sort | `string` | Field used to sort results _default is `-created`_
 
 
-## Receive Event by ID
-Receive an event, based on its ID.
+## Get Event by ID
+Get an event, based on its ID.
 
 > Definition
 
@@ -192,7 +192,7 @@ Content-Type: application/json
 
 ## Events Search
 
-Retrieves a list of Events associated with search.
+Gets a list of Events associated with search.
 
 > Definition
 

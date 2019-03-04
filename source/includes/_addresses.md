@@ -15,16 +15,17 @@ country | `string` | The country of Address
 geo | `array` | The geo position of Address
 raw | `object` | All information like address, country, zip code, etc... from service
 alias | `string` | The alias of Address
+organization_name | `string` | The name of the organization at the given address if applicable 
 service  | `string` | The service used for Address _default google_
 
-### service
+### Services
 
 Possibilities |
 ------------- |
-google |
-pca |
+Google |
+PCA |
 
-## Retrieves an Address
+## Retrieving an Address
 
 > Definition
 
@@ -155,6 +156,6 @@ Host: api.kvass.ai
 
 Arguments | Type | Description
 --------- | ---- | ------
-service | `string` | Chose the service you want use
-type | `string` | Define the type of your search, if it's street name, zip code, etc
+service | `string` | Chose the service you want to use
+type | `string` | Define your search parameter, if it's street name, zip code, etc
 **query** | `string` | Query is what you want to search for e.g.: "Tordenskioldsgate 3, Oslo"
