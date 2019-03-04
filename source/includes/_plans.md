@@ -2,20 +2,21 @@
 
 The Plans method is utilized by the [`Subscriptions`](#subscriptions) method.
 Its main feature is to set the billing cycle, currency, product items and
-the duration of a subscription. The interval_unit and the billing_interval
+the duration of a subscription. The `interval_unit` and the billing_interval`
 are the most important fields and define the period of time between
 each subscription action and each payment. The next billing and interval dates are
 calculated from the starting date of the subscription.
 
-Only Admins could create, edit or delete a plan.
+Only Admins can create, edit or delete a plan.
 If your company want to allow your customers to create plans,
-see `Create Subscription with a pre-set company specific Plan` in the [`Subscriptions`](#subscriptions).
+see `Create Subscription with a pre-set company specific Plan` in the [`Subscriptions`](#subscriptions) section.
 
 ## Plans Object
 
 Attribute | Type | Description
 --------- | ---- | -------
-method | `string` |  The plan type. _Default is `basic`_.
+**method** | `string` |  The plan type. _Default is `basic`_.
+**currency** | `string` | Three letter ISO currency code as defined by ISO 4217.
 name | `string` | The name of the plan.
 note | `string` | A short description of the plan.
 interval_unit | `string` | The frequency that the subscription acts upon. <br> Choices: `DAY`, `WEEK`, `MONTH`, <br> `MONTH_END`, `ANNUAL`
@@ -24,16 +25,16 @@ billing_interval | `string`| Defines billing frequency. <br> Choices: `WEEK`, `M
 static | `boolean`| Defines if plan is allowed to be changed.
 items | `array` | List of items associated with Plan. See description below.
 units | `number` | Total number of items in the plan.
-currency | `string` | Three letter ISO currency code as defined by ISO 4217.
 total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`.
 initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices: `CANCEL`, `CONTINUE`
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
 setup_fee | `integer` | If you need to charge a subscription fee to the customer. Can't be less than `0`. _Default `0`_
-is_prorated | `boolean` | Sets if a plan is allowed to charge a prorate amount, which value is defined in the [`Subscription`](#subscriptions)). _Default is `true`_.
+is_prorated | `boolean` | Sets if a plan is allowed to charge a prorate amount, which value is defined in the [`Subscription`](#subscriptions). _Default is `true`_.
+prepay | `boolean` |??? _Default is `false`_.
 
 ### Plan items
 
-The plan could contain items as a list. These items describe the products the plan is based on.
+The plan can contain items as a list. These items describe the products the plan is based on.
 The items consist of a [`product`](#products), `quantity` and `discount`
 The `quantity` describes the number of that product. The `discount` sets the percent of
 discount of that product, from 0.0 to 1.0, where 0.0 is no discount and 1.0 is a 100% discount.
@@ -265,7 +266,7 @@ PUT https://api.kvass.ai/plans/<plan_id>
 > Example request:
 
 ``` http
-PUT /plans HTTP/1.1
+PUT /plans/<plan_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
@@ -289,6 +290,8 @@ is_prorated | `boolean` | Sets if a plan is allowed to charge a prorate amount, 
 
 ## Put items in a Plan
 
+Place one or more items into `items` array as part of Plan.
+
 > Definition
 
 ```
@@ -305,8 +308,8 @@ X-Share-Api-Key: <shareactor-api-key>
 Host: api.shareactor.io
 
 {
-    [{"product": "<product1_id>", "quantity": 1},
-     {"product": "<product2_id>", "quantity": 2, "discount": 0.5}]
+    "items": [{"product": "<product1_id>", "quantity": 1},
+              {"product": "<product2_id>", "quantity": 2, "discount": 0.5}]
 }
 ```
 
@@ -356,9 +359,9 @@ Host: api.kvass.ai
 Deletes a plan with a given ID.
 
 ## The Recurring Order Plan
-Unlike the basic plan, the `Recurring Order Plan` could be created by a non-admin user.
+Unlike the basic plan, the `Recurring Order Plan` can be created by a non-admin user.
 
-The `Recurring Order Plan` could either be paid per order or periodically every week or month.
+The `Recurring Order Plan` can either be paid per order or periodically every week or month.
 The `Recurring Order Plan` has these attributes, in addition to the attributes inherited by the basic plan.
 
 Attribute | Type | Description
@@ -373,7 +376,7 @@ name | `string` | The name of the plan. _default is `RECURRING_ORDER_PLAN`_
 
 ### Recurring Day
 A Recurring Order Plan must contain recurring days as a list.
-The recurring_days contains the parameters that decide when the orders are set to be scheduled.
+The recurring_days list contains the parameters that decide when the orders are set to be scheduled.
 The parameters to select the schedule are day, hour and minute.
 This is relative to the [`Plan`](#plans)'s interval unit.
 For example, if the `interval_unit` is set to WEEK, the value of `day` could be between 0 and 6.
