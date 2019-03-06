@@ -150,7 +150,7 @@ Creates a new order.
 
 Argument | Type | Description
 -------- | ---- | -------
-**user** | `object` | [`User`](#users) associated with order
+**user** | `string` | [`User`](#users) associated with order (referenced by user_id). A User `object` is returned in the response.
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 billing_address | `object` | [`Address`](#address) used for billing purposes
 delivery_time | `number` | Expected time of delivery, `timestamp` format

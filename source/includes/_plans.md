@@ -22,7 +22,7 @@ note | `string` | A short description of the plan.
 interval_unit | `string` | The frequency that the subscription acts upon. <br> Choices: `DAY`, `WEEK`, `MONTH`, <br> `MONTH_END`, `ANNUAL`
 interval_count | `integer`| Total number of interval_units.
 billing_interval | `string`| Defines billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
-static | `boolean`| Defines if plan is allowed to be changed.
+static | `boolean`| Defines if plan is allowed to be changed. _Default is `False`_.
 items | `array` | List of items associated with Plan. See description below.
 units | `number` | Total number of items in the plan.
 total_amount | `integer` | The amount to be charged on the interval specified. If missing, this will be calculated as the sum of the `items`.
@@ -366,7 +366,7 @@ The `Recurring Order Plan` has these attributes, in addition to the attributes i
 
 Attribute | Type | Description
 --------- | ---- | -------
-**user** | `object` | [`User`](#Users) associated with the plan
+**user** | `string` | [`User`](#Users) referenced by user_id who is associated with the plan. A User object` is returned in the response. 
 **interval_unit** | `string` | The frequency of the subscription. <br>Choices: `DAY`, `WEEK`, `MONTH`<br>
 **recurring_days** | `array` | An array of [`RecurringDay`](#recurring-day). Defines schedule.
 **billing_interval** | `string` | Defines the billing frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`, `PER_ORDER`
@@ -419,6 +419,7 @@ X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
+    "user": "5a211ae347e31c001312124e",
     "method": 'recurring_order',
     "interval_unit": "WEEK",
     "name": "Recurring Order Plan Deluxe",
@@ -476,8 +477,8 @@ Content-Type: application/json
 
 ### Update Recurring Order Plan
 
-It is only possible to update a plan if `static_plan` is `false`.
-Not all fields are possible to update.
+It is only possible to update a plan if `static` is `false` (the default setting).
+Only the fields listed below are possible to update.
 
 
 > Definition
@@ -562,8 +563,8 @@ max_fail_attempts |`number`| How many times a payment can fail in the subscripti
 discount |`number`| Between 0.0 an 1.0, where 1.0 is 100% discount on the `total_amount`.
 total_amount |`number`| The total cost of the subscription payment. If set, the total_amount is not based on the sum of products.
 recurring_days | `array` | When updating the recurring days you can return both of following format:
- - `{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}}` - it means this recurring day already exists
- - `{"day": 2, "hour": 10, "minute": 15}`
+ - `{"day": 0, "starting_day": {"$date": 1496410494652}, "next_day": {"$date": 1496410494652}}` - This recurring day already exists in the list `recurring_dates` 
+ - `{"day": 2, "hour": 10, "minute": 15}` - This is a new date to add to the list `recurring_dates`
  
 ### Get Subscriptions used by a Plan
 

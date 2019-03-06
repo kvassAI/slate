@@ -2,22 +2,21 @@
 
 Payment Methods allow you to use multiple payment systems:
 Credit Card (Stripe, Braintree, etc.), PayPal, DIBS and more.
-Other integrations available on request.
+We are always welcome to incorporating other integrations, so please let us know if you have any suggestions.
 
-You can also retrieve this information later for recurring payments or
-however you may require.
+You can also retrieve this information for recurring payments or for other required uses.
 
 The user has a `default_payment_method` which can be updated in the user object. This default payment method corresponds to the last payment method used by the user to pay for an order.
 
 ## Payment Method object
 
-A payment method object varies according to the system,
-however there are some fields which will always be present.
+A payment method object varies according to the type of payment method,
+however there are some fields which are present for all payment methods.
 
 Attributes | Type | Description
 ---------- | ---- | ------
-**payment_method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `paypal`, `single_paypal`, `future_paypal`.
-name | `string` | Name of the Payment Method - to be shown to final customer, if desired.
+**payment_method** | `string` | Type of Payment Method. Currently acceptable methods: `stripe`, `dibs`, `bank_transfer`, `single_paypal`, `future_paypal`.
+**name** | `string` | Name of the Payment Method - to be shown to final customer, if desired.
 user | `object` | [`User`](#users) associated with Payment Method.
 
 
@@ -89,20 +88,20 @@ Content-Type: application/json
 Attribute | Type | Description
 ---------- | ---- | ------
 **payment_method** | `string` | Must be "dibs" for triggering a DIBS payment method
-**merchant** | `string` | Merchant id of company
+**merchant** | `string` | DIBS company ID
 **transact** | `object` | ID of card (ticket)
 **orderid** | `string` | Unique order ID
-**share-authorization-header** | `string` | JWT token used for authentication the user
+**share-authorization-header** | `string` | JWT token used for authentication of the user
 **share-api-key-header** | `string` | Bearer token used for API access
-cardnomask | `string` | The last four numbers of the users credit card, e.g., "XXXXXXXXXXXX1234"
+cardnomask | `string` | The last four numbers of the user's credit card, e.g., "XXXXXXXXXXXX1234"
 cardprefix | `string` | First 5 numbers of the card (for type check: VISA, MasterCard, etc.)
-paytype | `string` | Type of credit card: MC, VISA, etc.
+paytype | `string` | Type of credit card: MC, VISA, etc. For a full list, please visit [DIBS](https://tech.dibspayment.com/D2/Toolbox/Paytypes).
 expdate | `string` | Expiration date on the credit card
 cardholder_name | `string` | The name of the card holder
 
 ## Paypal
 
-Paypal allows for 2 types of payments: Single Payments or Future Payments. A Single Payment is the most usual type of transaction and common for simple authentication and capturing of transactions. Future Payments are mostly used for charging the user several times, after giving their consent.
+Paypal allows 2 types of payments: Single Payments or Future Payments. A Single Payment is the most usual type of transaction and common for simple authentication and capturing of transactions. Future Payments are mostly used for charging the user several times, after giving their initial consent.
 
 ## Single Payment (PayPal)
 
@@ -237,7 +236,7 @@ POST https://api.kvass.ai/payment_methods
 ```
 
 <aside class="warning">
-Note: If your customers can add a payment method or update their current payment method, ensure you to update the KVASS.AI API, as well.  When done directly through Stripe, our APIs won’t be notified and the payment will not be processed or tracked on our system.
+Note: If your customers can add a payment method or update their current payment method, ensure you update the KVASS.AI API as well.  When done directly through Stripe, our APIs won’t be notified and the payment will not be processed or tracked on our system.
 </aside>
 
 

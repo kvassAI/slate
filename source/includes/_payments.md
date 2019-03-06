@@ -1,6 +1,6 @@
 # Payments
 
-There are multiple allowed subjects you can pay for, including Orders, Invoices or Subscriptions. Moreover, you're also allowed to make single payments, not associated with the aforementioned subjects.
+There are multiple models which accept payment, including Orders, Invoices and Subscriptions. Moreover, you're also allowed to make single payments, not associated with the aforementioned models.
 
 When you want to pay for an Order or Invoice (single or multiple items) you need to use the Payment object. Together with a
 [Payment Method](#payment-methods), among other fields, you'll be able to create and process payments, as well
@@ -21,6 +21,7 @@ Attribute | Type | Description
 **human_id** | `string` | Human readable ID. 6 character long
 **subject** | `string` | Either an Invoice or Order reference
 **current_state** | `string` | Current state of operation. Can be one of: `created`, `processing`, `captured`, `succeeded`, `failed` and `cancelled
+fee | `float` | Able to add fee additionally to amount
 payment_date | `object` | Date (`timestamp` format) for scheduling payment of invoices. Defaults to the due_date of each invoice
 payment_method | `string` | ID of already created Payment Method
 billing_address | `object` | [`Address`](#address) object with billing details if supported by payment provider.
