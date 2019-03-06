@@ -1,6 +1,6 @@
 # Providers
 
-Provider is a child class of [`User`](#users). They are users that provide
+Provider is a subclass of [`User`](#users). They are users that provide
 services to other users.
 
 ## Provider object
@@ -22,13 +22,13 @@ roles | `array` | Define the roles that a provider can have. _Default is provide
 > Definition
 
 ```
-POST https://api.kvass.ai/providers
+POST https://api.kvass.ai/v2/providers
 ```
 
 > Example request:
 
 ``` http
-POST /providers HTTP/1.1
+POST /v2/providers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>

@@ -27,13 +27,13 @@ Creates a new user.
 > Definition
 
 ```
-POST https://api.kvass.ai/users
+POST https://api.kvass.ai/users/new
 ```
 
 > Example request:
 
 ``` http
-POST /users HTTP/1.1
+POST /users/new HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
