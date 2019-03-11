@@ -63,10 +63,11 @@ X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-    "message": "some transaction or KID number",
+    "user": "57ee9c72d76d431f85111432",
     "amount": 123.45,
     "currency": "NOK",
     "account_number": "12345678903",
+    "message": "some transaction or KID number",
     "due_date": "2016-02-10T18:25:43.511Z",
     "image_url": "<image-id>/<image-name>.jpg",
     "issuer": "Big Important Firm AS",
@@ -100,10 +101,10 @@ Creates a new Invoice.
 
 Attribute | Type | Description
 ---------- | --- | -------
+**user** | `string` | User who is being invoiced, referenced by `user_id`
 **amount** | `number` | The amount of invoice _Required field_
 **currency** | `string` | ISO 4217 code of currency: "EUR", "USD", "NOK" etc. 
 **account_number** | `string` | Account number to which payment should be submitted
-**user** | `string` | User who is being invoiced, referenced by `user_id`
 due_date | `number` | Due date of invoice, `timestamp` format. _Default is current date if missing_
 image_url | `string` | The url for the invoice image
 issued_date| `number` | The date the Invoice was issued, `timestamp` format. _Not a required field_
@@ -133,11 +134,11 @@ X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-    "message": "some transaction or KID number",
+    "user": "5a211ae347e31c001312124e",
     "amount": 123.45,
     "currency": "NOK",
     "account_number": "12345678903",
-    "user": "5a211ae347e31c001312124e",
+    "message": "some transaction or KID number",
     "due_date": "2016-02-10T18:25:43.511Z",
     "image_url": "<image-id>/<image-name>.jpg",
     "issuer": "Big Important Firm AS",
@@ -308,7 +309,7 @@ GET https://api.kvass.ai/invoices/search
 > Example request by account_number:
 
 ``` http
-GET /invoices/search/query=12345678903 HTTP/1.1
+GET /invoices/search?query=12345678903 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>

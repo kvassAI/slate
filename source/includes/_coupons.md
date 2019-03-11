@@ -221,7 +221,7 @@ GET https://api.kvass.ai/coupons/search
 > Example request:
 
 ```http
-GET /coupons/search/query=SUMMER HTTP/1.1
+GET /coupons/search?query=SUMMER HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>

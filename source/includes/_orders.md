@@ -472,8 +472,8 @@ Content-Type: application/json
 ```
 
 Retrieves a list of all Orders associated with the search parameters.
-It is possible to search for id, human_id and first and last name for
-Users and Providers associated with orders.
+It is possible to search for order_id, human_id or first and last name for any 
+Users or Providers associated with an order.
 
 Arguments | Type | Description
 --------- | ---- | -------

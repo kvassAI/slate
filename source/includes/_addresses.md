@@ -23,7 +23,7 @@ service  | `string` | The service used for Address _default google_
 Possibilities |
 ------------- |
 Google |
-PCA |
+Loqate (previously PCA Predict) |
 
 ## Retrieving an Address
 
@@ -156,6 +156,6 @@ Host: api.kvass.ai
 
 Arguments | Type | Description
 --------- | ---- | ------
-service | `string` | Chose the service you want to use
-type | `string` | Define your search parameter, if it's street name, zip code, etc
+**service** | `string` | Chose the service you want to use
 **query** | `string` | Query is what you want to search for e.g.: "Tordenskioldsgate 3, Oslo"
+type | `string` | Define your search parameter, if it's street name, zip code, etc

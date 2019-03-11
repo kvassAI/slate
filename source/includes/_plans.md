@@ -30,7 +30,7 @@ initial_fail_amount_action | `string` | Decides what happens if a payment fails 
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the number of interval_units that is allowed to fail before the [`Subscription`](#subscriptions) stops.
 setup_fee | `integer` | If you need to charge a subscription fee to the customer. Can't be less than `0`. _Default `0`_
 is_prorated | `boolean` | Sets if a plan is allowed to charge a prorate amount, which value is defined in the [`Subscription`](#subscriptions). _Default is `true`_.
-prepay | `boolean` |??? _Default is `false`_.
+prepay | `boolean` | Defines whether the subscription payment is charged at the beginning or end of the month. _Default is `false`_ (the payment is charged at the end of the month).
 
 ### Plan items
 

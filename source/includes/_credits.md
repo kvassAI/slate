@@ -23,7 +23,7 @@ PUT https://api.kvass.ai/users/<user_id>?expand=voucher
 > Example request:
 
 ``` http
-POST /users HTTP/1.1
+PUT /users/<user_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>

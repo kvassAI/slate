@@ -13,7 +13,6 @@ name | `string` | The index key of the metric
 time_stamp | `object` | The date of the metric as a time stamp
 count | `float` | The number of instances of name per time unit
 sum_values | `float` | The sum of count per time unit
-external | `boolean` | Defines where the metric is created. _Default is `false`_
 key | `string` | ID field. Composed of the company's uuid, the metric name and the time stamp
 values | `array` | An array of values, from a date to a date, which represent the values of all different points/dots for an interval.</br></br>Think about a time series graph. You have time (period) on the x-axis and values on the y-axis</br></br>The `_meta` file describes the from and to dates on the x-axis and the resolution. While the `values` are the points on the graph, marking the value on the y-axis.</br>So if you are getting daily values for 30 days, there are 30 different `values` in a list, one value for each day.
 
@@ -258,7 +257,7 @@ Host: api.kvass.ai
 {
     "name": "foo.bar",
     "value": 1000,
-    "time" 1523297656
+    "time": 1523297656
 }
 ```
 

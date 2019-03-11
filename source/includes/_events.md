@@ -203,7 +203,7 @@ GET https://api.kvass.ai/events/search
 > Example request by account_number:
 
 ``` http
-GET /events/search/query=order HTTP/1.1
+GET /events/search?query=order HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
