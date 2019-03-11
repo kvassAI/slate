@@ -14,10 +14,11 @@ mobile_phone_number | `string` | Phone number of the user
 addresses | `array` |  An `array`of [`Addresses`](#address) associated with the user
 billing_address | [`object`](#address) | Billing Address of the user
 default_payment_method | `string` | Default payment method of the  user
+last_login | `string` | Date when user last logged in, `timestamp` format
 bio | `string` | Biographic note about the user
 tags | `array` | List of tags associated with user
 roles | `array` | List of roles associated with user
-voucher | `object` | [`Voucher`](#credits) of the user
+voucher | `object` | [`Credit`](#credits) of the user
 note | `string` | Additional notes regarding the user
 
 ## Create a User
@@ -40,8 +41,7 @@ X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-  "user": {
-    "first_name": "John",
+  "first_name": "John",
     "last_name": "Doe",
     "email": "john@email.com",
     "mobile_phone_number": "+4712345678",
@@ -54,7 +54,6 @@ Host: api.kvass.ai
                 "state":"Oslo",
                 "street_name":"Iversenstien 7"
              }]
-  }
 }
 ```
 
@@ -129,8 +128,7 @@ X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-  "user": {
-    "first_name": "John",
+  "first_name": "John",
     "last_name": "Doe",
     "email": "john@email.com",
     "mobile_phone_number": "+4712345678",
@@ -143,7 +141,6 @@ Host: api.kvass.ai
                 "state":"Oslo",
                 "street_name":"Streetname 7"
              }]
-  }
 }
 ```
 
@@ -657,7 +654,7 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all [Payments Method](#payment_methods) associated with a given user id.
+Retrieves a list of all [Payment Methods](#payment_methods) associated with a given user id.
 
 Arguments | Type | Description
 -------- | ----- | -----
