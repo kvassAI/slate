@@ -127,11 +127,11 @@ Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
-{
-    "description": "It is a test product",
+{   
+    "name": "Credit Product Name",
     "currency": "NOK",
     "vouchers_required": 120,
-    "name": "Credit Product Name"
+    "description": "It is a test product"
 }
 ```
 
@@ -169,8 +169,9 @@ This creates a new Credit Product.
 Argument | Type | Description
 -------- | ---- | -------
 **name** | `string` | Name of the product
+**currency**| `string` | Currency of the product _default set to `NOK`_
+**voucher_required** | `number` | Sets how many [`Credits`](#credits) this Credit Products costs to acquire.
 price | `number` | Price of the product
-currency | `string` | Currency of the product _default set to `NOK`_
 vat | `number` | Percentage of price to be paid for VAT _default set to `0.0`_
 description | `string` | Full description of the product
 short_description | `string` | Short description for the product
@@ -182,8 +183,7 @@ tags | `string` | List of tags associated with the product
 default_position | `array` | Geo position of the product _default set to `[-1, -1]`_
 properties | `object` | The product's properties
 provider | `string` | The [`provider`](#providers) assigned to the product, defined by the provider's ID
-voucher_required | `number` | Sets how many [`Credits`](#credits) this Credit Products costs to acquire.
-expire_days | `number` | Sets how many days this Credit Products is available.
+expire_days | `number` | Sets how many days this Credit Product is available.
 
 ## Update a Credit Product
 
