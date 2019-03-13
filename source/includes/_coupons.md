@@ -1,6 +1,6 @@
 # Coupons
 
-Coupons are a great way to offer discounts or vouchers to your customers. They can be used together with multiple business models: Orders, Invoices and Subscriptions.
+Coupons are a great way to offer discounts or credit vouchers to your customers. They can be used together with multiple business models: Orders, Invoices and Subscriptions.
 
 
 ## Coupon Object

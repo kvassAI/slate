@@ -7,7 +7,6 @@ and keeping a history of transactions on your data.
 
 Attribute | Type | Description
 --------- | ---- | -------
-_id | `object` | The event ID.
 **kind** | `string` | The kind of event. Can be any from the [`event type list`](#list-of-event-types)
 data | `object` | It is an `EventData` object.
 author | `object` | [`User`](#users) which triggers the event
@@ -192,7 +191,8 @@ Content-Type: application/json
 
 ## Events Search
 
-Gets a list of Events associated with search.
+Gets a list of Events associated with search. The query value needs to be equal to a specific 
+kind of event (i.e. order.created) or a class of events (i.e. order).
 
 > Definition
 

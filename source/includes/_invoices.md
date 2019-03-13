@@ -1,6 +1,7 @@
 # Invoices
 
-Invoices allow you to store invoice information for later payment or accounting information sent by a provider of a product or service to the [`User`](#users). 
+Invoices allow you to store invoice information for later payment or accounting information sent by a provider 
+of a product or service to the [`User`](#users). 
 
 ## Invoice object
 
@@ -26,7 +27,6 @@ deleted | `boolean` | Whether the invoice is deleted or not. _Default is `false`
 accounting_reference | `string` | A reference ID from your Accounting system.
 external_reference | `string` | Field to set your own reference or if you are using a third party.
 If your company is using an Account system supported by KVASS this external_reference field will automatically be setup.
-
 
 ## Invoice Lines
 
