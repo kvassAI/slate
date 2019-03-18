@@ -358,7 +358,7 @@ current_state | `string` | Status of Payments to filter by
 > Definition
 
 ```
-PUT https://api.kvass.ai/payments/<payment_id>
+PUT https://api.kvass.ai/payments/<payment-id>
 ```
 
 > Example request:
@@ -369,13 +369,47 @@ Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
+
+{
+	"active": false
+}
 ```
 
-```
+``` http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
+{
+    "currency": "NOK",
+    "amount": 390,
+    "active": false,
+    "human_id": "MR998V",
+    "subject": {
+        "_cls": "Invoice",
+        "_ref": "5c641635fd1c45001219e849"
+    },
+    "_id": {
+        "$oid": "5c641640fd1c45001519e84a"
+    },
+    "accounting_reference": "400367",
+    "metadata": {},
+    "deleted": false,
+    "company": {
+        "$oid": "59ce1e0a9d3bde0006fa45a9"
+    },
+    "user": {
+        "$oid": "5c1cc0c3ae702b00123f99fb"
+    },
+    "modified": {
+        "$date": 1552912011146
+    },
+    "created": {
+        "$date": 1550063168924
+    },
+    "current_state": "succeeded"
+}
 ```
+
 
 Update a payment. Editable fields:
 
