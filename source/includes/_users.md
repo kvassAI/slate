@@ -118,28 +118,30 @@ log in a user with their JWT token.
 POST https://api.kvass.ai/v2/users
 ```
 
-> Example request:
+> Example request (with example JWT token):
 
 ``` http
 POST /v2/users HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <jwt>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3OD
+kwIiwibGFzdF9uYW1lIjoiRG9lIiwiZmlyc3RfbmFtZSI6IkpvaG4iLCJpYXQiOjE1MTYyMzkwMjJ9.YE
+qWlNmcheENbeSTjXhA-LMfULwa7t_Ab71tDmLGUxA
 X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
   "first_name": "John",
-    "last_name": "Doe",
-    "email": "john@email.com",
-    "mobile_phone_number": "+4712345678",
-    "addresses": [{
-                "city":"Danielsen",
-                "service":"google",
-                "alias":"",
-                "country":"Paraguay",
-                "zip_code":"0556",
-                "state":"Oslo",
-                "street_name":"Streetname 7"
+   "last_name": "Doe",
+   "email": "john@email.com",
+   "mobile_phone_number": "+4712345678",
+   "addresses": [{
+               "city":"Danielsen",
+               "service":"google",
+               "alias":"",
+               "country":"Paraguay",
+               "zip_code":"0556",
+               "state":"Oslo",
+               "street_name":"Streetname 7"
              }]
 }
 ```

@@ -398,12 +398,12 @@ Content-Type: application/json
 Default status for the resource is `CREATED`. Change the status
 by updating the resource.
 
-Arguments | Description
---------- | -----
-CREATED | "CREATED"
-PROCESSING | "PROCESSING"
-UTILIZED | "UTILIZED"
-IDLE | "IDLE"
-ON_THE_WAY_FROM | "ON_THE_WAY_FROM"
-ON_THE_WAY_TO | "ON_THE_WAY_TO"
-DONE | "DONE"
+Arguments |
+--------- | 
+CREATED |
+PROCESSING | 
+UTILIZED | 
+IDLE | 
+ON_THE_WAY_FROM | 
+ON_THE_WAY_TO |
+DONE | 

@@ -12,7 +12,7 @@ plan.
 Attribute | Type | Description
 --------- | ---- | -------
 **user** | `object`  | [`User`](#Users) ID associated with the subscription.
-**method** | `string` | Name of subscription method. `license`
+**method** | `string` | Name of subscription method: `license` or `recurring_order`
 **plan** | `object` | ID of the [`Plan`](#Plans) associated with the subscription.
 _id | `object` | The subscription ID.
 name | `string` | The name of the subscription type.
