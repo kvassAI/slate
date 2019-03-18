@@ -420,7 +420,7 @@ Host: api.kvass.ai
 
 {
     "user": "5a211ae347e31c001312124e",
-    "method": 'recurring_order',
+    "method": "recurring_order",
     "interval_unit": "WEEK",
     "name": "Recurring Order Plan Deluxe",
     "currency": "NOK",
