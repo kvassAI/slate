@@ -190,13 +190,13 @@ expire_days | `number` | Sets how many days this Credit Product is available.
 > Definition
 
 ```
-PUT https://api.kvass.ai/credit_products/<bulk_id>
+PUT https://api.kvass.ai/credit_products/<credit_product_id>
 ```
 
 > Example request:
 
 ``` http
-PUT /credit_products/<bulk_id> HTTP/1.1
+PUT /credit_products/<credit_product_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
@@ -262,13 +262,13 @@ expire_days | `number` | Sets how many days this Credit Products is available.
 > Definition
 
 ```
-GET https://api.kvass.ai/credit_products/<bulk_id>
+GET https://api.kvass.ai/credit_products/<credit_product_id>
 ```
 
 > Example request:
 
 ``` http
-GET /credit_products/<bulk_id> HTTP/1.1
+GET /credit_products/<credit_product_id> HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
@@ -427,69 +427,6 @@ lat | `number` | Define the latitude.
 lng | `number` | Define the longitude.
 include_deleted| `boolean` | If `true`, deleted products are also listed.
 
-
-## Consume a Credit Product
-
-Consume a Credit Product associated with a credit product's unique ID.
-
-
-> Definition
-
-```
-POST https://api.kvass.ai/credit_products/<bulk_id>/consume
-```
-
-> Example request:
-
-``` http
-POST /credit_products/search?query=description HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer <jwt>
-X-Kvass-Api-Key: <kvass-api-key>
-Host: api.kvass.ai
-```
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-[
-    {
-       "_cls":"CreditProduct",
-       "parents":[],
-       "tags":["fuzz", "Foo", "Bar"],
-       "vouchers_required": 120,
-       "_sub_products":[],
-       "deleted":false,
-       "company_take":-1.0,
-       "max_distance":0,
-       "description":"description",
-       "created":{"$date":1492781492460},
-       "vat":0.0,
-       "properties":{},
-       "active":true,
-       "name":"Credit Product Name",
-       "modified":{"$date":1492781492461},
-       "company":{"$oid":"57ee9c71d76d431f8511142f"},
-       "currency":"NOK",
-       "path":"/",
-       "main_product":true,
-       "_id":{"$oid":"58f9f856b70e2a56c4a0db35"},
-       "business_rules":[],
-       "default_position":[-1,-1]
-    }
-]
-```
-
-Arguments | Type | Description
---------- | ---- | -----------
-**query** | `string` | What you want to search for, e.g., **name**, **description**, or **id**.
-size | `number` | Number of items to retrieve. _default is 10_
-page | `number` | Which page to retrieve. _default is 0_
-sort | `string` | Field used for sorting results. _default is `created`_
-lat | `number` | Define the latitude.
-lng | `number` | Define the longitude.
-include_deleted| `boolean` | If `true`, deleted products are also listed.
 
 ## Credit Plan
 

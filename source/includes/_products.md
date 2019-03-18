@@ -18,7 +18,6 @@ tags | `array` | List of tags associated with the product
 properties | `object` | The product's properties
 vat | `number` | The percentage of VAT in the product price. Percent value between 0 and 1
 max_distance | `number` |
-slug | `string` |
 
 
 ### Price and price_change_percentage
@@ -107,9 +106,6 @@ default_position | `array` | Geo position of the product _default set to `[-1, -
 properties | `object` | The product's properties
 max_distance | `number` |
 provider | `string` | The [`provider`](#providers) assigned to the product, defined by the provider's ID
-company_take | `number` |
-business_rules | `array` |
-slug | `array` |
 
 
 ## Retrieve a Product
