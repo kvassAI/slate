@@ -1,6 +1,6 @@
 # Resources
 
-The resource model is [`User`](#Users) specific attributes, assets or retail resources;
+The resource model are [`User`](#Users)-specific attributes, assets or retail resources:
 resources they possess or that under their ownership. The resource
 could have name, description and a chosen reference id. Additionally, it can have
 an image and product associated with it.
@@ -13,9 +13,9 @@ There is two types of resources, `asset` or `retail`. If not specified, an `asse
 
 Attribute | Type | Description
 --------- | ---- | -------
+**user** | `object`  | [`User`](#Users) associated with the resource
 _id | `object` | The resource ID
 method | `string` | The resource type. `asset` or `retail`.
-user | `object`  | [`User`](#Users) associated with the resource
 name | `string` | Name of the resource item
 description | `string`| Description of the resource item
 image_url | `string` | Image associated with the resource
@@ -25,7 +25,7 @@ tags | `array` | An array of tags
 human_id | `string` | 6 character ID.
 status | `string` | Status of the resource _default is `CREATED`, other options are `PROCESSING`, `UTILIZED` or `IDLE`_
 
-## Retail Resource Object
+## Retail Resources Object
 In addition to the attributes in the `asset` resource, the `retail` resource has the following attributes.
 
 Attribute | Type | Description
@@ -60,7 +60,8 @@ Host: api.kvass.ai
     "description": "description of the resource",
     "name": "name of resource",
     "image_url": "http://reference.kvass.ai/images/logo.png",
-    "reference_id": "abc1234567890abc"}
+    "reference_id": "abc1234567890abc"
+}
 ```
 ``` http
 HTTP/1.1 200 OK
@@ -397,12 +398,12 @@ Content-Type: application/json
 Default status for the resource is `CREATED`. Change the status
 by updating the resource.
 
-Arguments | Description
---------- | -----
-CREATED | "CREATED"
-PROCESSING | "PROCESSING"
-UTILIZED | "UTILIZED"
-IDLE | "IDLE"
-ON_THE_WAY_FROM | "ON_THE_WAY_FROM"
-ON_THE_WAY_TO | "ON_THE_WAY_TO"
-DONE | "DONE"
+Arguments |
+--------- | 
+CREATED |
+PROCESSING | 
+UTILIZED | 
+IDLE | 
+ON_THE_WAY_FROM | 
+ON_THE_WAY_TO |
+DONE | 

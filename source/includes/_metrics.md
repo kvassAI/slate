@@ -3,7 +3,7 @@
 This section describes the collection, aggregating and receiving of metrics automatically 
 generated on the KVASS platform while processing different tasks.
 
-It is also possible to create custom metrics over the API and receiving these over the API.
+It is also possible to create custom metrics over the API and to receive these over the API.
 
 
 ## The Metric Object
@@ -13,9 +13,8 @@ name | `string` | The index key of the metric
 time_stamp | `object` | The date of the metric as a time stamp
 count | `float` | The number of instances of name per time unit
 sum_values | `float` | The sum of count per time unit
-external | `boolean` | Defines where the metric is created. _Default is `false`_
-key | `string` | ID field. Composed by the company's uuid, the metric name and the time stamp
-values | `array` | It is an array of values, from a date to a date, which represents the values of all different points/dots for an interval.</br></br>Think about a time series graph. You have time (period) on the x-axis and values on the y-axis</br></br>The `_meta` filed describes the from and to dates on the x-axis and the resolution. While the `values` are the points on the graph, marking the value on the y-axis.</br>So if you are getting daily values for 30 days, there are 30 different `values` in a list, one value for each day.
+key | `string` | ID field. Composed of the company's uuid, the metric name and the time stamp
+values | `array` | An array of values, from a date to a date, which represent the values of all different points/dots for an interval.</br></br>Think about a time series graph. You have time (period) on the x-axis and values on the y-axis</br></br>The `_meta` file describes the from and to dates on the x-axis and the resolution. While the `values` are the points on the graph, marking the value on the y-axis.</br>So if you are getting daily values for 30 days, there are 30 different `values` in a list, one value for each day.
 
 </br></br>
 The `name` of the metric usually has a primary key and multiple secondary keys. 
@@ -23,7 +22,7 @@ These are separated with a dot, `.`. For example `foo.bar`.
 </br>
 This is for grouping the metrics based on some commonalities.
 An example of this is the metrics aggregated for every API request. The primary key is `requests`,
-This key have multiple of secondary keys, like `type` and `status_code`. The metrics for
+This key has multiple secondary keys, like `type` and `status_code`. The metrics for
 `requests.type.POST` returns statistics for all `POST` requests. 
 `requests.status_code.200` returns statistics for all requests with an HTTP status code 200.
 
@@ -258,7 +257,7 @@ Host: api.kvass.ai
 {
     "name": "foo.bar",
     "value": 1000,
-    "time" 1523297656
+    "time": 1523297656
 }
 ```
 

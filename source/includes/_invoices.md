@@ -1,15 +1,17 @@
 # Invoices
 
-Invoices allow you to store invoice information for later payment or accounting information sent by a provider of a product or service to the [`User`](#users)]. 
+Invoices allow you to store invoice information for later payment or accounting information sent by a provider 
+of a product or service to the [`User`](#users). 
 
 ## Invoice object
 
 Attributes | Type | Description
 ---------- | ---- | ------
 **user** | `object` | [`User`](#users) associated with invoice
-**amount** | `number` | The invoice amount. Two decimals.
+**amount** | `float` | The invoice amount. Two decimals.
 **currency** | `string` | ISO 4217 code of currency, for example: "EUR"
 **account_number** | `string` | Account number of the issuer that will receive the payment.
+**user** | `string` | User who is being invoiced, referenced by `user_id`
 due_date | `object` | The due date of the invoice, `timestamp` format
 issued_date | `object` | The date the invoice was generated, `timestamp` format
 message | `string` | Message (KID) used for paying the invoice as it will appear in the issuer's bank
@@ -24,23 +26,23 @@ kind | `string` | The type or kind of invoice.
 deleted | `boolean` | Whether the invoice is deleted or not. _Default is `false`_
 accounting_reference | `string` | A reference ID from your Accounting system.
 external_reference | `string` | Field to set your own reference or if you are using a third party.
-If your company is using an Account system supported by KVASS this field will be automatically setup.
-
+If your company is using an Account system supported by KVASS this external_reference field will automatically be setup.
 
 ## Invoice Lines
 
-Invoice lines are additional information it is possible to append to an invoice. 
-Each line has the format presented bellow.
+Invoice lines are additional information that can be appended to an invoice. 
+Each line has the format presented below.
 
 Attributes | Type | Description
 ---------- | ---- | ------
-*description* | `string` | Description of unit. _Required field_
-*quantity* | `number` | Quantity of unit `product` or `resource`. _Default is 1_
-*amount* | `float`| Unit price. _Required field_
-*currency* | `string` | Currency of the unit. ISO 4217 currency code. For example "EUR" _Required field_
+**description** | `string` | Description of unit. 
+**quantity** | `number` | Quantity of unit `product` or `resource`. _Default is 1_
+**amount** | `float`| Unit price. 
+**currency** | `string` | Currency of the unit. ISO 4217 currency code. For example "EUR" 
 product | `object` | [`Product`](#products) in unit
 resource | `object` | [`Resource`](#resources) in unit
 vat | `float` | VAT of unit. _From 0.0 to 1.0. Default is 0_
+discount | `float` | Discount value. _From 0.0 to 1.0. Default is 0_
 
 
 ## Create an Invoice
@@ -61,10 +63,11 @@ X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-    "message": "some transaction or KID number",
+    "user": "57ee9c72d76d431f85111432",
     "amount": 123.45,
     "currency": "NOK",
     "account_number": "12345678903",
+    "message": "some transaction or KID number",
     "due_date": "2016-02-10T18:25:43.511Z",
     "image_url": "<image-id>/<image-name>.jpg",
     "issuer": "Big Important Firm AS",
@@ -98,9 +101,10 @@ Creates a new Invoice.
 
 Attribute | Type | Description
 ---------- | --- | -------
+**user** | `string` | User who is being invoiced, referenced by `user_id`
 **amount** | `number` | The amount of invoice _Required field_
-**currency** | `string` | ISO 4217 code of currency: "EUR", "USD", "NOK" etc. _Required field_
-**account_number** | `string` | Account number to which payment should be submitted _Required field_
+**currency** | `string` | ISO 4217 code of currency: "EUR", "USD", "NOK" etc. 
+**account_number** | `string` | Account number to which payment should be submitted
 due_date | `number` | Due date of invoice, `timestamp` format. _Default is current date if missing_
 image_url | `string` | The url for the invoice image
 issued_date| `number` | The date the Invoice was issued, `timestamp` format. _Not a required field_
@@ -130,10 +134,11 @@ X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-    "message": "some transaction or KID number",
+    "user": "5a211ae347e31c001312124e",
     "amount": 123.45,
     "currency": "NOK",
     "account_number": "12345678903",
+    "message": "some transaction or KID number",
     "due_date": "2016-02-10T18:25:43.511Z",
     "image_url": "<image-id>/<image-name>.jpg",
     "issuer": "Big Important Firm AS",
@@ -190,7 +195,7 @@ Content-Type: application/json
 }
 ```
 Creates a new Invoice including invoice lines.
-The following example show you how to create different invoice lines in an Invoice.
+The following example shows you how to create different invoice lines in an Invoice.
 The first invoice line contains a [`Resource`](#Resources) but it works the same way with a [`Product`](#Products).
 
 ## Retrieve an Invoice
@@ -293,7 +298,7 @@ date_filter | `string` | Date field used for filter results. _default is `create
 
 ## Invoices Search
 
-Retrieves a list of Invoices associate with search.
+Retrieves a list of Invoices associated with search.
 
 > Definition
 
@@ -304,7 +309,7 @@ GET https://api.kvass.ai/invoices/search
 > Example request by account_number:
 
 ``` http
-GET /invoices/search/query=12345678903 HTTP/1.1
+GET /invoices/search?query=12345678903 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>

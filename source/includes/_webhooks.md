@@ -227,7 +227,7 @@ Argument | Type | Description
 
 ## Verify the Webhook
 
-The webhook has to verified before related data on related `Events` is dispatched. KVASS tries
+The webhook has to be verified before related data on related `Events` is dispatched. KVASS tries
 to verify the endpoint when the webhook is created. If the endpoint returns an HTTP status code
 2XX, then the webhook is set to `verified`.
 

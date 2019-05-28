@@ -246,6 +246,11 @@ Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
+
+{
+    "name": "new issuer name",
+    "logo_url": "<new-logo-url.png>"
+}
 ```
 
 ``` http
@@ -256,7 +261,7 @@ Content-Type: application/json
    "company":{
       "$oid":"57ee9c71d76d431f8511142f"
    },
-   "name":"Big Company Ltd",
+   "name":"new issuer name",
    "modified":{
       "$date":1491145388209
    },
@@ -268,7 +273,7 @@ Content-Type: application/json
       "$date":1491145388109
    },
    "deleted":false,
-   "logo_url":"<logo-url.png>",
+   "logo_url":"<new-logo-url.png>",
     "address": {
         "street_name": "Money Lane 99",
         "alias": "",

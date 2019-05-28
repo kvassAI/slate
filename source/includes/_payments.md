@@ -1,6 +1,6 @@
 # Payments
 
-There are multiple allowed subjects you can pay for, including Orders, Invoices or Subscriptions. Moreover, you're also allowed to make single payments, not associated with the aforementioned subjects.
+There are multiple models which accept payment, including Orders, Invoices and Subscriptions. Moreover, you're also allowed to make single payments, not associated with the aforementioned models.
 
 When you want to pay for an Order or Invoice (single or multiple items) you need to use the Payment object. Together with a
 [Payment Method](#payment-methods), among other fields, you'll be able to create and process payments, as well
@@ -21,6 +21,7 @@ Attribute | Type | Description
 **human_id** | `string` | Human readable ID. 6 character long
 **subject** | `string` | Either an Invoice or Order reference
 **current_state** | `string` | Current state of operation. Can be one of: `created`, `processing`, `captured`, `succeeded`, `failed` and `cancelled
+fee | `float` | Able to add fee additionally to amount
 payment_date | `object` | Date (`timestamp` format) for scheduling payment of invoices. Defaults to the due_date of each invoice
 payment_method | `string` | ID of already created Payment Method
 billing_address | `object` | [`Address`](#address) object with billing details if supported by payment provider.
@@ -357,7 +358,7 @@ current_state | `string` | Status of Payments to filter by
 > Definition
 
 ```
-PUT https://api.kvass.ai/payments/<payment_id>
+PUT https://api.kvass.ai/payments/<payment-id>
 ```
 
 > Example request:
@@ -368,13 +369,47 @@ Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
+
+{
+	"active": false
+}
 ```
 
-```
+``` http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
+{
+    "currency": "NOK",
+    "amount": 390,
+    "active": false,
+    "human_id": "MR998V",
+    "subject": {
+        "_cls": "Invoice",
+        "_ref": "5c641635fd1c45001219e849"
+    },
+    "_id": {
+        "$oid": "5c641640fd1c45001519e84a"
+    },
+    "accounting_reference": "400367",
+    "metadata": {},
+    "deleted": false,
+    "company": {
+        "$oid": "59ce1e0a9d3bde0006fa45a9"
+    },
+    "user": {
+        "$oid": "5c1cc0c3ae702b00123f99fb"
+    },
+    "modified": {
+        "$date": 1552912011146
+    },
+    "created": {
+        "$date": 1550063168924
+    },
+    "current_state": "succeeded"
+}
 ```
+
 
 Update a payment. Editable fields:
 

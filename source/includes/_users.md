@@ -14,10 +14,11 @@ mobile_phone_number | `string` | Phone number of the user
 addresses | `array` |  An `array`of [`Addresses`](#address) associated with the user
 billing_address | [`object`](#address) | Billing Address of the user
 default_payment_method | `string` | Default payment method of the  user
+last_login | `string` | Date when user last logged in, `timestamp` format
 bio | `string` | Biographic note about the user
 tags | `array` | List of tags associated with user
 roles | `array` | List of roles associated with user
-voucher | `object` | [`Voucher`](#credits) of the user
+voucher | `object` | [`Credit`](#credits) of the user
 note | `string` | Additional notes regarding the user
 
 ## Create a User
@@ -27,21 +28,20 @@ Creates a new user.
 > Definition
 
 ```
-POST https://api.kvass.ai/users
+POST https://api.kvass.ai/users/new
 ```
 
 > Example request:
 
 ``` http
-POST /users HTTP/1.1
+POST /users/new HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-  "user": {
-    "first_name": "John",
+  "first_name": "John",
     "last_name": "Doe",
     "email": "john@email.com",
     "mobile_phone_number": "+4712345678",
@@ -54,7 +54,6 @@ Host: api.kvass.ai
                 "state":"Oslo",
                 "street_name":"Iversenstien 7"
              }]
-  }
 }
 ```
 
@@ -119,31 +118,31 @@ log in a user with their JWT token.
 POST https://api.kvass.ai/v2/users
 ```
 
-> Example request:
+> Example request (with example JWT token):
 
 ``` http
 POST /v2/users HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer <jwt>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3OD
+kwIiwibGFzdF9uYW1lIjoiRG9lIiwiZmlyc3RfbmFtZSI6IkpvaG4iLCJpYXQiOjE1MTYyMzkwMjJ9.YE
+qWlNmcheENbeSTjXhA-LMfULwa7t_Ab71tDmLGUxA
 X-Kvass-Api-Key: <kvass-api-key>
 Host: api.kvass.ai
 
 {
-  "user": {
-    "first_name": "John",
-    "last_name": "Doe",
-    "email": "john@email.com",
-    "mobile_phone_number": "+4712345678",
-    "addresses": [{
-                "city":"Danielsen",
-                "service":"google",
-                "alias":"",
-                "country":"Paraguay",
-                "zip_code":"0556",
-                "state":"Oslo",
-                "street_name":"Streetname 7"
+  "first_name": "John",
+   "last_name": "Doe",
+   "email": "john@email.com",
+   "mobile_phone_number": "+4712345678",
+   "addresses": [{
+               "city":"Danielsen",
+               "service":"google",
+               "alias":"",
+               "country":"Paraguay",
+               "zip_code":"0556",
+               "state":"Oslo",
+               "street_name":"Streetname 7"
              }]
-  }
 }
 ```
 
@@ -657,7 +656,7 @@ Content-Type: application/json
 ]
 ```
 
-Retrieves a list of all [Payments Method](#payment_methods) associated with a given user id.
+Retrieves a list of all [Payment Methods](#payment_methods) associated with a given user id.
 
 Arguments | Type | Description
 -------- | ----- | -----

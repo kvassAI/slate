@@ -1,8 +1,8 @@
 # Orders
 
 Orders are the result of a User purchasing a given set of Products.
-A key function of this feature os that you can associate a particular
-product to a particular provider.
+A key function of this feature is that you can associate a particular
+product with a particular provider.
 
 The `total_amount` is set by the `items` and the `resources`. See section below.
 
@@ -10,7 +10,8 @@ The `total_amount` is set by the `items` and the `resources`. See section below.
 
 Attributes | Type | Description
 ---------- | ---- | -------
-currency | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+**user** | `object` | [`User`](#users) associated with order
+**currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 billing_address | `object` | [`Address`](#address) used for billing purposes
 deliveries | `array` | Used to store the delivery history for an order
 delivery_address | `object` | [`Address`](#address) used for delivery
@@ -30,8 +31,12 @@ total_amount | `float` | Amount as a float with two decimals. e.g., 12.34. The a
 total_quantity | `number` | Total number of products in an order
 units | `number` | Number of unique products in an order
 accounting_reference | `string`| A accounting reference ID
+external_reference | `string`| Field to set your own reference or if you are using a third party.
 stripe_charge_id | `string`| The reference ID from a Stripe charge
 stripe_refund_id | `string`| The reference ID from a Stripe refund
+subscription | `object`| Associated subscription referenced by subscription_id
+campaign | `object`| Associated campaign referenced by campaign_id
+
 
 ## Create an Order
 
@@ -145,6 +150,7 @@ Creates a new order.
 
 Argument | Type | Description
 -------- | ---- | -------
+**user** | `string` | [`User`](#users) associated with order (referenced by user_id). A User `object` is returned in the response.
 **currency** | `string` | 3 letter ISO currency code as defined by [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
 billing_address | `object` | [`Address`](#address) used for billing purposes
 delivery_time | `number` | Expected time of delivery, `timestamp` format
@@ -466,8 +472,8 @@ Content-Type: application/json
 ```
 
 Retrieves a list of all Orders associated with the search parameters.
-It is possible to search for id, human_id and first and last name for
-Users and Providers associated with orders.
+It is possible to search for order_id, human_id or first and last name for any 
+Users or Providers associated with an order.
 
 Arguments | Type | Description
 --------- | ---- | -------
@@ -489,18 +495,18 @@ quantity | `number` | The quantity of product
 discount | `number` | The discount of the product.price in the order
 sub_products | `array` | An array of sub-product ID's associated in order
 
-The order could have items in it. These items is in an array.
-The items contains information to specify the `total_amount` in the order.
-Items specify which products that is associated to the order.
+An Order can have items in it. These items are stored in an array.
+The items contain information for calculating the `total_amount` for the order.
+Items specify which products are associated with the order.
 
-The sub_products in the `array` could either have a price or a `price_change_percentage`.
+The sub_products in the `array` can either have a price or a `price_change_percentage`.
 If the `price_change_percentage` is not 0,
-this percentage will multiplied with the `product.price` in that item, affecting the `total_amount`.
+this percentage will be multiplied with the `product.price` in that item, affecting the `total_amount`.
 If the `price_change_percentage` is 0, the price in the sub-product adds that price to the `total_amount`.
 
 ## Resources in the Order
-The order could have [`resources`](#resources) associated to it.
-The `total_amount` is affected by every `retail` resource in the array, by the
+The order can have [`resources`](#resources) associated with it.
+The `total_amount` is affected by every `retail` resource in the array and specifically by the
 field `retail_price`.
 
 ## Order Arguments and Statuses

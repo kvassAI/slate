@@ -16,9 +16,8 @@ parents | `array` | The sub product's parent
 default_position | `array` | The geo position for the product
 tags | `array` | List of tags associated with the product
 properties | `object` | The product's properties
-vat | `number` | The percentage of VAT in the product price
+vat | `number` | The percentage of VAT in the product price. Percent value between 0 and 1
 max_distance | `number` |
-slug | `string` |
 
 
 ### Price and price_change_percentage
@@ -48,7 +47,7 @@ Host: api.kvass.ai
     "currency": "NOK",
     "price": 3.14,
     "name": "Product Name",
-    "vat": 15
+    "vat": 0.15
 }
 ```
 
@@ -57,8 +56,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {  
-   "_id":{  
-    ":"58f9f856b70e2a56c4a0db3d"},
+   "_id": {"$oid": "5c7fc967383117000d193a91"},
    "max_distance":0,
    "created":{  
       "$date":1492777046366
@@ -78,7 +76,7 @@ Content-Type: application/json
    "price":3.14,
    "active":false,
    "tags":[],
-   "vat":15.0,
+   "vat": 0.15,
    "company":{"$oid":"57ee9c71d76d431f8511142f"},
    "deleted":false,
    "company_take":-1.0,
@@ -95,7 +93,7 @@ Argument | Type | Description
 -------- | ---- | -------
 **name** | `string` | Name of the product
 **price** | `number` | Price of the product
-currency | `string` | Currency of the product _default set to `NOK`_
+**currency** | `string` | Currency of the product _default set to `NOK`_
 vat | `number` | Percentage of price to be paid for VAT _default set to `0.0`_
 description | `string` | Full description of the product
 short_description | `string` | Short description for the product
@@ -108,9 +106,6 @@ default_position | `array` | Geo position of the product _default set to `[-1, -
 properties | `object` | The product's properties
 max_distance | `number` |
 provider | `string` | The [`provider`](#providers) assigned to the product, defined by the provider's ID
-company_take | `number` |
-business_rules | `array` |
-slug | `array` |
 
 
 ## Retrieve a Product
@@ -332,14 +327,14 @@ Host: api.kvass.ai
 
 ## Credit Product Object
 
-The Credit Product is based on the [`Products`](#products).
+The Credit Product is a subclass of [`Products`](#products).
 
 Attribute | Type | Description
 --------- | ---- | -------
 **vouchers_required** | `number` | How many vouchers ([`Credits`](#credits)) _default is 60_
-**expire_day** |  `number` | _default is 365_
+**expire_days** |  `number` | _default is 365_
 
-A Credit Product is a special product that allows the user to redeem [`vouchers`](#credits) to pay for an [`order`](#orders) instead of their [`payment method`](#payment-methods).
+A Credit Product is a special product that allows the user to redeem [`credits`](#credits) to pay for an [`order`](#orders) instead of their [`payment method`](#payment-methods).
 
 ## Create a New Credit Product
 > Definition
@@ -541,7 +536,7 @@ Attribute | Type | Description
 **bulk_id** | `string` | The credit product's ID
 
 
-## Get List of All Products Associated with a Company
+## Get List of All Credit Products Associated with a Company
 
 > Definition
 

@@ -7,7 +7,6 @@ and keeping a history of transactions on your data.
 
 Attribute | Type | Description
 --------- | ---- | -------
-_id | `object` | The event ID.
 **kind** | `string` | The kind of event. Can be any from the [`event type list`](#list-of-event-types)
 data | `object` | It is an `EventData` object.
 author | `object` | [`User`](#users) which triggers the event
@@ -110,8 +109,8 @@ page | `number` | Which page to retrieve _default is 0_
 sort | `string` | Field used to sort results _default is `-created`_
 
 
-## Receive Event by ID
-Receive an event, based on its ID.
+## Get Event by ID
+Get an event, based on its ID.
 
 > Definition
 
@@ -192,7 +191,8 @@ Content-Type: application/json
 
 ## Events Search
 
-Retrieves a list of Events associated with search.
+Gets a list of Events associated with search. The query value needs to be equal to a specific 
+kind of event (i.e. order.created) or a class of events (i.e. order).
 
 > Definition
 
@@ -203,7 +203,7 @@ GET https://api.kvass.ai/events/search
 > Example request by account_number:
 
 ``` http
-GET /events/search/query=order HTTP/1.1
+GET /events/search?query=order HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>

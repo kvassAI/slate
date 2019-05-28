@@ -1,6 +1,6 @@
 # Providers
 
-Provider is a child class of [`User`](#users). They are users that provide
+Provider is a subclass of [`User`](#users). They are users that provide
 services to other users.
 
 ## Provider object
@@ -22,13 +22,13 @@ roles | `array` | Define the roles that a provider can have. _Default is provide
 > Definition
 
 ```
-POST https://api.kvass.ai/providers
+POST https://api.kvass.ai/v2/providers
 ```
 
 > Example request:
 
 ``` http
-POST /providers HTTP/1.1
+POST /v2/providers HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
@@ -137,6 +137,180 @@ mobile_phone_number |  `string` | Provider's phone number
 billing_address | `string` | Provider's billing address
 bio | `string` | Biographic note about the provider
 
+## Update a User to Provider
+
+> Definition
+
+```
+PUT https://api.kvass.ai/users/<user_id>/upgrade-to-provider
+```
+
+> Example request:
+
+``` http
+PUT /users/<user_id>/upgrade-to-provider HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <jwt>
+X-Kvass-Api-Key: <kvass-api-key>
+Host: api.kvass.ai
+
+```
+
+``` http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "_id": {
+        "$oid": "5a2a837a9bb92800137cb16f"
+    },
+    "_cls": "User.Provider",
+    "created": {
+        "$date": 1512735610287
+    },
+    "modified": {
+        "$date": 1552916932070
+    },
+    "first_name": "Telenor",
+    "last_name": "",
+    "addresses": [
+        {
+            "street_name": "17 Tromsøgata",
+            "zip_code": "0565",
+            "city": "Oslo",
+            "country": "Norway",
+            "geo": [
+                59.9247479,
+                10.772601500000064
+            ],
+            "alias": "",
+            "service": "google"
+        }
+    ],
+    "billing_address": {
+        "alias": "",
+        "service": "google"
+    },
+    "voucher": {
+        "initial_quantity": 0,
+        "expires": {
+            "$date": 1544271610286
+        },
+        "consumed": 0,
+        "created": {
+            "$date": 1512735610286
+        },
+        "uuid": "83f2bba1-14d5-4779-b512-4d5de97bfc63"
+    },
+    "bio": "",
+    "note": "",
+    "avatar": "",
+    "last_login": {
+        "$date": 1512735610288
+    },
+    "company": {
+        "$oid": "59ce1e0a9d3bde0006fa45a9"
+    },
+    "tags": [],
+    "stripe_customer_id": "",
+    "auth_id": "",
+    "national_id": "",
+    "new_customer": true,
+    "is_company": false,
+    "deleted": false,
+    "receive_notifications": true,
+    "blocked": false,
+    "active": true,
+    "max_travel_time": 1,
+    "max_travel_meters": 10000,
+    "default_address": {
+        "street_name": "17 Tromsøgata",
+        "zip_code": "0565",
+        "city": "Oslo",
+        "country": "Norway",
+        "geo": [
+            59.9247479,
+            10.772601500000064
+        ],
+        "alias": "",
+        "service": "google"
+    },
+    "schedule": {
+        "valid_from": {
+            "$date": 1552914000000
+        },
+        "working_sections": [],
+        "day_of_week": [
+            {
+                "start_hour": 0,
+                "start_minute": 0,
+                "end_hour": 0,
+                "end_minute": 0,
+                "day_of_week": 0
+            },
+            {
+                "start_hour": 0,
+                "start_minute": 0,
+                "end_hour": 0,
+                "end_minute": 0,
+                "day_of_week": 1
+            },
+            {
+                "start_hour": 0,
+                "start_minute": 0,
+                "end_hour": 0,
+                "end_minute": 0,
+                "day_of_week": 2
+            },
+            {
+                "start_hour": 0,
+                "start_minute": 0,
+                "end_hour": 0,
+                "end_minute": 0,
+                "day_of_week": 3
+            },
+            {
+                "start_hour": 0,
+                "start_minute": 0,
+                "end_hour": 0,
+                "end_minute": 0,
+                "day_of_week": 4
+            },
+            {
+                "start_hour": 0,
+                "start_minute": 0,
+                "end_hour": 0,
+                "end_minute": 0,
+                "day_of_week": 5
+            },
+            {
+                "start_hour": 0,
+                "start_minute": 0,
+                "end_hour": 0,
+                "end_minute": 0,
+                "day_of_week": 6
+            }
+        ]
+    },
+    "products": [],
+    "available_on_bank_holidays": false,
+    "country": "NOR",
+    "roles": [
+        "user",
+        "provider"
+    ]
+}
+```
+
+Upgrades an existing User to Provider
+
+Arguments | Type | Description
+--------- | ---- | ------
+**user_id** | `string` | ID of the user to be updated to Provider
+
+<aside class="warning">
+Important: The User must have an address before they can be upgraded to a Provider!
+</aside>
 
 ## Retrieve a Provider
 

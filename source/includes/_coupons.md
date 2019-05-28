@@ -1,6 +1,6 @@
 # Coupons
 
-Coupons are a great way to offer discounts or vouchers to your Customers. They can be used together with multiple business models: Orders, Invoices and Subscriptions.
+Coupons are a great way to offer discounts or credit vouchers to your customers. They can be used together with multiple business models: Orders, Invoices and Subscriptions.
 
 
 ## Coupon Object
@@ -8,17 +8,17 @@ Coupons are a great way to offer discounts or vouchers to your Customers. They c
 Attributes | Types | Description
 ---------- | ----- | -----------
 **name** | `string` | Name of the coupon
-**code** | `string` | The code to be used by a costumer. By default, the code is automatically generated (a string of 6 characters long, e.g: Nz42kL), but you can also create our own.
+**code** | `string` | The code to be used by a customer. By default, the code is automatically generated (a string of 6 characters long, e.g: Nz42kL), but you can also create our own.
 percent_off | `number` | The discount percentage, should be between `0.` and `1.`, for example: 0.2 means 20% of the total amount.
 amount_off | `number` | Discount amount, for example: 100.50, means that the next payment will be decreased by 100.50.
 currency | `string` | ISO 4217 code of currency, for example: "EUR"
-starting_date | `object` | Define when can the coupon start being used. By default, it'll start at the time of creation, but it could be defined for the future. If defined in the future, it means the coupon could not be used before the `starting_date`, `timestamp` format. _Default `now`_
-ending_date | `object` | The date when the coupon will stop being available. `timestamp` format.
+starting_date | `object` | Define when the coupon can start being used. By default, it'll start at the time of creation, but it could be defined for the future. If defined in the future, it means the coupon cannot be used before the `starting_date`. `timestamp` format. _Default `now`_
+ending_date | `object` | The expiry date of the coupon. `timestamp` format.
 max_redemptions | `integer` | The number of times a coupon can be used. When the `used_count` is equal to the `max_redemption` then the coupon becomes unusable.
 used_count | `integer` | Automatically incremented by each use.
 
 
-As you can see, there are two type of discount: percent_off and amount_off.
+As you can see, there are two types of discounts: percent_off and amount_off.
 It's important to remember: a coupon can only have one of them at the same time.
 But if you want to change the type of discount you can do it easily with a `PUT coupons/<coupon_id>` (There is an example [here](#switch-the-discount-type))
 <br/>
@@ -210,7 +210,7 @@ date_filter | `string` | Date field used for filter results. _default is `create
 
 ## Coupons Search
 
-Retrieves a list of Coupons associate with the company.
+Retrieves a list of Coupons associated with the company.
 
 > Definition
 
@@ -221,7 +221,7 @@ GET https://api.kvass.ai/coupons/search
 > Example request:
 
 ```http
-GET /coupons/search/query=SUMMER HTTP/1.1
+GET /coupons/search?query=SUMMER HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer <jwt>
 X-Kvass-Api-Key: <kvass-api-key>
