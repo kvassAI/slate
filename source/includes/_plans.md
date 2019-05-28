@@ -121,12 +121,9 @@ Argument | Type | Description
 **currency** | `string`| Three letter ISO currency code as defined by ISO 4217.7
 name | `string` | The name of the plan.
 note | `string` | A short description of the plan.
-interval_unit | `string` | The frequency that the subscription acts upon. <br> Choices: `DAY`, `WEEK`, `MONTH`, <br> `MONTH_END`, `ANNUAL`
 interval_count | `integer`| The total number of interval_units the subscription runs before it stops.
-billing_interval | `string`| Defines the payment frequency. <br> Choices: `WEEK`, `MONTH`, `MONTH_END`
 static | `boolean`| Sets if the params in the params in the plan are changeable after its creation
 items | `array` | List of items associated with Plan. See description below.
-currency | `string` | The currency of the payment. ISO 4217-standard.
 total_amount | `integer` | The amount in the `currency` that will be charged at the end of the billing interval. If missing, the `total_amount` will be calculated as the sum of the items.
 initial_fail_amount_action | `string` | Decides what happens if a payment fails in the [`Subscription`](#subscriptions). <br> Choices: `CANCEL`, `CONTINUE`
 max_fail_attempts | `integer`| If `initial_fail_amount_action` is `CONTINUE`, this is the maximum number of failed payments in a row that is allowed before the [`Subscription`](#subscriptions) stops. If `initial_fail_amount_action` is set to `CANCEL`, the [`Subscription`](#subscriptions) stops if one payment fails.
